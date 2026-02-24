@@ -36,7 +36,7 @@ const MOCK_TRANSACTION = {
     company: "QUALIWATT",
     address: "16-18 rue Eiffel, 77220 Gretz-Armainvilliers, France",
     country: "FR",
-    countryFlag: "\u{1F1EB}\u{1F1F7}",
+    countryFlag: "🇫🇷",
     vatStatus: "active",
     vatNumber: "FR12345678901",
     vatVerifiedAt: "2026-02-22T17:30:00Z",
@@ -49,9 +49,9 @@ const MOCK_TRANSACTION = {
     badges: ["trusted", "bankTransfer"],
   },
   buyer: {
-    company: "SolarTech Estonia O\u00DC",
+    company: "SolarTech Estonia OÜ",
     country: "EE",
-    countryFlag: "\u{1F1EA}\u{1F1EA}",
+    countryFlag: "🇪🇪",
     vatStatus: "verified",
     vatNumber: "EE102345678",
     vatVerifiedAt: "2026-02-22T17:30:00Z",
@@ -59,10 +59,10 @@ const MOCK_TRANSACTION = {
       line1: "13***",
       city: "Tallinn",
       country: "Estonia",
-      countryFlag: "\u{1F1EA}\u{1F1EA}",
+      countryFlag: "🇪🇪",
     },
   },
-  shipper: { name: "SUNTREX DELIVERY", icon: "\u{1F69B}", tracking: null },
+  shipper: { name: "SUNTREX DELIVERY", icon: "🚛", tracking: null },
 };
 
 const MOCK_MESSAGES = [
@@ -70,7 +70,7 @@ const MOCK_MESSAGES = [
     id: 1,
     sender: "buyer",
     senderName: "SolarTech Estonia",
-    text: "Bonjour, je suis int\u00E9ress\u00E9 par l'achat de 10 exemplaires du mod\u00E8le **Huawei SUN2000-10KTL-M2**. Pouvons-nous entamer les n\u00E9gociations ?",
+    text: "Bonjour, je suis intéressé par l'achat de 10 exemplaires du modèle **Huawei SUN2000-10KTL-M2**. Pouvons-nous entamer les négociations ?",
     originalLang: "en",
     translatedText: "Hello, I am interested in purchasing 10 units of the **Huawei SUN2000-10KTL-M2** model. Can we start negotiations?",
     timestamp: "2026-02-24T09:24:00Z",
@@ -90,7 +90,7 @@ const MOCK_MESSAGES = [
     id: 3,
     sender: "seller",
     senderName: "QUALIWATT",
-    text: "Bonjour,\n\nOui nous avons 1064 unit\u00E9s en stock. Pour 10 pi\u00E8ces, je peux vous proposer un prix sp\u00E9cial \u00E0 **1 190 \u20AC / unit\u00E9** au lieu de 1 249 \u20AC.\n\nLivraison sous 3 jours via SUNTREX DELIVERY.\n\nCordialement",
+    text: "Bonjour,\n\nOui nous avons 1064 unités en stock. Pour 10 pièces, je peux vous proposer un prix spécial à **1 190 € / unité** au lieu de 1 249 €.\n\nLivraison sous 3 jours via SUNTREX DELIVERY.\n\nCordialement",
     originalLang: "fr",
     translatedText: null,
     timestamp: "2026-02-24T10:06:00Z",
@@ -100,12 +100,12 @@ const MOCK_MESSAGES = [
 
 // ── Status config ─────────────────────────────────────────
 const STATUS_STEPS = [
-  { key: "negotiation", label: "Ouverture des n\u00E9gociations", icon: "\u{1F4AC}" },
-  { key: "confirmed", label: "Transaction confirm\u00E9e", icon: "\u2705" },
-  { key: "paid", label: "Pay\u00E9e", icon: "\u{1F4B0}" },
-  { key: "shipped", label: "Exp\u00E9di\u00E9e", icon: "\u{1F69B}" },
-  { key: "delivered", label: "Livr\u00E9e", icon: "\u{1F4E6}" },
-  { key: "completed", label: "Termin\u00E9e", icon: "\u{1F3C1}" },
+  { key: "negotiation", label: "Ouverture des négociations", icon: "💬" },
+  { key: "confirmed", label: "Transaction confirmée", icon: "✅" },
+  { key: "paid", label: "Payée", icon: "💰" },
+  { key: "shipped", label: "Expédiée", icon: "🚛" },
+  { key: "delivered", label: "Livrée", icon: "📦" },
+  { key: "completed", label: "Terminée", icon: "🏁" },
 ];
 
 // ── Helpers ───────────────────────────────────────────────
@@ -152,7 +152,7 @@ function ModerationBadge({ mod }) {
           fontWeight: 600,
         }}
       >
-        \u26A0 Signal\u00E9 \u2014 en attente de mod\u00E9ration
+        ⚠ Signalé — en attente de modération
       </span>
     );
   return null;
@@ -161,7 +161,7 @@ function ModerationBadge({ mod }) {
 function ProductImageWithFallback({ src, alt }) {
   const [failed, setFailed] = useState(false);
   if (failed) {
-    return <div style={{ fontSize: 28 }}>{"\u26A1"}</div>;
+    return <div style={{ fontSize: 28 }}>{"⚡"}</div>;
   }
   return (
     <img
@@ -280,12 +280,12 @@ function RichTextToolbar() {
     <div style={{ display: "flex", alignItems: "center", gap: 2 }}>
       <button style={{ ...btnStyle, fontWeight: 700 }} title="Gras">B</button>
       <button style={{ ...btnStyle, fontStyle: "italic" }} title="Italique">I</button>
-      <button style={{ ...btnStyle, textDecoration: "underline" }} title="Soulign\u00E9">U</button>
+      <button style={{ ...btnStyle, textDecoration: "underline" }} title="Souligné">U</button>
       <div style={{ width: 1, height: 18, background: "#e5e7eb", margin: "0 4px" }} />
-      <button style={btnStyle} title="Lien">{"\u{1F517}"}</button>
-      <button style={btnStyle} title="Pi\u00E8ce jointe">{"\u{1F4CE}"}</button>
-      <button style={btnStyle} title="Image">{"\u{1F5BC}\uFE0F"}</button>
-      <button style={btnStyle} title="Emoji">{"\u{1F60A}"}</button>
+      <button style={btnStyle} title="Lien">{"🔗"}</button>
+      <button style={btnStyle} title="Pièce jointe">{"📎"}</button>
+      <button style={btnStyle} title="Image">{"🖼️"}</button>
+      <button style={btnStyle} title="Emoji">{"😊"}</button>
     </div>
   );
 }
@@ -343,7 +343,7 @@ function SellerDetails({ seller }) {
   return (
     <div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
-        <h3 style={{ fontSize: 14, fontWeight: 700, color: "#1f2937" }}>D\u00E9tails du vendeur</h3>
+        <h3 style={{ fontSize: 14, fontWeight: 700, color: "#1f2937" }}>Détails du vendeur</h3>
         <svg width="14" height="14" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24">
           <path d="M6 9l6 6 6-6" />
         </svg>
@@ -360,12 +360,12 @@ function SellerDetails({ seller }) {
             fontWeight: 600,
           }}
         >
-          {"\u2713"} Actif
+          {"✓"} Actif
         </span>
       </div>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 14 }}>
         <span style={{ fontSize: 11, background: "#f3f4f6", padding: "3px 8px", borderRadius: 4, color: "#4b5563" }}>
-          Transactions compl\u00E9t\u00E9es {seller.transactionsCompleted}
+          Transactions complétées {seller.transactionsCompleted}
         </span>
         <span style={{ fontSize: 11, background: "#f3f4f6", padding: "3px 8px", borderRadius: 4, color: "#4b5563" }}>
           Offres actives {seller.activeOffers}
@@ -381,10 +381,10 @@ function SellerDetails({ seller }) {
           })}
         </span>
         <span style={{ fontSize: 11, background: "#fef9c3", padding: "3px 8px", borderRadius: 4, color: "#854d0e" }}>
-          {"\u2B50"} {seller.rating.toFixed(1)} bas\u00E9 sur {seller.ratingCount} avis
+          {"⭐"} {seller.rating.toFixed(1)} basé sur {seller.ratingCount} avis
         </span>
         <span style={{ fontSize: 11, background: "#f3f4f6", padding: "3px 8px", borderRadius: 4, color: "#4b5563" }}>
-          {"\u23F1"} Temps de r\u00E9ponse : {seller.avgResponseTime}
+          {"⏱"} Temps de réponse : {seller.avgResponseTime}
         </span>
       </div>
     </div>
@@ -454,7 +454,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
     return (
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh", fontFamily: "'DM Sans', sans-serif" }}>
         <div style={{ textAlign: "center", color: "#6b7280" }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>{"\u26A1"}</div>
+          <div style={{ fontSize: 32, marginBottom: 12 }}>{"⚡"}</div>
           <div>Chargement de la transaction...</div>
         </div>
       </div>
@@ -489,11 +489,11 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
       >
         <nav style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: "#6b7280" }}>
           <Link to="/" style={{ color: "#6b7280", textDecoration: "none" }}>Accueil</Link>
-          <span>{"\u203A"}</span>
+          <span>{"›"}</span>
           <span style={{ color: "#1f2937", fontWeight: 600 }}>Transaction #{tx.id}</span>
           {isDemoMode && (
             <span style={{ fontSize: 10, background: "#fef3c7", color: "#92400e", padding: "2px 8px", borderRadius: 4, fontWeight: 600, marginLeft: 8 }}>
-              MODE D\u00C9MO
+              MODE DÉMO
             </span>
           )}
         </nav>
@@ -515,7 +515,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
               gap: 6,
             }}
           >
-            {"\u2713"} Ajouter des produits de votre liste
+            {"✓"} Ajouter des produits de votre liste
           </button>
           <button
             className="tx-btn"
@@ -534,7 +534,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
               gap: 6,
             }}
           >
-            {"\u2715"} Annuler la transaction
+            {"✕"} Annuler la transaction
           </button>
         </div>
       </div>
@@ -592,7 +592,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
                       {tx.product.name}
                     </div>
                     <div style={{ fontSize: 11.5, color: "#6b7280" }}>
-                      Disponibilit\u00E9 : <span style={{ color: "#16a34a", fontWeight: 600 }}>{tx.product.availability} pcs</span>
+                      Disponibilité : <span style={{ color: "#16a34a", fontWeight: 600 }}>{tx.product.availability} pcs</span>
                     </div>
                     <div style={{ fontSize: 11.5, color: "#6b7280", marginTop: 2 }}>
                       Incoterms : <span style={{ fontWeight: 500 }}>{tx.product.incoterms}</span>
@@ -601,18 +601,18 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
                       Temps d'envoi : <span style={{ fontWeight: 500 }}>{tx.product.deliveryTime}</span>
                     </div>
                     <span style={{ fontSize: 11.5, color: "#E8700A", marginTop: 4, display: "inline-block", cursor: "pointer" }}>
-                      D\u00E9tails du produit
+                      Détails du produit
                     </span>
                   </div>
                   <div>
-                    <div style={{ fontSize: 11, color: "#9ca3af", marginBottom: 2 }}>Quantit\u00E9</div>
-                    <div style={{ fontSize: 13, fontWeight: 600 }}>{tx.product.quantity} pi\u00E8ces</div>
-                    <span style={{ fontSize: 11, color: "#E8700A", cursor: "pointer" }}>{"\u00C9diter"}</span>
+                    <div style={{ fontSize: 11, color: "#9ca3af", marginBottom: 2 }}>Quantité</div>
+                    <div style={{ fontSize: 13, fontWeight: 600 }}>{tx.product.quantity} pièces</div>
+                    <span style={{ fontSize: 11, color: "#E8700A", cursor: "pointer" }}>{"Éditer"}</span>
                   </div>
                   <div>
                     <div style={{ fontSize: 11, color: "#9ca3af", marginBottom: 2 }}>Prix (pc)</div>
                     <div style={{ fontSize: 13, fontWeight: 600 }}>{fmt(tx.product.unitPrice)}</div>
-                    <span style={{ fontSize: 11, color: "#E8700A", cursor: "pointer" }}>{"\u00C9diter"}</span>
+                    <span style={{ fontSize: 11, color: "#E8700A", cursor: "pointer" }}>{"Éditer"}</span>
                   </div>
                   <div>
                     <div style={{ fontSize: 11, color: "#9ca3af", marginBottom: 2 }}>Prix (net)</div>
@@ -633,10 +633,10 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
                 }}
               >
                 <div style={{ fontSize: 12, color: "#6b7280" }}>
-                  Livraison par <span style={{ fontWeight: 600, color: "#E8700A" }}>{"\u{1F69B}"} SUNTREX</span>
+                  Livraison par <span style={{ fontWeight: 600, color: "#E8700A" }}>{"🚛"} SUNTREX</span>
                 </div>
                 <div style={{ fontSize: 12, color: "#6b7280" }}>{fmt(tx.product.deliveryCost)}</div>
-                <span style={{ fontSize: 11, color: "#E8700A", cursor: "pointer" }}>{"\u00C9diter"}</span>
+                <span style={{ fontSize: 11, color: "#E8700A", cursor: "pointer" }}>{"Éditer"}</span>
                 <div style={{ fontSize: 12, color: "#9ca3af" }}>Total (brut)</div>
                 <div style={{ fontSize: 18, fontWeight: 800, color: "#1f2937" }}>{fmt(tx.product.totalGross)}</div>
               </div>
@@ -666,7 +666,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
                 gap: 6,
               }}
             >
-              {"\u{1F310}"} Cette n\u00E9gociation est automatiquement traduite en chat
+              {"🌐"} Cette négociation est automatiquement traduite en chat
               {showModerationPanel && (
                 <span
                   style={{
@@ -679,7 +679,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
                     fontWeight: 600,
                   }}
                 >
-                  {"\u{1F6E1}"} Mod\u00E9ration active
+                  {"🛡"} Modération active
                 </span>
               )}
             </div>
@@ -699,7 +699,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
                         marginBottom: 10,
                       }}
                     >
-                      {"\u23F3"} V\u00E9rification en cours{"\u2026"}
+                      {"⏳"} Vérification en cours{"…"}
                     </div>
                   )}
                 </div>
@@ -717,7 +717,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
                     handleSend();
                   }
                 }}
-                placeholder={"\u00C9crivez quelque chose\u2026"}
+                placeholder={"Écrivez quelque chose…"}
                 rows={3}
                 style={{
                   width: "100%",
@@ -784,7 +784,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
                       gap: 6,
                     }}
                   >
-                    {"\u2713"} Envoyer
+                    {"✓"} Envoyer
                   </button>
                 </div>
               </div>
@@ -802,7 +802,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
             }}
           >
             <h3 style={{ fontSize: 14, fontWeight: 700, marginBottom: 10, color: "#1f2937" }}>
-              Autres pi\u00E8ces jointes
+              Autres pièces jointes
             </h3>
             <div
               style={{
@@ -814,7 +814,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
                 justifyContent: "space-between",
               }}
             >
-              <span style={{ fontSize: 12.5, color: "#9ca3af" }}>Ajouter ici d'autres pi\u00E8ces jointes</span>
+              <span style={{ fontSize: 12.5, color: "#9ca3af" }}>Ajouter ici d'autres pièces jointes</span>
               <button
                 style={{
                   fontSize: 12,
@@ -846,11 +846,11 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
             <div>
               <h3 style={{ fontSize: 14, fontWeight: 700, color: "#1f2937" }}>Contact avec l'assistance SUNTREX</h3>
               <div style={{ fontSize: 12.5, color: "#6b7280", marginTop: 2, display: "flex", alignItems: "center", gap: 8 }}>
-                {"\u2709"} support@suntrex.com
+                {"✉"} support@suntrex.com
                 <span style={{ color: "#d1d5db" }}>|</span>
-                {"\u{1F4DE}"} +33 1 XX XX XX XX
+                {"📞"} +33 1 XX XX XX XX
                 <span style={{ color: "#d1d5db" }}>|</span>
-                <span style={{ color: "#25D366" }}>{"\u{1F4AC}"} WhatsApp</span>
+                <span style={{ color: "#25D366" }}>{"💬"} WhatsApp</span>
               </div>
             </div>
             <button
@@ -867,7 +867,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
                 fontFamily: "inherit",
               }}
             >
-              {"\u26A0"} Signaler un probl\u00E8me
+              {"⚠"} Signaler un problème
             </button>
           </div>
         </div>
@@ -880,12 +880,12 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
 
           {/* Transaction Details */}
           <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 10, padding: "16px 18px", marginBottom: 16 }}>
-            <h3 style={{ fontSize: 14, fontWeight: 700, color: "#1f2937", marginBottom: 14 }}>D\u00E9tails de la transaction</h3>
+            <h3 style={{ fontSize: 14, fontWeight: 700, color: "#1f2937", marginBottom: 14 }}>Détails de la transaction</h3>
 
             {/* Buyer coordinates */}
             <div style={{ marginBottom: 14 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-                <span style={{ fontSize: 12.5, fontWeight: 600, color: "#374151" }}>Coordonn\u00E9es de l'acheteur</span>
+                <span style={{ fontSize: 12.5, fontWeight: 600, color: "#374151" }}>Coordonnées de l'acheteur</span>
                 <svg width="14" height="14" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" /></svg>
               </div>
               <div style={{ fontSize: 12.5, color: "#6b7280", display: "flex", alignItems: "center", gap: 6 }}>
@@ -898,15 +898,15 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
             {/* VAT Check */}
             <div style={{ marginBottom: 14 }}>
               <div style={{ fontSize: 12.5, color: "#6b7280", marginBottom: 4 }}>
-                Contr\u00F4le de la TVA{" "}
+                Contrôle de la TVA{" "}
                 <span style={{ fontSize: 10, background: "#dcfce7", color: "#166534", padding: "1px 6px", borderRadius: 3, fontWeight: 600, marginLeft: 4 }}>
-                  {"\u2713"} V\u00E9rifi\u00E9
+                  {"✓"} Vérifié
                 </span>
               </div>
               <div style={{ fontSize: 11, color: "#9ca3af" }}>
-                (Derni\u00E8re v\u00E9rification: {fmtDateTime(tx.buyer.vatVerifiedAt)}){" "}
+                (Dernière vérification: {fmtDateTime(tx.buyer.vatVerifiedAt)}){" "}
                 <button style={{ fontSize: 11, color: "#E8700A", background: "none", border: "none", cursor: "pointer", fontFamily: "inherit" }}>
-                  Rev\u00E9rifier
+                  Revérifier
                 </button>
               </div>
             </div>
@@ -942,7 +942,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
             {/* Shipper info */}
             <div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-                <span style={{ fontSize: 12.5, fontWeight: 600, color: "#374151" }}>Envoy\u00E9 par</span>
+                <span style={{ fontSize: 12.5, fontWeight: 600, color: "#374151" }}>Envoyé par</span>
                 <svg width="14" height="14" fill="none" stroke="#9ca3af" strokeWidth="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" /></svg>
               </div>
               <div style={{ fontSize: 12.5, color: "#6b7280" }}>
@@ -961,8 +961,8 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
           <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 10, padding: "14px 18px" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div>
-                <div style={{ fontSize: 12.5, fontWeight: 600, color: "#374151" }}>{"\u{1F6E1}"} Mod\u00E9ration</div>
-                <div style={{ fontSize: 11, color: "#9ca3af", marginTop: 2 }}>Activer le panneau de mod\u00E9ration</div>
+                <div style={{ fontSize: 12.5, fontWeight: 600, color: "#374151" }}>{"🛡"} Modération</div>
+                <div style={{ fontSize: 11, color: "#9ca3af", marginTop: 2 }}>Activer le panneau de modération</div>
               </div>
               <div style={{ cursor: "pointer" }} onClick={() => setShowModerationPanel(!showModerationPanel)}>
                 <div
@@ -1005,12 +1005,12 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
                   lineHeight: 1.5,
                 }}
               >
-                <div style={{ fontWeight: 600, marginBottom: 4 }}>R\u00E8gles actives :</div>
-                {"\u2713"} Anti-fraude (paiements hors plateforme)<br />
-                {"\u2713"} D\u00E9tection langage inappropri\u00E9<br />
-                {"\u2713"} Partage d'infos personnelles<br />
+                <div style={{ fontWeight: 600, marginBottom: 4 }}>Règles actives :</div>
+                {"✓"} Anti-fraude (paiements hors plateforme)<br />
+                {"✓"} Détection langage inapproprié<br />
+                {"✓"} Partage d'infos personnelles<br />
                 <div style={{ marginTop: 6, fontSize: 11, color: "#6b7280" }}>
-                  {messages.length} messages {"\u2014"} 0 signalements
+                  {messages.length} messages {"—"} 0 signalements
                 </div>
               </div>
             )}
