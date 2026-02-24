@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useCallback, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import REAL_PRODUCTS from "../products";
 import ProductCard from "../components/catalog/ProductCard";
 import { FilterSection, CheckFilter } from "../components/catalog/FilterSidebar";
@@ -174,7 +174,8 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
   const [inStockOnly, setInStockOnly] = useState(false);
   const [grouped, setGrouped] = useState(true);
   const [sortBy, setSortBy] = useState("relevance");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
   const [quickFilters, setQuickFilters] = useState({
     bankTransfer: false,
     suntrexDelivery: false,

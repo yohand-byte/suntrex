@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import REAL_PRODUCTS from "../products";
 import BrandLogo from "../components/ui/BrandLogo";
@@ -47,10 +47,64 @@ const SSLIDES = [
   { label:"Dashboard tout-en-un", desc:"Commandes, factures, expeditions, paiements : tout centralise au meme endroit.", m:"dashboard" },
 ];
 
+/* ── Category labels for search results ── */
+const CAT_LABELS = { inverters:"Onduleur", batteries:"Batterie", optimizers:"Optimiseur", "ev-chargers":"Borne EV", accessories:"Accessoire", panels:"Panneau" };
+const CAT_COLORS = { inverters:"#E8700A", batteries:"#4CAF50", optimizers:"#3b82f6", "ev-chargers":"#8b5cf6", accessories:"#64748b", panels:"#eab308" };
+
 export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navigate }) {
   const [bs, setBs] = useState(0);
   const [ss, setSs] = useState(0);
   const [tab, setTab] = useState("buyer");
+  const [sq, setSq] = useState("");
+  const [showDrop, setShowDrop] = useState(false);
+  const [hlIdx, setHlIdx] = useState(-1);
+  const searchRef = useRef(null);
+  const dropRef = useRef(null);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handler = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) setShowDrop(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  // Fuzzy search across products
+  const searchResults = useMemo(() => {
+    const q = sq.trim().toLowerCase();
+    if (q.length < 2) return [];
+    const terms = q.split(/\s+/);
+    return REAL_PRODUCTS
+      .map(p => {
+        const haystack = `${p.name} ${p.sku} ${p.brand} ${p.type || ""} ${p.category} ${p.power || ""} ${p.capacity || ""}`.toLowerCase();
+        let score = 0;
+        for (const t of terms) {
+          if (haystack.includes(t)) score++;
+          if (p.name.toLowerCase().includes(t)) score += 2;
+          if (p.sku.toLowerCase().includes(t)) score += 3;
+        }
+        return { ...p, score };
+      })
+      .filter(p => p.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6);
+  }, [sq]);
+
+  const goSearch = () => {
+    if (sq.trim()) { navigate(`/catalog?q=${encodeURIComponent(sq.trim())}`); setShowDrop(false); }
+  };
+
+  const handleSearchKey = (e) => {
+    if (e.key === "ArrowDown") { e.preventDefault(); setHlIdx(i => Math.min(i + 1, searchResults.length - 1)); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); setHlIdx(i => Math.max(i - 1, -1)); }
+    else if (e.key === "Enter") {
+      e.preventDefault();
+      if (hlIdx >= 0 && searchResults[hlIdx]) { navigate(`/product/${searchResults[hlIdx].id}`); setShowDrop(false); setSq(""); }
+      else goSearch();
+    }
+    else if (e.key === "Escape") setShowDrop(false);
+  };
 
   return (
     <>
@@ -62,9 +116,63 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
         <div style={{position:"relative",zIndex:3,height:"100%",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 24px"}}>
           <h1 style={{fontSize:38,fontWeight:600,color:"#fff",lineHeight:1.3,maxWidth:640,marginBottom:14}}>Trouvez, comparez et achetez vos equipements photovoltaiques au meilleur prix</h1>
           <p style={{fontSize:15,color:"rgba(255,255,255,0.75)",marginBottom:32}}>Une plateforme, des milliers d'offres de fournisseurs verifies en Europe</p>
-          <div style={{width:"100%",maxWidth:540,position:"relative"}}>
-            <input placeholder="Rechercher un produit ou un fabricant..." style={{width:"100%",height:50,borderRadius:8,border:"none",padding:"0 56px 0 18px",fontSize:15,background:"#fff",boxShadow:"0 4px 24px rgba(0,0,0,0.2)",outline:"none"}}/>
-            <button style={{position:"absolute",right:5,top:5,bottom:5,width:44,borderRadius:6,border:"none",background:"#E8700A",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}><svg width="18" height="18" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+          <div ref={searchRef} style={{width:"100%",maxWidth:540,position:"relative"}}>
+            <input
+              value={sq}
+              onChange={e=>{setSq(e.target.value);setShowDrop(true);setHlIdx(-1)}}
+              onFocus={()=>{if(sq.trim().length>=2)setShowDrop(true)}}
+              onKeyDown={handleSearchKey}
+              placeholder="Rechercher un produit ou un fabricant..."
+              style={{width:"100%",height:50,borderRadius:showDrop&&searchResults.length>0?"8px 8px 0 0":8,border:"none",padding:"0 56px 0 18px",fontSize:15,background:"#fff",boxShadow:"0 4px 24px rgba(0,0,0,0.2)",outline:"none",fontFamily:"'DM Sans',sans-serif"}}
+            />
+            <button onClick={goSearch} style={{position:"absolute",right:5,top:5,bottom:showDrop&&searchResults.length>0?"auto":5,height:40,width:44,borderRadius:6,border:"none",background:"#E8700A",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",zIndex:5}}>
+              <svg width="18" height="18" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </button>
+            {/* Autocomplete dropdown */}
+            {showDrop && searchResults.length > 0 && (
+              <div ref={dropRef} style={{position:"absolute",top:50,left:0,right:0,background:"#fff",borderRadius:"0 0 10px 10px",boxShadow:"0 12px 40px rgba(0,0,0,0.25)",zIndex:50,overflow:"hidden",maxHeight:420,overflowY:"auto"}}>
+                {searchResults.map((p, i) => (
+                  <div
+                    key={p.id}
+                    onClick={()=>{navigate(`/product/${p.id}`);setShowDrop(false);setSq("")}}
+                    onMouseEnter={()=>setHlIdx(i)}
+                    style={{display:"flex",alignItems:"center",gap:12,padding:"10px 16px",cursor:"pointer",background:hlIdx===i?"#f8f8f8":"#fff",borderTop:i>0?"1px solid #f0f0f0":"none",transition:"background .1s"}}
+                  >
+                    <div style={{width:48,height:48,borderRadius:6,background:"#fff",border:"1px solid #f0f0f0",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,overflow:"hidden",padding:4}}>
+                      {p.image ? <img src={p.image} alt="" style={{maxWidth:"100%",maxHeight:"100%",objectFit:"contain",mixBlendMode:"multiply"}}/> : <span style={{fontSize:9,color:"#bbb"}}>{p.brand}</span>}
+                    </div>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontSize:13,fontWeight:600,color:"#222",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{p.name}</div>
+                      <div style={{display:"flex",alignItems:"center",gap:6,marginTop:2}}>
+                        <span style={{fontSize:10,padding:"1px 6px",borderRadius:3,background:CAT_COLORS[p.category]||"#888",color:"#fff",fontWeight:600}}>{CAT_LABELS[p.category]||p.category}</span>
+                        <span style={{fontSize:11,color:"#888"}}>{p.sku}</span>
+                        {p.stock > 0 && <span style={{fontSize:10,color:"#4CAF50",fontWeight:500}}>● {p.stock} pcs</span>}
+                      </div>
+                    </div>
+                    <div style={{textAlign:"right",flexShrink:0}}>
+                      {isVerified ? (
+                        <div style={{fontSize:15,fontWeight:700,color:"#E8700A"}}>€{p.price.toLocaleString("fr-FR")}</div>
+                      ) : (
+                        <div style={{fontSize:11,color:"#bbb",fontStyle:"italic"}}>Connectez-vous</div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+                <div
+                  onClick={goSearch}
+                  style={{display:"flex",alignItems:"center",justifyContent:"center",gap:6,padding:"10px 16px",borderTop:"1px solid #e8e8e8",cursor:"pointer",background:hlIdx===searchResults.length?"#f8f8f8":"#fafafa",fontSize:13,color:"#E8700A",fontWeight:600}}
+                >
+                  <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                  Voir tous les résultats pour "{sq}"
+                </div>
+              </div>
+            )}
+            {showDrop && sq.trim().length >= 2 && searchResults.length === 0 && (
+              <div style={{position:"absolute",top:50,left:0,right:0,background:"#fff",borderRadius:"0 0 10px 10px",boxShadow:"0 12px 40px rgba(0,0,0,0.25)",zIndex:50,padding:"20px 16px",textAlign:"center"}}>
+                <div style={{fontSize:13,color:"#888"}}>Aucun résultat pour "<b>{sq}</b>"</div>
+                <div style={{fontSize:11,color:"#aaa",marginTop:4}}>Essayez "Huawei", "LUNA2000", "onduleur"...</div>
+              </div>
+            )}
           </div>
         </div>
       </section>
