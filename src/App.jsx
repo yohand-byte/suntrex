@@ -54,42 +54,6 @@ export default function App() {
   const [page, setPage] = useState("home"); // "home" | "catalog" | "product"
   const [catalogCategory, setCatalogCategory] = useState("all");
 
-  // Handle Google OAuth callback on page load
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-
-    // Google auth success
-    const googleAuth = params.get("google_auth");
-    if (googleAuth) {
-      try {
-        const userData = JSON.parse(decodeURIComponent(googleAuth));
-        setCurrentUser({
-          email: userData.email,
-          name: userData.name,
-          company: "",
-          role: "buyer",
-          kycStatus: "pending_registration", // Still needs company info + KYC
-          country: "",
-          provider: "google",
-          picture: userData.picture,
-        });
-        setIsLoggedIn(true);
-        setShowRegister(true); // Open register modal at step 1 (company info)
-      } catch (e) {
-        console.error("Failed to parse Google auth data:", e);
-      }
-      // Clean URL
-      window.history.replaceState({}, document.title, "/");
-    }
-
-    // Google auth error
-    const authError = params.get("auth_error");
-    if (authError) {
-      console.error("Google auth error:", authError);
-      window.history.replaceState({}, document.title, "/");
-    }
-  }, []);
-
   // Price visibility: ONLY when KYC is fully verified by admin
   const isVerified = isLoggedIn && currentUser?.kycStatus === "verified";
   const [selectedProductId, setSelectedProductId] = useState(null);
