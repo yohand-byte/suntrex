@@ -13,20 +13,56 @@ import { useState } from "react";
    ═══════════════════════════════════════════════════════════ */
 
 const COUNTRIES = [
-  { code:"FR", name:"France", flag:"🇫🇷" },
-  { code:"DE", name:"Allemagne", flag:"🇩🇪" },
-  { code:"BE", name:"Belgique", flag:"🇧🇪" },
-  { code:"NL", name:"Pays-Bas", flag:"🇳🇱" },
-  { code:"IT", name:"Italie", flag:"🇮🇹" },
-  { code:"ES", name:"Espagne", flag:"🇪🇸" },
-  { code:"CH", name:"Suisse", flag:"🇨🇭" },
-  { code:"AT", name:"Autriche", flag:"🇦🇹" },
-  { code:"PL", name:"Pologne", flag:"🇵🇱" },
-  { code:"PT", name:"Portugal", flag:"🇵🇹" },
-  { code:"LU", name:"Luxembourg", flag:"🇱🇺" },
-  { code:"GB", name:"Royaume-Uni", flag:"🇬🇧" },
-  { code:"OTHER", name:"Autre pays européen", flag:"🇪🇺" },
+  { code:"FR", name:"France", flag:"🇫🇷", phonePrefix:"+33", phonePlaceholder:"+33 6 12 34 56 78", phoneRegex:/^\+33\s?[1-9](\s?\d{2}){4}$/, vatRegex:/^FR\s?\d{2}\s?\d{3}\s?\d{3}\s?\d{3}$/, vatPlaceholder:"FR XX XXXXXXXXX", vatDigits:13 },
+  { code:"DE", name:"Allemagne", flag:"🇩🇪", phonePrefix:"+49", phonePlaceholder:"+49 151 1234 5678", phoneRegex:/^\+49\s?\d[\d\s]{8,14}$/, vatRegex:/^DE\s?\d{9}$/, vatPlaceholder:"DE XXXXXXXXX", vatDigits:11 },
+  { code:"BE", name:"Belgique", flag:"🇧🇪", phonePrefix:"+32", phonePlaceholder:"+32 470 12 34 56", phoneRegex:/^\+32\s?\d[\d\s]{7,12}$/, vatRegex:/^BE\s?0?\d{9,10}$/, vatPlaceholder:"BE 0XXX.XXX.XXX", vatDigits:12 },
+  { code:"NL", name:"Pays-Bas", flag:"🇳🇱", phonePrefix:"+31", phonePlaceholder:"+31 6 1234 5678", phoneRegex:/^\+31\s?\d[\d\s]{7,12}$/, vatRegex:/^NL\s?\d{9}B\d{2}$/, vatPlaceholder:"NL XXXXXXXXXBXX", vatDigits:14 },
+  { code:"IT", name:"Italie", flag:"🇮🇹", phonePrefix:"+39", phonePlaceholder:"+39 312 345 6789", phoneRegex:/^\+39\s?\d[\d\s]{8,13}$/, vatRegex:/^IT\s?\d{11}$/, vatPlaceholder:"IT XXXXXXXXXXX", vatDigits:13 },
+  { code:"ES", name:"Espagne", flag:"🇪🇸", phonePrefix:"+34", phonePlaceholder:"+34 612 34 56 78", phoneRegex:/^\+34\s?\d[\d\s]{7,12}$/, vatRegex:/^ES\s?[A-Z0-9]\d{7}[A-Z0-9]$/, vatPlaceholder:"ES XXXXXXXXX", vatDigits:11 },
+  { code:"CH", name:"Suisse", flag:"🇨🇭", phonePrefix:"+41", phonePlaceholder:"+41 76 123 45 67", phoneRegex:/^\+41\s?\d[\d\s]{7,12}$/, vatRegex:/^CHE\s?\d{3}\.\d{3}\.\d{3}\s?(TVA|MWST|IVA)$/, vatPlaceholder:"CHE XXX.XXX.XXX TVA", vatDigits:15 },
+  { code:"AT", name:"Autriche", flag:"🇦🇹", phonePrefix:"+43", phonePlaceholder:"+43 664 123 4567", phoneRegex:/^\+43\s?\d[\d\s]{7,12}$/, vatRegex:/^ATU\s?\d{8}$/, vatPlaceholder:"ATU XXXXXXXX", vatDigits:11 },
+  { code:"PL", name:"Pologne", flag:"🇵🇱", phonePrefix:"+48", phonePlaceholder:"+48 512 345 678", phoneRegex:/^\+48\s?\d[\d\s]{7,12}$/, vatRegex:/^PL\s?\d{10}$/, vatPlaceholder:"PL XXXXXXXXXX", vatDigits:12 },
+  { code:"PT", name:"Portugal", flag:"🇵🇹", phonePrefix:"+351", phonePlaceholder:"+351 912 345 678", phoneRegex:/^\+351\s?\d[\d\s]{7,12}$/, vatRegex:/^PT\s?\d{9}$/, vatPlaceholder:"PT XXXXXXXXX", vatDigits:11 },
+  { code:"LU", name:"Luxembourg", flag:"🇱🇺", phonePrefix:"+352", phonePlaceholder:"+352 621 123 456", phoneRegex:/^\+352\s?\d[\d\s]{6,11}$/, vatRegex:/^LU\s?\d{8}$/, vatPlaceholder:"LU XXXXXXXX", vatDigits:10 },
+  { code:"GB", name:"Royaume-Uni", flag:"🇬🇧", phonePrefix:"+44", phonePlaceholder:"+44 7911 123456", phoneRegex:/^\+44\s?\d[\d\s]{8,13}$/, vatRegex:/^GB\s?\d{9}(\d{3})?$/, vatPlaceholder:"GB XXXXXXXXX", vatDigits:11 },
+  { code:"OTHER", name:"Autre pays européen", flag:"🇪🇺", phonePrefix:"+", phonePlaceholder:"+XX XXX XXX XXXX", phoneRegex:/^\+\d[\d\s]{8,16}$/, vatRegex:/^[A-Z]{2}\s?\w{4,15}$/, vatPlaceholder:"XX XXXXXXXXX", vatDigits:8 },
 ];
+
+/* ── Validation helpers ── */
+const getCountryConfig = (code) => COUNTRIES.find(c => c.code === code) || COUNTRIES[COUNTRIES.length - 1];
+
+const validatePhone = (phone, countryCode) => {
+  const cleaned = phone.replace(/\s+/g, " ").trim();
+  if (!cleaned) return { valid: false, error: "Numéro de téléphone requis" };
+  const cfg = getCountryConfig(countryCode);
+  if (!cleaned.startsWith("+")) return { valid: false, error: `Le numéro doit commencer par ${cfg.phonePrefix}` };
+  if (!cleaned.startsWith(cfg.phonePrefix) && countryCode !== "OTHER") return { valid: false, error: `Le numéro doit commencer par ${cfg.phonePrefix} pour ${cfg.name}` };
+  const digitsOnly = cleaned.replace(/[^\d]/g, "");
+  if (digitsOnly.length < 9) return { valid: false, error: "Numéro trop court (minimum 9 chiffres)" };
+  if (digitsOnly.length > 15) return { valid: false, error: "Numéro trop long (maximum 15 chiffres)" };
+  return { valid: true, error: "" };
+};
+
+const validateVat = (vat, countryCode) => {
+  const cleaned = vat.replace(/\s+/g, "").toUpperCase();
+  if (!cleaned) return { valid: false, error: "N° TVA intracommunautaire requis" };
+  const cfg = getCountryConfig(countryCode);
+  // Must start with country prefix (except CH which uses CHE)
+  const expectedPrefix = countryCode === "CH" ? "CHE" : countryCode;
+  if (countryCode !== "OTHER" && !cleaned.startsWith(expectedPrefix)) return { valid: false, error: `Le numéro TVA doit commencer par ${expectedPrefix}` };
+  if (cleaned.length < cfg.vatDigits - 3) return { valid: false, error: "Numéro TVA trop court" };
+  if (cleaned.length > cfg.vatDigits + 3) return { valid: false, error: "Numéro TVA trop long" };
+  return { valid: true, error: "" };
+};
+
+const formatPhoneInput = (value, countryCode) => {
+  // Auto-prepend country prefix if user types digits directly
+  const cfg = getCountryConfig(countryCode);
+  if (value && !value.startsWith("+") && value.length > 0) {
+    return cfg.phonePrefix + " " + value;
+  }
+  return value;
+};
 
 /* ── Shared Styles ── */
 const S = {
@@ -121,10 +157,13 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
     consentCGV: false, consentMarketing: false, consentPartners: false,
   });
   const [error, setError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [vatError, setVatError] = useState("");
   const [sirenLoading, setSirenLoading] = useState(false);
   const [sirenVerified, setSirenVerified] = useState(false);
   const [sirenError, setSirenError] = useState("");
   const [sirenData, setSirenData] = useState(null);
+  const fileInputRef = { current: null };
 
   const update = (key, val) => { setForm(prev => ({...prev, [key]: val})); setError(""); };
 
@@ -168,30 +207,42 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
   };
 
   const canNext = () => {
-    if (step === 0) return form.email.includes("@") && form.password.length >= 8 && form.password === form.passwordConfirm && form.consentCGV;
+    if (step === 0) {
+      const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
+      return emailValid && form.password.length >= 8 && form.password === form.passwordConfirm && form.consentCGV;
+    }
     if (step === 1) {
-      const base = form.companyName.trim() && form.vatNumber.trim() && form.country && form.phone.trim();
+      const phoneResult = validatePhone(form.phone, form.country);
+      const vatResult = validateVat(form.vatNumber, form.country);
+      const base = form.companyName.trim() && phoneResult.valid && vatResult.valid && form.country && form.address.trim() && form.postalCode.trim() && form.city.trim();
       if (form.country === "FR") return base && form.siret.replace(/\s/g,"").length >= 9 && sirenVerified;
       return base;
     }
-    if (step === 2) return form.kycDocUploaded;
+    if (step === 2) return form.kycDocUploaded && form.kycFileName;
     return true;
   };
 
   const next = () => {
     if (step === 0) {
-      if (!form.email.includes("@")) { setError("Email invalide"); return; }
-      if (form.password.length < 8) { setError("Minimum 8 caractères"); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) { setError("Format email invalide (ex: nom@entreprise.com)"); return; }
+      if (form.password.length < 8) { setError("Minimum 8 caractères pour le mot de passe"); return; }
+      if (!/(?=.*[A-Z])(?=.*\d)/.test(form.password)) { setError("Le mot de passe doit contenir au moins 1 majuscule et 1 chiffre"); return; }
       if (form.password !== form.passwordConfirm) { setError("Les mots de passe ne correspondent pas"); return; }
-      if (!form.consentCGV) { setError("Acceptez les conditions générales"); return; }
+      if (!form.consentCGV) { setError("Acceptez les conditions générales pour continuer"); return; }
     }
     if (step === 1) {
       if (form.country === "FR" && !sirenVerified) { setError("Vérifiez votre SIRET/SIREN avant de continuer"); return; }
       if (!form.companyName.trim()) { setError("Nom d'entreprise requis"); return; }
-      if (!form.vatNumber.trim()) { setError("N° TVA intracommunautaire requis"); return; }
-      if (!form.phone.trim()) { setError("Téléphone requis"); return; }
+      const vatResult = validateVat(form.vatNumber, form.country);
+      if (!vatResult.valid) { setVatError(vatResult.error); setError(vatResult.error); return; }
+      if (!form.address.trim()) { setError("Adresse requise"); return; }
+      if (!form.postalCode.trim()) { setError("Code postal requis"); return; }
+      if (!form.city.trim()) { setError("Ville requise"); return; }
+      const phoneResult = validatePhone(form.phone, form.country);
+      if (!phoneResult.valid) { setPhoneError(phoneResult.error); setError(phoneResult.error); return; }
+      setPhoneError(""); setVatError("");
     }
-    if (step === 2 && !form.kycDocUploaded) { setError("Le document est obligatoire"); return; }
+    if (step === 2 && !form.kycDocUploaded) { setError("Le document est obligatoire pour finaliser l'inscription"); return; }
     setError("");
     if (step < 3) setStep(step + 1);
   };
@@ -204,10 +255,34 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
     });
   };
 
-  const handleFileSelect = () => {
-    // Production: real <input type="file"> + upload to S3/R2
+  const handleFileSelect = (e) => {
+    const file = e?.target?.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    const allowedTypes = ["application/pdf", "image/jpeg", "image/png"];
+    if (!allowedTypes.includes(file.type)) {
+      setError("Format non accepté. Utilisez PDF, JPG ou PNG.");
+      return;
+    }
+
+    // Validate file size (10 MB max)
+    if (file.size > 10 * 1024 * 1024) {
+      setError("Fichier trop volumineux. Maximum 10 Mo.");
+      return;
+    }
+
+    // Validate file name (not empty/suspicious)
+    if (!file.name || file.name.length < 3) {
+      setError("Nom de fichier invalide.");
+      return;
+    }
+
+    setError("");
     update("kycDocUploaded", true);
-    update("kycFileName", "kbis-entreprise.pdf");
+    update("kycFileName", file.name);
+    update("kycFileSize", (file.size / (1024 * 1024)).toFixed(1) + " Mo");
+    // Production: upload file to S3/R2 here
   };
 
   const STEPS = ["Compte", "Entreprise", "Vérification"];
@@ -361,7 +436,15 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
               <div style={{display:"flex",flexDirection:"column",gap:12}}>
                 <div>
                   <label style={S.label}>Pays de l'entreprise *</label>
-                  <select value={form.country} onChange={e=>{update("country",e.target.value);setSirenVerified(false);setSirenError("");setSirenData(null)}}
+                  <select value={form.country} onChange={e=>{
+                    const newCountry = e.target.value;
+                    const cfg = getCountryConfig(newCountry);
+                    update("country",newCountry);
+                    update("phone", cfg.phonePrefix + " ");
+                    update("vatNumber", "");
+                    setPhoneError(""); setVatError("");
+                    setSirenVerified(false);setSirenError("");setSirenData(null);
+                  }}
                     style={{...S.input,cursor:"pointer",appearance:"auto"}}>
                     {COUNTRIES.map(c => <option key={c.code} value={c.code}>{c.flag} {c.name}</option>)}
                   </select>
@@ -417,10 +500,15 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
 
                 <div>
                   <label style={S.label}>N° TVA intracommunautaire *</label>
-                  <input value={form.vatNumber} onChange={e=>update("vatNumber",e.target.value)}
-                    placeholder={form.country==="FR"?"FR XX XXXXXXXXX":form.country==="DE"?"DE XXXXXXXXX":"XX XXXXXXXXX"}
-                    style={S.input}/>
-                  <div style={{fontSize:10,color:"#aaa",marginTop:2}}>Obligatoire pour les transactions B2B intra-européennes</div>
+                  <input value={form.vatNumber} onChange={e=>{update("vatNumber",e.target.value.toUpperCase()); setVatError("");}}
+                    placeholder={getCountryConfig(form.country).vatPlaceholder}
+                    style={{...S.input,...(vatError?{borderColor:"#dc2626",background:"#fef2f2"}:{})}}
+                    onBlur={() => { if(form.vatNumber.trim()) { const r = validateVat(form.vatNumber, form.country); if(!r.valid) setVatError(r.error); else setVatError(""); }}}/>
+                  {vatError ? (
+                    <div style={{fontSize:10,color:"#dc2626",marginTop:2}}>✕ {vatError}</div>
+                  ) : (
+                    <div style={{fontSize:10,color:"#aaa",marginTop:2}}>Obligatoire pour les transactions B2B intra-européennes. Commence par {form.country === "CH" ? "CHE" : form.country}</div>
+                  )}
                 </div>
 
                 <div>
@@ -446,8 +534,16 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                 </div>
                 <div>
                   <label style={S.label}>Téléphone *</label>
-                  <input value={form.phone} onChange={e=>update("phone",e.target.value)}
-                    placeholder="+33 6 XX XX XX XX" style={S.input}/>
+                  <input value={form.phone} onChange={e=>{
+                      const val = formatPhoneInput(e.target.value, form.country);
+                      update("phone", val);
+                      setPhoneError("");
+                    }}
+                    placeholder={getCountryConfig(form.country).phonePlaceholder}
+                    style={{...S.input,...(phoneError?{borderColor:"#dc2626",background:"#fef2f2"}:{})}}
+                    onBlur={() => { if(form.phone.trim()) { const r = validatePhone(form.phone, form.country); if(!r.valid) setPhoneError(r.error); else setPhoneError(""); }}}
+                    maxLength={20}/>
+                  {phoneError && <div style={{fontSize:10,color:"#dc2626",marginTop:2}}>✕ {phoneError}</div>}
                 </div>
 
                 <div style={{display:"flex",gap:10,marginTop:4}}>
@@ -471,18 +567,21 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                   <div style={{border:"2px solid #4CAF50",borderRadius:12,padding:"24px 20px",textAlign:"center",background:"#f0fdf4"}}>
                     <div style={{fontSize:32,marginBottom:6}}>✅</div>
                     <div style={{fontWeight:600,fontSize:14,color:"#16a34a",marginBottom:3}}>Document sélectionné</div>
-                    <div style={{fontSize:12,color:"#555"}}>{form.kycFileName}</div>
-                    <button onClick={()=>{update("kycDocUploaded",false);update("kycFileName","")}}
+                    <div style={{fontSize:12,color:"#555"}}>{form.kycFileName} — {form.kycFileSize || ""}</div>
+                    <button onClick={()=>{update("kycDocUploaded",false);update("kycFileName","");update("kycFileSize","")}}
                       style={{marginTop:8,background:"none",border:"1px solid #ddd",borderRadius:6,padding:"4px 12px",fontSize:11,cursor:"pointer",color:"#888",fontFamily:"inherit"}}>
-                      Changer
+                      Changer de fichier
                     </button>
                   </div>
                 ) : (
-                  <div onClick={handleFileSelect}
-                    style={{border:"2px dashed #d0d0d0",borderRadius:12,padding:"28px 20px",textAlign:"center",cursor:"pointer"}}>
+                  <div style={{border:"2px dashed #d0d0d0",borderRadius:12,padding:"28px 20px",textAlign:"center",cursor:"pointer",position:"relative"}}
+                    onClick={() => document.getElementById("kyc-file-input")?.click()}>
+                    <input id="kyc-file-input" type="file" accept=".pdf,.jpg,.jpeg,.png"
+                      onChange={handleFileSelect}
+                      style={{position:"absolute",opacity:0,width:0,height:0}}/>
                     <div style={{fontSize:36,marginBottom:6}}>📄</div>
                     <div style={{fontWeight:600,fontSize:13,color:"#333",marginBottom:3}}>Cliquez pour choisir un fichier</div>
-                    <div style={{fontSize:11,color:"#888"}}>PDF, JPG ou PNG — max 10 Mo</div>
+                    <div style={{fontSize:11,color:"#888"}}>PDF, JPG ou PNG uniquement — max 10 Mo</div>
                   </div>
                 )}
 
