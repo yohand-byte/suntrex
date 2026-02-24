@@ -225,10 +225,10 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
         <div style={{marginBottom:24}}><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,marginBottom:12}}/><h2 style={{fontSize:26,fontWeight:700}}>Obtenez les meilleurs prix en comparant plusieurs offres</h2></div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gridTemplateRows:"220px 180px",gap:12}}>
           <CatCard img="/categories/panels.jpg" title="Panneaux solaires" sub="Jinko, LONGi, Trina, Canadian Solar..." count="1 300+ offres" big onClick={()=>navigate("/catalog/panels")}/>
-          <CatCard img="/categories/inverters.jpg" title="Onduleurs" sub="Huawei, SMA, Growatt, Deye..." count="4 400+ offres" onClick={()=>navigate("/catalog/inverters")}/>
+          <CatCard img="/categories/category-onduleurs.png" title="Onduleurs" sub="Huawei, SMA, Growatt, Deye..." count="4 400+ offres" montage bg="linear-gradient(135deg,#1a2332 0%,#2d3f52 100%)" onClick={()=>navigate("/catalog/inverters")}/>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
-            <CatCard img="/categories/batteries.jpg" title="Stockage d'energie" count="750+ offres" small onClick={()=>navigate("/catalog/batteries")}/>
-            <CatCard img="/categories/electrical.jpg" title="Cables & accessoires" count="250+ offres" small onClick={()=>navigate("/catalog/accessories")}/>
+            <CatCard img="/categories/category-batteries.png" title="Stockage d'energie" count="750+ offres" small montage bg="linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%)" onClick={()=>navigate("/catalog/batteries")}/>
+            <CatCard img="/categories/category-accessoires.png" title="Cables & accessoires" count="250+ offres" small montage bg="linear-gradient(135deg,#2d2d2d 0%,#434343 100%)" onClick={()=>navigate("/catalog/accessories")}/>
           </div>
         </div>
       </section>
