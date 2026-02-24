@@ -21,6 +21,7 @@ function buildProductDetail(p) {
     id: p.id,
     name: p.name,
     brand: p.brand,
+    image: p.image || "",
     brandColor: BRAND_COLORS[p.brand] || "#555",
     category: p.category,
     categoryLabel: CATEGORY_LABELS[p.category] || p.category,
@@ -232,10 +233,14 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
 
       <div style={S.productHeader}>
         <div style={S.productImage}>
-          <div style={{ textAlign: "center", color: "#ccc" }}>
-            <svg width="48" height="48" fill="none" stroke="#ddd" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            <div style={{ fontSize: 11, marginTop: 4 }}>{product.brand}</div>
-          </div>
+          {product.image ? (
+            <img src={product.image} alt={product.name} style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }} />
+          ) : (
+            <div style={{ textAlign: "center", color: "#ccc" }}>
+              <svg width="48" height="48" fill="none" stroke="#ddd" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <div style={{ fontSize: 11, marginTop: 4 }}>{product.brand}</div>
+            </div>
+          )}
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ ...S.brandTag, color: product.brandColor }}>{product.brand}</div>

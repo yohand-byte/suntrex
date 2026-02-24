@@ -56,8 +56,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
     <>
       {/* HERO */}
       <section style={{position:"relative",height:480,overflow:"hidden",background:"#0a1628"}}>
-        <video autoPlay muted loop playsInline poster="/categories/panels.jpg" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.4)",zIndex:1}}><source src="/hero-video.mp4" type="video/mp4"/></video>
-        <div style={{position:"absolute",inset:0,backgroundImage:"url('/categories/panels.jpg')",backgroundSize:"cover",backgroundPosition:"center",filter:"brightness(0.35)",zIndex:0}}/>
+        <div style={{position:"absolute",inset:0,backgroundImage:"url('/hero-solar.jpg')",backgroundSize:"cover",backgroundPosition:"center",filter:"brightness(0.35)",zIndex:0}}/>
         <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(10,22,40,0.3) 0%,rgba(10,22,40,0.7) 100%)",zIndex:2}}/>
         <div style={{position:"relative",zIndex:3,height:"100%",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 24px"}}>
           <h1 style={{fontSize:38,fontWeight:600,color:"#fff",lineHeight:1.3,maxWidth:640,marginBottom:14}}>Trouvez, comparez et achetez vos equipements photovoltaiques au meilleur prix</h1>

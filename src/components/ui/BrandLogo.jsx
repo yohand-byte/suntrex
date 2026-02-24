@@ -8,26 +8,34 @@ const DOMAINS = {
   "ja-solar": "jasolar.com",
   "canadian-solar": "canadiansolar.com",
   sma: "sma.de",
-  sungrow: "en.sungrowpower.com",
+  sungrow: "sungrowpower.com",
   solaredge: "solaredge.com",
   goodwe: "goodwe.com",
   growatt: "growatt.com",
   risen: "risenenergy.com",
   byd: "byd.com",
-  deye: "deye.com",
+  deye: "dfrienergy.com",
   enphase: "enphase.com",
 };
 
+function logoUrl(domain, attempt) {
+  if (attempt === 0) return `https://logo.clearbit.com/${domain}`;
+  if (attempt === 1) return `https://img.logo.dev/${domain}?token=pk_a8sMM1skRJOBaEyOkIHVcA&size=120&format=png`;
+  return null;
+}
+
 export default function BrandLogo({ brand }) {
-  const [failed, setFailed] = useState(false);
+  const [attempt, setAttempt] = useState(0);
   const d = DOMAINS[brand.f];
-  if (!failed && d) {
+  const url = d ? logoUrl(d, attempt) : null;
+
+  if (url) {
     return (
       <img
-        src={`https://logo.clearbit.com/${d}`}
+        src={url}
         alt={brand.n}
-        style={{ height: 30, maxWidth: 130, objectFit: "contain" }}
-        onError={() => setFailed(true)}
+        style={{ height: 36, maxWidth: 140, objectFit: "contain" }}
+        onError={() => setAttempt(a => a + 1)}
       />
     );
   }
