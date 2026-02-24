@@ -26,7 +26,7 @@ const PRODUCTS = [
     protection: "IP66",
     certifications: ["IEC 62109-1", "IEC 62109-2", "EN 50549-1"],
     features: ["AFCI intégré", "AI Smart I-V Curve Diagnosis", "Smart String Monitoring", "FusionSolar compatible"],
-    image: "/products/hw-sun2000-100k-m2.svg",
+    image: "/products/sun2000-m2-commercial.png",
     datasheet: "https://solar.huawei.com/download/SUN2000-100KTL-M2-datasheet.pdf",
     stock: 1,
     minOrder: 1,
@@ -55,7 +55,7 @@ const PRODUCTS = [
     protection: "IP66",
     certifications: ["IEC 62109-1", "IEC 62109-2"],
     features: ["Smart I-V Curve Diagnosis", "AI Powered AFCI", "PID Recovery"],
-    image: "/products/hw-sun2000-30k-m3.svg",
+    image: "/products/sun2000-m3-commercial.png",
     stock: 4,
     minOrder: 1,
     seller: "QUALIWATT",
@@ -82,7 +82,7 @@ const PRODUCTS = [
     efficiency: "97.7%",
     protection: "IP65",
     features: ["Compatible LUNA2000", "Export limitation", "100% unbalanced output"],
-    image: "/products/hw-sun2000-6k-l1.svg",
+    image: "/products/sun2000-3-10ktl-m1.jpg",
     stock: 6,
     minOrder: 1,
     seller: "QUALIWATT",
@@ -109,7 +109,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sun2000-8k-lc0.svg",
+    image: "/products/sun2000-m5-hybrid.png",
   },
   {
     id: "hw-sun2000-10k-lc0",
@@ -133,7 +133,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sun2000-10k-lc0.svg",
+    image: "/products/sun2000-m5-hybrid.png",
   },
 
   // ═══════════════════════════════════════════
@@ -161,7 +161,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sun2000-5k-map0.svg",
+    image: "/products/sun2000-m5-hybrid.png",
   },
   {
     id: "hw-sun2000-6k-map0",
@@ -185,7 +185,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sun2000-6k-map0.svg",
+    image: "/products/sun2000-m5-hybrid.png",
   },
   {
     id: "hw-sun2000-8k-map0",
@@ -209,7 +209,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sun2000-8k-map0.svg",
+    image: "/products/sun2000-m5-hybrid.png",
   },
   {
     id: "hw-sun2000-10k-map0",
@@ -233,7 +233,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sun2000-10k-map0.svg",
+    image: "/products/sun2000-m5-hybrid.png",
   },
   {
     id: "hw-sun2000-12k-map0",
@@ -257,7 +257,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sun2000-12k-map0.svg",
+    image: "/products/sun2000-m5-hybrid.png",
   },
 
   // ═══════════════════════════════════════════
@@ -285,7 +285,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sun2000-12k-mb0.svg",
+    image: "/products/sun2000-10ktl-m2.png",
   },
   {
     id: "hw-sun2000-15k-mb0",
@@ -309,7 +309,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sun2000-15k-mb0.svg",
+    image: "/products/sun2000-10ktl-m2.png",
   },
   {
     id: "hw-sun2000-17k-mb0",
@@ -333,7 +333,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sun2000-17k-mb0.svg",
+    image: "/products/sun2000-10ktl-m2.png",
   },
   {
     id: "hw-sun2000-20k-mb0",
@@ -357,7 +357,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sun2000-20k-mb0.svg",
+    image: "/products/sun2000-10ktl-m2.png",
   },
   {
     id: "hw-sun2000-25k-mb0",
@@ -381,7 +381,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sun2000-25k-mb0.svg",
+    image: "/products/sun2000-10ktl-m2.png",
   },
 
   // ═══════════════════════════════════════════
@@ -409,7 +409,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-luna2000-5kw-c0.svg",
+    image: "/products/luna2000-battery.png",
   },
   {
     id: "hw-luna2000-5-e0",
@@ -433,7 +433,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-luna2000-5-e0.svg",
+    image: "/products/luna2000-battery.png",
   },
 
   // ═══════════════════════════════════════════
@@ -457,7 +457,7 @@ const PRODUCTS = [
     minOrder: 10,
     seller: "QUALIWATT",
   
-    image: "/products/hw-merc-1300-p.svg",
+    image: "/products/sun2000-450w-p2.png",
   },
 
   // ═══════════════════════════════════════════
@@ -479,7 +479,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sdongle-a05.svg",
+    image: "/products/smartdongle-wlan.png",
   },
   {
     id: "hw-sdongle-b06-eu",
@@ -497,7 +497,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-sdongle-b06-eu.svg",
+    image: "/products/smartdongle-4g.png",
   },
 
   // ═══════════════════════════════════════════
