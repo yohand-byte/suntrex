@@ -109,11 +109,13 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
   return (
     <>
       {/* HERO */}
-      <section style={{position:"relative",height:480,overflow:"hidden",background:"#0a1628"}}>
-        <video autoPlay muted loop playsInline poster="/hero-solar.jpg" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.35)",zIndex:1}}><source src="/hero-video.mp4" type="video/mp4"/></video>
-        <div style={{position:"absolute",inset:0,backgroundImage:"url('/hero-solar.jpg')",backgroundSize:"cover",backgroundPosition:"center",filter:"brightness(0.35)",zIndex:0}}/>
-        <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(10,22,40,0.3) 0%,rgba(10,22,40,0.7) 100%)",zIndex:2}}/>
-        <div style={{position:"relative",zIndex:3,height:"100%",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 24px"}}>
+      <section style={{position:"relative",height:480,background:"#0a1628"}}>
+        <div style={{position:"absolute",inset:0,overflow:"hidden"}}>
+          <video autoPlay muted loop playsInline poster="/hero-solar.jpg" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.35)",zIndex:1}}><source src="/hero-video.mp4" type="video/mp4"/></video>
+          <div style={{position:"absolute",inset:0,backgroundImage:"url('/hero-solar.jpg')",backgroundSize:"cover",backgroundPosition:"center",filter:"brightness(0.35)",zIndex:0}}/>
+          <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(10,22,40,0.3) 0%,rgba(10,22,40,0.7) 100%)",zIndex:2}}/>
+        </div>
+        <div style={{position:"relative",zIndex:10,height:"100%",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 24px"}}>
           <h1 style={{fontSize:38,fontWeight:600,color:"#fff",lineHeight:1.3,maxWidth:640,marginBottom:14}}>Trouvez, comparez et achetez vos equipements photovoltaiques au meilleur prix</h1>
           <p style={{fontSize:15,color:"rgba(255,255,255,0.75)",marginBottom:32}}>Une plateforme, des milliers d'offres de fournisseurs verifies en Europe</p>
           <div ref={searchRef} style={{width:"100%",maxWidth:540,position:"relative"}}>
