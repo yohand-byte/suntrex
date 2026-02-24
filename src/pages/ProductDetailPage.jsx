@@ -115,7 +115,7 @@ const S = {
   breadcrumbLink: { color: "#555", textDecoration: "none", cursor: "pointer" },
   breadcrumbCurrent: { color: "#333", fontWeight: 500 },
   productHeader: { display: "flex", gap: 32, marginBottom: 36, border: "1px solid #e8e8e8", borderRadius: 12, padding: 28 },
-  productImage: { width: 200, height: 240, background: "#f8f8f8", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 },
+  productImage: { width: 200, height: 240, background: "#fff", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, padding: 16 },
   brandTag: { fontSize: 14, fontWeight: 700, letterSpacing: "0.01em", marginBottom: 6 },
   sectionTitle: { fontSize: 17, fontWeight: 700, color: "#222", display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", padding: "14px 0" },
   greenBar: { width: "100%", height: 3, background: "#4CAF50", borderRadius: 2, marginTop: 2 },
@@ -234,7 +234,7 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
       <div style={S.productHeader}>
         <div style={S.productImage}>
           {product.image ? (
-            <img src={product.image} alt={product.name} style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }} />
+            <img src={product.image} alt={product.name} style={{ maxHeight: 200, maxWidth: "100%", objectFit: "contain", mixBlendMode: "multiply" }} />
           ) : (
             <div style={{ textAlign: "center", color: "#ccc" }}>
               <svg width="48" height="48" fill="none" stroke="#ddd" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
