@@ -1,9 +1,34 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
-  <rect width="400" height="400" fill="#f8f9fa"/>
-  <rect x="0" y="0" width="400" height="4" fill="#e4002b"/>
-  <text x="200" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#999" font-weight="600" letter-spacing="2">HUAWEI</text>
-  <text x="200" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#333" font-weight="700">Smart Power Sensor</text>
-  <text x="200" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#888">Capteur Réseau</text>
-  <rect x="140" y="280" width="120" height="32" rx="4" fill="#e4002b" opacity="0.1"/>
-  <text x="200" y="301" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#e4002b" font-weight="600">SUNTREX</text>
+  <rect width="400" height="400" fill="#fff"/>
+  <!-- DIN rail smart sensor body -->
+  <rect x="130" y="80" width="140" height="240" rx="8" fill="#e8ecef" stroke="#bbb" stroke-width="2"/>
+  <rect x="130" y="80" width="140" height="240" rx="8" fill="url(#grad1)"/>
+  <!-- Top accent -->
+  <rect x="130" y="80" width="140" height="12" rx="8" fill="#4a9" opacity="0.8"/>
+  <rect x="130" y="88" width="140" height="4" fill="#4a9" opacity="0.8"/>
+  <!-- LCD screen -->
+  <rect x="152" y="120" width="96" height="48" rx="4" fill="#1a2a3a"/>
+  <text x="200" y="142" text-anchor="middle" font-family="monospace" font-size="11" fill="#6fd8a8">kWh</text>
+  <text x="200" y="160" text-anchor="middle" font-family="monospace" font-size="14" fill="#8ef0c0" font-weight="700">000.00</text>
+  <!-- Indicator LEDs -->
+  <circle cx="160" cy="188" r="4" fill="#4CAF50"/>
+  <circle cx="176" cy="188" r="4" fill="#f59e0b" opacity="0.3"/>
+  <circle cx="192" cy="188" r="4" fill="#e53e3e" opacity="0.3"/>
+  <!-- Connection terminals bottom -->
+  <rect x="145" y="280" width="14" height="20" rx="2" fill="#888"/>
+  <rect x="168" y="280" width="14" height="20" rx="2" fill="#888"/>
+  <rect x="191" y="280" width="14" height="20" rx="2" fill="#888"/>
+  <rect x="214" y="280" width="14" height="20" rx="2" fill="#888"/>
+  <rect x="237" y="280" width="14" height="20" rx="2" fill="#888"/>
+  <!-- DIN rail clips -->
+  <rect x="155" y="316" width="90" height="8" rx="2" fill="#ccc"/>
+  <!-- Label -->
+  <text x="200" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#888" font-weight="600">HUAWEI</text>
+  <text x="200" y="248" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#aaa">SmartPS</text>
+  <defs>
+    <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0f2f4"/>
+      <stop offset="100%" stop-color="#dde1e5"/>
+    </linearGradient>
+  </defs>
 </svg>

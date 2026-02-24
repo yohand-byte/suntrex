@@ -1,9 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
-  <rect width="400" height="400" fill="#f8f9fa"/>
-  <rect x="0" y="0" width="400" height="4" fill="#e4002b"/>
-  <text x="200" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#999" font-weight="600" letter-spacing="2">HUAWEI</text>
-  <text x="200" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#333" font-weight="700">Smart Sensor 300A</text>
-  <text x="200" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#888">Capteur 300A</text>
-  <rect x="140" y="280" width="120" height="32" rx="4" fill="#e4002b" opacity="0.1"/>
-  <text x="200" y="301" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#e4002b" font-weight="600">SUNTREX</text>
+  <rect width="400" height="400" fill="#fff"/>
+  <!-- Small single-phase sensor body -->
+  <rect x="145" y="75" width="110" height="250" rx="8" fill="url(#g1)" stroke="#bbb" stroke-width="1.5"/>
+  <rect x="145" y="75" width="110" height="14" rx="8" fill="#3b82f6" opacity="0.7"/>
+  <rect x="145" y="85" width="110" height="4" fill="#3b82f6" opacity="0.5"/>
+  <!-- LCD -->
+  <rect x="160" y="115" width="80" height="48" rx="4" fill="#1a2a3a"/>
+  <text x="200" y="136" text-anchor="middle" font-family="monospace" font-size="9" fill="#6fd8a8">100A / 1-Ph</text>
+  <text x="200" y="154" text-anchor="middle" font-family="monospace" font-size="13" fill="#8ef0c0" font-weight="700">000.0 W</text>
+  <!-- LED -->
+  <circle cx="172" cy="182" r="4" fill="#4CAF50"/>
+  <!-- Label -->
+  <text x="200" y="215" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#777" font-weight="600">HUAWEI</text>
+  <text x="200" y="233" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#aaa">SmartPS-100A</text>
+  <!-- Terminals -->
+  <rect x="158" y="275" width="12" height="18" rx="2" fill="#888"/>
+  <rect x="182" y="275" width="12" height="18" rx="2" fill="#888"/>
+  <rect x="206" y="275" width="12" height="18" rx="2" fill="#888"/>
+  <rect x="230" y="275" width="12" height="18" rx="2" fill="#888"/>
+  <!-- DIN rail -->
+  <rect x="165" y="310" width="70" height="7" rx="2" fill="#ccc"/>
+  <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f0f2f4"/><stop offset="100%" stop-color="#dde1e5"/></linearGradient></defs>
 </svg>

@@ -24,7 +24,7 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped }) {
     <div style={S.productCard}>
       <div style={{display:"flex",alignItems:"center",padding:"16px 20px",gap:20}}>
         <div style={{display:"flex",flexDirection:"column",gap:6,width:100,flexShrink:0,alignItems:"center"}}>
-          <div style={{width:80,height:80,background:"#fff",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",overflow:"hidden",padding:8}}>
+          <div style={{width:100,height:100,background:"#fff",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",overflow:"hidden",padding:8}}>
             {product.image ? (
               <img src={product.image} alt={product.name} style={{maxWidth:"100%",maxHeight:"100%",objectFit:"contain",mixBlendMode:"multiply"}}/>
             ) : (
@@ -38,7 +38,6 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped }) {
 
         <div style={{flex:1,minWidth:0}}>
           <div style={{display:"flex",flexWrap:"wrap",gap:8,marginBottom:6}}>
-            <span style={{fontSize:11,color:"#888",background:"#f5f5f5",padding:"2px 8px",borderRadius:4}}>OFF {product.id}</span>
             <SellerBadge offer={bestOffer}/>
           </div>
           <h3 onClick={()=>navigate(`/product/${product.id}`)} style={{fontSize:15,fontWeight:600,color:"#222",margin:"4px 0",cursor:"pointer"}}>{product.name}</h3>

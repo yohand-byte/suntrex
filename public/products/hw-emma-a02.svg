@@ -1,9 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
-  <rect width="400" height="400" fill="#f8f9fa"/>
-  <rect x="0" y="0" width="400" height="4" fill="#e4002b"/>
-  <text x="200" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#999" font-weight="600" letter-spacing="2">HUAWEI</text>
-  <text x="200" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#333" font-weight="700">EMMA-A02</text>
-  <text x="200" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#888">Gestion Énergie</text>
-  <rect x="140" y="280" width="120" height="32" rx="4" fill="#e4002b" opacity="0.1"/>
-  <text x="200" y="301" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#e4002b" font-weight="600">SUNTREX</text>
+  <rect width="400" height="400" fill="#fff"/>
+  <!-- EMMA white square box -->
+  <rect x="110" y="100" width="180" height="180" rx="20" fill="#f5f5f5" stroke="#ddd" stroke-width="2"/>
+  <rect x="110" y="100" width="180" height="180" rx="20" fill="url(#g1)"/>
+  <!-- Rounded inner panel -->
+  <rect x="135" y="130" width="130" height="100" rx="12" fill="#fff" stroke="#e8e8e8" stroke-width="1"/>
+  <!-- AI brain icon -->
+  <circle cx="200" cy="170" r="22" fill="none" stroke="#4CAF50" stroke-width="2.5"/>
+  <path d="M188 170 C188 158,212 158,212 170 C212 182,188 182,188 170" fill="none" stroke="#4CAF50" stroke-width="2"/>
+  <circle cx="193" cy="166" r="2.5" fill="#4CAF50"/>
+  <circle cx="207" cy="166" r="2.5" fill="#4CAF50"/>
+  <circle cx="200" cy="176" r="2" fill="#4CAF50"/>
+  <!-- Connection dots around -->
+  <circle cx="200" cy="143" r="3" fill="#4CAF50" opacity="0.5"/>
+  <circle cx="222" cy="155" r="3" fill="#E8700A" opacity="0.5"/>
+  <circle cx="222" cy="185" r="3" fill="#3b82f6" opacity="0.5"/>
+  <circle cx="178" cy="155" r="3" fill="#f59e0b" opacity="0.5"/>
+  <circle cx="178" cy="185" r="3" fill="#8b5cf6" opacity="0.5"/>
+  <!-- LED strip bottom -->
+  <rect x="170" y="242" width="60" height="4" rx="2" fill="#4CAF50" opacity="0.6"/>
+  <!-- Label -->
+  <text x="200" y="276" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#777" font-weight="600">HUAWEI</text>
+  <text x="200" y="294" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#4CAF50" font-weight="600">EMMA-A02</text>
+  <text x="200" y="310" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" fill="#aaa">Energy Management</text>
+  <defs><linearGradient id="g1" x1="0" y1="0" x2="0.5" y2="1"><stop offset="0%" stop-color="#fafafa"/><stop offset="100%" stop-color="#f0f0f0"/></linearGradient></defs>
 </svg>
