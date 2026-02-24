@@ -44,3 +44,4 @@ coverage/
 *.tgz
 .vercel
 .netlify
+.env*.local

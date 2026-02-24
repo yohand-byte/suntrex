@@ -1,121 +1,108 @@
 import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import REAL_PRODUCTS from "../products";
 
-/* ═══════════════════════════════════════════════════════════
-   SUNTREX — Product Detail Page
-   Reference: sun.store product page (before registration)
-   - Breadcrumb navigation
-   - Product image + brand logo
-   - Technical specs table (collapsible sections)
-   - Description
-   - Datasheet downloads
-   - Dimensions
-   - Offers section with price gate (blur + CTA)
-   - RFP banner
-   ═══════════════════════════════════════════════════════════ */
+/* ── Build detail view from real products.js data ── */
+const BRAND_COLORS = {
+  Huawei: "#e4002b", Deye: "#0068b7", Enphase: "#f47920", SMA: "#cc0000",
+  "SolarEdge": "#e21e26", "Jinko Solar": "#1a8c37", "Trina Solar": "#cc0000",
+  LONGi: "#008c44", "JA Solar": "#003da6", "Canadian Solar": "#003ca6",
+  BYD: "#c00", Growatt: "#ee7203", GoodWe: "#007ac1", Sungrow: "#1a5aa6",
+  "Risen Energy": "#e60012",
+};
 
-/* ── Mock product data (LONGi panel as reference) ── */
-const MOCK_PRODUCTS = {
-  "PAN001": {
-    id: "PAN001",
-    name: "Jinko Tiger Neo N-type 575W",
-    brand: "Jinko Solar",
-    brandColor: "#1a8c37",
-    category: "panels",
-    categoryLabel: "Panneaux solaires",
-    subtitle: "Monocrystalline N-Type",
-    description: "The Tiger Neo series leverages Jinko's latest N-type TOPCon cell technology, delivering industry-leading efficiency up to 22.27%. Features enhanced low-light performance, lower temperature coefficient, and superior degradation resistance. Ideal for utility-scale and commercial rooftop installations requiring maximum energy yield per square meter.",
-    datasheet: "jinko-tiger-neo-575w-datasheet.pdf",
+const CATEGORY_LABELS = {
+  inverters: "Onduleurs", batteries: "Stockage", optimizers: "Optimiseurs",
+  "ev-chargers": "Bornes de recharge", accessories: "Accessoires", panels: "Panneaux solaires",
+};
+
+function buildProductDetail(p) {
+  return {
+    id: p.id,
+    name: p.name,
+    brand: p.brand,
+    brandColor: BRAND_COLORS[p.brand] || "#555",
+    category: p.category,
+    categoryLabel: CATEGORY_LABELS[p.category] || p.category,
+    subtitle: [p.type, p.phases ? `${p.phases}-Phase` : null, p.power || p.capacity].filter(Boolean).join(" — "),
+    description: p.features ? p.features.join(". ") + "." : "",
+    datasheet: p.datasheet || `${p.sku}-datasheet.pdf`,
     specs: {
       general: [
-        { label: "Nom de la série", value: "Tiger Neo N-type 72HL4" },
-        { label: "Gamme de puissance (Wp)", value: "555-580" },
-        { label: "Nom du modèle", value: "JKM575N-72HL4-V" },
-        { label: "Années de garantie", value: "15" },
-        { label: "Garantie linéaire (années, %)", value: "30, 87.4" },
+        { label: "SKU", value: p.sku },
+        { label: "Marque", value: p.brand },
+        { label: "Garantie", value: p.warranty || "N/A" },
+        ...(p.protection ? [{ label: "Indice de protection", value: p.protection }] : []),
+        ...(p.certifications ? [{ label: "Certifications", value: p.certifications.join(", ") }] : []),
       ],
       electrical: [
-        { label: "Puissance du module", value: "575 W" },
-        { label: "Tension Vmpp (V) au STC", value: "42.57" },
-        { label: "Courant Impp (A) au STC", value: "13.51" },
-        { label: "Tension Voc (V) au STC", value: "50.82" },
-        { label: "Courant Isc (A) au STC", value: "14.03" },
-        { label: "Efficacité du panneau (%) au STC", value: "22.27" },
-        { label: "Tolérance de puissance (%)", value: "0 ~ +3" },
-        { label: "Coefficient de température Pmax (%/°C)", value: "-0.29" },
-        { label: "Coefficient de température Voc (%/°C)", value: "-0.245" },
-        { label: "Coefficient de température Isc (%/°C)", value: "0.045" },
-        { label: "Tension maximale du système (V)", value: "1500" },
+        ...(p.power ? [{ label: "Puissance", value: p.power }] : []),
+        ...(p.capacity ? [{ label: "Capacité", value: p.capacity }] : []),
+        ...(p.efficiency ? [{ label: "Rendement max", value: p.efficiency }] : []),
+        ...(p.phases ? [{ label: "Nombre de phases", value: String(p.phases) }] : []),
+        ...(p.mppt ? [{ label: "Nombre de MPPT", value: String(p.mppt) }] : []),
+        ...(p.chemistry ? [{ label: "Chimie", value: p.chemistry }] : []),
+        ...(p.dod ? [{ label: "Profondeur de décharge", value: p.dod }] : []),
+        ...(p.cycles ? [{ label: "Cycles", value: p.cycles }] : []),
       ],
       mechanical: [
-        { label: "Type de cellule", value: "N-Type TOPCon" },
-        { label: "Nombre de cellules", value: "144 (6x24)" },
-        { label: "Type de verre", value: "Single, AR coated tempered" },
-        { label: "Épaisseur du verre (mm)", value: "3.2" },
-        { label: "Type de cadre", value: "Anodized Aluminium Alloy" },
-        { label: "Type de connecteur", value: "MC4 / QC4" },
-        { label: "Section du câble (mm²)", value: "4" },
-        { label: "Longueur du câble (mm)", value: "400" },
+        ...(p.weight ? [{ label: "Poids (kg)", value: String(p.weight) }] : []),
       ],
       dimensions: [
-        { label: "Hauteur (mm)", value: "2278" },
-        { label: "Largeur (mm)", value: "1134" },
-        { label: "Profondeur (mm)", value: "30" },
-        { label: "Poids (kg)", value: "28.4" },
+        ...(p.weight ? [{ label: "Poids (kg)", value: String(p.weight) }] : []),
       ],
+    },
+    offers: [
+      {
+        sellerId: "S01",
+        sellerName: p.seller || "QUALIWATT",
+        country: "FR",
+        flag: "🇫🇷",
+        rating: 4.8,
+        reviews: 8,
+        stock: p.stock,
+        price: p.price,
+        availableDate: null,
+        badge: "trusted",
+        bankTransfer: true,
+        delivery: "suntrex",
+      },
+    ],
+  };
+}
+
+/* ── Mock product data (fallback for demo IDs) ── */
+const MOCK_PRODUCTS = {
+  "PAN001": {
+    id: "PAN001", name: "Jinko Tiger Neo N-type 575W", brand: "Jinko Solar", brandColor: "#1a8c37",
+    category: "panels", categoryLabel: "Panneaux solaires", subtitle: "Monocrystalline N-Type",
+    description: "The Tiger Neo series leverages Jinko's latest N-type TOPCon cell technology, delivering industry-leading efficiency up to 22.27%.",
+    datasheet: "jinko-tiger-neo-575w-datasheet.pdf",
+    specs: {
+      general: [{ label: "Nom de la série", value: "Tiger Neo N-type 72HL4" },{ label: "Gamme de puissance (Wp)", value: "555-580" },{ label: "Nom du modèle", value: "JKM575N-72HL4-V" },{ label: "Années de garantie", value: "15" }],
+      electrical: [{ label: "Puissance du module", value: "575 W" },{ label: "Tension Vmpp (V)", value: "42.57" },{ label: "Efficacité (%)", value: "22.27" }],
+      mechanical: [{ label: "Type de cellule", value: "N-Type TOPCon" },{ label: "Nombre de cellules", value: "144 (6x24)" }],
+      dimensions: [{ label: "Hauteur (mm)", value: "2278" },{ label: "Largeur (mm)", value: "1134" },{ label: "Poids (kg)", value: "28.4" }],
     },
     offers: [
       { sellerId: "S03", sellerName: "EnerSol ES", country: "ES", flag: "🇪🇸", rating: 4.5, reviews: 56, stock: 3000, price: 95, availableDate: null, badge: null, bankTransfer: true, delivery: "seller" },
       { sellerId: "S01", sellerName: "SolarTech DE", country: "DE", flag: "🇩🇪", rating: 4.9, reviews: 132, stock: 5000, price: 98, availableDate: null, badge: "trusted", bankTransfer: true, delivery: "suntrex" },
-      { sellerId: "S02", sellerName: "PV Parts FR", country: "FR", flag: "🇫🇷", rating: 4.7, reviews: 86, stock: 800, price: 102, availableDate: "15 Mar 2026", badge: null, bankTransfer: true, delivery: "suntrex" },
     ],
   },
   "INV002": {
-    id: "INV002",
-    name: "Huawei SUN2000-5KTL-M2",
-    brand: "Huawei",
-    brandColor: "#e4002b",
-    category: "inverters",
-    categoryLabel: "Onduleurs",
-    subtitle: "String Inverter — Monophasé",
-    description: "L'onduleur string résidentiel de Huawei de nouvelle génération avec intelligence artificielle intégrée. Rendement maximal de 98.4%, compatible avec l'optimiseur SUN2000-450W-P2 et la batterie LUNA2000. Surveillance en temps réel via l'application FusionSolar. Double tracker MPPT pour une flexibilité d'installation optimale.",
+    id: "INV002", name: "Huawei SUN2000-5KTL-M2", brand: "Huawei", brandColor: "#e4002b",
+    category: "inverters", categoryLabel: "Onduleurs", subtitle: "String Inverter — Monophasé",
+    description: "L'onduleur string résidentiel de Huawei avec rendement maximal de 98.4%, compatible avec l'optimiseur SUN2000-450W-P2 et la batterie LUNA2000.",
     datasheet: "huawei-sun2000-5ktl-m2-datasheet.pdf",
     specs: {
-      general: [
-        { label: "Nom de la série", value: "SUN2000-2/3/3.68/4/4.6/5/6KTL-M2" },
-        { label: "Nom du modèle", value: "SUN2000-5KTL-M2" },
-        { label: "Années de garantie", value: "10 (extensible à 20)" },
-      ],
-      electrical: [
-        { label: "Puissance nominale AC", value: "5000 W" },
-        { label: "Puissance max DC", value: "7500 W" },
-        { label: "Tension max d'entrée", value: "600 V" },
-        { label: "Plage MPPT", value: "140 V – 560 V" },
-        { label: "Courant max d'entrée par MPPT", value: "13 A" },
-        { label: "Nombre de MPPT", value: "2" },
-        { label: "Rendement max", value: "98.4%" },
-        { label: "Rendement européen", value: "97.7%" },
-        { label: "Tension de sortie AC", value: "220/230/240 V" },
-        { label: "Fréquence AC", value: "50/60 Hz" },
-        { label: "Facteur de puissance", value: "0.8 leading – 0.8 lagging" },
-      ],
-      mechanical: [
-        { label: "Type de refroidissement", value: "Convection naturelle" },
-        { label: "Indice de protection", value: "IP65" },
-        { label: "Plage de température", value: "-25°C ~ +60°C" },
-        { label: "Communication", value: "Wi-Fi / Ethernet / RS485 / 4G (opt.)" },
-        { label: "Affichage", value: "LED + App FusionSolar" },
-      ],
-      dimensions: [
-        { label: "Hauteur (mm)", value: "365" },
-        { label: "Largeur (mm)", value: "295" },
-        { label: "Profondeur (mm)", value: "135" },
-        { label: "Poids (kg)", value: "10.5" },
-      ],
+      general: [{ label: "Nom de la série", value: "SUN2000-2/3/3.68/4/4.6/5/6KTL-M2" },{ label: "Nom du modèle", value: "SUN2000-5KTL-M2" },{ label: "Années de garantie", value: "10 (extensible à 20)" }],
+      electrical: [{ label: "Puissance nominale AC", value: "5000 W" },{ label: "Puissance max DC", value: "7500 W" },{ label: "Rendement max", value: "98.4%" },{ label: "Nombre de MPPT", value: "2" }],
+      mechanical: [{ label: "Type de refroidissement", value: "Convection naturelle" },{ label: "Indice de protection", value: "IP65" }],
+      dimensions: [{ label: "Hauteur (mm)", value: "365" },{ label: "Largeur (mm)", value: "295" },{ label: "Poids (kg)", value: "10.5" }],
     },
     offers: [
       { sellerId: "S01", sellerName: "SolarTech DE", country: "DE", flag: "🇩🇪", rating: 4.9, reviews: 132, stock: 380, price: 689, availableDate: null, badge: "trusted", bankTransfer: true, delivery: "suntrex" },
       { sellerId: "S03", sellerName: "EnerSol ES", country: "ES", flag: "🇪🇸", rating: 4.5, reviews: 56, stock: 200, price: 710, availableDate: null, badge: null, bankTransfer: true, delivery: "seller" },
-      { sellerId: "S04", sellerName: "SunPower NL", country: "NL", flag: "🇳🇱", rating: 4.8, reviews: 94, stock: 90, price: 695, availableDate: null, badge: "trusted", bankTransfer: true, delivery: "suntrex" },
     ],
   },
 };
@@ -143,7 +130,6 @@ const S = {
   downloadRow: { display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 20px", background: "#fafafa", borderRadius: 8, marginBottom: 8 },
 };
 
-/* ── Collapsible Section ── */
 function Section({ title, children, defaultOpen = true }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
@@ -158,7 +144,6 @@ function Section({ title, children, defaultOpen = true }) {
   );
 }
 
-/* ── Specs Table ── */
 function SpecsTable({ specs }) {
   return (
     <div style={{ border: "1px solid #e8e8e8", borderRadius: 10, overflow: "hidden" }}>
@@ -172,7 +157,6 @@ function SpecsTable({ specs }) {
   );
 }
 
-/* ── Offer Card ── */
 function OfferCard({ offer, isLoggedIn, onLogin }) {
   return (
     <div style={S.offerCard}>
@@ -187,25 +171,15 @@ function OfferCard({ offer, isLoggedIn, onLogin }) {
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
             {offer.badge === "trusted" && (
-              <span style={{ ...S.badge, background: "#fff8e1", color: "#f57f17", border: "1px solid #ffe082" }}>
-                ⭐ Super vendeur
-              </span>
+              <span style={{ ...S.badge, background: "#fff8e1", color: "#f57f17", border: "1px solid #ffe082" }}>⭐ Super vendeur</span>
             )}
-            <span style={{ ...S.badge, background: "#f5f5f5", color: "#555", border: "1px solid #e0e0e0" }}>
-              {offer.flag} {offer.country}
-            </span>
-            <span style={{ ...S.badge, background: "#f5f5f5", color: "#555", border: "1px solid #e0e0e0" }}>
-              ⭐ {offer.rating} ({offer.reviews})
-            </span>
+            <span style={{ ...S.badge, background: "#f5f5f5", color: "#555", border: "1px solid #e0e0e0" }}>{offer.flag} {offer.country}</span>
+            <span style={{ ...S.badge, background: "#f5f5f5", color: "#555", border: "1px solid #e0e0e0" }}>⭐ {offer.rating} ({offer.reviews})</span>
             {offer.bankTransfer && (
-              <span style={{ ...S.badge, background: "#e8f5e9", color: "#2e7d32", border: "1px solid #c8e6c9" }}>
-                🏦 VIREMENT BANCAIRE SÉCURISÉ
-              </span>
+              <span style={{ ...S.badge, background: "#e8f5e9", color: "#2e7d32", border: "1px solid #c8e6c9" }}>🏦 VIREMENT BANCAIRE SÉCURISÉ</span>
             )}
             {offer.delivery === "suntrex" && (
-              <span style={{ ...S.badge, background: "#fff3e0", color: "#e65100", border: "1px solid #ffe0b2" }}>
-                🚚 SUNTREX Delivery
-              </span>
+              <span style={{ ...S.badge, background: "#fff3e0", color: "#e65100", border: "1px solid #ffe0b2" }}>🚚 SUNTREX Delivery</span>
             )}
           </div>
         </div>
@@ -230,11 +204,12 @@ function OfferCard({ offer, isLoggedIn, onLogin }) {
   );
 }
 
-/* ═══════════════════════════════════════════════════════
-   MAIN PRODUCT DETAIL COMPONENT
-   ═══════════════════════════════════════════════════════ */
-export default function ProductDetailPage({ productId, isLoggedIn, onLogin, onBack }) {
-  const product = MOCK_PRODUCTS[productId] || MOCK_PRODUCTS["INV002"];
+export default function ProductDetailPage({ isLoggedIn, onLogin }) {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const realProduct = REAL_PRODUCTS.find(p => p.id === id);
+  const product = realProduct ? buildProductDetail(realProduct) : (MOCK_PRODUCTS[id] || MOCK_PRODUCTS["INV002"]);
   const [sortOffers, setSortOffers] = useState("price-asc");
 
   const sortedOffers = [...product.offers].sort((a, b) => {
@@ -247,34 +222,25 @@ export default function ProductDetailPage({ productId, isLoggedIn, onLogin, onBa
 
   return (
     <div style={S.page}>
-      {/* Breadcrumb */}
       <div style={S.breadcrumb}>
-        <span style={S.breadcrumbLink} onClick={onBack}>Accueil</span>
+        <span style={S.breadcrumbLink} onClick={()=>navigate(-1)}>Accueil</span>
         <svg width="10" height="10" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-        <span style={S.breadcrumbLink} onClick={onBack}>{product.categoryLabel}</span>
+        <span style={S.breadcrumbLink} onClick={()=>navigate(-1)}>{product.categoryLabel}</span>
         <svg width="10" height="10" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
         <span style={S.breadcrumbCurrent}>{product.name}</span>
       </div>
 
-      {/* Product Header Card */}
       <div style={S.productHeader}>
-        {/* Image placeholder */}
         <div style={S.productImage}>
           <div style={{ textAlign: "center", color: "#ccc" }}>
             <svg width="48" height="48" fill="none" stroke="#ddd" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
             <div style={{ fontSize: 11, marginTop: 4 }}>{product.brand}</div>
           </div>
         </div>
-
-        {/* Product info */}
         <div style={{ flex: 1 }}>
           <div style={{ ...S.brandTag, color: product.brandColor }}>{product.brand}</div>
-          <h1 style={{ fontSize: 22, fontWeight: 700, color: "#222", margin: "4px 0 8px", lineHeight: 1.3 }}>
-            {product.name}
-          </h1>
+          <h1 style={{ fontSize: 22, fontWeight: 700, color: "#222", margin: "4px 0 8px", lineHeight: 1.3 }}>{product.name}</h1>
           <div style={{ fontSize: 14, color: "#888", marginBottom: 16 }}>{product.subtitle}</div>
-
-          {/* Quick specs table */}
           <div style={{ border: "1px solid #e8e8e8", borderRadius: 10, overflow: "hidden" }}>
             {product.specs.electrical.slice(0, 4).map((spec, i) => (
               <div key={i} style={{ ...S.specRow, ...(i % 2 === 0 ? S.specRowAlt : {}), padding: "12px 20px" }}>
@@ -286,14 +252,10 @@ export default function ProductDetailPage({ productId, isLoggedIn, onLogin, onBa
         </div>
       </div>
 
-      {/* Description */}
       <Section title="Description">
-        <div style={{ background: "#fafafa", borderRadius: 10, padding: "20px 24px", fontSize: 14, lineHeight: 1.7, color: "#444" }}>
-          {product.description}
-        </div>
+        <div style={{ background: "#fafafa", borderRadius: 10, padding: "20px 24px", fontSize: 14, lineHeight: 1.7, color: "#444" }}>{product.description}</div>
       </Section>
 
-      {/* Downloads */}
       <Section title="Téléchargements">
         <div style={S.downloadRow}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -311,22 +273,18 @@ export default function ProductDetailPage({ productId, isLoggedIn, onLogin, onBa
         </div>
       </Section>
 
-      {/* Technical specs */}
       <Section title={`Spécifications techniques — ${product.name}`}>
         <SpecsTable specs={[...product.specs.general, ...product.specs.electrical]} />
       </Section>
 
-      {/* Mechanical */}
       <Section title="Caractéristiques mécaniques" defaultOpen={false}>
         <SpecsTable specs={product.specs.mechanical} />
       </Section>
 
-      {/* Dimensions */}
       <Section title={`Dimensions — ${product.name}`}>
         <SpecsTable specs={product.specs.dimensions} />
       </Section>
 
-      {/* RFP Banner */}
       <div style={S.rfpBanner}>
         <div>
           <h3 style={{ color: "#fff", fontSize: 18, fontWeight: 700, marginBottom: 6 }}>AVEZ-VOUS BESOIN DE CE PRODUIT ?</h3>
@@ -345,11 +303,8 @@ export default function ProductDetailPage({ productId, isLoggedIn, onLogin, onBa
         </button>
       </div>
 
-      {/* Offers section */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-        <h2 style={{ fontSize: 18, fontWeight: 700, color: "#222" }}>
-          Offres — {product.name}
-        </h2>
+        <h2 style={{ fontSize: 18, fontWeight: 700, color: "#222" }}>Offres — {product.name}</h2>
         <select value={sortOffers} onChange={e => setSortOffers(e.target.value)}
           style={{ padding: "8px 14px", borderRadius: 8, border: "1px solid #ddd", fontSize: 13, color: "#555", fontFamily: "inherit", background: "#fff", cursor: "pointer" }}>
           <option value="price-asc">Par le prix le plus bas</option>
