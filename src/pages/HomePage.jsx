@@ -34,17 +34,17 @@ const BRANDS = [
 ];
 
 const BSLIDES = [
-  { label:"Comparez les offres", desc:"Trouvez le meilleur prix en un clic. Comparez les offres de vendeurs verifies dans toute l'Europe.", m:"catalog" },
-  { label:"Negociez en direct", desc:"Chat integre avec traduction automatique pour negocier prix, quantites et conditions de livraison.", m:"chat" },
-  { label:"Paiement securise Stripe", desc:"Fonds proteges en escrow jusqu'a confirmation de livraison. 3D Secure & SCA conformes.", m:"payment" },
-  { label:"Suivi SUNTREX DELIVERY", desc:"Suivi temps reel avec verification photo a chaque etape. Votre colis, notre responsabilite.", m:"delivery" },
+  { label:"Comparez les offres", desc:"Trouvez le meilleur prix en un clic. Comparez les offres de vendeurs vérifiés dans toute l'Europe.", m:"catalog" },
+  { label:"Négociez en direct", desc:"Chat intégré avec traduction automatique pour négocier prix, quantités et conditions de livraison.", m:"chat" },
+  { label:"Paiement sécurisé Stripe", desc:"Fonds protégés en escrow jusqu'à confirmation de livraison. 3D Secure & SCA conformes.", m:"payment" },
+  { label:"Suivi SUNTREX DELIVERY", desc:"Suivi temps réel avec vérification photo à chaque étape. Votre colis, notre responsabilité.", m:"delivery" },
 ];
 
 const SSLIDES = [
-  { label:"Nouveaux marches europeens", desc:"Touchez des acheteurs professionnels dans 25+ pays depuis un seul tableau de bord.", m:"europe" },
-  { label:"Creez des offres rapidement", desc:"Import Excel ou creation rapide. Definissez vos prix et stocks en quelques clics.", m:"createoffer" },
-  { label:"Stock en temps reel", desc:"Alertes automatiques quand vos stocks baissent, avec suggestions IA de tarification.", m:"stockmgmt" },
-  { label:"Dashboard tout-en-un", desc:"Commandes, factures, expeditions, paiements : tout centralise au meme endroit.", m:"dashboard" },
+  { label:"Nouveaux marchés européens", desc:"Touchez des acheteurs professionnels dans 25+ pays depuis un seul tableau de bord.", m:"europe" },
+  { label:"Créez des offres rapidement", desc:"Import Excel ou création rapide. Définissez vos prix et stocks en quelques clics.", m:"createoffer" },
+  { label:"Stock en temps réel", desc:"Alertes automatiques quand vos stocks baissent, avec suggestions IA de tarification.", m:"stockmgmt" },
+  { label:"Dashboard tout-en-un", desc:"Commandes, factures, expéditions, paiements : tout centralisé au même endroit.", m:"dashboard" },
 ];
 
 /* ── Category labels for search results ── */
@@ -116,8 +116,8 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
           <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(10,22,40,0.3) 0%,rgba(10,22,40,0.7) 100%)",zIndex:2}}/>
         </div>
         <div style={{position:"relative",zIndex:10,height:"100%",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 24px"}}>
-          <h1 style={{fontSize:38,fontWeight:600,color:"#fff",lineHeight:1.3,maxWidth:640,marginBottom:14}}>Trouvez, comparez et achetez vos equipements photovoltaiques au meilleur prix</h1>
-          <p style={{fontSize:15,color:"rgba(255,255,255,0.75)",marginBottom:32}}>Une plateforme, des milliers d'offres de fournisseurs verifies en Europe</p>
+          <h1 style={{fontSize:38,fontWeight:600,color:"#fff",lineHeight:1.3,maxWidth:640,marginBottom:14}}>Trouvez, comparez et achetez vos équipements photovoltaïques au meilleur prix</h1>
+          <p style={{fontSize:15,color:"rgba(255,255,255,0.75)",marginBottom:32}}>Une plateforme, des milliers d'offres de fournisseurs vérifiés en Europe</p>
           <div ref={searchRef} style={{width:"100%",maxWidth:540,position:"relative"}}>
             <input
               value={sq}
@@ -210,9 +210,14 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
                   <span>Type<br/><b style={{color:"#262627"}}>{p.type}</b></span>
                 </div>
                 {isVerified?(
-                  <div><div style={{fontSize:11,color:"#7b7b7b"}}>Des</div><div style={{fontSize:18,fontWeight:700,color:"#E8700A"}}>{"€"+p.price.toLocaleString("fr-FR")}<span style={{fontSize:11,fontWeight:400,color:"#7b7b7b"}}> /pcs</span></div></div>
+                  <div><div style={{fontSize:11,color:"#7b7b7b"}}>Dès</div><div style={{fontSize:18,fontWeight:700,color:"#E8700A"}}>{"€"+p.price.toLocaleString("fr-FR")}<span style={{fontSize:11,fontWeight:400,color:"#7b7b7b"}}> /pcs</span></div></div>
                 ):(
-                  <button onClick={(e)=>{e.stopPropagation();onShowRegister()}} style={{width:"100%",height:34,borderRadius:6,border:"none",background:"#E8700A",color:"#fff",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>{isLoggedIn ? "Vérification en cours" : "Voir le prix"}</button>
+                  <div onClick={(e)=>{e.stopPropagation();onShowRegister()}} style={{position:"relative",cursor:"pointer",borderRadius:6,overflow:"hidden"}}>
+                    <div style={{fontSize:18,fontWeight:700,color:"#E8700A",filter:"blur(6px)",userSelect:"none",pointerEvents:"none",padding:"4px 0"}}>{"€"+((p.price||999)*0.97).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g," ")}<span style={{fontSize:11,fontWeight:400,color:"#7b7b7b"}}> /pcs</span></div>
+                    <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(255,255,255,0.55)",backdropFilter:"blur(2px)"}}>
+                      <span style={{fontSize:11,fontWeight:600,color:"#E8700A",background:"rgba(232,112,10,0.1)",padding:"4px 12px",borderRadius:4,border:"1px solid rgba(232,112,10,0.2)"}}>{isLoggedIn?"Vérification en cours":"Voir le prix"}</span>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>
@@ -227,8 +232,8 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
           <CatCard img="/categories/panels.jpg" title="Panneaux solaires" sub="Jinko, LONGi, Trina, Canadian Solar..." count="1 300+ offres" big onClick={()=>navigate("/catalog/panels")}/>
           <CatCard img="/categories/category-onduleurs.png" title="Onduleurs" sub="Huawei, SMA, Growatt, Deye..." count="4 400+ offres" montage bg="linear-gradient(135deg,#1a2332 0%,#2d3f52 100%)" onClick={()=>navigate("/catalog/inverters")}/>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
-            <CatCard img="/categories/category-batteries.png" title="Stockage d'energie" count="750+ offres" small montage bg="linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%)" onClick={()=>navigate("/catalog/batteries")}/>
-            <CatCard img="/categories/category-accessoires.png" title="Cables & accessoires" count="250+ offres" small montage bg="linear-gradient(135deg,#2d2d2d 0%,#434343 100%)" onClick={()=>navigate("/catalog/accessories")}/>
+            <CatCard img="/categories/category-batteries.png" title="Stockage d'énergie" count="750+ offres" small montage bg="linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%)" onClick={()=>navigate("/catalog/batteries")}/>
+            <CatCard img="/categories/category-accessoires.png" title="Câbles & accessoires" count="250+ offres" small montage bg="linear-gradient(135deg,#2d2d2d 0%,#434343 100%)" onClick={()=>navigate("/catalog/accessories")}/>
           </div>
         </div>
       </section>
@@ -237,7 +242,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       <section style={{background:"#fafafa",padding:"64px 40px",borderTop:"1px solid #e4e5ec"}}>
         <div style={{maxWidth:1100,margin:"0 auto"}}>
           <h2 style={{fontSize:32,fontWeight:700,marginBottom:4}}>Pourquoi SUNTREX ?</h2>
-          <p style={{fontSize:15,color:"#7b7b7b",marginBottom:28}}>Une place de marche transparente, fiable et conviviale</p>
+          <p style={{fontSize:15,color:"#7b7b7b",marginBottom:28}}>Une place de marché transparente, fiable et conviviale</p>
           <div style={{display:"flex",gap:8,marginBottom:36}}>
             {[["buyer","Pour l'acheteur"],["seller","Pour le vendeur"]].map(([k,l])=>(
               <button key={k} onClick={()=>{setTab(k);k==="buyer"?setBs(0):setSs(0)}} style={{padding:"10px 28px",fontSize:14,fontWeight:600,cursor:"pointer",border:"none",borderRadius:24,background:tab===k?"#4CAF50":"#fff",color:tab===k?"#fff":"#7b7b7b",fontFamily:"inherit",boxShadow:tab===k?"0 2px 8px rgba(76,175,80,0.3)":"0 1px 3px rgba(0,0,0,0.06)",transition:"all .2s"}}>{l}</button>
@@ -250,7 +255,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       {/* STATS */}
       <section style={{padding:"44px 40px",borderTop:"1px solid #e4e5ec",borderBottom:"1px solid #e4e5ec"}}>
         <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:20,maxWidth:1000,margin:"0 auto",textAlign:"center"}}>
-          {[["6 700+","Offres actives"],["25+","Pays couverts"],["500+","Vendeurs verifies"],["2%","Commission plateforme"]].map(([n,l],i)=>(
+          {[["6 700+","Offres actives"],["25+","Pays couverts"],["500+","Vendeurs vérifiés"],["2%","Commission plateforme"]].map(([n,l],i)=>(
             <div key={i}><div style={{fontSize:32,fontWeight:700,color:"#E8700A"}}>{n}</div><div style={{fontSize:13,color:"#7b7b7b",marginTop:4}}>{l}</div></div>
           ))}
         </div>
@@ -258,13 +263,13 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
 
       {/* DIFFERENTIATORS */}
       <section style={{padding:"56px 40px"}}>
-        <div style={{textAlign:"center",marginBottom:36}}><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,margin:"0 auto 12px"}}/><h2 style={{fontSize:26,fontWeight:700}}>Ce qui nous differencie</h2></div>
+        <div style={{textAlign:"center",marginBottom:36}}><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,margin:"0 auto 12px"}}/><h2 style={{fontSize:26,fontWeight:700}}>Ce qui nous différencie</h2></div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:20,maxWidth:1080,margin:"0 auto"}}>
           {[
-            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="4" stroke="#4CAF50" strokeWidth="2.5"/><path d="M6 18h36" stroke="#4CAF50" strokeWidth="2.5"/><circle cx="24" cy="32" r="5" stroke="#4CAF50" strokeWidth="2"/><path d="M22 32l2 2 4-4" stroke="#4CAF50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,t:"Paiement securise",d:"Escrow via Stripe Connect. Vos fonds sont proteges jusqu'a reception confirmee."},
-            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="4" y="20" width="24" height="16" rx="2" stroke="#E8700A" strokeWidth="2.5"/><path d="M28 24h8l6 6v6H28" stroke="#E8700A" strokeWidth="2.5" strokeLinejoin="round"/><circle cx="12" cy="38" r="4" stroke="#E8700A" strokeWidth="2.5"/><circle cx="36" cy="38" r="4" stroke="#E8700A" strokeWidth="2.5"/></svg>,t:"SUNTREX Delivery",d:"Notre propre service logistique avec verification photo a chaque etape."},
-            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="#4CAF50" strokeWidth="2.5"/><path d="M18 24l4 4 8-8" stroke="#4CAF50" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>,t:"Commissions reduites",d:"Des frais parmi les plus bas du marche pour maximiser vos marges."},
-            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="4" stroke="#3b82f6" strokeWidth="2.5"/><path d="M16 16h16M16 24h10M16 32h6" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round"/><circle cx="36" cy="36" r="8" fill="#fff" stroke="#3b82f6" strokeWidth="2.5"/><path d="M33 36l2 2 4-4" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,t:"Outils IA integres",d:"Suggestions de prix, analyse marche et matching intelligent."},
+            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="4" stroke="#4CAF50" strokeWidth="2.5"/><path d="M6 18h36" stroke="#4CAF50" strokeWidth="2.5"/><circle cx="24" cy="32" r="5" stroke="#4CAF50" strokeWidth="2"/><path d="M22 32l2 2 4-4" stroke="#4CAF50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,t:"Paiement sécurisé",d:"Escrow via Stripe Connect. Vos fonds sont protégés jusqu'à réception confirmée."},
+            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="4" y="20" width="24" height="16" rx="2" stroke="#E8700A" strokeWidth="2.5"/><path d="M28 24h8l6 6v6H28" stroke="#E8700A" strokeWidth="2.5" strokeLinejoin="round"/><circle cx="12" cy="38" r="4" stroke="#E8700A" strokeWidth="2.5"/><circle cx="36" cy="38" r="4" stroke="#E8700A" strokeWidth="2.5"/></svg>,t:"SUNTREX Delivery",d:"Notre propre service logistique avec vérification photo à chaque étape."},
+            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="#4CAF50" strokeWidth="2.5"/><path d="M18 24l4 4 8-8" stroke="#4CAF50" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>,t:"Commissions réduites",d:"Des frais parmi les plus bas du marché pour maximiser vos marges."},
+            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="4" stroke="#3b82f6" strokeWidth="2.5"/><path d="M16 16h16M16 24h10M16 32h6" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round"/><circle cx="36" cy="36" r="8" fill="#fff" stroke="#3b82f6" strokeWidth="2.5"/><path d="M33 36l2 2 4-4" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,t:"Outils IA intégrés",d:"Suggestions de prix, analyse marché et matching intelligent."},
           ].map((item,i)=>(
             <div key={i} className="hl" style={{textAlign:"center",padding:28,borderRadius:12,border:"1px solid #e4e5ec",background:"#fff"}}>
               <div style={{marginBottom:16,display:"flex",justifyContent:"center"}}>{item.icon}</div>
@@ -277,11 +282,11 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
 
       {/* CTA */}
       <section style={{padding:"56px 40px",textAlign:"center",background:"#1a1a1a",color:"#fff"}}>
-        <h2 style={{fontSize:26,fontWeight:700,marginBottom:8}}>Pret a commencer ?</h2>
+        <h2 style={{fontSize:26,fontWeight:700,marginBottom:8}}>Prêt à commencer ?</h2>
         <p style={{fontSize:15,color:"rgba(255,255,255,0.6)",marginBottom:28}}>Rejoignez des milliers de professionnels du solaire</p>
         <div style={{display:"flex",gap:12,justifyContent:"center"}}>
-          <button onClick={onShowRegister} style={{padding:"14px 32px",borderRadius:24,border:"none",background:"#E8700A",color:"#fff",fontSize:14,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Creer un compte</button>
-          <button style={{padding:"14px 32px",borderRadius:24,border:"1px solid rgba(255,255,255,0.3)",background:"transparent",color:"#fff",fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"inherit"}}>Commencer a vendre</button>
+          <button onClick={onShowRegister} style={{padding:"14px 32px",borderRadius:24,border:"none",background:"#E8700A",color:"#fff",fontSize:14,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Créer un compte</button>
+          <button style={{padding:"14px 32px",borderRadius:24,border:"1px solid rgba(255,255,255,0.3)",background:"transparent",color:"#fff",fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"inherit"}}>Commencer à vendre</button>
         </div>
       </section>
 

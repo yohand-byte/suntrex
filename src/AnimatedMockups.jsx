@@ -23,35 +23,35 @@ export default function AM({type}) {
   </div>);
 
   if (type === "chat") {
-    const ms=[{f:"b",m:"Quel prix pour 200x SUN2000-10KTL ?",d:1},{f:"s",m:"Fur 200 Stuck: €1.120/Stk.",t:"Pour 200 : €1 120/u.",d:3},{f:"b",m:"€1 090 ? Paiement immediat.",d:6},{f:"s",m:"€1 100 — mein bestes Angebot.",t:"€1 100 — meilleure offre.",d:8},{f:"b",m:"Deal !",d:10}];
+    const ms=[{f:"b",m:"Quel prix pour 200x SUN2000-10KTL ?",d:1},{f:"s",m:"Fur 200 Stuck: €1.120/Stk.",t:"Pour 200 : €1 120/u.",d:3},{f:"b",m:"€1 090 ? Paiement immédiat.",d:6},{f:"s",m:"€1 100 — mein bestes Angebot.",t:"€1 100 — meilleure offre.",d:8},{f:"b",m:"Deal !",d:10}];
     return(<div style={B}>
-      <div style={{fontSize:11,color:"#999",marginBottom:8,fontWeight:600}}>CHAT — Traduction IA en temps reel</div>
+      <div style={{fontSize:11,color:"#999",marginBottom:8,fontWeight:600}}>CHAT — Traduction IA en temps réel</div>
       <div style={{background:"#fff",borderRadius:10,border:"1px solid #eee",padding:14,minHeight:220}}>
         {ms.map((m,i)=>s>=m.d&&(<div key={i} className="ar" style={{display:"flex",justifyContent:m.f==="b"?"flex-end":"flex-start",marginBottom:8}}>
           <div style={{maxWidth:"80%",padding:"8px 12px",borderRadius:12,background:m.f==="b"?"#E8700A":"#f5f5f5",color:m.f==="b"?"#fff":"#333",fontSize:12,lineHeight:1.4}}>
             {m.m}{m.t&&<div style={{fontSize:10,opacity:.75,marginTop:3,fontStyle:"italic"}}>{m.t}</div>}
           </div>
         </div>))}
-        {s>=11&&<div style={{textAlign:"center",padding:8,fontSize:11,color:"#4CAF50",fontWeight:500}}>Accord trouve — Paiement securise...</div>}
+        {s>=11&&<div style={{textAlign:"center",padding:8,fontSize:11,color:"#4CAF50",fontWeight:500}}>Accord trouvé — Paiement sécurisé...</div>}
       </div>
     </div>);
   }
 
   if (type === "payment") return(<div style={B}>
-    <div style={{fontSize:11,color:"#999",marginBottom:16,fontWeight:600}}>STRIPE CONNECT — Escrow securise</div>
+    <div style={{fontSize:11,color:"#999",marginBottom:16,fontWeight:600}}>STRIPE CONNECT — Escrow sécurisé</div>
     <div style={{background:"#fff",border:"1px solid #eee",borderRadius:10,padding:16}}>
       {s>=1&&<div className="ar">{[["200x SUN2000-10KTL","€220 000"],["Livraison SUNTREX","€1 200"],["Commission (2%)","€4 400"]].map(([l,v],i)=><div key={i} style={{display:"flex",justifyContent:"space-between",marginBottom:8,fontSize:13}}><span style={{color:"#7b7b7b"}}>{l}</span><span style={{fontWeight:500}}>{v}</span></div>)}</div>}
       {s>=3&&<div className="ar" style={{display:"flex",justifyContent:"space-between",borderTop:"2px solid #e4e5ec",paddingTop:12,fontSize:16}}><span style={{fontWeight:700}}>Total</span><span style={{fontWeight:700,color:"#E8700A"}}>€225 600</span></div>}
-      {s>=5&&<div className="ar" style={{background:"#f0fdf4",padding:10,borderRadius:8,fontSize:12,color:"#2e7d32",textAlign:"center",marginTop:14,fontWeight:500}}>Escrow active — Fonds securises</div>}
+      {s>=5&&<div className="ar" style={{background:"#f0fdf4",padding:10,borderRadius:8,fontSize:12,color:"#2e7d32",textAlign:"center",marginTop:14,fontWeight:500}}>Escrow activé — Fonds sécurisés</div>}
       {s>=7&&<div className="ar" style={{marginTop:12,display:"flex",gap:8}}>{["3D Secure","SCA Europe","Escrow"].map((t,i)=><div key={i} style={{flex:1,padding:8,textAlign:"center",background:"#f5f5f5",borderRadius:8,fontSize:11,fontWeight:600,color:"#4CAF50"}}>{t}</div>)}</div>}
-      {s>=9&&<div style={{marginTop:12,height:44,borderRadius:8,background:"#E8700A",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:14,fontWeight:600}}>Paiement confirme</div>}
+      {s>=9&&<div style={{marginTop:12,height:44,borderRadius:8,background:"#E8700A",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:14,fontWeight:600}}>Paiement confirmé</div>}
     </div>
   </div>);
 
   if (type === "delivery") {
-    const st=[{s:"Commande confirmee",d:1},{s:"Expedie par le vendeur",d:3},{s:"Pris en charge SUNTREX",d:5},{s:"Controle qualite",d:7},{s:"En transit",d:9},{s:"Livre — Photo confirmee",d:11}];
+    const st=[{s:"Commande confirmée",d:1},{s:"Expédié par le vendeur",d:3},{s:"Pris en charge SUNTREX",d:5},{s:"Contrôle qualité",d:7},{s:"En transit",d:9},{s:"Livré — Photo confirmée",d:11}];
     return(<div style={B}>
-      <div style={{fontSize:11,color:"#999",marginBottom:16,fontWeight:600}}>SUNTREX DELIVERY — Suivi temps reel</div>
+      <div style={{fontSize:11,color:"#999",marginBottom:16,fontWeight:600}}>SUNTREX DELIVERY — Suivi temps réel</div>
       <div style={{background:"#fff",border:"1px solid #eee",borderRadius:10,padding:16}}>
         {st.map((x,i)=>{const done=s>=x.d+2,act=s>=x.d&&!done;if(s<x.d)return null;return(
           <div key={i} className="ar" style={{display:"flex",alignItems:"center",gap:12,marginBottom:10}}>
@@ -84,16 +84,16 @@ export default function AM({type}) {
   </div>);
 
   if (type === "createoffer") return(<div style={B}>
-    <div style={{fontSize:11,color:"#999",marginBottom:12,fontWeight:600}}>CREATION D'OFFRE RAPIDE</div>
+    <div style={{fontSize:11,color:"#999",marginBottom:12,fontWeight:600}}>CRÉATION D'OFFRE RAPIDE</div>
     <div style={{background:"#fff",border:"1px solid #eee",borderRadius:10,padding:16}}>
       {s>=1&&<div className="ar" style={{marginBottom:10}}><div style={{fontSize:11,color:"#999",marginBottom:4}}>Produit</div><div style={{padding:"8px 12px",background:"#f5f5f5",borderRadius:8,fontSize:13,fontWeight:500}}>Huawei SUN2000-10KTL-M2</div></div>}
       {s>=3&&<div className="ar" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:10}}>
         <div><div style={{fontSize:11,color:"#999",marginBottom:4}}>Prix unitaire</div><div style={{padding:"8px 12px",background:"#f5f5f5",borderRadius:8,fontSize:13,fontWeight:700,color:"#E8700A"}}>€1 180</div></div>
         <div><div style={{fontSize:11,color:"#999",marginBottom:4}}>Stock</div><div style={{padding:"8px 12px",background:"#f5f5f5",borderRadius:8,fontSize:13}}>500 pcs</div></div>
       </div>}
-      {s>=5&&<div className="ar" style={{marginBottom:10}}><div style={{padding:"8px 12px",background:"#f5f5f5",borderRadius:8,fontSize:13}}>SUNTREX Delivery — 3-5 jours ouvres</div></div>}
-      {s>=7&&<div className="ar" style={{padding:"8px 12px",background:"#f0fdf4",borderRadius:8,fontSize:12,color:"#2e7d32"}}>IA : Prix moyen marche €1 220 — vous etes -3.3%, tres competitif</div>}
-      {s>=9&&<button style={{marginTop:12,width:"100%",padding:10,borderRadius:8,border:"none",background:"#4CAF50",color:"#fff",fontSize:13,fontWeight:600,fontFamily:"inherit"}}>Offre publiee</button>}
+      {s>=5&&<div className="ar" style={{marginBottom:10}}><div style={{padding:"8px 12px",background:"#f5f5f5",borderRadius:8,fontSize:13}}>SUNTREX Delivery — 3-5 jours ouvrés</div></div>}
+      {s>=7&&<div className="ar" style={{padding:"8px 12px",background:"#f0fdf4",borderRadius:8,fontSize:12,color:"#2e7d32"}}>IA : Prix moyen marche €1 220 — vous etes -3.3%, très compétitif</div>}
+      {s>=9&&<button style={{marginTop:12,width:"100%",padding:10,borderRadius:8,border:"none",background:"#4CAF50",color:"#fff",fontSize:13,fontWeight:600,fontFamily:"inherit"}}>Offre publiée</button>}
     </div>
   </div>);
 
@@ -107,7 +107,7 @@ export default function AM({type}) {
           <span style={{fontSize:10,fontWeight:600,padding:"2px 8px",borderRadius:10,background:r.c==="#4CAF50"?"#f0fdf4":r.c==="#f59e0b"?"#fffbeb":"#fef2f2",color:r.c,textAlign:"center"}}>{r.l}</span>
         </div>
       ))}
-      {s>=9&&<div style={{padding:"10px 14px",background:"#fffbeb",fontSize:12,color:"#92400e",borderTop:"1px solid #f0f0f0"}}>IA : SUN2000-5KTL stock critique. +3% prix recommande.</div>}
+      {s>=9&&<div style={{padding:"10px 14px",background:"#fffbeb",fontSize:12,color:"#92400e",borderTop:"1px solid #f0f0f0"}}>IA : SUN2000-5KTL stock critique. +3% prix recommandé.</div>}
     </div>
   </div>);
 
@@ -118,8 +118,8 @@ export default function AM({type}) {
       {[["Offres","124","#4CAF50"],["Ventes","€45,2k","#E8700A"],["Commandes","38","#3b82f6"],["Note","4.8","#f59e0b"]].map(([l,v,c],i)=>s>=i*2&&<div key={i} className="ar" style={{textAlign:"center",padding:12,background:"#fff",borderRadius:10,border:"1px solid #eee"}}><div style={{fontSize:10,color:"#999"}}>{l}</div><div style={{fontSize:16,fontWeight:700,marginTop:2,color:c}}>{v}</div></div>)}
     </div>
     {s>=6&&<div className="ar" style={{background:"#fff",border:"1px solid #eee",borderRadius:10,padding:12}}>
-      <div style={{fontSize:11,color:"#999",marginBottom:8}}>Dernieres commandes</div>
-      {[["#ST-2847","€12 400","En transit"],["#ST-2846","€8 900","Livre"],["#ST-2845","€22 100","Paye"]].map(([id,a,st],i)=>s>=8+i*2&&<div key={i} className="ar" style={{display:"flex",justifyContent:"space-between",padding:"6px 0",fontSize:12,borderBottom:"1px solid #f5f5f5"}}><span style={{fontWeight:500}}>{id}</span><span>{a}</span><span style={{color:"#7b7b7b"}}>{st}</span></div>)}
+      <div style={{fontSize:11,color:"#999",marginBottom:8}}>Dernières commandes</div>
+      {[["#ST-2847","€12 400","En transit"],["#ST-2846","€8 900","Livré"],["#ST-2845","€22 100","Payé"]].map(([id,a,st],i)=>s>=8+i*2&&<div key={i} className="ar" style={{display:"flex",justifyContent:"space-between",padding:"6px 0",fontSize:12,borderBottom:"1px solid #f5f5f5"}}><span style={{fontWeight:500}}>{id}</span><span>{a}</span><span style={{color:"#7b7b7b"}}>{st}</span></div>)}
     </div>}
   </div>);
 }

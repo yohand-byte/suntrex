@@ -5,10 +5,10 @@ const NAV_ITEMS = [
   { label: "Tous les produits", path: "/catalog" },
   { label: "Panneaux solaires", path: "/catalog/panels" },
   { label: "Onduleurs", path: "/catalog/inverters" },
-  { label: "Stockage d'energie", path: "/catalog/batteries" },
+  { label: "Stockage d'énergie", path: "/catalog/batteries" },
   { label: "Optimiseurs", path: "/catalog/optimizers" },
-  { label: "Electrotechnique", path: null },
-  { label: "E-mobilite", path: null },
+  { label: "Électrotechnique", path: null },
+  { label: "E-mobilité", path: null },
 ];
 
 export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowRegister, onLogout }) {
@@ -21,7 +21,7 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
       {/* TOP BAR */}
       <div style={{ background: "#1a1a1a", color: "#fff", fontSize: 12, padding: "6px 40px", display: "flex", justifyContent: "space-between" }}>
         <div style={{ display: "flex", gap: 20, opacity: .7 }}>
-          {["A propos", "Blog", "FAQ"].map(l => <a key={l} href="#" style={{ color: "#fff", textDecoration: "none" }}>{l}</a>)}
+          {["À propos", "Blog", "FAQ"].map(l => <a key={l} href="#" style={{ color: "#fff", textDecoration: "none" }}>{l}</a>)}
         </div>
         <span style={{ opacity: .7 }}>+33 1 XX XX XX XX</span>
       </div>
