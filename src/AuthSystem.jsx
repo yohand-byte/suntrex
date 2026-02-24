@@ -199,10 +199,26 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
     setSirenLoading(false);
   };
 
+  /* ── Password strength rules ── */
+  const pwRules = [
+    { label: "Minimum 8 caractères", test: form.password.length >= 8 },
+    { label: "Au moins 1 majuscule (A-Z)", test: /[A-Z]/.test(form.password) },
+    { label: "Au moins 1 minuscule (a-z)", test: /[a-z]/.test(form.password) },
+    { label: "Au moins 1 chiffre (0-9)", test: /[0-9]/.test(form.password) },
+    { label: "Au moins 1 caractère spécial (!@#$%^&*)", test: /[!@#$%^&*]/.test(form.password) },
+  ];
+  const pwScore = pwRules.filter(r => r.test).length;
+  const pwAllValid = pwScore === 5;
+  const pwMatch = form.password.length > 0 && form.passwordConfirm.length > 0 && form.password === form.passwordConfirm;
+  const pwStrength = pwScore <= 1 ? { label: "Faible", color: "#dc2626" }
+    : pwScore <= 3 ? { label: "Moyen", color: "#f59e0b" }
+    : pwScore === 4 ? { label: "Fort", color: "#84cc16" }
+    : { label: "Très fort", color: "#4CAF50" };
+
   const canNext = () => {
     if (step === 0) {
       const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
-      return emailValid && form.password.length >= 8 && form.password === form.passwordConfirm && form.consentCGV;
+      return emailValid && pwAllValid && pwMatch && form.consentCGV;
     }
     if (step === 1) {
       const phoneResult = validatePhone(form.phone, form.country);
@@ -218,9 +234,8 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
   const next = () => {
     if (step === 0) {
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) { setError("Format email invalide (ex: nom@entreprise.com)"); return; }
-      if (form.password.length < 8) { setError("Minimum 8 caractères pour le mot de passe"); return; }
-      if (!/(?=.*[A-Z])(?=.*\d)/.test(form.password)) { setError("Le mot de passe doit contenir au moins 1 majuscule et 1 chiffre"); return; }
-      if (form.password !== form.passwordConfirm) { setError("Les mots de passe ne correspondent pas"); return; }
+      if (!pwAllValid) { setError("Le mot de passe ne respecte pas toutes les règles de sécurité"); return; }
+      if (!pwMatch) { setError("Les mots de passe ne correspondent pas"); return; }
       if (!form.consentCGV) { setError("Acceptez les conditions générales pour continuer"); return; }
     }
     if (step === 1) {
@@ -373,14 +388,48 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                     placeholder="contact@votreentreprise.com" style={S.input}/>
                 </div>
                 <div>
-                  <label style={S.label}>Mot de passe * <span style={{fontWeight:400,color:"#aaa"}}>(min. 8 caractères)</span></label>
+                  <label style={S.label}>Mot de passe *</label>
                   <input type="password" value={form.password} onChange={e=>update("password",e.target.value)}
                     placeholder="••••••••" style={S.input}/>
+                  {/* Password rules checklist */}
+                  {form.password.length > 0 && (
+                    <div style={{marginTop:8,display:"flex",flexDirection:"column",gap:3}}>
+                      {pwRules.map((rule,i) => (
+                        <div key={i} style={{display:"flex",alignItems:"center",gap:6,fontSize:11,color:rule.test?"#16a34a":"#dc2626"}}>
+                          <span>{rule.test ? "✅" : "❌"}</span> {rule.label}
+                        </div>
+                      ))}
+                      {/* Strength bar */}
+                      <div style={{marginTop:4}}>
+                        <div style={{height:6,borderRadius:3,background:"#e8e8e8",overflow:"hidden"}}>
+                          <div style={{
+                            height:"100%",borderRadius:3,
+                            width:`${pwScore*20}%`,
+                            background:pwStrength.color,
+                            transition:"width .3s, background .3s",
+                          }}/>
+                        </div>
+                        <div style={{fontSize:11,fontWeight:600,color:pwStrength.color,marginTop:3}}>{pwStrength.label}</div>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label style={S.label}>Confirmer le mot de passe *</label>
                   <input type="password" value={form.passwordConfirm} onChange={e=>update("passwordConfirm",e.target.value)}
-                    placeholder="••••••••" style={S.input}/>
+                    placeholder="••••••••" style={{
+                      ...S.input,
+                      ...(form.passwordConfirm.length > 0 ? {
+                        borderColor: pwMatch ? "#4CAF50" : "#dc2626",
+                      } : {}),
+                    }}/>
+                  {form.passwordConfirm.length > 0 && (
+                    pwMatch ? (
+                      <div style={{fontSize:11,color:"#16a34a",marginTop:3}}>✓ Les mots de passe correspondent</div>
+                    ) : (
+                      <div style={{fontSize:11,color:"#dc2626",marginTop:3}}>Les mots de passe ne correspondent pas</div>
+                    )
+                  )}
                 </div>
 
                 {/* RGPD Checkboxes */}
