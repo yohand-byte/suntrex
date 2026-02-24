@@ -15,6 +15,7 @@ const CATALOG = REAL_PRODUCTS.map((p) => ({
   type: p.type,
   phases: p.phases || 0,
   mppt: p.mppt || 0,
+  image: p.image,
   sku: p.sku,
   offers: [
     {

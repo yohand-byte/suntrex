@@ -24,8 +24,12 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped }) {
     <div style={S.productCard}>
       <div style={{display:"flex",alignItems:"center",padding:"16px 20px",gap:20}}>
         <div style={{display:"flex",flexDirection:"column",gap:6,width:100,flexShrink:0,alignItems:"center"}}>
-          <div style={{width:80,height:80,background:"#f8f8f8",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,color:"#aaa",textAlign:"center",padding:4}}>
-            {product.brand}
+          <div style={{width:80,height:80,background:"#f8f8f8",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",overflow:"hidden",padding:4}}>
+            {product.image ? (
+              <img src={product.image} alt={product.name} style={{maxWidth:"100%",maxHeight:"100%",objectFit:"contain"}}/>
+            ) : (
+              <span style={{fontSize:11,color:"#aaa",textAlign:"center"}}>{product.brand}</span>
+            )}
           </div>
           {offerCount > 1 && grouped && (
             <span style={{fontSize:11,color:"#888"}}>{offerCount} offres</span>
