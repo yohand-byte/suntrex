@@ -351,28 +351,35 @@ function CatCard({img, title, sub, count, big, small}) {
 
 /* ══ BRAND LOGO: image with text fallback ══ */
 function BrandLogo({brand}) {
-  const [failed, setFailed] = useState(false);
-  // Use logo.dev public API for real brand logos
-  const logoUrls = {
-    huawei: "https://img.logo.dev/huawei.com?token=pk_anonymous&size=120&format=png",
-    jinko: "https://img.logo.dev/jinkosolar.com?token=pk_anonymous&size=120&format=png",
-    trina: "https://img.logo.dev/trinasolar.com?token=pk_anonymous&size=120&format=png",
-    longi: "https://img.logo.dev/longi.com?token=pk_anonymous&size=120&format=png",
-    "ja-solar": "https://img.logo.dev/jasolar.com?token=pk_anonymous&size=120&format=png",
-    "canadian-solar": "https://img.logo.dev/canadiansolar.com?token=pk_anonymous&size=120&format=png",
-    sma: "https://img.logo.dev/sma.de?token=pk_anonymous&size=120&format=png",
-    sungrow: "https://img.logo.dev/sungrowpower.com?token=pk_anonymous&size=120&format=png",
-    solaredge: "https://img.logo.dev/solaredge.com?token=pk_anonymous&size=120&format=png",
-    goodwe: "https://img.logo.dev/goodwe.com?token=pk_anonymous&size=120&format=png",
-    growatt: "https://img.logo.dev/growatt.com?token=pk_anonymous&size=120&format=png",
-    risen: "https://img.logo.dev/risenenergy.com?token=pk_anonymous&size=120&format=png",
-    byd: "https://img.logo.dev/byd.com?token=pk_anonymous&size=120&format=png",
-    deye: "https://img.logo.dev/dfrcloud.com?token=pk_anonymous&size=120&format=png",
-    enphase: "https://img.logo.dev/enphase.com?token=pk_anonymous&size=120&format=png",
+  // Professional styled brand wordmarks — no external dependency
+  const styles = {
+    huawei: { fontSize:22, fontWeight:700, letterSpacing:2, textTransform:"uppercase" },
+    jinko: { fontSize:20, fontWeight:800, fontStyle:"italic" },
+    trina: { fontSize:19, fontWeight:700 },
+    longi: { fontSize:20, fontWeight:800, letterSpacing:1 },
+    "ja-solar": { fontSize:18, fontWeight:700 },
+    "canadian-solar": { fontSize:16, fontWeight:700 },
+    sma: { fontSize:24, fontWeight:900, letterSpacing:4 },
+    sungrow: { fontSize:19, fontWeight:700 },
+    solaredge: { fontSize:18, fontWeight:700 },
+    goodwe: { fontSize:20, fontWeight:700 },
+    growatt: { fontSize:20, fontWeight:800, letterSpacing:1 },
+    risen: { fontSize:22, fontWeight:700, fontStyle:"italic" },
+    byd: { fontSize:26, fontWeight:900, letterSpacing:5 },
+    deye: { fontSize:24, fontWeight:800, letterSpacing:1 },
+    enphase: { fontSize:19, fontWeight:700, letterSpacing:0.5 },
   };
-  const url = logoUrls[brand.f];
-  if (failed || !url) return <span style={{fontSize:15,fontWeight:700,color:brand.c,whiteSpace:"nowrap",opacity:.85}}>{brand.n}</span>;
-  return <img src={url} alt={brand.n} style={{height:32,maxWidth:140,objectFit:"contain"}} onError={()=>setFailed(true)}/>;
+  const s = styles[brand.f] || {};
+  return (
+    <span style={{
+      color: brand.c,
+      whiteSpace: "nowrap",
+      fontFamily: "'Inter', 'DM Sans', -apple-system, sans-serif",
+      cursor: "pointer",
+      transition: "opacity 0.2s",
+      ...s,
+    }}>{brand.n}</span>
+  );
 }
 function AutoSlides({slides, cur, set}) {
   const ref = useRef(null);
