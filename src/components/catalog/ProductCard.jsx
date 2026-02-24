@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useCurrency } from "../../CurrencyContext";
 import PriceGate from "./PriceGate";
 import SellerBadge from "./SellerBadge";
 
@@ -14,6 +16,7 @@ const Chev = ({open}) => (
 );
 
 export default function ProductCard({ product, isLoggedIn, onLogin, grouped }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
   const bestOffer = product.offers.reduce((a,b) => a.price < b.price ? a : b);
@@ -32,7 +35,7 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped }) {
             )}
           </div>
           {offerCount > 1 && grouped && (
-            <span style={{fontSize:11,color:"#888"}}>{offerCount} offres</span>
+            <span style={{fontSize:11,color:"#888"}}>{offerCount} {t("catalog.offers")}</span>
           )}
         </div>
 
@@ -42,9 +45,9 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped }) {
           </div>
           <h3 onClick={()=>navigate(`/product/${product.id}`)} style={{fontSize:15,fontWeight:600,color:"#222",margin:"4px 0",cursor:"pointer"}}>{product.name}</h3>
           <div style={{display:"flex",gap:20,fontSize:12,color:"#888",marginTop:4}}>
-            <span>Puissance <b style={{color:"#333"}}>{product.power >= 1 ? product.power+" kW" : (product.power*1000)+" W"}</b></span>
-            <span>Type <b style={{color:"#333"}}>{product.type}</b></span>
-            {product.phases > 0 && <span>Phases <b style={{color:"#333"}}>{product.phases}</b></span>}
+            <span>{t("catalog.powerLabel")} <b style={{color:"#333"}}>{product.power >= 1 ? product.power+" kW" : (product.power*1000)+" W"}</b></span>
+            <span>{t("catalog.type")} <b style={{color:"#333"}}>{product.type}</b></span>
+            {product.phases > 0 && <span>{t("catalog.phases")} <b style={{color:"#333"}}>{product.phases}</b></span>}
             {product.mppt > 0 && <span>MPPT <b style={{color:"#333"}}>{product.mppt}</b></span>}
           </div>
         </div>
@@ -52,17 +55,17 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped }) {
         <div style={{textAlign:"right",flexShrink:0,minWidth:140}}>
           <div style={{fontSize:12,color:"#4CAF50",fontWeight:500,marginBottom:4}}>
             <span style={{display:"inline-block",width:6,height:6,borderRadius:"50%",background:"#4CAF50",marginRight:4}}/>
-            {totalStock.toLocaleString()} pcs
+            {totalStock.toLocaleString()} {t("common.pcs")}
           </div>
           <div style={{marginBottom:8}}>
             {isLoggedIn ? (
-              <span style={{fontSize:11,color:"#888"}}>dès </span>
+              <span style={{fontSize:11,color:"#888"}}>{t("catalog.from")} </span>
             ) : null}
             <PriceGate price={bestOffer.price} isLoggedIn={isLoggedIn} onLogin={onLogin}/>
           </div>
           <button style={S.greenBtn} onClick={()=>navigate(`/product/${product.id}`)}>
             <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 12H3m9-9l9 9-9 9"/></svg>
-            Détails de l'offre
+            {t("catalog.offerDetails")}
           </button>
         </div>
       </div>
@@ -73,7 +76,7 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped }) {
             onClick={()=>setExpanded(!expanded)}
             style={{background:expanded?"#f0f7f0":"#e8f5e9",padding:"8px 20px",cursor:"pointer",display:"flex",justifyContent:"center",alignItems:"center",gap:6,fontSize:13,color:"#2e7d32",fontWeight:500,transition:"background .15s"}}
           >
-            {expanded ? "Masquer" : "Voir"} les offres ({offerCount})
+            {expanded ? t("catalog.hideOffers") : t("catalog.viewOffers")} {t("catalog.theOffers")} ({offerCount})
             <Chev open={expanded}/>
           </div>
           {expanded && product.offers.map((offer,i) => (
@@ -89,12 +92,12 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped }) {
                 <div>
                   <div style={{fontSize:12,color:"#4CAF50"}}>
                     <span style={{display:"inline-block",width:5,height:5,borderRadius:"50%",background:"#4CAF50",marginRight:3}}/>
-                    {offer.stock.toLocaleString()} pcs
+                    {offer.stock.toLocaleString()} {t("common.pcs")}
                   </div>
                   <PriceGate price={offer.price} isLoggedIn={isLoggedIn} onLogin={onLogin}/>
                 </div>
                 <button style={{...S.greenBtn,padding:"6px 12px",fontSize:12}}>
-                  Détails de l'offre
+                  {t("catalog.offerDetails")}
                 </button>
               </div>
             </div>

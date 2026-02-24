@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useCurrency } from "../CurrencyContext";
 import REAL_PRODUCTS from "../products";
 import BrandLogo from "../components/ui/BrandLogo";
 import AutoSlides from "../components/ui/AutoSlides";
@@ -33,25 +35,12 @@ const BRANDS = [
   { n:"Enphase", c:"#f47920", f:"enphase" },
 ];
 
-const BSLIDES = [
-  { label:"Comparez les offres", desc:"Trouvez le meilleur prix en un clic. Comparez les offres de vendeurs vérifiés dans toute l'Europe.", m:"catalog" },
-  { label:"Négociez en direct", desc:"Chat intégré avec traduction automatique pour négocier prix, quantités et conditions de livraison.", m:"chat" },
-  { label:"Paiement sécurisé Stripe", desc:"Fonds protégés en escrow jusqu'à confirmation de livraison. 3D Secure & SCA conformes.", m:"payment" },
-  { label:"Suivi SUNTREX DELIVERY", desc:"Suivi temps réel avec vérification photo à chaque étape. Votre colis, notre responsabilité.", m:"delivery" },
-];
-
-const SSLIDES = [
-  { label:"Nouveaux marchés européens", desc:"Touchez des acheteurs professionnels dans 25+ pays depuis un seul tableau de bord.", m:"europe" },
-  { label:"Créez des offres rapidement", desc:"Import Excel ou création rapide. Définissez vos prix et stocks en quelques clics.", m:"createoffer" },
-  { label:"Stock en temps réel", desc:"Alertes automatiques quand vos stocks baissent, avec suggestions IA de tarification.", m:"stockmgmt" },
-  { label:"Dashboard tout-en-un", desc:"Commandes, factures, expéditions, paiements : tout centralisé au même endroit.", m:"dashboard" },
-];
-
-/* ── Category labels for search results ── */
-const CAT_LABELS = { inverters:"Onduleur", batteries:"Batterie", optimizers:"Optimiseur", "ev-chargers":"Borne EV", accessories:"Accessoire", panels:"Panneau" };
 const CAT_COLORS = { inverters:"#E8700A", batteries:"#4CAF50", optimizers:"#3b82f6", "ev-chargers":"#8b5cf6", accessories:"#64748b", panels:"#eab308" };
 
 export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navigate }) {
+  const { t, i18n } = useTranslation();
+  const { formatMoney } = useCurrency();
+
   const [bs, setBs] = useState(0);
   const [ss, setSs] = useState(0);
   const [tab, setTab] = useState("buyer");
@@ -60,6 +49,31 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
   const [hlIdx, setHlIdx] = useState(-1);
   const searchRef = useRef(null);
   const dropRef = useRef(null);
+
+  /* ── Translated slide data ── */
+  const BSLIDES = useMemo(() => [
+    { label: t("home.buyerSlides.compareOffers.label"), desc: t("home.buyerSlides.compareOffers.desc"), m: "catalog" },
+    { label: t("home.buyerSlides.negotiateDirect.label"), desc: t("home.buyerSlides.negotiateDirect.desc"), m: "chat" },
+    { label: t("home.buyerSlides.securePayment.label"), desc: t("home.buyerSlides.securePayment.desc"), m: "payment" },
+    { label: t("home.buyerSlides.tracking.label"), desc: t("home.buyerSlides.tracking.desc"), m: "delivery" },
+  ], [t]);
+
+  const SSLIDES = useMemo(() => [
+    { label: t("home.sellerSlides.newMarkets.label"), desc: t("home.sellerSlides.newMarkets.desc"), m: "europe" },
+    { label: t("home.sellerSlides.createOffers.label"), desc: t("home.sellerSlides.createOffers.desc"), m: "createoffer" },
+    { label: t("home.sellerSlides.realTimeStock.label"), desc: t("home.sellerSlides.realTimeStock.desc"), m: "stockmgmt" },
+    { label: t("home.sellerSlides.dashboard.label"), desc: t("home.sellerSlides.dashboard.desc"), m: "dashboard" },
+  ], [t]);
+
+  /* ── Category labels for search results ── */
+  const CAT_LABELS = useMemo(() => ({
+    inverters: t("home.catLabels.inverters"),
+    batteries: t("home.catLabels.batteries"),
+    optimizers: t("home.catLabels.optimizers"),
+    "ev-chargers": t("home.catLabels.evChargers"),
+    accessories: t("home.catLabels.accessories"),
+    panels: t("home.catLabels.panels"),
+  }), [t]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -79,10 +93,10 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       .map(p => {
         const haystack = `${p.name} ${p.sku} ${p.brand} ${p.type || ""} ${p.category} ${p.power || ""} ${p.capacity || ""}`.toLowerCase();
         let score = 0;
-        for (const t of terms) {
-          if (haystack.includes(t)) score++;
-          if (p.name.toLowerCase().includes(t)) score += 2;
-          if (p.sku.toLowerCase().includes(t)) score += 3;
+        for (const term of terms) {
+          if (haystack.includes(term)) score++;
+          if (p.name.toLowerCase().includes(term)) score += 2;
+          if (p.sku.toLowerCase().includes(term)) score += 3;
         }
         return { ...p, score };
       })
@@ -116,15 +130,15 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
           <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(10,22,40,0.3) 0%,rgba(10,22,40,0.7) 100%)",zIndex:2}}/>
         </div>
         <div style={{position:"relative",zIndex:10,height:"100%",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",textAlign:"center",padding:"0 24px"}}>
-          <h1 style={{fontSize:38,fontWeight:600,color:"#fff",lineHeight:1.3,maxWidth:640,marginBottom:14}}>Trouvez, comparez et achetez vos équipements photovoltaïques au meilleur prix</h1>
-          <p style={{fontSize:15,color:"rgba(255,255,255,0.75)",marginBottom:32}}>Une plateforme, des milliers d'offres de fournisseurs vérifiés en Europe</p>
+          <h1 style={{fontSize:38,fontWeight:600,color:"#fff",lineHeight:1.3,maxWidth:640,marginBottom:14}}>{t("home.hero.title")}</h1>
+          <p style={{fontSize:15,color:"rgba(255,255,255,0.75)",marginBottom:32}}>{t("home.hero.subtitle")}</p>
           <div ref={searchRef} style={{width:"100%",maxWidth:540,position:"relative"}}>
             <input
               value={sq}
               onChange={e=>{setSq(e.target.value);setShowDrop(true);setHlIdx(-1)}}
               onFocus={()=>{if(sq.trim().length>=2)setShowDrop(true)}}
               onKeyDown={handleSearchKey}
-              placeholder="Rechercher un produit ou un fabricant..."
+              placeholder={t("home.hero.searchPlaceholder")}
               style={{width:"100%",height:50,borderRadius:showDrop&&searchResults.length>0?"8px 8px 0 0":8,border:"none",padding:"0 56px 0 18px",fontSize:15,background:"#fff",boxShadow:"0 4px 24px rgba(0,0,0,0.2)",outline:"none",fontFamily:"'DM Sans',sans-serif"}}
             />
             <button onClick={goSearch} style={{position:"absolute",right:5,top:5,bottom:showDrop&&searchResults.length>0?"auto":5,height:40,width:44,borderRadius:6,border:"none",background:"#E8700A",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",zIndex:5}}>
@@ -148,14 +162,14 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
                       <div style={{display:"flex",alignItems:"center",gap:6,marginTop:2}}>
                         <span style={{fontSize:10,padding:"1px 6px",borderRadius:3,background:CAT_COLORS[p.category]||"#888",color:"#fff",fontWeight:600}}>{CAT_LABELS[p.category]||p.category}</span>
                         <span style={{fontSize:11,color:"#888"}}>{p.sku}</span>
-                        {p.stock > 0 && <span style={{fontSize:10,color:"#4CAF50",fontWeight:500}}>● {p.stock} pcs</span>}
+                        {p.stock > 0 && <span style={{fontSize:10,color:"#4CAF50",fontWeight:500}}>● {p.stock} {t("common.pcs")}</span>}
                       </div>
                     </div>
                     <div style={{textAlign:"right",flexShrink:0}}>
                       {isVerified ? (
-                        <div style={{fontSize:15,fontWeight:700,color:"#E8700A"}}>€{p.price.toLocaleString("fr-FR")}</div>
+                        <div style={{fontSize:15,fontWeight:700,color:"#E8700A"}}>{formatMoney(p.price, i18n.language)}</div>
                       ) : (
-                        <div style={{fontSize:11,color:"#bbb",fontStyle:"italic"}}>Connectez-vous</div>
+                        <div style={{fontSize:11,color:"#bbb",fontStyle:"italic"}}>{t("home.hero.loginToSee")}</div>
                       )}
                     </div>
                   </div>
@@ -165,14 +179,14 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
                   style={{display:"flex",alignItems:"center",justifyContent:"center",gap:6,padding:"10px 16px",borderTop:"1px solid #e8e8e8",cursor:"pointer",background:hlIdx===searchResults.length?"#f8f8f8":"#fafafa",fontSize:13,color:"#E8700A",fontWeight:600}}
                 >
                   <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                  Voir tous les résultats pour "{sq}"
+                  {t("home.hero.viewAllResults")} "{sq}"
                 </div>
               </div>
             )}
             {showDrop && sq.trim().length >= 2 && searchResults.length === 0 && (
               <div style={{position:"absolute",top:50,left:0,right:0,background:"#fff",borderRadius:"0 0 10px 10px",boxShadow:"0 12px 40px rgba(0,0,0,0.25)",zIndex:50,padding:"20px 16px",textAlign:"center"}}>
-                <div style={{fontSize:13,color:"#888"}}>Aucun résultat pour "<b>{sq}</b>"</div>
-                <div style={{fontSize:11,color:"#aaa",marginTop:4}}>Essayez "Huawei", "LUNA2000", "onduleur"...</div>
+                <div style={{fontSize:13,color:"#888"}}>{t("home.hero.noResults")} "<b>{sq}</b>"</div>
+                <div style={{fontSize:11,color:"#aaa",marginTop:4}}>{t("home.hero.noResultsHint")}</div>
               </div>
             )}
           </div>
@@ -193,32 +207,34 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       {/* PRODUCTS */}
       <section style={{padding:"48px 40px"}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",marginBottom:24}}>
-          <div><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,marginBottom:12}}/><h2 style={{fontSize:26,fontWeight:700}}>Meilleurs produits</h2></div>
-          <Link to="/catalog" style={{fontSize:13,color:"#7b7b7b",textDecoration:"underline"}}>Voir toutes les offres</Link>
+          <div><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,marginBottom:12}}/><h2 style={{fontSize:26,fontWeight:700}}>{t("home.products.title")}</h2></div>
+          <Link to="/catalog" style={{fontSize:13,color:"#7b7b7b",textDecoration:"underline"}}>{t("home.products.viewAll")}</Link>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:16}}>
           {PRODUCTS.map(p=>(
-            <div key={p.id} className="hl" onClick={()=>navigate(`/product/${p.id}`)} style={{borderRadius:10,border:"1px solid #e4e5ec",background:"#fff",overflow:"hidden",cursor:"pointer"}}>
-              <div style={{padding:"8px 12px 0"}}><span style={{fontSize:11,color:"#4CAF50",fontWeight:500}}>{"● "+p.stock.toLocaleString()+" pcs"}</span></div>
+            <div key={p.id} className="hl" onClick={()=>navigate(`/product/${p.id}`)} style={{borderRadius:10,border:"1px solid #e4e5ec",background:"#fff",overflow:"hidden",cursor:"pointer",display:"flex",flexDirection:"column"}}>
+              <div style={{padding:"8px 12px 0"}}><span style={{fontSize:11,color:"#4CAF50",fontWeight:500}}>{"● "+p.stock.toLocaleString()+" "+t("common.pcs")}</span></div>
               <div style={{height:150,display:"flex",alignItems:"center",justifyContent:"center",background:"#fff",padding:16}}>
                 <img src={p.img} alt={p.name} style={{maxHeight:130,maxWidth:"100%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
               </div>
-              <div style={{padding:"10px 12px 14px"}}>
+              <div style={{padding:"10px 12px 14px",flex:1,display:"flex",flexDirection:"column"}}>
                 <h3 style={{fontSize:13,fontWeight:600,marginBottom:6,lineHeight:1.3}}>{p.name}</h3>
                 <div style={{display:"flex",gap:16,fontSize:11,color:"#7b7b7b",marginBottom:10}}>
-                  <span>Puissance<br/><b style={{color:"#262627"}}>{p.power}</b></span>
-                  <span>Type<br/><b style={{color:"#262627"}}>{p.type}</b></span>
+                  <span>{t("home.products.power")}<br/><b style={{color:"#262627"}}>{p.power}</b></span>
+                  <span>{t("home.products.type")}<br/><b style={{color:"#262627"}}>{p.type}</b></span>
                 </div>
+                <div style={{marginTop:"auto"}}>
                 {isVerified?(
-                  <div><div style={{fontSize:11,color:"#7b7b7b"}}>Dès</div><div style={{fontSize:18,fontWeight:700,color:"#E8700A"}}>{"€"+p.price.toLocaleString("fr-FR")}<span style={{fontSize:11,fontWeight:400,color:"#7b7b7b"}}> /pcs</span></div></div>
+                  <div><div style={{fontSize:11,color:"#7b7b7b"}}>{t("home.products.from")}</div><div style={{fontSize:18,fontWeight:700,color:"#E8700A"}}>{formatMoney(p.price, i18n.language)}<span style={{fontSize:11,fontWeight:400,color:"#7b7b7b"}}> {t("home.products.perPiece")}</span></div></div>
                 ):(
                   <div onClick={(e)=>{e.stopPropagation();onShowRegister()}} style={{position:"relative",cursor:"pointer",borderRadius:6,overflow:"hidden"}}>
-                    <div style={{fontSize:18,fontWeight:700,color:"#E8700A",filter:"blur(6px)",userSelect:"none",pointerEvents:"none",padding:"4px 0"}}>{"€"+((p.price||999)*0.97).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g," ")}<span style={{fontSize:11,fontWeight:400,color:"#7b7b7b"}}> /pcs</span></div>
+                    <div style={{fontSize:18,fontWeight:700,color:"#E8700A",filter:"blur(6px)",userSelect:"none",pointerEvents:"none",padding:"4px 0"}}>{formatMoney((p.price||999)*0.97, i18n.language)}<span style={{fontSize:11,fontWeight:400,color:"#7b7b7b"}}> {t("home.products.perPiece")}</span></div>
                     <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(255,255,255,0.55)",backdropFilter:"blur(2px)"}}>
-                      <span style={{fontSize:11,fontWeight:600,color:"#E8700A",background:"rgba(232,112,10,0.1)",padding:"4px 12px",borderRadius:4,border:"1px solid rgba(232,112,10,0.2)"}}>{isLoggedIn?"Vérification en cours":"Voir le prix"}</span>
+                      <span style={{fontSize:11,fontWeight:600,color:"#E8700A",background:"rgba(232,112,10,0.1)",padding:"4px 12px",borderRadius:4,border:"1px solid rgba(232,112,10,0.2)"}}>{isLoggedIn?t("home.products.verificationPending"):t("home.products.seePrice")}</span>
                     </div>
                   </div>
                 )}
+                </div>
               </div>
             </div>
           ))}
@@ -227,13 +243,13 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
 
       {/* CATEGORIES */}
       <section style={{padding:"0 40px 56px"}}>
-        <div style={{marginBottom:24}}><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,marginBottom:12}}/><h2 style={{fontSize:26,fontWeight:700}}>Obtenez les meilleurs prix en comparant plusieurs offres</h2></div>
+        <div style={{marginBottom:24}}><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,marginBottom:12}}/><h2 style={{fontSize:26,fontWeight:700}}>{t("home.categories.title")}</h2></div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gridTemplateRows:"220px 180px",gap:12}}>
-          <CatCard img="/categories/panels.jpg" title="Panneaux solaires" sub="Jinko, LONGi, Trina, Canadian Solar..." count="1 300+ offres" big onClick={()=>navigate("/catalog/panels")}/>
-          <CatCard img="/categories/category-onduleurs.png" title="Onduleurs" sub="Huawei, SMA, Growatt, Deye..." count="4 400+ offres" montage bg="linear-gradient(135deg,#1a2332 0%,#2d3f52 100%)" onClick={()=>navigate("/catalog/inverters")}/>
+          <CatCard img="/categories/panels.jpg" title={t("home.categories.solarPanels")} sub={t("home.categories.panelsSub")} count={t("home.categories.panelsOffers")} big onClick={()=>navigate("/catalog/panels")} buttonLabel={t("home.categories.explore")}/>
+          <CatCard img="/categories/category-onduleurs.png" title={t("home.categories.inverters")} sub={t("home.categories.invertersSub")} count={t("home.categories.invertersOffers")} montage bg="linear-gradient(135deg,#1a2332 0%,#2d3f52 100%)" onClick={()=>navigate("/catalog/inverters")} buttonLabel={t("home.categories.explore")}/>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
-            <CatCard img="/categories/category-batteries.png" title="Stockage d'énergie" count="750+ offres" small montage bg="linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%)" onClick={()=>navigate("/catalog/batteries")}/>
-            <CatCard img="/categories/category-accessoires.png" title="Câbles & accessoires" count="250+ offres" small montage bg="linear-gradient(135deg,#2d2d2d 0%,#434343 100%)" onClick={()=>navigate("/catalog/accessories")}/>
+            <CatCard img="/categories/category-batteries.png" title={t("home.categories.energyStorage")} count={t("home.categories.storageOffers")} small montage bg="linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%)" onClick={()=>navigate("/catalog/batteries")} buttonLabel={t("home.categories.explore")}/>
+            <CatCard img="/categories/category-accessoires.png" title={t("home.categories.cablesAccessories")} count={t("home.categories.accessoriesOffers")} small montage bg="linear-gradient(135deg,#2d2d2d 0%,#434343 100%)" onClick={()=>navigate("/catalog/accessories")} buttonLabel={t("home.categories.explore")}/>
           </div>
         </div>
       </section>
@@ -241,10 +257,10 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       {/* WHY SUNTREX */}
       <section style={{background:"#fafafa",padding:"64px 40px",borderTop:"1px solid #e4e5ec"}}>
         <div style={{maxWidth:1100,margin:"0 auto"}}>
-          <h2 style={{fontSize:32,fontWeight:700,marginBottom:4}}>Pourquoi SUNTREX ?</h2>
-          <p style={{fontSize:15,color:"#7b7b7b",marginBottom:28}}>Une place de marché transparente, fiable et conviviale</p>
+          <h2 style={{fontSize:32,fontWeight:700,marginBottom:4}}>{t("home.whySuntrex.title")}</h2>
+          <p style={{fontSize:15,color:"#7b7b7b",marginBottom:28}}>{t("home.whySuntrex.subtitle")}</p>
           <div style={{display:"flex",gap:8,marginBottom:36}}>
-            {[["buyer","Pour l'acheteur"],["seller","Pour le vendeur"]].map(([k,l])=>(
+            {[["buyer",t("home.whySuntrex.forBuyer")],["seller",t("home.whySuntrex.forSeller")]].map(([k,l])=>(
               <button key={k} onClick={()=>{setTab(k);k==="buyer"?setBs(0):setSs(0)}} style={{padding:"10px 28px",fontSize:14,fontWeight:600,cursor:"pointer",border:"none",borderRadius:24,background:tab===k?"#4CAF50":"#fff",color:tab===k?"#fff":"#7b7b7b",fontFamily:"inherit",boxShadow:tab===k?"0 2px 8px rgba(76,175,80,0.3)":"0 1px 3px rgba(0,0,0,0.06)",transition:"all .2s"}}>{l}</button>
             ))}
           </div>
@@ -255,7 +271,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       {/* STATS */}
       <section style={{padding:"44px 40px",borderTop:"1px solid #e4e5ec",borderBottom:"1px solid #e4e5ec"}}>
         <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:20,maxWidth:1000,margin:"0 auto",textAlign:"center"}}>
-          {[["6 700+","Offres actives"],["25+","Pays couverts"],["500+","Vendeurs vérifiés"],["2%","Commission plateforme"]].map(([n,l],i)=>(
+          {[["6 700+",t("home.stats.activeOffers")],["25+",t("home.stats.countriesCovered")],["500+",t("home.stats.verifiedSellers")],["2%",t("home.stats.platformFee")]].map(([n,l],i)=>(
             <div key={i}><div style={{fontSize:32,fontWeight:700,color:"#E8700A"}}>{n}</div><div style={{fontSize:13,color:"#7b7b7b",marginTop:4}}>{l}</div></div>
           ))}
         </div>
@@ -263,13 +279,13 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
 
       {/* DIFFERENTIATORS */}
       <section style={{padding:"56px 40px"}}>
-        <div style={{textAlign:"center",marginBottom:36}}><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,margin:"0 auto 12px"}}/><h2 style={{fontSize:26,fontWeight:700}}>Ce qui nous différencie</h2></div>
+        <div style={{textAlign:"center",marginBottom:36}}><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,margin:"0 auto 12px"}}/><h2 style={{fontSize:26,fontWeight:700}}>{t("home.differentiators.title")}</h2></div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:20,maxWidth:1080,margin:"0 auto"}}>
           {[
-            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="4" stroke="#4CAF50" strokeWidth="2.5"/><path d="M6 18h36" stroke="#4CAF50" strokeWidth="2.5"/><circle cx="24" cy="32" r="5" stroke="#4CAF50" strokeWidth="2"/><path d="M22 32l2 2 4-4" stroke="#4CAF50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,t:"Paiement sécurisé",d:"Escrow via Stripe Connect. Vos fonds sont protégés jusqu'à réception confirmée."},
-            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="4" y="20" width="24" height="16" rx="2" stroke="#E8700A" strokeWidth="2.5"/><path d="M28 24h8l6 6v6H28" stroke="#E8700A" strokeWidth="2.5" strokeLinejoin="round"/><circle cx="12" cy="38" r="4" stroke="#E8700A" strokeWidth="2.5"/><circle cx="36" cy="38" r="4" stroke="#E8700A" strokeWidth="2.5"/></svg>,t:"SUNTREX Delivery",d:"Notre propre service logistique avec vérification photo à chaque étape."},
-            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="#4CAF50" strokeWidth="2.5"/><path d="M18 24l4 4 8-8" stroke="#4CAF50" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>,t:"Commissions réduites",d:"Des frais parmi les plus bas du marché pour maximiser vos marges."},
-            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="4" stroke="#3b82f6" strokeWidth="2.5"/><path d="M16 16h16M16 24h10M16 32h6" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round"/><circle cx="36" cy="36" r="8" fill="#fff" stroke="#3b82f6" strokeWidth="2.5"/><path d="M33 36l2 2 4-4" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,t:"Outils IA intégrés",d:"Suggestions de prix, analyse marché et matching intelligent."},
+            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="4" stroke="#4CAF50" strokeWidth="2.5"/><path d="M6 18h36" stroke="#4CAF50" strokeWidth="2.5"/><circle cx="24" cy="32" r="5" stroke="#4CAF50" strokeWidth="2"/><path d="M22 32l2 2 4-4" stroke="#4CAF50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,t:t("home.differentiators.securePayment.title"),d:t("home.differentiators.securePayment.desc")},
+            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="4" y="20" width="24" height="16" rx="2" stroke="#E8700A" strokeWidth="2.5"/><path d="M28 24h8l6 6v6H28" stroke="#E8700A" strokeWidth="2.5" strokeLinejoin="round"/><circle cx="12" cy="38" r="4" stroke="#E8700A" strokeWidth="2.5"/><circle cx="36" cy="38" r="4" stroke="#E8700A" strokeWidth="2.5"/></svg>,t:t("home.differentiators.delivery.title"),d:t("home.differentiators.delivery.desc")},
+            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="#4CAF50" strokeWidth="2.5"/><path d="M18 24l4 4 8-8" stroke="#4CAF50" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>,t:t("home.differentiators.lowFees.title"),d:t("home.differentiators.lowFees.desc")},
+            {icon:<svg width="44" height="44" viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="4" stroke="#3b82f6" strokeWidth="2.5"/><path d="M16 16h16M16 24h10M16 32h6" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round"/><circle cx="36" cy="36" r="8" fill="#fff" stroke="#3b82f6" strokeWidth="2.5"/><path d="M33 36l2 2 4-4" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,t:t("home.differentiators.aiTools.title"),d:t("home.differentiators.aiTools.desc")},
           ].map((item,i)=>(
             <div key={i} className="hl" style={{textAlign:"center",padding:28,borderRadius:12,border:"1px solid #e4e5ec",background:"#fff"}}>
               <div style={{marginBottom:16,display:"flex",justifyContent:"center"}}>{item.icon}</div>
@@ -282,18 +298,18 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
 
       {/* CTA */}
       <section style={{padding:"56px 40px",textAlign:"center",background:"#1a1a1a",color:"#fff"}}>
-        <h2 style={{fontSize:26,fontWeight:700,marginBottom:8}}>Prêt à commencer ?</h2>
-        <p style={{fontSize:15,color:"rgba(255,255,255,0.6)",marginBottom:28}}>Rejoignez des milliers de professionnels du solaire</p>
+        <h2 style={{fontSize:26,fontWeight:700,marginBottom:8}}>{t("home.cta.title")}</h2>
+        <p style={{fontSize:15,color:"rgba(255,255,255,0.6)",marginBottom:28}}>{t("home.cta.subtitle")}</p>
         <div style={{display:"flex",gap:12,justifyContent:"center"}}>
-          <button onClick={onShowRegister} style={{padding:"14px 32px",borderRadius:24,border:"none",background:"#E8700A",color:"#fff",fontSize:14,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Créer un compte</button>
-          <button style={{padding:"14px 32px",borderRadius:24,border:"1px solid rgba(255,255,255,0.3)",background:"transparent",color:"#fff",fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"inherit"}}>Commencer à vendre</button>
+          <button onClick={onShowRegister} style={{padding:"14px 32px",borderRadius:24,border:"none",background:"#E8700A",color:"#fff",fontSize:14,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>{t("home.cta.createAccount")}</button>
+          <button style={{padding:"14px 32px",borderRadius:24,border:"1px solid rgba(255,255,255,0.3)",background:"transparent",color:"#fff",fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"inherit"}}>{t("home.cta.startSelling")}</button>
         </div>
       </section>
 
       {/* NEWSLETTER */}
       <section style={{background:"#f8f8f8",padding:"36px 40px",borderTop:"1px solid #e4e5ec",textAlign:"center"}}>
-        <h3 style={{fontSize:18,fontWeight:600,marginBottom:16}}>Newsletter</h3>
-        <div style={{display:"flex",gap:8,justifyContent:"center",maxWidth:440,margin:"0 auto"}}><input placeholder="Votre email" style={{flex:1,height:40,borderRadius:20,border:"1px solid #d3d4db",padding:"0 16px",fontSize:13,outline:"none"}}/><button style={{padding:"0 24px",height:40,borderRadius:20,border:"none",background:"#141413",color:"#fff",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>S'abonner</button></div>
+        <h3 style={{fontSize:18,fontWeight:600,marginBottom:16}}>{t("home.newsletter.title")}</h3>
+        <div style={{display:"flex",gap:8,justifyContent:"center",maxWidth:440,margin:"0 auto"}}><input placeholder={t("home.newsletter.placeholder")} style={{flex:1,height:40,borderRadius:20,border:"1px solid #d3d4db",padding:"0 16px",fontSize:13,outline:"none"}}/><button style={{padding:"0 24px",height:40,borderRadius:20,border:"none",background:"#141413",color:"#fff",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>{t("home.newsletter.subscribe")}</button></div>
       </section>
     </>
   );

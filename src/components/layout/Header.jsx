@@ -1,27 +1,31 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { UserMenu } from "../../AuthSystem";
-
-const NAV_ITEMS = [
-  { label: "Tous les produits", path: "/catalog" },
-  { label: "Panneaux solaires", path: "/catalog/panels" },
-  { label: "Onduleurs", path: "/catalog/inverters" },
-  { label: "Stockage d'énergie", path: "/catalog/batteries" },
-  { label: "Optimiseurs", path: "/catalog/optimizers" },
-  { label: "Électrotechnique", path: null },
-  { label: "E-mobilité", path: null },
-];
+import LanguageSwitcher from "./LanguageSwitcher";
+import CurrencySwitcher from "./CurrencySwitcher";
 
 export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowRegister, onLogout }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === "/";
+
+  const NAV_ITEMS = [
+    { label: t("header.nav.allProducts"), path: "/catalog" },
+    { label: t("header.nav.solarPanels"), path: "/catalog/panels" },
+    { label: t("header.nav.inverters"), path: "/catalog/inverters" },
+    { label: t("header.nav.energyStorage"), path: "/catalog/batteries" },
+    { label: t("header.nav.optimizers"), path: "/catalog/optimizers" },
+    { label: t("header.nav.electrical"), path: null },
+    { label: t("header.nav.eMobility"), path: null },
+  ];
 
   return (
     <>
       {/* TOP BAR */}
       <div style={{ background: "#1a1a1a", color: "#fff", fontSize: 12, padding: "6px 40px", display: "flex", justifyContent: "space-between" }}>
         <div style={{ display: "flex", gap: 20, opacity: .7 }}>
-          {["À propos", "Blog", "FAQ"].map(l => <a key={l} href="#" style={{ color: "#fff", textDecoration: "none" }}>{l}</a>)}
+          {[{ key: "about", label: t("header.topLinks.about") }, { key: "blog", label: t("header.topLinks.blog") }, { key: "faq", label: t("header.topLinks.faq") }].map(l => <a key={l.key} href="#" style={{ color: "#fff", textDecoration: "none" }}>{l.label}</a>)}
         </div>
         <span style={{ opacity: .7 }}>+33 1 XX XX XX XX</span>
       </div>
@@ -35,13 +39,14 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
           <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: "-0.02em" }}>suntrex</span>
         </Link>
         <div style={{ flex: 1, maxWidth: 420, position: "relative" }}>
-          <input placeholder="Rechercher un produit ou fabricant..." style={{ width: "100%", height: 36, borderRadius: 6, border: "1px solid #d3d4db", padding: "0 36px 0 12px", fontSize: 13, outline: "none" }} />
+          <input placeholder={t("header.search")} style={{ width: "100%", height: 36, borderRadius: 6, border: "1px solid #d3d4db", padding: "0 36px 0 12px", fontSize: 13, outline: "none" }} />
           <button style={{ position: "absolute", right: 1, top: 1, bottom: 1, width: 34, borderRadius: "0 5px 5px 0", border: "none", background: "#E8700A", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <svg width="14" height="14" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
           </button>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginLeft: "auto" }}>
-          <span style={{ fontSize: 13, cursor: "pointer" }}>EUR</span>
+          <CurrencySwitcher />
+          <LanguageSwitcher />
           {isLoggedIn && currentUser ? (
             <>
               <button style={{ background: "none", border: "none", cursor: "pointer", color: "#7b7b7b", position: "relative" }}>
@@ -54,8 +59,8 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
             </>
           ) : (
             <>
-              <button onClick={onShowLogin} style={{ background: "none", border: "1px solid #ddd", borderRadius: 6, padding: "6px 14px", fontSize: 13, cursor: "pointer", fontFamily: "inherit", color: "#555" }}>Se connecter</button>
-              <button onClick={onShowRegister} style={{ background: "#E8700A", border: "none", borderRadius: 6, padding: "6px 14px", fontSize: 13, cursor: "pointer", fontFamily: "inherit", color: "#fff", fontWeight: 600 }}>S'inscrire</button>
+              <button onClick={onShowLogin} style={{ background: "none", border: "1px solid #ddd", borderRadius: 6, padding: "6px 14px", fontSize: 13, cursor: "pointer", fontFamily: "inherit", color: "#555" }}>{t("header.login")}</button>
+              <button onClick={onShowRegister} style={{ background: "#E8700A", border: "none", borderRadius: 6, padding: "6px 14px", fontSize: 13, cursor: "pointer", fontFamily: "inherit", color: "#fff", fontWeight: 600 }}>{t("header.register")}</button>
             </>
           )}
         </div>
@@ -71,7 +76,7 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
             </button>
           );
         })}
-        <Link to="/catalog" style={{ marginLeft: "auto", fontSize: 13, color: "#E8700A", textDecoration: "none", fontWeight: 500 }}>Vendre sur suntrex</Link>
+        <Link to="/catalog" style={{ marginLeft: "auto", fontSize: 13, color: "#E8700A", textDecoration: "none", fontWeight: 500 }}>{t("header.sellOnSuntrex")}</Link>
       </nav>
 
       {/* Verification pending banner */}
@@ -79,10 +84,10 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
         <div style={{ background: "#fffbeb", borderBottom: "1px solid #fde68a", padding: "10px 40px", display: "flex", alignItems: "center", gap: 12 }}>
           <span style={{ fontSize: 16 }}>⏳</span>
           <div style={{ fontSize: 13, color: "#92400e", flex: 1 }}>
-            <b>Vérification en cours</b> — Votre compte est en attente de validation. Les prix et commandes seront débloqués après vérification de votre dossier (sous 24h ouvrées).
+            <b>{t("header.verificationBanner.title")}</b> — {t("header.verificationBanner.message")}
           </div>
           <button onClick={() => navigate("/dashboard")} style={{ background: "#E8700A", color: "#fff", border: "none", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap" }}>
-            Voir mon statut
+            {t("header.verificationBanner.button")}
           </button>
         </div>
       )}

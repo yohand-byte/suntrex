@@ -1,0 +1,526 @@
+{
+  "header": {
+    "topLinks": {
+      "about": "O nas",
+      "blog": "Blog",
+      "faq": "FAQ"
+    },
+    "search": "Szukaj produktu lub producenta...",
+    "login": "Zaloguj się",
+    "register": "Zarejestruj się",
+    "sellOnSuntrex": "Sprzedawaj na suntrex",
+    "verificationBanner": {
+      "title": "Weryfikacja w toku",
+      "message": "Twoje konto oczekuje na zatwierdzenie. Ceny i zamówienia zostaną odblokowane po weryfikacji dokumentów (w ciągu 24 godzin roboczych).",
+      "button": "Sprawdź status"
+    },
+    "nav": {
+      "allProducts": "Wszystkie produkty",
+      "solarPanels": "Panele słoneczne",
+      "inverters": "Falowniki",
+      "energyStorage": "Magazyny energii",
+      "optimizers": "Optymalizatory",
+      "electrical": "Elektrotechnika",
+      "eMobility": "E-mobilność"
+    }
+  },
+  "footer": {
+    "contact": "Kontakt",
+    "help": "Pomoc",
+    "sell": "Sprzedaż",
+    "about": "O nas",
+    "blog": "Blog",
+    "categories": "Kategorie",
+    "panels": "Panele",
+    "inverters": "Falowniki",
+    "storage": "Magazyny",
+    "mounting": "Montaż",
+    "brands": "Marki",
+    "legal": "Informacje prawne",
+    "telWhatsappEmail": "Tel. - WhatsApp - Email"
+  },
+  "home": {
+    "hero": {
+      "title": "Znajdź, porównaj i kup sprzęt fotowoltaiczny w najlepszej cenie",
+      "subtitle": "Jedna platforma, tysiące ofert od zweryfikowanych dostawców w całej Europie",
+      "searchPlaceholder": "Szukaj produktu lub producenta...",
+      "viewAllResults": "Pokaż wszystkie wyniki dla",
+      "noResults": "Brak wyników dla",
+      "noResultsHint": "Spróbuj \"Huawei\", \"LUNA2000\", \"falownik\"...",
+      "loginToSee": "Zaloguj się"
+    },
+    "products": {
+      "title": "Najlepsze produkty",
+      "viewAll": "Zobacz wszystkie oferty",
+      "power": "Moc",
+      "type": "Typ",
+      "from": "Od",
+      "perPiece": "/szt.",
+      "verificationPending": "Weryfikacja w toku",
+      "seePrice": "Zobacz cenę"
+    },
+    "categories": {
+      "title": "Uzyskaj najlepsze ceny, porównując wiele ofert",
+      "solarPanels": "Panele słoneczne",
+      "inverters": "Falowniki",
+      "energyStorage": "Magazyny energii",
+      "cablesAccessories": "Kable i akcesoria",
+      "explore": "Odkryj",
+      "panelsOffers": "1 300+ ofert",
+      "invertersOffers": "4 400+ ofert",
+      "storageOffers": "750+ ofert",
+      "accessoriesOffers": "250+ ofert",
+      "panelsSub": "Jinko, LONGi, Trina, Canadian Solar...",
+      "invertersSub": "Huawei, SMA, Growatt, Deye..."
+    },
+    "catLabels": {
+      "inverters": "Falownik",
+      "batteries": "Bateria",
+      "optimizers": "Optymalizator",
+      "evChargers": "Stacja ładowania EV",
+      "accessories": "Akcesoria",
+      "panels": "Panel"
+    },
+    "whySuntrex": {
+      "title": "Dlaczego SUNTREX?",
+      "subtitle": "Przejrzysty, niezawodny i przyjazny dla użytkownika rynek",
+      "forBuyer": "Dla kupujących",
+      "forSeller": "Dla sprzedających"
+    },
+    "buyerSlides": {
+      "compareOffers": {
+        "label": "Porównaj oferty",
+        "desc": "Znajdź najlepszą cenę jednym kliknięciem. Porównaj oferty zweryfikowanych sprzedawców w całej Europie."
+      },
+      "negotiateDirect": {
+        "label": "Negocjuj bezpośrednio",
+        "desc": "Wbudowany czat z automatycznym tłumaczeniem do negocjowania cen, ilości i warunków dostawy."
+      },
+      "securePayment": {
+        "label": "Bezpieczna płatność Stripe",
+        "desc": "Środki chronione na rachunku powierniczym do potwierdzenia dostawy. Zgodność z 3D Secure i SCA."
+      },
+      "tracking": {
+        "label": "Śledzenie SUNTREX DELIVERY",
+        "desc": "Śledzenie w czasie rzeczywistym z weryfikacją fotograficzną na każdym etapie. Twoja paczka, nasza odpowiedzialność."
+      }
+    },
+    "sellerSlides": {
+      "newMarkets": {
+        "label": "Nowe rynki europejskie",
+        "desc": "Dotarcie do profesjonalnych kupujących w ponad 25 krajach z jednego panelu."
+      },
+      "createOffers": {
+        "label": "Szybko twórz oferty",
+        "desc": "Import z Excela lub szybkie tworzenie. Ustal ceny i stany magazynowe w kilka kliknięć."
+      },
+      "realTimeStock": {
+        "label": "Stan magazynowy w czasie rzeczywistym",
+        "desc": "Automatyczne alerty przy niskim stanie, z sugestiami cenowymi AI."
+      },
+      "dashboard": {
+        "label": "Panel wszystko w jednym",
+        "desc": "Zamówienia, faktury, wysyłki, płatności: wszystko w jednym miejscu."
+      }
+    },
+    "stats": {
+      "activeOffers": "Aktywne oferty",
+      "countriesCovered": "Obsługiwane kraje",
+      "verifiedSellers": "Zweryfikowani sprzedawcy",
+      "platformFee": "Prowizja platformy"
+    },
+    "differentiators": {
+      "title": "Co nas wyróżnia",
+      "securePayment": {
+        "title": "Bezpieczna płatność",
+        "desc": "Rachunek powierniczy przez Stripe Connect. Twoje środki są chronione do potwierdzonego odbioru."
+      },
+      "delivery": {
+        "title": "SUNTREX Delivery",
+        "desc": "Własna usługa logistyczna z weryfikacją fotograficzną na każdym etapie."
+      },
+      "lowFees": {
+        "title": "Niskie prowizje",
+        "desc": "Jedne z najniższych prowizji na rynku, aby zmaksymalizować Twoje marże."
+      },
+      "aiTools": {
+        "title": "Wbudowane narzędzia AI",
+        "desc": "Sugestie cenowe, analiza rynku i inteligentne dopasowywanie."
+      }
+    },
+    "cta": {
+      "title": "Gotowy, by zacząć?",
+      "subtitle": "Dołącz do tysięcy profesjonalistów z branży solarnej",
+      "createAccount": "Utwórz konto",
+      "startSelling": "Zacznij sprzedawać"
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "placeholder": "Twój email",
+      "subscribe": "Subskrybuj"
+    }
+  },
+  "catalog": {
+    "filters": "Filtry",
+    "searchProduct": "Szukaj produktu…",
+    "availability": "Dostępność",
+    "inStockOnly": "Tylko dostępne",
+    "powerKw": "Moc (kW)",
+    "brand": "Marka",
+    "priceEur": "Cena (EUR)",
+    "type": "Typ",
+    "phases": "Fazy",
+    "mppt": "MPPT",
+    "categoriesTitle": "Kategorie",
+    "allProducts": "Wszystkie produkty",
+    "inverters": "Falowniki",
+    "batteriesStorage": "Baterie / Magazyny",
+    "optimizers": "Optymalizatory",
+    "chargingStations": "Stacje ładowania",
+    "accessories": "Akcesoria",
+    "catalogTitle": "Katalog",
+    "results": "wyników",
+    "grouping": "Grupowanie",
+    "sortRelevance": "Trafność",
+    "sortPriceAsc": "Cena ↑",
+    "sortPriceDesc": "Cena ↓",
+    "sortStock": "Stan magazynowy",
+    "noProductFound": "Nie znaleziono produktów",
+    "tryModifyFilters": "Spróbuj zmienić filtry",
+    "clearAll": "Wyczyść wszystko",
+    "inStock": "Dostępny",
+    "page": "Strona",
+    "of": "z",
+    "monophase": "Jednofazowy",
+    "triphase": "Trójfazowy",
+    "powerLabel": "Moc",
+    "priceLabel": "Cena",
+    "offers": "ofert",
+    "viewOffers": "Pokaż",
+    "hideOffers": "Ukryj",
+    "theOffers": "oferty",
+    "offerDetails": "Szczegóły oferty",
+    "from": "od",
+    "seePrice": "Zobacz cenę"
+  },
+  "product": {
+    "home": "Strona główna",
+    "description": "Opis",
+    "downloads": "Pliki do pobrania",
+    "datasheet": "Karta katalogowa",
+    "productPage": "Strona produktu",
+    "technicalSpecs": "Specyfikacja techniczna",
+    "mechanicalSpecs": "Parametry mechaniczne",
+    "dimensions": "Wymiary",
+    "offers": "Oferty",
+    "availability": "Dostępność",
+    "immediate": "Natychmiastowa",
+    "superSeller": "Topowy sprzedawca",
+    "secureBankTransfer": "BEZPIECZNY PRZELEW BANKOWY",
+    "from": "od",
+    "perPiece": "/szt.",
+    "signUpToSeePrices": "Zarejestruj się, aby zobaczyć ceny",
+    "rfpBanner": {
+      "title": "POTRZEBUJESZ TEGO PRODUKTU?",
+      "subtitle": "Wyślij zapytanie ofertowe do sprzedawców!",
+      "fast": "Szybko",
+      "free": "Bezpłatnie",
+      "noCommitment": "Bez zobowiązań",
+      "responseTime": "Odpowiedź w ciągu 24 h",
+      "createRequest": "Utwórz zapytanie"
+    },
+    "sortByLowestPrice": "Wg najniższej ceny",
+    "sortByHighestPrice": "Wg najwyższej ceny",
+    "sortByAvailability": "Wg dostępności",
+    "sortByBestRating": "Wg najwyższej oceny",
+    "specLabels": {
+      "sku": "SKU",
+      "brand": "Marka",
+      "warranty": "Gwarancja",
+      "protectionRating": "Stopień ochrony",
+      "certifications": "Certyfikaty",
+      "power": "Moc",
+      "capacity": "Pojemność",
+      "maxEfficiency": "Maks. sprawność",
+      "phases": "Liczba faz",
+      "mpptCount": "Liczba MPPT",
+      "chemistry": "Chemia",
+      "depthOfDischarge": "Głębokość rozładowania",
+      "cycles": "Cykle",
+      "weight": "Waga (kg)",
+      "seriesName": "Nazwa serii",
+      "powerRange": "Zakres mocy (Wp)",
+      "modelName": "Nazwa modelu",
+      "warrantyYears": "Lata gwarancji",
+      "modulePower": "Moc modułu",
+      "vmpp": "Napięcie Vmpp (V)",
+      "efficiency": "Sprawność (%)",
+      "cellType": "Typ ogniwa",
+      "cellCount": "Liczba ogniw",
+      "height": "Wysokość (mm)",
+      "width": "Szerokość (mm)",
+      "nominalAcPower": "Nominalna moc AC",
+      "maxDcPower": "Maks. moc DC",
+      "maxYield": "Maks. sprawność",
+      "coolingType": "Typ chłodzenia",
+      "naturalConvection": "Konwekcja naturalna"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Witamy ponownie",
+      "subtitle": "Zaloguj się na swoje konto",
+      "email": "Email",
+      "emailPlaceholder": "twoj@email.com",
+      "password": "Hasło",
+      "passwordPlaceholder": "••••••••",
+      "forgotPassword": "Nie pamiętasz hasła?",
+      "submit": "Zaloguj się",
+      "noAccount": "Nie masz jeszcze konta?",
+      "signUp": "Zarejestruj się"
+    },
+    "register": {
+      "steps": {
+        "account": "Konto",
+        "company": "Firma",
+        "verification": "Weryfikacja"
+      },
+      "step0": {
+        "title": "Utwórz konto",
+        "subtitle": "Uzyskaj dostęp do ekskluzywnych cen B2B",
+        "professionalEmail": "Email firmowy *",
+        "emailPlaceholder": "kontakt@twojafirma.com",
+        "password": "Hasło *",
+        "confirmPassword": "Potwierdź hasło *",
+        "continue": "Dalej →",
+        "alreadyAccount": "Masz już konto?",
+        "login": "Zaloguj się"
+      },
+      "step1": {
+        "title": "Dane firmy",
+        "subtitle": "Weryfikacja statusu zawodowego",
+        "companyCountry": "Kraj firmy *",
+        "siretLabel": "Nr SIRET lub SIREN *",
+        "siretPlaceholder": "Np.: 853 655 363 00036",
+        "verify": "Zweryfikuj",
+        "companyFound": "Firma znaleziona",
+        "siren": "SIREN",
+        "headquarters": "Siedziba",
+        "naf": "NAF",
+        "companyName": "Nazwa firmy *",
+        "verified": "zweryfikowano",
+        "companyNamePlaceholder": "Np.: Solar Pro Sp. z o.o.",
+        "vatNumber": "Nr VAT UE *",
+        "vatHint": "Wymagany do wewnątrzwspólnotowych transakcji B2B. Zaczyna się od",
+        "address": "Adres *",
+        "addressPlaceholder": "ul. Przykładowa 16-18",
+        "postalCode": "Kod pocztowy *",
+        "postalCodePlaceholder": "00-001",
+        "city": "Miasto *",
+        "cityPlaceholder": "Warszawa",
+        "phone": "Telefon *",
+        "back": "← Wstecz",
+        "continue": "Dalej →"
+      },
+      "step2": {
+        "title": "Dokument firmowy",
+        "subtitle": "Dokument wymagany do aktywacji konta",
+        "mandatoryDoc": "Dokument obowiązkowy",
+        "mandatoryDocDesc": "Twoje konto zostanie aktywowane po weryfikacji tego dokumentu (w ciągu 24 godzin roboczych). Bez tego dokumentu ceny pozostaną ukryte.",
+        "documentSelected": "Dokument wybrany",
+        "changeFile": "Zmień plik",
+        "clickToChoose": "Kliknij, aby wybrać plik",
+        "fileFormats": "Tylko PDF, JPG lub PNG — maks. 10 MB",
+        "acceptedDocs": "Akceptowane dokumenty:",
+        "kbisExtract": "Wypis z rejestru handlowego (< 3 miesiące)",
+        "vatCertificate": "Zaświadczenie o nr VAT UE",
+        "rgeLicense": "Licencja zawodowa lub certyfikat",
+        "pvInvoice": "Faktura od dostawcy PV (dowód działalności solarnej)",
+        "back": "← Wstecz",
+        "finalize": "Zakończ rejestrację ✓",
+        "secureStorage": "Dokumenty zaszyfrowane i bezpiecznie przechowywane"
+      },
+      "step3": {
+        "title": "Rejestracja zakończona!",
+        "subtitle": "Twoje konto jest weryfikowane.",
+        "verificationInProgress": "Weryfikacja w toku",
+        "verificationDesc": "Dokument wysłany, zatwierdzenie w ciągu 24 godzin roboczych. Ceny pozostają ukryte, a zamówienia zablokowane do zatwierdzenia.",
+        "meanwhile": "W międzyczasie:",
+        "exploreCatalog": "Przeglądaj katalog i karty katalogowe",
+        "compareOffers": "Porównuj oferty różnych sprzedawców",
+        "downloadDatasheets": "Pobieraj karty katalogowe",
+        "wantToSell": "Chcesz też sprzedawać?",
+        "wantToSellDesc": "Po zweryfikowaniu konta, poproś o dostęp sprzedawcy z Mój Profil → Zostań sprzedawcą (dodatkowa weryfikacja Stripe Connect KYB).",
+        "exploreCatalogBtn": "Przeglądaj katalog →"
+      },
+      "sidePanel": {
+        "joinSuntrex": "Dołącz do SUNTREX",
+        "subtitle": "Europejski rynek B2B dla profesjonalistów z branży solarnej.",
+        "exclusiveB2B": "Ekskluzywne ceny B2B",
+        "compareThousands": "Porównuj tysiące ofert",
+        "suntrexDelivery": "SUNTREX Delivery",
+        "aiTools": "Wbudowane narzędzia AI",
+        "securePayments": "Bezpieczne płatności Stripe"
+      },
+      "validation": {
+        "phoneRequired": "Numer telefonu wymagany",
+        "phoneMustStartWith": "Numer musi zaczynać się od",
+        "phoneMustStartWithFor": "Numer musi zaczynać się od {prefix} dla {country}",
+        "phoneTooShort": "Numer za krótki (minimum 9 cyfr)",
+        "phoneTooLong": "Numer za długi (maksimum 15 cyfr)",
+        "vatRequired": "Nr VAT UE wymagany",
+        "vatMustStartWith": "Nr VAT musi zaczynać się od",
+        "vatTooShort": "Nr VAT za krótki",
+        "vatTooLong": "Nr VAT za długi",
+        "siretMinLength": "Wprowadź SIRET (14 cyfr) lub SIREN (9 cyfr)",
+        "companyNotFound": "Nie znaleziono firmy. Sprawdź numer SIRET/SIREN.",
+        "connectionError": "Błąd połączenia. Spróbuj ponownie lub wprowadź dane ręcznie.",
+        "invalidEmail": "Nieprawidłowy format email (np.: nazwa@firma.com)",
+        "passwordRulesNotMet": "Hasło nie spełnia wszystkich wymagań bezpieczeństwa",
+        "passwordsDoNotMatch": "Hasła nie są zgodne",
+        "acceptTerms": "Zaakceptuj regulamin, aby kontynuować",
+        "verifySiret": "Zweryfikuj SIRET/SIREN przed kontynuacją",
+        "companyNameRequired": "Nazwa firmy wymagana",
+        "addressRequired": "Adres wymagany",
+        "postalCodeRequired": "Kod pocztowy wymagany",
+        "cityRequired": "Miasto wymagane",
+        "documentRequired": "Dokument jest wymagany do zakończenia rejestracji",
+        "formatNotAccepted": "Format nieakceptowany. Użyj PDF, JPG lub PNG.",
+        "fileTooLarge": "Plik zbyt duży. Maksimum 10 MB.",
+        "invalidFileName": "Nieprawidłowa nazwa pliku.",
+        "passwordsMatch": "Hasła są zgodne"
+      },
+      "passwordRules": {
+        "minChars": "Minimum 8 znaków",
+        "uppercase": "Przynajmniej 1 wielka litera (A-Z)",
+        "lowercase": "Przynajmniej 1 mała litera (a-z)",
+        "digit": "Przynajmniej 1 cyfra (0-9)",
+        "special": "Przynajmniej 1 znak specjalny (!@#$%^&*)"
+      },
+      "passwordStrength": {
+        "weak": "Słabe",
+        "medium": "Średnie",
+        "strong": "Silne",
+        "veryStrong": "Bardzo silne"
+      },
+      "consent": {
+        "terms": "Rozumiem i akceptuję regulamin oraz politykę prywatności.",
+        "termsLink": "regulamin",
+        "privacyLink": "politykę prywatności",
+        "marketing": "Wyrażam zgodę na przetwarzanie moich danych w celach marketingowych przez SUNTREX.",
+        "partners": "Wyrażam zgodę na otrzymywanie informacji handlowych od partnerów SUNTREX."
+      }
+    },
+    "userMenu": {
+      "sections": {
+        "myProfile": "MÓJ PROFIL",
+        "buy": "KUPUJ",
+        "sell": "SPRZEDAWAJ"
+      },
+      "accountDetails": "Dane konta",
+      "password": "Hasło",
+      "companyDetails": "Dane firmy",
+      "kycVerification": "Weryfikacja KYC",
+      "becomeSeller": "Zostań sprzedawcą",
+      "myPurchases": "Moje zakupy",
+      "deliveryAddresses": "Adresy dostawy",
+      "quoteRequests": "Zapytania ofertowe",
+      "manageOffers": "Zarządzaj ofertami",
+      "mySales": "Moja sprzedaż",
+      "receiveRequests": "Odbieraj zapytania",
+      "warehouses": "Magazyny",
+      "shipping": "Wysyłka",
+      "paymentMethods": "Metody płatności",
+      "logout": "Wyloguj się",
+      "buyer": "Kupujący",
+      "seller": "Sprzedawca",
+      "verification": "Weryfikacja"
+    },
+    "countries": {
+      "FR": "Francja",
+      "DE": "Niemcy",
+      "BE": "Belgia",
+      "NL": "Holandia",
+      "IT": "Włochy",
+      "ES": "Hiszpania",
+      "CH": "Szwajcaria",
+      "AT": "Austria",
+      "PL": "Polska",
+      "PT": "Portugalia",
+      "LU": "Luksemburg",
+      "GB": "Wielka Brytania",
+      "OTHER": "Inny kraj europejski"
+    }
+  },
+  "mockups": {
+    "catalog": {
+      "title": "SUNTREX — Inteligentne wyszukiwanie",
+      "offersFromSellers": "ofert od {sellerCount} sprzedawców",
+      "inStock": "Dostępny",
+      "viewAllOffers": "Zobacz wszystkie oferty"
+    },
+    "chat": {
+      "title": "CZAT — Tłumaczenie AI w czasie rzeczywistym",
+      "agreementFound": "Porozumienie osiągnięte — Bezpieczna płatność..."
+    },
+    "payment": {
+      "title": "STRIPE CONNECT — Bezpieczny depozyt",
+      "deliverySuntrex": "Dostawa SUNTREX",
+      "commission": "Prowizja (2%)",
+      "total": "Razem",
+      "escrowActivated": "Depozyt aktywowany — Środki zabezpieczone",
+      "paymentConfirmed": "Płatność potwierdzona"
+    },
+    "delivery": {
+      "title": "SUNTREX DELIVERY — Śledzenie w czasie rzeczywistym",
+      "orderConfirmed": "Zamówienie potwierdzone",
+      "shippedBySeller": "Wysłane przez sprzedawcę",
+      "pickedUpSuntrex": "Odebrane przez SUNTREX",
+      "qualityControl": "Kontrola jakości",
+      "inTransit": "W transporcie",
+      "deliveredPhotoConfirmed": "Dostarczono — Zdjęcie potwierdzone"
+    },
+    "europe": {
+      "title": "TWOJE RYNKI — 25+ krajów"
+    },
+    "createOffer": {
+      "title": "SZYBKIE TWORZENIE OFERTY",
+      "product": "Produkt",
+      "unitPrice": "Cena jednostkowa",
+      "stock": "Stan magazynowy",
+      "businessDays": "dni roboczych",
+      "aiSuggestion": "AI: Średnia cena rynkowa 1 220 € — jesteś -3,3%, bardzo konkurencyjny",
+      "offerPublished": "Oferta opublikowana"
+    },
+    "stockMgmt": {
+      "title": "ZARZĄDZANIE MAGAZYNEM",
+      "product": "Produkt",
+      "stock": "Stan",
+      "price": "Cena",
+      "status": "Status",
+      "inStock": "Dostępny",
+      "lowStock": "Niski stan",
+      "outOfStock": "Brak w magazynie",
+      "aiAlert": "AI: SUN2000-5KTL krytyczny stan. Zalecana podwyżka ceny o +3%."
+    },
+    "dashboard": {
+      "title": "PANEL SPRZEDAWCY",
+      "offers": "Oferty",
+      "sales": "Sprzedaż",
+      "orders": "Zamówienia",
+      "rating": "Ocena",
+      "latestOrders": "Ostatnie zamówienia",
+      "inTransit": "W transporcie",
+      "delivered": "Dostarczono",
+      "paid": "Opłacono"
+    }
+  },
+  "common": {
+    "pcs": "szt.",
+    "currency": "EUR",
+    "trustedSeller": "Zaufany sprzedawca",
+    "secureTransfer": "Bezpieczny przelew",
+    "suntrexDelivery": "SUNTREX Delivery",
+    "pdf": "PDF"
+  }
+}

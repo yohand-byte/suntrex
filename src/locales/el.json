@@ -1,0 +1,526 @@
+{
+  "header": {
+    "topLinks": {
+      "about": "Σχετικά",
+      "blog": "Blog",
+      "faq": "Συχνές ερωτήσεις"
+    },
+    "search": "Αναζήτηση προϊόντος ή κατασκευαστή...",
+    "login": "Σύνδεση",
+    "register": "Εγγραφή",
+    "sellOnSuntrex": "Πωλήστε στο suntrex",
+    "verificationBanner": {
+      "title": "Επαλήθευση σε εξέλιξη",
+      "message": "Ο λογαριασμός σας εκκρεμεί προς επικύρωση. Οι τιμές και οι παραγγελίες θα ξεκλειδωθούν μετά την επαλήθευση των εγγράφων σας (εντός 24 εργάσιμων ωρών).",
+      "button": "Δείτε την κατάστασή μου"
+    },
+    "nav": {
+      "allProducts": "Όλα τα προϊόντα",
+      "solarPanels": "Φωτοβολταϊκά πάνελ",
+      "inverters": "Αντιστροφείς",
+      "energyStorage": "Αποθήκευση ενέργειας",
+      "optimizers": "Βελτιστοποιητές",
+      "electrical": "Ηλεκτροτεχνία",
+      "eMobility": "Ηλεκτροκίνηση"
+    }
+  },
+  "footer": {
+    "contact": "Επικοινωνία",
+    "help": "Βοήθεια",
+    "sell": "Πώληση",
+    "about": "Σχετικά",
+    "blog": "Blog",
+    "categories": "Κατηγορίες",
+    "panels": "Πάνελ",
+    "inverters": "Αντιστροφείς",
+    "storage": "Αποθήκευση",
+    "mounting": "Στήριξη",
+    "brands": "Μάρκες",
+    "legal": "Νομικά",
+    "telWhatsappEmail": "Τηλ. - WhatsApp - Email"
+  },
+  "home": {
+    "hero": {
+      "title": "Βρείτε, συγκρίνετε και αγοράστε φωτοβολταϊκό εξοπλισμό στην καλύτερη τιμή",
+      "subtitle": "Μία πλατφόρμα, χιλιάδες προσφορές από επαληθευμένους προμηθευτές σε όλη την Ευρώπη",
+      "searchPlaceholder": "Αναζήτηση προϊόντος ή κατασκευαστή...",
+      "viewAllResults": "Δείτε όλα τα αποτελέσματα για",
+      "noResults": "Κανένα αποτέλεσμα για",
+      "noResultsHint": "Δοκιμάστε \"Huawei\", \"LUNA2000\", \"αντιστροφέας\"...",
+      "loginToSee": "Συνδεθείτε"
+    },
+    "products": {
+      "title": "Κορυφαία προϊόντα",
+      "viewAll": "Δείτε όλες τις προσφορές",
+      "power": "Ισχύς",
+      "type": "Τύπος",
+      "from": "Από",
+      "perPiece": "/τεμ.",
+      "verificationPending": "Επαλήθευση σε εξέλιξη",
+      "seePrice": "Δείτε την τιμή"
+    },
+    "categories": {
+      "title": "Αποκτήστε τις καλύτερες τιμές συγκρίνοντας πολλαπλές προσφορές",
+      "solarPanels": "Φωτοβολταϊκά πάνελ",
+      "inverters": "Αντιστροφείς",
+      "energyStorage": "Αποθήκευση ενέργειας",
+      "cablesAccessories": "Καλώδια & αξεσουάρ",
+      "explore": "Εξερεύνηση",
+      "panelsOffers": "1.300+ προσφορές",
+      "invertersOffers": "4.400+ προσφορές",
+      "storageOffers": "750+ προσφορές",
+      "accessoriesOffers": "250+ προσφορές",
+      "panelsSub": "Jinko, LONGi, Trina, Canadian Solar...",
+      "invertersSub": "Huawei, SMA, Growatt, Deye..."
+    },
+    "catLabels": {
+      "inverters": "Αντιστροφέας",
+      "batteries": "Μπαταρία",
+      "optimizers": "Βελτιστοποιητής",
+      "evChargers": "Σταθμός φόρτισης EV",
+      "accessories": "Αξεσουάρ",
+      "panels": "Πάνελ"
+    },
+    "whySuntrex": {
+      "title": "Γιατί SUNTREX;",
+      "subtitle": "Μια διαφανής, αξιόπιστη και φιλική προς τον χρήστη αγορά",
+      "forBuyer": "Για αγοραστές",
+      "forSeller": "Για πωλητές"
+    },
+    "buyerSlides": {
+      "compareOffers": {
+        "label": "Συγκρίνετε προσφορές",
+        "desc": "Βρείτε την καλύτερη τιμή με ένα κλικ. Συγκρίνετε προσφορές επαληθευμένων πωλητών σε όλη την Ευρώπη."
+      },
+      "negotiateDirect": {
+        "label": "Διαπραγματευτείτε απευθείας",
+        "desc": "Ενσωματωμένο chat με αυτόματη μετάφραση για διαπραγμάτευση τιμών, ποσοτήτων και όρων παράδοσης."
+      },
+      "securePayment": {
+        "label": "Ασφαλής πληρωμή Stripe",
+        "desc": "Κεφάλαια σε μεσεγγύηση μέχρι την επιβεβαίωση παράδοσης. Συμβατό με 3D Secure & SCA."
+      },
+      "tracking": {
+        "label": "Παρακολούθηση SUNTREX DELIVERY",
+        "desc": "Παρακολούθηση σε πραγματικό χρόνο με φωτογραφική επιβεβαίωση σε κάθε βήμα. Το δέμα σας, η ευθύνη μας."
+      }
+    },
+    "sellerSlides": {
+      "newMarkets": {
+        "label": "Νέες ευρωπαϊκές αγορές",
+        "desc": "Προσεγγίστε επαγγελματίες αγοραστές σε 25+ χώρες από ένα μόνο πίνακα ελέγχου."
+      },
+      "createOffers": {
+        "label": "Δημιουργήστε προσφορές γρήγορα",
+        "desc": "Εισαγωγή μέσω Excel ή γρήγορη δημιουργία. Ορίστε τιμές και αποθέματα σε λίγα κλικ."
+      },
+      "realTimeStock": {
+        "label": "Απόθεμα σε πραγματικό χρόνο",
+        "desc": "Αυτόματες ειδοποιήσεις όταν μειώνονται τα αποθέματα, με προτάσεις τιμολόγησης μέσω AI."
+      },
+      "dashboard": {
+        "label": "Πίνακας ελέγχου όλα-σε-ένα",
+        "desc": "Παραγγελίες, τιμολόγια, αποστολές, πληρωμές: όλα κεντρικοποιημένα σε ένα μέρος."
+      }
+    },
+    "stats": {
+      "activeOffers": "Ενεργές προσφορές",
+      "countriesCovered": "Χώρες κάλυψης",
+      "verifiedSellers": "Επαληθευμένοι πωλητές",
+      "platformFee": "Προμήθεια πλατφόρμας"
+    },
+    "differentiators": {
+      "title": "Τι μας ξεχωρίζει",
+      "securePayment": {
+        "title": "Ασφαλής πληρωμή",
+        "desc": "Μεσεγγύηση μέσω Stripe Connect. Τα κεφάλαιά σας προστατεύονται μέχρι την επιβεβαιωμένη παραλαβή."
+      },
+      "delivery": {
+        "title": "SUNTREX Delivery",
+        "desc": "Η δική μας υπηρεσία logistics με φωτογραφική επιβεβαίωση σε κάθε βήμα."
+      },
+      "lowFees": {
+        "title": "Χαμηλές προμήθειες",
+        "desc": "Από τις χαμηλότερες προμήθειες στην αγορά για μεγιστοποίηση των περιθωρίων κέρδους σας."
+      },
+      "aiTools": {
+        "title": "Ενσωματωμένα εργαλεία AI",
+        "desc": "Προτάσεις τιμών, ανάλυση αγοράς και ευφυής αντιστοίχιση."
+      }
+    },
+    "cta": {
+      "title": "Είστε έτοιμοι να ξεκινήσετε;",
+      "subtitle": "Ενταχθείτε σε χιλιάδες επαγγελματίες του ηλιακού κλάδου",
+      "createAccount": "Δημιουργία λογαριασμού",
+      "startSelling": "Ξεκινήστε να πουλάτε"
+    },
+    "newsletter": {
+      "title": "Ενημερωτικό δελτίο",
+      "placeholder": "Το email σας",
+      "subscribe": "Εγγραφή"
+    }
+  },
+  "catalog": {
+    "filters": "Φίλτρα",
+    "searchProduct": "Αναζήτηση προϊόντος…",
+    "availability": "Διαθεσιμότητα",
+    "inStockOnly": "Μόνο διαθέσιμα",
+    "powerKw": "Ισχύς (kW)",
+    "brand": "Μάρκα",
+    "priceEur": "Τιμή (EUR)",
+    "type": "Τύπος",
+    "phases": "Φάσεις",
+    "mppt": "MPPT",
+    "categoriesTitle": "Κατηγορίες",
+    "allProducts": "Όλα τα προϊόντα",
+    "inverters": "Αντιστροφείς",
+    "batteriesStorage": "Μπαταρίες / Αποθήκευση",
+    "optimizers": "Βελτιστοποιητές",
+    "chargingStations": "Σταθμοί φόρτισης",
+    "accessories": "Αξεσουάρ",
+    "catalogTitle": "Κατάλογος",
+    "results": "αποτελέσματα",
+    "grouping": "Ομαδοποίηση",
+    "sortRelevance": "Συνάφεια",
+    "sortPriceAsc": "Τιμή ↑",
+    "sortPriceDesc": "Τιμή ↓",
+    "sortStock": "Απόθεμα",
+    "noProductFound": "Δεν βρέθηκαν προϊόντα",
+    "tryModifyFilters": "Δοκιμάστε να προσαρμόσετε τα φίλτρα σας",
+    "clearAll": "Καθαρισμός όλων",
+    "inStock": "Διαθέσιμο",
+    "page": "Σελίδα",
+    "of": "από",
+    "monophase": "Μονοφασικός",
+    "triphase": "Τριφασικός",
+    "powerLabel": "Ισχύς",
+    "priceLabel": "Τιμή",
+    "offers": "προσφορές",
+    "viewOffers": "Εμφάνιση",
+    "hideOffers": "Απόκρυψη",
+    "theOffers": "των προσφορών",
+    "offerDetails": "Λεπτομέρειες προσφοράς",
+    "from": "από",
+    "seePrice": "Δείτε την τιμή"
+  },
+  "product": {
+    "home": "Αρχική",
+    "description": "Περιγραφή",
+    "downloads": "Λήψεις",
+    "datasheet": "Τεχνικό φυλλάδιο",
+    "productPage": "Σελίδα προϊόντος",
+    "technicalSpecs": "Τεχνικές προδιαγραφές",
+    "mechanicalSpecs": "Μηχανικά χαρακτηριστικά",
+    "dimensions": "Διαστάσεις",
+    "offers": "Προσφορές",
+    "availability": "Διαθεσιμότητα",
+    "immediate": "Άμεση",
+    "superSeller": "Κορυφαίος πωλητής",
+    "secureBankTransfer": "ΑΣΦΑΛΗΣ ΤΡΑΠΕΖΙΚΗ ΜΕΤΑΦΟΡΑ",
+    "from": "από",
+    "perPiece": "/τεμ.",
+    "signUpToSeePrices": "Εγγραφείτε για να δείτε τις τιμές",
+    "rfpBanner": {
+      "title": "ΧΡΕΙΑΖΕΣΤΕ ΑΥΤΟ ΤΟ ΠΡΟΪΟΝ;",
+      "subtitle": "Στείλτε αίτημα προσφοράς στους πωλητές!",
+      "fast": "Γρήγορα",
+      "free": "Δωρεάν",
+      "noCommitment": "Χωρίς δέσμευση",
+      "responseTime": "Απάντηση εντός 24 ωρών",
+      "createRequest": "Δημιουργία αιτήματος"
+    },
+    "sortByLowestPrice": "Κατά χαμηλότερη τιμή",
+    "sortByHighestPrice": "Κατά υψηλότερη τιμή",
+    "sortByAvailability": "Κατά διαθεσιμότητα",
+    "sortByBestRating": "Κατά καλύτερη βαθμολογία",
+    "specLabels": {
+      "sku": "SKU",
+      "brand": "Μάρκα",
+      "warranty": "Εγγύηση",
+      "protectionRating": "Βαθμός προστασίας",
+      "certifications": "Πιστοποιήσεις",
+      "power": "Ισχύς",
+      "capacity": "Χωρητικότητα",
+      "maxEfficiency": "Μέγιστη απόδοση",
+      "phases": "Αριθμός φάσεων",
+      "mpptCount": "Αριθμός MPPT",
+      "chemistry": "Χημεία",
+      "depthOfDischarge": "Βάθος εκφόρτισης",
+      "cycles": "Κύκλοι",
+      "weight": "Βάρος (kg)",
+      "seriesName": "Όνομα σειράς",
+      "powerRange": "Εύρος ισχύος (Wp)",
+      "modelName": "Όνομα μοντέλου",
+      "warrantyYears": "Έτη εγγύησης",
+      "modulePower": "Ισχύς πλαισίου",
+      "vmpp": "Τάση Vmpp (V)",
+      "efficiency": "Απόδοση (%)",
+      "cellType": "Τύπος κυψέλης",
+      "cellCount": "Αριθμός κυψελών",
+      "height": "Ύψος (mm)",
+      "width": "Πλάτος (mm)",
+      "nominalAcPower": "Ονομαστική ισχύς AC",
+      "maxDcPower": "Μέγιστη ισχύς DC",
+      "maxYield": "Μέγιστη απόδοση",
+      "coolingType": "Τύπος ψύξης",
+      "naturalConvection": "Φυσική μεταφορά θερμότητας"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Καλώς ήρθατε ξανά",
+      "subtitle": "Συνδεθείτε στον λογαριασμό σας",
+      "email": "Email",
+      "emailPlaceholder": "to@email.com",
+      "password": "Κωδικός πρόσβασης",
+      "passwordPlaceholder": "••••••••",
+      "forgotPassword": "Ξεχάσατε τον κωδικό σας;",
+      "submit": "Σύνδεση",
+      "noAccount": "Δεν έχετε λογαριασμό;",
+      "signUp": "Εγγραφή"
+    },
+    "register": {
+      "steps": {
+        "account": "Λογαριασμός",
+        "company": "Εταιρεία",
+        "verification": "Επαλήθευση"
+      },
+      "step0": {
+        "title": "Δημιουργήστε τον λογαριασμό σας",
+        "subtitle": "Αποκτήστε πρόσβαση σε αποκλειστικές τιμές B2B",
+        "professionalEmail": "Επαγγελματικό email *",
+        "emailPlaceholder": "info@etaireia.com",
+        "password": "Κωδικός πρόσβασης *",
+        "confirmPassword": "Επιβεβαίωση κωδικού *",
+        "continue": "Συνέχεια →",
+        "alreadyAccount": "Έχετε ήδη λογαριασμό;",
+        "login": "Σύνδεση"
+      },
+      "step1": {
+        "title": "Στοιχεία εταιρείας",
+        "subtitle": "Επαλήθευση του επαγγελματικού σας καθεστώτος",
+        "companyCountry": "Χώρα εταιρείας *",
+        "siretLabel": "Αρ. SIRET ή SIREN *",
+        "siretPlaceholder": "Π.χ.: 853 655 363 00036",
+        "verify": "Επαλήθευση",
+        "companyFound": "Εταιρεία βρέθηκε",
+        "siren": "SIREN",
+        "headquarters": "Έδρα",
+        "naf": "NAF",
+        "companyName": "Επωνυμία εταιρείας *",
+        "verified": "επαληθεύτηκε",
+        "companyNamePlaceholder": "Π.χ.: Solar Pro Ε.Π.Ε.",
+        "vatNumber": "ΑΦΜ ενδοκοινοτικός *",
+        "vatHint": "Απαιτείται για ενδοκοινοτικές συναλλαγές B2B. Ξεκινά με",
+        "address": "Διεύθυνση *",
+        "addressPlaceholder": "Οδός Παραδείγματος 16-18",
+        "postalCode": "Ταχ. κώδικας *",
+        "postalCodePlaceholder": "10564",
+        "city": "Πόλη *",
+        "cityPlaceholder": "Αθήνα",
+        "phone": "Τηλέφωνο *",
+        "back": "← Πίσω",
+        "continue": "Συνέχεια →"
+      },
+      "step2": {
+        "title": "Εταιρικό δικαιολογητικό",
+        "subtitle": "Απαιτείται έγγραφο για την ενεργοποίηση του λογαριασμού σας",
+        "mandatoryDoc": "Υποχρεωτικό έγγραφο",
+        "mandatoryDocDesc": "Ο λογαριασμός σας θα ενεργοποιηθεί μετά την επαλήθευση αυτού του εγγράφου (εντός 24 εργάσιμων ωρών). Χωρίς αυτό το έγγραφο, οι τιμές παραμένουν κρυμμένες.",
+        "documentSelected": "Έγγραφο επιλέχθηκε",
+        "changeFile": "Αλλαγή αρχείου",
+        "clickToChoose": "Κάντε κλικ για να επιλέξετε αρχείο",
+        "fileFormats": "Μόνο PDF, JPG ή PNG — μέγ. 10 MB",
+        "acceptedDocs": "Αποδεκτά έγγραφα:",
+        "kbisExtract": "Πιστοποιητικό ΓΕΜΗ ή εμπορικού μητρώου (< 3 μήνες)",
+        "vatCertificate": "Βεβαίωση ενδοκοινοτικού ΑΦΜ",
+        "rgeLicense": "Επαγγελματική άδεια ή πιστοποιητικό",
+        "pvInvoice": "Τιμολόγιο προμηθευτή Φ/Β (απόδειξη ηλιακής δραστηριότητας)",
+        "back": "← Πίσω",
+        "finalize": "Ολοκλήρωση εγγραφής ✓",
+        "secureStorage": "Τα έγγραφα κρυπτογραφούνται και αποθηκεύονται με ασφάλεια"
+      },
+      "step3": {
+        "title": "Η εγγραφή ολοκληρώθηκε!",
+        "subtitle": "Ο λογαριασμός σας βρίσκεται υπό επαλήθευση.",
+        "verificationInProgress": "Επαλήθευση σε εξέλιξη",
+        "verificationDesc": "Έγγραφο εστάλη, επικύρωση εντός 24 εργάσιμων ωρών. Οι τιμές παραμένουν κρυμμένες και οι παραγγελίες μπλοκαρισμένες μέχρι την επικύρωση.",
+        "meanwhile": "Στο μεταξύ:",
+        "exploreCatalog": "Εξερευνήστε τον κατάλογο και τα τεχνικά φυλλάδια",
+        "compareOffers": "Συγκρίνετε προσφορές από διαφορετικούς πωλητές",
+        "downloadDatasheets": "Κατεβάστε τεχνικά φυλλάδια",
+        "wantToSell": "Θέλετε να πουλάτε επίσης;",
+        "wantToSellDesc": "Μόλις επαληθευτεί ο λογαριασμός σας, ζητήστε πρόσβαση πωλητή από Το Προφίλ μου → Γίνε πωλητής (επιπλέον επαλήθευση Stripe Connect KYB).",
+        "exploreCatalogBtn": "Εξερεύνηση καταλόγου →"
+      },
+      "sidePanel": {
+        "joinSuntrex": "Εγγραφείτε στο SUNTREX",
+        "subtitle": "Η ευρωπαϊκή B2B αγορά για επαγγελματίες του ηλιακού κλάδου.",
+        "exclusiveB2B": "Αποκλειστικές τιμές B2B",
+        "compareThousands": "Συγκρίνετε χιλιάδες προσφορές",
+        "suntrexDelivery": "SUNTREX Delivery",
+        "aiTools": "Ενσωματωμένα εργαλεία AI",
+        "securePayments": "Ασφαλείς πληρωμές Stripe"
+      },
+      "validation": {
+        "phoneRequired": "Απαιτείται αριθμός τηλεφώνου",
+        "phoneMustStartWith": "Ο αριθμός πρέπει να ξεκινά με",
+        "phoneMustStartWithFor": "Ο αριθμός πρέπει να ξεκινά με {prefix} για {country}",
+        "phoneTooShort": "Αριθμός πολύ σύντομος (ελάχιστο 9 ψηφία)",
+        "phoneTooLong": "Αριθμός πολύ μεγάλος (μέγιστο 15 ψηφία)",
+        "vatRequired": "Απαιτείται ενδοκοινοτικός ΑΦΜ",
+        "vatMustStartWith": "Ο ΑΦΜ πρέπει να ξεκινά με",
+        "vatTooShort": "Ο ΑΦΜ είναι πολύ σύντομος",
+        "vatTooLong": "Ο ΑΦΜ είναι πολύ μεγάλος",
+        "siretMinLength": "Εισάγετε SIRET (14 ψηφία) ή SIREN (9 ψηφία)",
+        "companyNotFound": "Δεν βρέθηκε εταιρεία. Ελέγξτε τον αριθμό SIRET/SIREN.",
+        "connectionError": "Σφάλμα σύνδεσης. Δοκιμάστε ξανά ή εισάγετε χειροκίνητα.",
+        "invalidEmail": "Μη έγκυρη μορφή email (π.χ.: onoma@etaireia.com)",
+        "passwordRulesNotMet": "Ο κωδικός δεν πληροί όλες τις απαιτήσεις ασφαλείας",
+        "passwordsDoNotMatch": "Οι κωδικοί δεν ταιριάζουν",
+        "acceptTerms": "Αποδεχτείτε τους όρους για να συνεχίσετε",
+        "verifySiret": "Επαληθεύστε το SIRET/SIREN πριν συνεχίσετε",
+        "companyNameRequired": "Απαιτείται επωνυμία εταιρείας",
+        "addressRequired": "Απαιτείται διεύθυνση",
+        "postalCodeRequired": "Απαιτείται ταχυδρομικός κώδικας",
+        "cityRequired": "Απαιτείται πόλη",
+        "documentRequired": "Το έγγραφο απαιτείται για την ολοκλήρωση της εγγραφής",
+        "formatNotAccepted": "Μη αποδεκτή μορφή. Χρησιμοποιήστε PDF, JPG ή PNG.",
+        "fileTooLarge": "Αρχείο πολύ μεγάλο. Μέγιστο 10 MB.",
+        "invalidFileName": "Μη έγκυρο όνομα αρχείου.",
+        "passwordsMatch": "Οι κωδικοί ταιριάζουν"
+      },
+      "passwordRules": {
+        "minChars": "Ελάχιστο 8 χαρακτήρες",
+        "uppercase": "Τουλάχιστον 1 κεφαλαίο γράμμα (A-Z)",
+        "lowercase": "Τουλάχιστον 1 πεζό γράμμα (a-z)",
+        "digit": "Τουλάχιστον 1 ψηφίο (0-9)",
+        "special": "Τουλάχιστον 1 ειδικός χαρακτήρας (!@#$%^&*)"
+      },
+      "passwordStrength": {
+        "weak": "Αδύναμος",
+        "medium": "Μέτριος",
+        "strong": "Ισχυρός",
+        "veryStrong": "Πολύ ισχυρός"
+      },
+      "consent": {
+        "terms": "Κατανοώ και αποδέχομαι τους όρους χρήσης και την πολιτική απορρήτου.",
+        "termsLink": "όρους χρήσης",
+        "privacyLink": "πολιτική απορρήτου",
+        "marketing": "Συναινώ στην επεξεργασία των δεδομένων μου για σκοπούς μάρκετινγκ από το SUNTREX.",
+        "partners": "Συναινώ στη λήψη εμπορικών πληροφοριών από συνεργάτες του SUNTREX."
+      }
+    },
+    "userMenu": {
+      "sections": {
+        "myProfile": "ΤΟ ΠΡΟΦΙΛ ΜΟΥ",
+        "buy": "ΑΓΟΡΑ",
+        "sell": "ΠΩΛΗΣΗ"
+      },
+      "accountDetails": "Στοιχεία λογαριασμού",
+      "password": "Κωδικός πρόσβασης",
+      "companyDetails": "Στοιχεία εταιρείας",
+      "kycVerification": "Επαλήθευση KYC",
+      "becomeSeller": "Γίνε πωλητής",
+      "myPurchases": "Οι αγορές μου",
+      "deliveryAddresses": "Διευθύνσεις παράδοσης",
+      "quoteRequests": "Αιτήματα προσφοράς",
+      "manageOffers": "Διαχείριση προσφορών",
+      "mySales": "Οι πωλήσεις μου",
+      "receiveRequests": "Λήψη αιτημάτων",
+      "warehouses": "Αποθήκες",
+      "shipping": "Αποστολές",
+      "paymentMethods": "Τρόποι πληρωμής",
+      "logout": "Αποσύνδεση",
+      "buyer": "Αγοραστής",
+      "seller": "Πωλητής",
+      "verification": "Επαλήθευση"
+    },
+    "countries": {
+      "FR": "Γαλλία",
+      "DE": "Γερμανία",
+      "BE": "Βέλγιο",
+      "NL": "Ολλανδία",
+      "IT": "Ιταλία",
+      "ES": "Ισπανία",
+      "CH": "Ελβετία",
+      "AT": "Αυστρία",
+      "PL": "Πολωνία",
+      "PT": "Πορτογαλία",
+      "LU": "Λουξεμβούργο",
+      "GB": "Ηνωμένο Βασίλειο",
+      "OTHER": "Άλλη ευρωπαϊκή χώρα"
+    }
+  },
+  "mockups": {
+    "catalog": {
+      "title": "SUNTREX — Ευφυής αναζήτηση",
+      "offersFromSellers": "προσφορές από {sellerCount} πωλητές",
+      "inStock": "Διαθέσιμο",
+      "viewAllOffers": "Δείτε όλες τις προσφορές"
+    },
+    "chat": {
+      "title": "CHAT — Μετάφραση AI σε πραγματικό χρόνο",
+      "agreementFound": "Συμφωνία επιτεύχθηκε — Ασφαλής πληρωμή..."
+    },
+    "payment": {
+      "title": "STRIPE CONNECT — Ασφαλής μεσεγγύηση",
+      "deliverySuntrex": "Παράδοση SUNTREX",
+      "commission": "Προμήθεια (2%)",
+      "total": "Σύνολο",
+      "escrowActivated": "Μεσεγγύηση ενεργοποιήθηκε — Κεφάλαια ασφαλή",
+      "paymentConfirmed": "Πληρωμή επιβεβαιώθηκε"
+    },
+    "delivery": {
+      "title": "SUNTREX DELIVERY — Παρακολούθηση σε πραγματικό χρόνο",
+      "orderConfirmed": "Παραγγελία επιβεβαιώθηκε",
+      "shippedBySeller": "Αποστολή από πωλητή",
+      "pickedUpSuntrex": "Παραλαβή από SUNTREX",
+      "qualityControl": "Έλεγχος ποιότητας",
+      "inTransit": "Σε μεταφορά",
+      "deliveredPhotoConfirmed": "Παραδόθηκε — Φωτογραφία επιβεβαιώθηκε"
+    },
+    "europe": {
+      "title": "ΟΙ ΑΓΟΡΕΣ ΣΑΣ — 25+ χώρες"
+    },
+    "createOffer": {
+      "title": "ΓΡΗΓΟΡΗ ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΣΦΟΡΑΣ",
+      "product": "Προϊόν",
+      "unitPrice": "Τιμή μονάδας",
+      "stock": "Απόθεμα",
+      "businessDays": "εργάσιμες ημέρες",
+      "aiSuggestion": "AI: Μέση τιμή αγοράς 1.220 € — είστε -3,3%, πολύ ανταγωνιστικοί",
+      "offerPublished": "Η προσφορά δημοσιεύτηκε"
+    },
+    "stockMgmt": {
+      "title": "ΔΙΑΧΕΙΡΙΣΗ ΑΠΟΘΕΜΑΤΟΣ",
+      "product": "Προϊόν",
+      "stock": "Απόθεμα",
+      "price": "Τιμή",
+      "status": "Κατάσταση",
+      "inStock": "Διαθέσιμο",
+      "lowStock": "Χαμηλό απόθεμα",
+      "outOfStock": "Εξαντλήθηκε",
+      "aiAlert": "AI: SUN2000-5KTL κρίσιμο απόθεμα. Συνιστώμενη αύξηση τιμής +3%."
+    },
+    "dashboard": {
+      "title": "ΠΙΝΑΚΑΣ ΕΛΕΓΧΟΥ ΠΩΛΗΤΗ",
+      "offers": "Προσφορές",
+      "sales": "Πωλήσεις",
+      "orders": "Παραγγελίες",
+      "rating": "Βαθμολογία",
+      "latestOrders": "Τελευταίες παραγγελίες",
+      "inTransit": "Σε μεταφορά",
+      "delivered": "Παραδόθηκε",
+      "paid": "Πληρώθηκε"
+    }
+  },
+  "common": {
+    "pcs": "τεμ.",
+    "currency": "EUR",
+    "trustedSeller": "Αξιόπιστος πωλητής",
+    "secureTransfer": "Ασφαλής μεταφορά",
+    "suntrexDelivery": "SUNTREX Delivery",
+    "pdf": "PDF"
+  }
+}

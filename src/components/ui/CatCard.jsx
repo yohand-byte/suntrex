@@ -1,4 +1,7 @@
-export default function CatCard({ img, title, sub, count, big, small, onClick, montage, bg }) {
+import { useTranslation } from "react-i18next";
+
+export default function CatCard({ img, title, sub, count, big, small, onClick, montage, bg, buttonLabel }) {
+  const { t } = useTranslation();
   const pad = big ? 28 : small ? 18 : 22;
   const fs = big ? 26 : small ? 17 : 20;
 
@@ -11,7 +14,7 @@ export default function CatCard({ img, title, sub, count, big, small, onClick, m
           <span style={{fontSize:small?11:12,background:"rgba(255,255,255,0.12)",backdropFilter:"blur(10px)",padding:small?"4px 10px":"5px 14px",borderRadius:4,color:"#fff",fontWeight:600,width:"fit-content",border:"1px solid rgba(255,255,255,0.18)",letterSpacing:"0.02em"}}>{count}</span>
           <h3 style={{fontSize:fs,fontWeight:700,marginTop:small?8:12,color:"#fff"}}>{title}</h3>
           {sub&&<p style={{fontSize:small?12:13,color:"rgba(255,255,255,0.7)",marginTop:4}}>{sub}</p>}
-          <button style={{marginTop:small?8:12,padding:small?"6px 14px":"9px 22px",borderRadius:20,border:"none",background:"#E8700A",color:"#fff",fontSize:small?12:13,fontWeight:600,cursor:"pointer",fontFamily:"inherit",width:"fit-content"}}>Explorer</button>
+          <button style={{marginTop:small?8:12,padding:small?"6px 14px":"9px 22px",borderRadius:20,border:"none",background:"#E8700A",color:"#fff",fontSize:small?12:13,fontWeight:600,cursor:"pointer",fontFamily:"inherit",width:"fit-content"}}>{buttonLabel || t("home.categories.explore")}</button>
         </div>
       </div>
     );
@@ -25,7 +28,7 @@ export default function CatCard({ img, title, sub, count, big, small, onClick, m
         <span style={{fontSize:small?11:12,background:"rgba(255,255,255,0.85)",backdropFilter:"blur(10px)",padding:small?"4px 10px":"5px 14px",borderRadius:4,color:"#444",fontWeight:600,width:"fit-content",letterSpacing:"0.02em"}}>{count}</span>
         <h3 style={{fontSize:fs,fontWeight:700,marginTop:small?8:12,color:"#fff"}}>{title}</h3>
         {sub&&<p style={{fontSize:small?12:13,color:"rgba(255,255,255,0.8)",marginTop:4}}>{sub}</p>}
-        <button style={{marginTop:small?8:12,padding:small?"6px 14px":"9px 22px",borderRadius:20,border:"none",background:"#4CAF50",color:"#fff",fontSize:small?12:13,fontWeight:600,cursor:"pointer",fontFamily:"inherit",width:"fit-content"}}>Explorer</button>
+        <button style={{marginTop:small?8:12,padding:small?"6px 14px":"9px 22px",borderRadius:20,border:"none",background:"#4CAF50",color:"#fff",fontSize:small?12:13,fontWeight:600,cursor:"pointer",fontFamily:"inherit",width:"fit-content"}}>{buttonLabel || t("home.categories.explore")}</button>
       </div>
     </div>
   );

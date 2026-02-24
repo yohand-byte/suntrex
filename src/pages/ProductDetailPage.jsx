@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useCurrency } from "../CurrencyContext";
 import REAL_PRODUCTS from "../products";
 
 /* ── Build detail view from real products.js data ── */
@@ -11,12 +13,7 @@ const BRAND_COLORS = {
   "Risen Energy": "#e60012",
 };
 
-const CATEGORY_LABELS = {
-  inverters: "Onduleurs", batteries: "Stockage", optimizers: "Optimiseurs",
-  "ev-chargers": "Bornes de recharge", accessories: "Accessoires", panels: "Panneaux solaires",
-};
-
-function buildProductDetail(p) {
+function buildProductDetail(p, t, categoryLabels) {
   return {
     id: p.id,
     name: p.name,
@@ -24,33 +21,33 @@ function buildProductDetail(p) {
     image: p.image || "",
     brandColor: BRAND_COLORS[p.brand] || "#555",
     category: p.category,
-    categoryLabel: CATEGORY_LABELS[p.category] || p.category,
+    categoryLabel: categoryLabels[p.category] || p.category,
     subtitle: [p.type, p.phases ? `${p.phases}-Phase` : null, p.power || p.capacity].filter(Boolean).join(" — "),
     description: p.description || (p.features ? p.features.join(". ") + "." : ""),
     datasheet: p.datasheet || `${p.sku}-datasheet.pdf`,
     specs: {
       general: [
-        { label: "SKU", value: p.sku },
-        { label: "Marque", value: p.brand },
-        { label: "Garantie", value: p.warranty || "N/A" },
-        ...(p.protection ? [{ label: "Indice de protection", value: p.protection }] : []),
-        ...(p.certifications ? [{ label: "Certifications", value: p.certifications.join(", ") }] : []),
+        { label: t("product.specLabels.sku"), value: p.sku },
+        { label: t("product.specLabels.brand"), value: p.brand },
+        { label: t("product.specLabels.warranty"), value: p.warranty || "N/A" },
+        ...(p.protection ? [{ label: t("product.specLabels.protectionRating"), value: p.protection }] : []),
+        ...(p.certifications ? [{ label: t("product.specLabels.certifications"), value: p.certifications.join(", ") }] : []),
       ],
       electrical: [
-        ...(p.power ? [{ label: "Puissance", value: p.power }] : []),
-        ...(p.capacity ? [{ label: "Capacité", value: p.capacity }] : []),
-        ...(p.efficiency ? [{ label: "Rendement max", value: p.efficiency }] : []),
-        ...(p.phases ? [{ label: "Nombre de phases", value: String(p.phases) }] : []),
-        ...(p.mppt ? [{ label: "Nombre de MPPT", value: String(p.mppt) }] : []),
-        ...(p.chemistry ? [{ label: "Chimie", value: p.chemistry }] : []),
-        ...(p.dod ? [{ label: "Profondeur de décharge", value: p.dod }] : []),
-        ...(p.cycles ? [{ label: "Cycles", value: p.cycles }] : []),
+        ...(p.power ? [{ label: t("product.specLabels.power"), value: p.power }] : []),
+        ...(p.capacity ? [{ label: t("product.specLabels.capacity"), value: p.capacity }] : []),
+        ...(p.efficiency ? [{ label: t("product.specLabels.maxEfficiency"), value: p.efficiency }] : []),
+        ...(p.phases ? [{ label: t("product.specLabels.phases"), value: String(p.phases) }] : []),
+        ...(p.mppt ? [{ label: t("product.specLabels.mpptCount"), value: String(p.mppt) }] : []),
+        ...(p.chemistry ? [{ label: t("product.specLabels.chemistry"), value: p.chemistry }] : []),
+        ...(p.dod ? [{ label: t("product.specLabels.depthOfDischarge"), value: p.dod }] : []),
+        ...(p.cycles ? [{ label: t("product.specLabels.cycles"), value: p.cycles }] : []),
       ],
       mechanical: [
-        ...(p.weight ? [{ label: "Poids (kg)", value: String(p.weight) }] : []),
+        ...(p.weight ? [{ label: t("product.specLabels.weight"), value: String(p.weight) }] : []),
       ],
       dimensions: [
-        ...(p.weight ? [{ label: "Poids (kg)", value: String(p.weight) }] : []),
+        ...(p.weight ? [{ label: t("product.specLabels.weight"), value: String(p.weight) }] : []),
       ],
     },
     offers: [
@@ -71,42 +68,6 @@ function buildProductDetail(p) {
     ],
   };
 }
-
-/* ── Mock product data (fallback for demo IDs) ── */
-const MOCK_PRODUCTS = {
-  "PAN001": {
-    id: "PAN001", name: "Jinko Tiger Neo N-type 575W", brand: "Jinko Solar", brandColor: "#1a8c37",
-    category: "panels", categoryLabel: "Panneaux solaires", subtitle: "Monocrystalline N-Type",
-    description: "The Tiger Neo series leverages Jinko's latest N-type TOPCon cell technology, delivering industry-leading efficiency up to 22.27%.",
-    datasheet: "jinko-tiger-neo-575w-datasheet.pdf",
-    specs: {
-      general: [{ label: "Nom de la série", value: "Tiger Neo N-type 72HL4" },{ label: "Gamme de puissance (Wp)", value: "555-580" },{ label: "Nom du modèle", value: "JKM575N-72HL4-V" },{ label: "Années de garantie", value: "15" }],
-      electrical: [{ label: "Puissance du module", value: "575 W" },{ label: "Tension Vmpp (V)", value: "42.57" },{ label: "Efficacité (%)", value: "22.27" }],
-      mechanical: [{ label: "Type de cellule", value: "N-Type TOPCon" },{ label: "Nombre de cellules", value: "144 (6x24)" }],
-      dimensions: [{ label: "Hauteur (mm)", value: "2278" },{ label: "Largeur (mm)", value: "1134" },{ label: "Poids (kg)", value: "28.4" }],
-    },
-    offers: [
-      { sellerId: "S03", sellerName: "EnerSol ES", country: "ES", flag: "🇪🇸", rating: 4.5, reviews: 56, stock: 3000, price: 95, availableDate: null, badge: null, bankTransfer: true, delivery: "seller" },
-      { sellerId: "S01", sellerName: "SolarTech DE", country: "DE", flag: "🇩🇪", rating: 4.9, reviews: 132, stock: 5000, price: 98, availableDate: null, badge: "trusted", bankTransfer: true, delivery: "suntrex" },
-    ],
-  },
-  "INV002": {
-    id: "INV002", name: "Huawei SUN2000-5KTL-M2", brand: "Huawei", brandColor: "#e4002b",
-    category: "inverters", categoryLabel: "Onduleurs", subtitle: "String Inverter — Monophasé",
-    description: "L'onduleur string résidentiel de Huawei avec rendement maximal de 98.4%, compatible avec l'optimiseur SUN2000-450W-P2 et la batterie LUNA2000.",
-    datasheet: "huawei-sun2000-5ktl-m2-datasheet.pdf",
-    specs: {
-      general: [{ label: "Nom de la série", value: "SUN2000-2/3/3.68/4/4.6/5/6KTL-M2" },{ label: "Nom du modèle", value: "SUN2000-5KTL-M2" },{ label: "Années de garantie", value: "10 (extensible à 20)" }],
-      electrical: [{ label: "Puissance nominale AC", value: "5000 W" },{ label: "Puissance max DC", value: "7500 W" },{ label: "Rendement max", value: "98.4%" },{ label: "Nombre de MPPT", value: "2" }],
-      mechanical: [{ label: "Type de refroidissement", value: "Convection naturelle" },{ label: "Indice de protection", value: "IP65" }],
-      dimensions: [{ label: "Hauteur (mm)", value: "365" },{ label: "Largeur (mm)", value: "295" },{ label: "Poids (kg)", value: "10.5" }],
-    },
-    offers: [
-      { sellerId: "S01", sellerName: "SolarTech DE", country: "DE", flag: "🇩🇪", rating: 4.9, reviews: 132, stock: 380, price: 689, availableDate: null, badge: "trusted", bankTransfer: true, delivery: "suntrex" },
-      { sellerId: "S03", sellerName: "EnerSol ES", country: "ES", flag: "🇪🇸", rating: 4.5, reviews: 56, stock: 200, price: 710, availableDate: null, badge: null, bankTransfer: true, delivery: "seller" },
-    ],
-  },
-};
 
 /* ── Styles ── */
 const S = {
@@ -158,26 +119,26 @@ function SpecsTable({ specs }) {
   );
 }
 
-function OfferCard({ offer, isLoggedIn, onLogin }) {
+function OfferCard({ offer, isLoggedIn, onLogin, t, formatMoney, language }) {
   return (
     <div style={S.offerCard}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 12 }}>
         <div>
           <div style={{ fontSize: 13, color: "#555", marginBottom: 8 }}>
-            Disponibilité{" "}
+            {t("product.availability")}{" "}
             <b style={{ color: "#222" }}>
-              {offer.availableDate || "Immédiate"} ({offer.stock.toLocaleString()} pcs)
+              {offer.availableDate || t("product.immediate")} ({offer.stock.toLocaleString()} {t("common.pcs")})
             </b>
             <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: offer.stock > 0 ? "#4CAF50" : "#f44336", marginLeft: 6 }} />
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
             {offer.badge === "trusted" && (
-              <span style={{ ...S.badge, background: "#fff8e1", color: "#f57f17", border: "1px solid #ffe082" }}>⭐ Super vendeur</span>
+              <span style={{ ...S.badge, background: "#fff8e1", color: "#f57f17", border: "1px solid #ffe082" }}>⭐ {t("product.superSeller")}</span>
             )}
             <span style={{ ...S.badge, background: "#f5f5f5", color: "#555", border: "1px solid #e0e0e0" }}>{offer.flag} {offer.country}</span>
             <span style={{ ...S.badge, background: "#f5f5f5", color: "#555", border: "1px solid #e0e0e0" }}>⭐ {offer.rating} ({offer.reviews})</span>
             {offer.bankTransfer && (
-              <span style={{ ...S.badge, background: "#e8f5e9", color: "#2e7d32", border: "1px solid #c8e6c9" }}>🏦 VIREMENT BANCAIRE SÉCURISÉ</span>
+              <span style={{ ...S.badge, background: "#e8f5e9", color: "#2e7d32", border: "1px solid #c8e6c9" }}>🏦 {t("product.secureBankTransfer")}</span>
             )}
             {offer.delivery === "suntrex" && (
               <span style={{ ...S.badge, background: "#fff3e0", color: "#e65100", border: "1px solid #ffe0b2" }}>🚚 SUNTREX Delivery</span>
@@ -187,15 +148,15 @@ function OfferCard({ offer, isLoggedIn, onLogin }) {
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
           {isLoggedIn ? (
             <div style={{ textAlign: "right" }}>
-              <div style={{ fontSize: 11, color: "#888" }}>dès</div>
-              <div style={{ fontSize: 22, fontWeight: 700, color: "#222" }}>€{offer.price.toFixed(2)} <span style={{ fontSize: 12, fontWeight: 400, color: "#888" }}>/pcs</span></div>
+              <div style={{ fontSize: 11, color: "#888" }}>{t("product.from")}</div>
+              <div style={{ fontSize: 22, fontWeight: 700, color: "#222" }}>{formatMoney(offer.price, language)} <span style={{ fontSize: 12, fontWeight: 400, color: "#888" }}>{t("product.perPiece")}</span></div>
             </div>
           ) : (
             <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 12 }}>
-              <span style={S.priceBlur}>€{(offer.price * 0.9 + Math.random() * 30).toFixed(2)}</span>
+              <span style={S.priceBlur}>{formatMoney(offer.price * 0.9 + Math.random() * 30, language)}</span>
               <button onClick={onLogin} style={S.priceCTA}>
                 <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Inscrivez-vous pour voir les prix
+                {t("product.signUpToSeePrices")}
               </button>
             </div>
           )}
@@ -208,9 +169,51 @@ function OfferCard({ offer, isLoggedIn, onLogin }) {
 export default function ProductDetailPage({ isLoggedIn, onLogin }) {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const { formatMoney } = useCurrency();
+
+  const CATEGORY_LABELS = {
+    inverters: t("catalog.inverters"), batteries: t("catalog.batteriesStorage"), optimizers: t("catalog.optimizers"),
+    "ev-chargers": t("catalog.chargingStations"), accessories: t("catalog.accessories"), panels: t("home.categories.solarPanels"),
+  };
+
+  const MOCK_PRODUCTS = {
+    "PAN001": {
+      id: "PAN001", name: "Jinko Tiger Neo N-type 575W", brand: "Jinko Solar", brandColor: "#1a8c37",
+      category: "panels", categoryLabel: CATEGORY_LABELS["panels"], subtitle: "Monocrystalline N-Type",
+      description: "The Tiger Neo series leverages Jinko's latest N-type TOPCon cell technology, delivering industry-leading efficiency up to 22.27%.",
+      datasheet: "jinko-tiger-neo-575w-datasheet.pdf",
+      specs: {
+        general: [{ label: t("product.specLabels.seriesName", "Nom de la série"), value: "Tiger Neo N-type 72HL4" },{ label: t("product.specLabels.powerRange", "Gamme de puissance (Wp)"), value: "555-580" },{ label: t("product.specLabels.modelName", "Nom du modèle"), value: "JKM575N-72HL4-V" },{ label: t("product.specLabels.warrantyYears", "Années de garantie"), value: "15" }],
+        electrical: [{ label: t("product.specLabels.modulePower", "Puissance du module"), value: "575 W" },{ label: t("product.specLabels.vmpp", "Tension Vmpp (V)"), value: "42.57" },{ label: t("product.specLabels.efficiencyPercent", "Efficacité (%)"), value: "22.27" }],
+        mechanical: [{ label: t("product.specLabels.cellType", "Type de cellule"), value: "N-Type TOPCon" },{ label: t("product.specLabels.cellCount", "Nombre de cellules"), value: "144 (6x24)" }],
+        dimensions: [{ label: t("product.specLabels.height", "Hauteur (mm)"), value: "2278" },{ label: t("product.specLabels.width", "Largeur (mm)"), value: "1134" },{ label: t("product.specLabels.weight"), value: "28.4" }],
+      },
+      offers: [
+        { sellerId: "S03", sellerName: "EnerSol ES", country: "ES", flag: "🇪🇸", rating: 4.5, reviews: 56, stock: 3000, price: 95, availableDate: null, badge: null, bankTransfer: true, delivery: "seller" },
+        { sellerId: "S01", sellerName: "SolarTech DE", country: "DE", flag: "🇩🇪", rating: 4.9, reviews: 132, stock: 5000, price: 98, availableDate: null, badge: "trusted", bankTransfer: true, delivery: "suntrex" },
+      ],
+    },
+    "INV002": {
+      id: "INV002", name: "Huawei SUN2000-5KTL-M2", brand: "Huawei", brandColor: "#e4002b",
+      category: "inverters", categoryLabel: CATEGORY_LABELS["inverters"], subtitle: "String Inverter — Monophasé",
+      description: "L'onduleur string résidentiel de Huawei avec rendement maximal de 98.4%, compatible avec l'optimiseur SUN2000-450W-P2 et la batterie LUNA2000.",
+      datasheet: "huawei-sun2000-5ktl-m2-datasheet.pdf",
+      specs: {
+        general: [{ label: t("product.specLabels.seriesName", "Nom de la série"), value: "SUN2000-2/3/3.68/4/4.6/5/6KTL-M2" },{ label: t("product.specLabels.modelName", "Nom du modèle"), value: "SUN2000-5KTL-M2" },{ label: t("product.specLabels.warrantyYears", "Années de garantie"), value: "10 (extensible à 20)" }],
+        electrical: [{ label: t("product.specLabels.nominalAcPower", "Puissance nominale AC"), value: "5000 W" },{ label: t("product.specLabels.maxDcPower", "Puissance max DC"), value: "7500 W" },{ label: t("product.specLabels.maxEfficiency"), value: "98.4%" },{ label: t("product.specLabels.mpptCount"), value: "2" }],
+        mechanical: [{ label: t("product.specLabels.coolingType", "Type de refroidissement"), value: "Convection naturelle" },{ label: t("product.specLabels.protectionRating"), value: "IP65" }],
+        dimensions: [{ label: t("product.specLabels.height", "Hauteur (mm)"), value: "365" },{ label: t("product.specLabels.width", "Largeur (mm)"), value: "295" },{ label: t("product.specLabels.weight"), value: "10.5" }],
+      },
+      offers: [
+        { sellerId: "S01", sellerName: "SolarTech DE", country: "DE", flag: "🇩🇪", rating: 4.9, reviews: 132, stock: 380, price: 689, availableDate: null, badge: "trusted", bankTransfer: true, delivery: "suntrex" },
+        { sellerId: "S03", sellerName: "EnerSol ES", country: "ES", flag: "🇪🇸", rating: 4.5, reviews: 56, stock: 200, price: 710, availableDate: null, badge: null, bankTransfer: true, delivery: "seller" },
+      ],
+    },
+  };
 
   const realProduct = REAL_PRODUCTS.find(p => p.id === id);
-  const product = realProduct ? buildProductDetail(realProduct) : (MOCK_PRODUCTS[id] || MOCK_PRODUCTS["INV002"]);
+  const product = realProduct ? buildProductDetail(realProduct, t, CATEGORY_LABELS) : (MOCK_PRODUCTS[id] || MOCK_PRODUCTS["INV002"]);
   const [sortOffers, setSortOffers] = useState("price-asc");
 
   const sortedOffers = [...product.offers].sort((a, b) => {
@@ -224,7 +227,7 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
   return (
     <div style={S.page}>
       <div style={S.breadcrumb}>
-        <span style={S.breadcrumbLink} onClick={()=>navigate(-1)}>Accueil</span>
+        <span style={S.breadcrumbLink} onClick={()=>navigate(-1)}>{t("product.home")}</span>
         <svg width="10" height="10" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
         <span style={S.breadcrumbLink} onClick={()=>navigate(-1)}>{product.categoryLabel}</span>
         <svg width="10" height="10" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
@@ -257,11 +260,11 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
         </div>
       </div>
 
-      <Section title="Description">
+      <Section title={t("product.description")}>
         <div style={{ background: "#fafafa", borderRadius: 10, padding: "20px 24px", fontSize: 14, lineHeight: 1.7, color: "#444" }}>{product.description}</div>
       </Section>
 
-      <Section title="Téléchargements">
+      <Section title={t("product.downloads")}>
         <a href={product.datasheet} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
           <div style={{ ...S.downloadRow, cursor: "pointer", transition: "background .15s" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -269,8 +272,8 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
                 <svg width="16" height="16" fill="none" stroke="#4CAF50" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
               </div>
               <div>
-                <span style={{ fontSize: 13, color: "#333", fontWeight: 500 }}>Fiche technique — {product.name}</span>
-                <span style={{ fontSize: 11, color: "#888", display: "block", marginTop: 2 }}>{product.datasheet.startsWith("/") ? "PDF" : "Page produit"}</span>
+                <span style={{ fontSize: 13, color: "#333", fontWeight: 500 }}>{t("product.datasheet")} — {product.name}</span>
+                <span style={{ fontSize: 11, color: "#888", display: "block", marginTop: 2 }}>{product.datasheet.startsWith("/") ? "PDF" : t("product.productPage")}</span>
               </div>
             </div>
             <svg width="18" height="18" fill="none" stroke="#4CAF50" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
@@ -278,49 +281,49 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
         </a>
       </Section>
 
-      <Section title={`Spécifications techniques — ${product.name}`}>
+      <Section title={`${t("product.technicalSpecs")} — ${product.name}`}>
         <SpecsTable specs={[...product.specs.general, ...product.specs.electrical]} />
       </Section>
 
-      <Section title="Caractéristiques mécaniques" defaultOpen={false}>
+      <Section title={t("product.mechanicalSpecs")} defaultOpen={false}>
         <SpecsTable specs={product.specs.mechanical} />
       </Section>
 
-      <Section title={`Dimensions — ${product.name}`}>
+      <Section title={`${t("product.dimensions")} — ${product.name}`}>
         <SpecsTable specs={product.specs.dimensions} />
       </Section>
 
       <div style={S.rfpBanner}>
         <div>
-          <h3 style={{ color: "#fff", fontSize: 18, fontWeight: 700, marginBottom: 6 }}>AVEZ-VOUS BESOIN DE CE PRODUIT ?</h3>
-          <p style={{ color: "#a8d5ba", fontSize: 14, margin: 0 }}>Envoyez une demande de proposition aux vendeurs !</p>
+          <h3 style={{ color: "#fff", fontSize: 18, fontWeight: 700, marginBottom: 6 }}>{t("product.rfpBanner.title")}</h3>
+          <p style={{ color: "#a8d5ba", fontSize: 14, margin: 0 }}>{t("product.rfpBanner.subtitle")}</p>
           <div style={{ display: "flex", gap: 16, marginTop: 12 }}>
-            {["Rapide", "Gratuit", "Sans engagement", "Réponse sous 24h"].map(t => (
-              <span key={t} style={{ fontSize: 12, color: "#a8d5ba", display: "flex", alignItems: "center", gap: 4 }}>
-                <span style={{ color: "#4CAF50" }}>✓</span> {t}
+            {[t("product.rfpBanner.fast"), t("product.rfpBanner.free"), t("product.rfpBanner.noCommitment"), t("product.rfpBanner.responseTime")].map(tag => (
+              <span key={tag} style={{ fontSize: 12, color: "#a8d5ba", display: "flex", alignItems: "center", gap: 4 }}>
+                <span style={{ color: "#4CAF50" }}>✓</span> {tag}
               </span>
             ))}
           </div>
         </div>
         <button style={{ background: "#fff", color: "#1a3a2a", border: "none", borderRadius: 8, padding: "12px 24px", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 8 }}>
           <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
-          Créer une demande
+          {t("product.rfpBanner.createRequest")}
         </button>
       </div>
 
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-        <h2 style={{ fontSize: 18, fontWeight: 700, color: "#222" }}>Offres — {product.name}</h2>
+        <h2 style={{ fontSize: 18, fontWeight: 700, color: "#222" }}>{t("product.offers")} — {product.name}</h2>
         <select value={sortOffers} onChange={e => setSortOffers(e.target.value)}
           style={{ padding: "8px 14px", borderRadius: 8, border: "1px solid #ddd", fontSize: 13, color: "#555", fontFamily: "inherit", background: "#fff", cursor: "pointer" }}>
-          <option value="price-asc">Par le prix le plus bas</option>
-          <option value="price-desc">Par le prix le plus haut</option>
-          <option value="stock">Par disponibilité</option>
-          <option value="rating">Par meilleure note</option>
+          <option value="price-asc">{t("product.sortByLowestPrice")}</option>
+          <option value="price-desc">{t("product.sortByHighestPrice")}</option>
+          <option value="stock">{t("product.sortByAvailability")}</option>
+          <option value="rating">{t("product.sortByBestRating")}</option>
         </select>
       </div>
 
       {sortedOffers.map((offer, i) => (
-        <OfferCard key={i} offer={offer} isLoggedIn={isLoggedIn} onLogin={onLogin} />
+        <OfferCard key={i} offer={offer} isLoggedIn={isLoggedIn} onLogin={onLogin} t={t} formatMoney={formatMoney} language={i18n.language} />
       ))}
     </div>
   );

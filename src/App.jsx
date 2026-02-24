@@ -6,6 +6,7 @@ import ChatFab from "./components/layout/ChatFab";
 import HomePage from "./pages/HomePage";
 import CatalogPage from "./pages/CatalogPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import TransactionChatPage from "./pages/TransactionChatPage";
 import { LoginModal, RegisterModal } from "./AuthSystem";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -71,6 +72,12 @@ export default function App() {
           <ProductDetailPage
             isLoggedIn={isVerified}
             onLogin={()=>setShowRegister(true)}
+          />
+        }/>
+        <Route path="/transaction/:id" element={
+          <TransactionChatPage
+            isLoggedIn={isVerified}
+            currentUser={currentUser}
           />
         }/>
       </Routes>
