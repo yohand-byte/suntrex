@@ -521,7 +521,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-scharger-7ks-s0.svg",
+    image: "/products/hw-scharger-7k.svg",
   },
   {
     id: "hw-scharger-22kt-s0",
@@ -541,7 +541,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-scharger-22kt-s0.svg",
+    image: "/products/hw-scharger-22k.svg",
   },
 
   // ═══════════════════════════════════════════
@@ -563,7 +563,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-smartps-80ai-t0.svg",
+    image: "/products/hw-smart-pwr-sensor.svg",
   },
   {
     id: "hw-dtsu666-h250a",
@@ -581,7 +581,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-dtsu666-h250a.svg",
+    image: "/products/hw-dtsu666-h.svg",
   },
   {
     id: "hw-smartps-250a-t0",
@@ -599,7 +599,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-smartps-250a-t0.svg",
+    image: "/products/hw-smart-sensor-1000a.svg",
   },
   {
     id: "hw-smartps-100a-s0",
@@ -617,7 +617,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-smartps-100a-s0.svg",
+    image: "/products/hw-smart-sensor-300a.svg",
   },
   {
     id: "hw-ddsu666-h",
@@ -653,7 +653,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-dtsu666-h-100a.svg",
+    image: "/products/hw-dtsu666-h.svg",
   },
 
   // ═══════════════════════════════════════════
@@ -677,7 +677,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-smartguard-63a-s0.svg",
+    image: "/products/hw-smartguard-1ph.svg",
   },
   {
     id: "hw-smartguard-63a-t0",
@@ -697,7 +697,7 @@ const PRODUCTS = [
     minOrder: 1,
     seller: "QUALIWATT",
   
-    image: "/products/hw-smartguard-63a-t0.svg",
+    image: "/products/hw-smartguard-3ph.svg",
   },
 
   // ═══════════════════════════════════════════
