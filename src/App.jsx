@@ -3,23 +3,28 @@ import AM from "./AnimatedMockups";
 import CatalogPage from "./CatalogPage";
 import ProductDetailPage from "./ProductDetailPage";
 import { LoginModal, RegisterModal, UserMenu } from "./AuthSystem";
+import REAL_PRODUCTS from "./products";
 
 /* ═══════════════════════════════════════════════════════════════
-   SUNTREX v7 — All corrections applied
-   1. Logos = full brand names in colored text (no images)
-   2. Product cards = pure white bg (#fff not #fafafa)
-   3. Slides auto-play every 6s + auto-start on viewport
-   4. Categories = proper title restored
-   5. Deye = real official image (.png)
+   SUNTREX v8 — Real Huawei catalog integrated
    ═══════════════════════════════════════════════════════════════ */
 
+// Featured products for homepage (pick best sellers)
 const PRODUCTS = [
-  { id:1, name:"Huawei SUN2000-5KTL-M2", power:"5 kW", type:"String", stock:1364, price:689, img:"/products/huawei-5ktl.jpg" },
-  { id:2, name:"Huawei SUN2000-10KTL-M2", power:"10 kW", type:"String", stock:1064, price:1249, img:"/products/huawei-10ktl.jpg" },
-  { id:3, name:"Huawei LUNA2000-5-S0", power:"5 kWh", type:"LFP", stock:144, price:1890, img:"/products/huawei-luna.webp" },
-  { id:4, name:"Deye SUN-12K-SG04LP3", power:"12 kW", type:"Hybrid", stock:800, price:1450, img:"/products/deye-12k.png" },
-  { id:5, name:"Huawei SUN2000-3KTL-M2", power:"3 kW", type:"String", stock:10000, price:479, img:"/products/huawei-3ktl.jpg" },
-];
+  REAL_PRODUCTS.find(p => p.id === "hw-sun2000-10k-lc0"),
+  REAL_PRODUCTS.find(p => p.id === "hw-luna2000-5-e0"),
+  REAL_PRODUCTS.find(p => p.id === "hw-sun2000-6k-map0"),
+  REAL_PRODUCTS.find(p => p.id === "hw-sun2000-12k-mb0"),
+  REAL_PRODUCTS.find(p => p.id === "hw-merc-1300-p"),
+].map(p => ({
+  id: p.id,
+  name: p.name,
+  power: p.power || p.capacity || "",
+  type: p.type,
+  stock: p.stock,
+  price: p.price,
+  img: p.image || "",
+}));
 
 const BRANDS = [
   { n:"Huawei", c:"#e4002b", f:"huawei" },{ n:"Jinko Solar", c:"#1a8c37", f:"jinko" },

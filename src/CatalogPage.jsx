@@ -1,103 +1,49 @@
 import { useState, useMemo } from "react";
+import REAL_PRODUCTS, { CATEGORIES as REAL_CATEGORIES } from "./products";
 
 /* ═══════════════════════════════════════════════════════════
    SUNTREX — Catalog Page
-   Inspired by sun.store: filters sidebar, product grouping,
-   multi-vendor offers, price gate, badges, country flags
+   Real Huawei catalog — 31 products with actual prices
    ═══════════════════════════════════════════════════════════ */
 
-/* ── Mock Data ────────────────────────────────────────── */
-const CATALOG = [
-  // Inverters — Huawei
-  { id:"INV001", name:"Huawei SUN2000-3KTL-M2", brand:"Huawei", category:"inverters", power:3, type:"String", phases:1, mppt:2,
-    offers:[
-      { sellerId:"S01", sellerName:"SolarTech DE", country:"DE", flag:"🇩🇪", rating:4.9, reviews:132, stock:450, price:479, badge:"trusted", bankTransfer:true, delivery:"suntrex" },
-      { sellerId:"S02", sellerName:"PV Parts FR", country:"FR", flag:"🇫🇷", rating:4.7, reviews:86, stock:120, price:499, badge:null, bankTransfer:true, delivery:"seller" },
-    ]},
-  { id:"INV002", name:"Huawei SUN2000-5KTL-M2", brand:"Huawei", category:"inverters", power:5, type:"String", phases:1, mppt:2,
-    offers:[
-      { sellerId:"S01", sellerName:"SolarTech DE", country:"DE", flag:"🇩🇪", rating:4.9, reviews:132, stock:380, price:689, badge:"trusted", bankTransfer:true, delivery:"suntrex" },
-      { sellerId:"S03", sellerName:"EnerSol ES", country:"ES", flag:"🇪🇸", rating:4.5, reviews:56, stock:200, price:710, badge:null, bankTransfer:true, delivery:"seller" },
-      { sellerId:"S04", sellerName:"SunPower NL", country:"NL", flag:"🇳🇱", rating:4.8, reviews:94, stock:90, price:695, badge:"trusted", bankTransfer:true, delivery:"suntrex" },
-    ]},
-  { id:"INV003", name:"Huawei SUN2000-10KTL-M2", brand:"Huawei", category:"inverters", power:10, type:"String", phases:3, mppt:2,
-    offers:[
-      { sellerId:"S01", sellerName:"SolarTech DE", country:"DE", flag:"🇩🇪", rating:4.9, reviews:132, stock:210, price:1249, badge:"trusted", bankTransfer:true, delivery:"suntrex" },
-    ]},
-  { id:"INV004", name:"Huawei SUN2000-20KTL-M5", brand:"Huawei", category:"inverters", power:20, type:"String", phases:3, mppt:4,
-    offers:[
-      { sellerId:"S01", sellerName:"SolarTech DE", country:"DE", flag:"🇩🇪", rating:4.9, reviews:132, stock:45, price:1530, badge:"trusted", bankTransfer:true, delivery:"suntrex" },
-    ]},
-  // Inverters — Deye
-  { id:"INV005", name:"Deye SUN-6K-SG03LP1-EU", brand:"Deye", category:"inverters", power:6, type:"Hybrid", phases:1, mppt:2,
-    offers:[
-      { sellerId:"S05", sellerName:"QualiWatt FR", country:"FR", flag:"🇫🇷", rating:4.8, reviews:8, stock:35, price:645, badge:null, bankTransfer:true, delivery:"seller" },
-      { sellerId:"S06", sellerName:"DeyelDirect PL", country:"PL", flag:"🇵🇱", rating:4.9, reviews:26, stock:400, price:590, badge:"trusted", bankTransfer:true, delivery:"seller" },
-    ]},
-  { id:"INV006", name:"Deye SUN-12K-SG04LP3-EU", brand:"Deye", category:"inverters", power:12, type:"Hybrid", phases:3, mppt:2,
-    offers:[
-      { sellerId:"S06", sellerName:"DeyelDirect PL", country:"PL", flag:"🇵🇱", rating:4.9, reviews:26, stock:300, price:1450, badge:"trusted", bankTransfer:true, delivery:"seller" },
-      { sellerId:"S02", sellerName:"PV Parts FR", country:"FR", flag:"🇫🇷", rating:4.7, reviews:86, stock:50, price:1520, badge:null, bankTransfer:true, delivery:"suntrex" },
-    ]},
-  // Inverters — Enphase micro
-  { id:"INV007", name:"Enphase IQ8Plus-72-2US-INT", brand:"Enphase", category:"inverters", power:0.29, type:"Microinverter", phases:1, mppt:1,
-    offers:[
-      { sellerId:"S04", sellerName:"SunPower NL", country:"NL", flag:"🇳🇱", rating:4.8, reviews:94, stock:2268, price:46, badge:"trusted", bankTransfer:true, delivery:"suntrex" },
-    ]},
-  // Inverters — SMA
-  { id:"INV008", name:"SMA Sunny Tripower 10.0", brand:"SMA", category:"inverters", power:10, type:"String", phases:3, mppt:2,
-    offers:[
-      { sellerId:"S03", sellerName:"EnerSol ES", country:"ES", flag:"🇪🇸", rating:4.5, reviews:56, stock:120, price:1380, badge:null, bankTransfer:true, delivery:"seller" },
-    ]},
-  // Batteries
-  { id:"BAT001", name:"Huawei LUNA2000-5-S0", brand:"Huawei", category:"batteries", power:5, type:"LFP", phases:0, mppt:0,
-    offers:[
-      { sellerId:"S01", sellerName:"SolarTech DE", country:"DE", flag:"🇩🇪", rating:4.9, reviews:132, stock:144, price:1890, badge:"trusted", bankTransfer:true, delivery:"suntrex" },
-      { sellerId:"S02", sellerName:"PV Parts FR", country:"FR", flag:"🇫🇷", rating:4.7, reviews:86, stock:30, price:1950, badge:null, bankTransfer:true, delivery:"seller" },
-    ]},
-  { id:"BAT002", name:"Huawei LUNA2000-10-S0", brand:"Huawei", category:"batteries", power:10, type:"LFP", phases:0, mppt:0,
-    offers:[
-      { sellerId:"S01", sellerName:"SolarTech DE", country:"DE", flag:"🇩🇪", rating:4.9, reviews:132, stock:80, price:3490, badge:"trusted", bankTransfer:true, delivery:"suntrex" },
-    ]},
-  { id:"BAT003", name:"BYD Battery-Box HVS 5.1", brand:"BYD", category:"batteries", power:5.1, type:"LFP", phases:0, mppt:0,
-    offers:[
-      { sellerId:"S03", sellerName:"EnerSol ES", country:"ES", flag:"🇪🇸", rating:4.5, reviews:56, stock:60, price:2100, badge:null, bankTransfer:true, delivery:"seller" },
-    ]},
-  { id:"BAT004", name:"Deye BOS-G 5.1kWh LV", brand:"Deye", category:"batteries", power:5.1, type:"LFP", phases:0, mppt:0,
-    offers:[
-      { sellerId:"S06", sellerName:"DeyelDirect PL", country:"PL", flag:"🇵🇱", rating:4.9, reviews:26, stock:200, price:1290, badge:"trusted", bankTransfer:true, delivery:"seller" },
-    ]},
-  // Optimizers
-  { id:"OPT001", name:"Huawei SUN2000-450W-P2", brand:"Huawei", category:"optimizers", power:0.45, type:"Optimizer", phases:0, mppt:0,
-    offers:[
-      { sellerId:"S01", sellerName:"SolarTech DE", country:"DE", flag:"🇩🇪", rating:4.9, reviews:132, stock:5000, price:39, badge:"trusted", bankTransfer:true, delivery:"suntrex" },
-      { sellerId:"S04", sellerName:"SunPower NL", country:"NL", flag:"🇳🇱", rating:4.8, reviews:94, stock:2000, price:42, badge:"trusted", bankTransfer:true, delivery:"suntrex" },
-    ]},
-  // Solar Panels
-  { id:"PAN001", name:"Jinko Tiger Neo N-type 575W", brand:"Jinko Solar", category:"panels", power:0.575, type:"Monocrystalline", phases:0, mppt:0,
-    offers:[
-      { sellerId:"S03", sellerName:"EnerSol ES", country:"ES", flag:"🇪🇸", rating:4.5, reviews:56, stock:3000, price:95, badge:null, bankTransfer:true, delivery:"seller" },
-      { sellerId:"S01", sellerName:"SolarTech DE", country:"DE", flag:"🇩🇪", rating:4.9, reviews:132, stock:5000, price:98, badge:"trusted", bankTransfer:true, delivery:"suntrex" },
-    ]},
-  { id:"PAN002", name:"Trina Vertex S+ 445W", brand:"Trina Solar", category:"panels", power:0.445, type:"Monocrystalline", phases:0, mppt:0,
-    offers:[
-      { sellerId:"S02", sellerName:"PV Parts FR", country:"FR", flag:"🇫🇷", rating:4.7, reviews:86, stock:1200, price:88, badge:null, bankTransfer:true, delivery:"suntrex" },
-    ]},
-  { id:"PAN003", name:"Canadian Solar HiKu7 CS7L-600MS", brand:"Canadian Solar", category:"panels", power:0.6, type:"Monocrystalline", phases:0, mppt:0,
-    offers:[
-      { sellerId:"S04", sellerName:"SunPower NL", country:"NL", flag:"🇳🇱", rating:4.8, reviews:94, stock:800, price:110, badge:"trusted", bankTransfer:true, delivery:"seller" },
-    ]},
-];
+/* ── Build catalog from real products ──────────────────── */
+const CATALOG = REAL_PRODUCTS.map(p => ({
+  id: p.id,
+  name: p.name,
+  brand: p.brand,
+  category: p.category,
+  power: p.powerKw || (p.capacityKwh ? p.capacityKwh : 0),
+  type: p.type,
+  phases: p.phases || 0,
+  mppt: p.mppt || 0,
+  sku: p.sku,
+  offers: [
+    {
+      sellerId: "S01",
+      sellerName: p.seller || "QUALIWATT",
+      country: "FR",
+      flag: "🇫🇷",
+      rating: 4.8,
+      reviews: 8,
+      stock: p.stock,
+      price: p.price,
+      badge: "trusted",
+      bankTransfer: true,
+      delivery: "suntrex",
+    },
+  ],
+}));
 
 const CATEGORIES = [
   { id:"all", label:"Tous les produits", count: CATALOG.length },
   { id:"inverters", label:"Onduleurs", count: CATALOG.filter(p=>p.category==="inverters").length },
   { id:"batteries", label:"Batteries / Stockage", count: CATALOG.filter(p=>p.category==="batteries").length },
-  { id:"panels", label:"Panneaux solaires", count: CATALOG.filter(p=>p.category==="panels").length },
   { id:"optimizers", label:"Optimiseurs", count: CATALOG.filter(p=>p.category==="optimizers").length },
+  { id:"ev-chargers", label:"Bornes de recharge", count: CATALOG.filter(p=>p.category==="ev-chargers").length },
+  { id:"accessories", label:"Accessoires", count: CATALOG.filter(p=>p.category==="accessories").length },
 ];
 
-const BRANDS_FILTER = ["Huawei","Deye","Enphase","SMA","BYD","Jinko Solar","Trina Solar","Canadian Solar"];
+const BRANDS_FILTER = ["Huawei"];
 const TYPES_FILTER = ["String","Hybrid","Microinverter","LFP","Monocrystalline","Optimizer"];
 
 /* ── Styles ────────────────────────────────────────── */
