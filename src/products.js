@@ -26,7 +26,7 @@ const PRODUCTS = [
     protection: "IP66",
     certifications: ["IEC 62109-1", "IEC 62109-2", "EN 50549-1"],
     features: ["AFCI intégré", "AI Smart I-V Curve Diagnosis", "Smart String Monitoring", "FusionSolar compatible"],
-    image: "https://solar.huawei.com/upload/image/SUN2000-100KTL-M2.png",
+    image: "/products/hw-sun2000-100k-m2.svg",
     datasheet: "https://solar.huawei.com/download/SUN2000-100KTL-M2-datasheet.pdf",
     stock: 1,
     minOrder: 1,
@@ -55,7 +55,7 @@ const PRODUCTS = [
     protection: "IP66",
     certifications: ["IEC 62109-1", "IEC 62109-2"],
     features: ["Smart I-V Curve Diagnosis", "AI Powered AFCI", "PID Recovery"],
-    image: "https://solar.huawei.com/upload/image/SUN2000-30KTL-M3.png",
+    image: "/products/hw-sun2000-30k-m3.svg",
     stock: 4,
     minOrder: 1,
     seller: "QUALIWATT",
@@ -82,7 +82,7 @@ const PRODUCTS = [
     efficiency: "97.7%",
     protection: "IP65",
     features: ["Compatible LUNA2000", "Export limitation", "100% unbalanced output"],
-    image: "https://solar.huawei.com/upload/image/SUN2000-6KTL-L1.png",
+    image: "/products/hw-sun2000-6k-l1.svg",
     stock: 6,
     minOrder: 1,
     seller: "QUALIWATT",
@@ -108,6 +108,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sun2000-8k-lc0.svg",
   },
   {
     id: "hw-sun2000-10k-lc0",
@@ -130,6 +132,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sun2000-10k-lc0.svg",
   },
 
   // ═══════════════════════════════════════════
@@ -156,6 +160,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sun2000-5k-map0.svg",
   },
   {
     id: "hw-sun2000-6k-map0",
@@ -178,6 +184,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sun2000-6k-map0.svg",
   },
   {
     id: "hw-sun2000-8k-map0",
@@ -200,6 +208,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sun2000-8k-map0.svg",
   },
   {
     id: "hw-sun2000-10k-map0",
@@ -222,6 +232,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sun2000-10k-map0.svg",
   },
   {
     id: "hw-sun2000-12k-map0",
@@ -244,6 +256,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sun2000-12k-map0.svg",
   },
 
   // ═══════════════════════════════════════════
@@ -270,6 +284,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sun2000-12k-mb0.svg",
   },
   {
     id: "hw-sun2000-15k-mb0",
@@ -292,6 +308,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sun2000-15k-mb0.svg",
   },
   {
     id: "hw-sun2000-17k-mb0",
@@ -314,6 +332,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sun2000-17k-mb0.svg",
   },
   {
     id: "hw-sun2000-20k-mb0",
@@ -336,6 +356,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sun2000-20k-mb0.svg",
   },
   {
     id: "hw-sun2000-25k-mb0",
@@ -358,6 +380,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sun2000-25k-mb0.svg",
   },
 
   // ═══════════════════════════════════════════
@@ -384,6 +408,8 @@ const PRODUCTS = [
     stock: 50,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-luna2000-5kw-c0.svg",
   },
   {
     id: "hw-luna2000-5-e0",
@@ -406,6 +432,8 @@ const PRODUCTS = [
     stock: 80,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-luna2000-5-e0.svg",
   },
 
   // ═══════════════════════════════════════════
@@ -428,6 +456,8 @@ const PRODUCTS = [
     stock: 100,
     minOrder: 10,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-merc-1300-p.svg",
   },
 
   // ═══════════════════════════════════════════
@@ -448,6 +478,8 @@ const PRODUCTS = [
     stock: 30,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sdongle-a05.svg",
   },
   {
     id: "hw-sdongle-b06-eu",
@@ -464,6 +496,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-sdongle-b06-eu.svg",
   },
 
   // ═══════════════════════════════════════════
@@ -486,6 +520,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-scharger-7ks-s0.svg",
   },
   {
     id: "hw-scharger-22kt-s0",
@@ -504,6 +540,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-scharger-22kt-s0.svg",
   },
 
   // ═══════════════════════════════════════════
@@ -524,6 +562,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-smartps-80ai-t0.svg",
   },
   {
     id: "hw-dtsu666-h250a",
@@ -540,6 +580,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-dtsu666-h250a.svg",
   },
   {
     id: "hw-smartps-250a-t0",
@@ -556,6 +598,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-smartps-250a-t0.svg",
   },
   {
     id: "hw-smartps-100a-s0",
@@ -572,6 +616,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-smartps-100a-s0.svg",
   },
   {
     id: "hw-ddsu666-h",
@@ -588,6 +634,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-ddsu666-h.svg",
   },
   {
     id: "hw-dtsu666-h-100a",
@@ -604,6 +652,8 @@ const PRODUCTS = [
     stock: 10,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-dtsu666-h-100a.svg",
   },
 
   // ═══════════════════════════════════════════
@@ -626,6 +676,8 @@ const PRODUCTS = [
     stock: 5,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-smartguard-63a-s0.svg",
   },
   {
     id: "hw-smartguard-63a-t0",
@@ -644,6 +696,8 @@ const PRODUCTS = [
     stock: 5,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-smartguard-63a-t0.svg",
   },
 
   // ═══════════════════════════════════════════
@@ -664,6 +718,8 @@ const PRODUCTS = [
     stock: 5,
     minOrder: 1,
     seller: "QUALIWATT",
+  
+    image: "/products/hw-emma-a02.svg",
   },
 ];
 

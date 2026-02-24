@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#f8f9fa"/>
+  <rect x="0" y="0" width="400" height="4" fill="#e4002b"/>
+  <text x="200" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#999" font-weight="600" letter-spacing="2">HUAWEI</text>
+  <text x="200" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#333" font-weight="700">SmartGuard 3PH</text>
+  <text x="200" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#888">Backup Triphasé</text>
+  <rect x="140" y="280" width="120" height="32" rx="4" fill="#e4002b" opacity="0.1"/>
+  <text x="200" y="301" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#e4002b" font-weight="600">SUNTREX</text>
+</svg>

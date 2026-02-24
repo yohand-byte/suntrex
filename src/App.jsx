@@ -351,35 +351,17 @@ function CatCard({img, title, sub, count, big, small}) {
 
 /* ══ BRAND LOGO: image with text fallback ══ */
 function BrandLogo({brand}) {
-  // Professional styled brand wordmarks — no external dependency
-  const styles = {
-    huawei: { fontSize:22, fontWeight:700, letterSpacing:2, textTransform:"uppercase" },
-    jinko: { fontSize:20, fontWeight:800, fontStyle:"italic" },
-    trina: { fontSize:19, fontWeight:700 },
-    longi: { fontSize:20, fontWeight:800, letterSpacing:1 },
-    "ja-solar": { fontSize:18, fontWeight:700 },
-    "canadian-solar": { fontSize:16, fontWeight:700 },
-    sma: { fontSize:24, fontWeight:900, letterSpacing:4 },
-    sungrow: { fontSize:19, fontWeight:700 },
-    solaredge: { fontSize:18, fontWeight:700 },
-    goodwe: { fontSize:20, fontWeight:700 },
-    growatt: { fontSize:20, fontWeight:800, letterSpacing:1 },
-    risen: { fontSize:22, fontWeight:700, fontStyle:"italic" },
-    byd: { fontSize:26, fontWeight:900, letterSpacing:5 },
-    deye: { fontSize:24, fontWeight:800, letterSpacing:1 },
-    enphase: { fontSize:19, fontWeight:700, letterSpacing:0.5 },
+  const [failed, setFailed] = useState(false);
+  const domains = {
+    huawei: "huawei.com", jinko: "jinkosolar.com", trina: "trinasolar.com",
+    longi: "longi.com", "ja-solar": "jasolar.com", "canadian-solar": "canadiansolar.com",
+    sma: "sma.de", sungrow: "en.sungrowpower.com", solaredge: "solaredge.com",
+    goodwe: "goodwe.com", growatt: "growatt.com", risen: "risenenergy.com",
+    byd: "byd.com", deye: "deye.com", enphase: "enphase.com",
   };
-  const s = styles[brand.f] || {};
-  return (
-    <span style={{
-      color: brand.c,
-      whiteSpace: "nowrap",
-      fontFamily: "'Inter', 'DM Sans', -apple-system, sans-serif",
-      cursor: "pointer",
-      transition: "opacity 0.2s",
-      ...s,
-    }}>{brand.n}</span>
-  );
+  const d = domains[brand.f];
+  if (!failed && d) return <img src={`https://logo.clearbit.com/${d}`} alt={brand.n} style={{height:30,maxWidth:130,objectFit:"contain"}} onError={()=>setFailed(true)}/>;
+  return <span style={{fontSize:brand.n.length>10?16:20,fontWeight:800,color:brand.c,whiteSpace:"nowrap",fontFamily:"'Inter',sans-serif"}}>{brand.n}</span>;
 }
 function AutoSlides({slides, cur, set}) {
   const ref = useRef(null);
