@@ -132,7 +132,7 @@ export function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
             <button type="submit" style={S.btn}>Se connecter</button>
           </form>
           <div style={{...S.divider,margin:"14px 0"}}><div style={S.dividerLine}/><span>ou</span><div style={S.dividerLine}/></div>
-          <button style={{...S.btnOutline,height:42,display:"flex",alignItems:"center",justifyContent:"center",gap:10,borderWidth:1,borderColor:"#ddd",color:"#444",fontSize:14}}>
+          <button onClick={() => window.location.href = "/api/auth/google"} style={{...S.btnOutline,height:42,display:"flex",alignItems:"center",justifyContent:"center",gap:10,borderWidth:1,borderColor:"#ddd",color:"#444",fontSize:14,cursor:"pointer"}}>
             <GoogleIcon/> Se connecter avec Google
           </button>
           <p style={{fontSize:13,color:"#888",textAlign:"center",marginTop:14}}>
@@ -392,7 +392,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
 
                 {/* Separator + Google */}
                 <div style={{...S.divider,margin:"2px 0"}}><div style={S.dividerLine}/><span>ou</span><div style={S.dividerLine}/></div>
-                <button style={{...S.btnOutline,height:40,display:"flex",alignItems:"center",justifyContent:"center",gap:10,fontSize:13,borderWidth:1,borderColor:"#ddd",color:"#444"}}>
+                <button onClick={() => window.location.href = "/api/auth/google"} style={{...S.btnOutline,height:40,display:"flex",alignItems:"center",justifyContent:"center",gap:10,fontSize:13,borderWidth:1,borderColor:"#ddd",color:"#444",cursor:"pointer"}}>
                   <GoogleIcon/> S'inscrire avec Google
                 </button>
 
