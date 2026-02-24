@@ -26,7 +26,7 @@ function buildProductDetail(p) {
     category: p.category,
     categoryLabel: CATEGORY_LABELS[p.category] || p.category,
     subtitle: [p.type, p.phases ? `${p.phases}-Phase` : null, p.power || p.capacity].filter(Boolean).join(" — "),
-    description: p.features ? p.features.join(". ") + "." : "",
+    description: p.description || (p.features ? p.features.join(". ") + "." : ""),
     datasheet: p.datasheet || `${p.sku}-datasheet.pdf`,
     specs: {
       general: [
@@ -114,8 +114,8 @@ const S = {
   breadcrumb: { display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "#888", marginBottom: 24, flexWrap: "wrap" },
   breadcrumbLink: { color: "#555", textDecoration: "none", cursor: "pointer" },
   breadcrumbCurrent: { color: "#333", fontWeight: 500 },
-  productHeader: { display: "flex", gap: 32, marginBottom: 36, border: "1px solid #e8e8e8", borderRadius: 12, padding: 28 },
-  productImage: { width: 200, height: 240, background: "#fff", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, padding: 16 },
+  productHeader: { display: "flex", gap: 32, marginBottom: 36, border: "1px solid #e8e8e8", borderRadius: 12, padding: 28, background: "#fff" },
+  productImage: { width: 240, height: 300, background: "#fff", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, padding: 16 },
   brandTag: { fontSize: 14, fontWeight: 700, letterSpacing: "0.01em", marginBottom: 6 },
   sectionTitle: { fontSize: 17, fontWeight: 700, color: "#222", display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", padding: "14px 0" },
   greenBar: { width: "100%", height: 3, background: "#4CAF50", borderRadius: 2, marginTop: 2 },
@@ -234,7 +234,7 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
       <div style={S.productHeader}>
         <div style={S.productImage}>
           {product.image ? (
-            <img src={product.image} alt={product.name} style={{ maxHeight: 200, maxWidth: "100%", objectFit: "contain", mixBlendMode: "multiply" }} />
+            <img src={product.image} alt={product.name} style={{ maxHeight: 300, maxWidth: "100%", objectFit: "contain", mixBlendMode: "multiply" }} />
           ) : (
             <div style={{ textAlign: "center", color: "#ccc" }}>
               <svg width="48" height="48" fill="none" stroke="#ddd" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
@@ -262,20 +262,20 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
       </Section>
 
       <Section title="Téléchargements">
-        <div style={S.downloadRow}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <div style={{ width: 36, height: 36, borderRadius: 8, background: "#f0f0f0", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <svg width="16" height="16" fill="none" stroke="#888" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+        <a href={product.datasheet} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+          <div style={{ ...S.downloadRow, cursor: "pointer", transition: "background .15s" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ width: 36, height: 36, borderRadius: 8, background: "#e8f5e9", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <svg width="16" height="16" fill="none" stroke="#4CAF50" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+              </div>
+              <div>
+                <span style={{ fontSize: 13, color: "#333", fontWeight: 500 }}>Fiche technique — {product.name}</span>
+                <span style={{ fontSize: 11, color: "#888", display: "block", marginTop: 2 }}>{product.datasheet.startsWith("/") ? "PDF" : "Page produit"}</span>
+              </div>
             </div>
-            <span style={{ fontSize: 13, color: "#333" }}>{product.datasheet}</span>
+            <svg width="18" height="18" fill="none" stroke="#4CAF50" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
           </div>
-          <button style={{ background: "none", border: "none", cursor: "pointer", color: "#888" }}>
-            <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          </button>
-        </div>
-        <div style={{ textAlign: "right", marginTop: 4 }}>
-          <a href="#" style={{ fontSize: 13, color: "#4CAF50", textDecoration: "underline" }}>Télécharger tous les fichiers</a>
-        </div>
+        </a>
       </Section>
 
       <Section title={`Spécifications techniques — ${product.name}`}>
