@@ -1,0 +1,552 @@
+{
+  "generated_at": "2026-02-25T16:40:37.662431",
+  "total": 25,
+  "errors": 0,
+  "products": [
+    {
+      "sku": "BOS-GM51",
+      "brand": "DEYE",
+      "model": "BOS GM51",
+      "category": "battery",
+      "specs": {
+        "dimensions_mm": "589x590x1640",
+        "weight_kg": 15.5,
+        "ip_rating": "IP20",
+        "operating_temp": "-20°C to +55°C",
+        "capacity_kwh": 5.12,
+        "certifications": [
+          "CE",
+          "IEC62619",
+          "UL1973",
+          "UL9540"
+        ]
+      },
+      "datasheet_url": "/datasheets/deye/bos-gm51-datasheet.pdf",
+      "image_url": "/products/deye/bos-gm51.jpg",
+      "extracted_at": "2026-02-25T16:40:37.324905"
+    },
+    {
+      "sku": "SUN-6K-SG03LP1",
+      "brand": "DEYE",
+      "model": "SUN 6K SG03LP1",
+      "category": "inverter",
+      "specs": {
+        "phases": 1,
+        "dimensions_mm": "330x580x232",
+        "ip_rating": "IP65",
+        "certifications": [
+          "CE",
+          "EN 50549",
+          "EN 61000",
+          "EN 62109",
+          "G98",
+          "G99",
+          "IEC 61727",
+          "IEC 62116",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/deye/sun-6k-sg03lp1-datasheet.pdf",
+      "image_url": "/products/deye/sun-6k-sg03lp1.jpg",
+      "extracted_at": "2026-02-25T16:40:37.341993"
+    },
+    {
+      "sku": "SUN-8K-SG04LP3",
+      "brand": "DEYE",
+      "model": "SUN 8K SG04LP3",
+      "category": "inverter",
+      "specs": {
+        "power_w": 422,
+        "power_kw": 0.42,
+        "phases": 3,
+        "ip_rating": "IP65",
+        "certifications": [
+          "CE",
+          "EN 61000",
+          "EN 62109",
+          "G98",
+          "G99",
+          "IEC 61727",
+          "IEC 62116",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/deye/sun-8k-sg04lp3-datasheet.pdf",
+      "image_url": "/products/deye/sun-8k-sg04lp3.jpg",
+      "extracted_at": "2026-02-25T16:40:37.350228"
+    },
+    {
+      "sku": "FLASH-500",
+      "brand": "DUALSUN",
+      "model": "FLASH 500",
+      "category": "panel",
+      "specs": {
+        "certifications": [
+          "IEC 61215",
+          "IEC 61730"
+        ]
+      },
+      "datasheet_url": "/datasheets/dualsun/flash-500-datasheet.pdf",
+      "image_url": "/products/dualsun/flash-500.jpg",
+      "extracted_at": "2026-02-25T16:40:37.369529"
+    },
+    {
+      "sku": "IQ8HC",
+      "brand": "ENPHASE",
+      "model": "IQ8HC",
+      "category": "microinverter",
+      "specs": {
+        "efficiency_pct": 97.0,
+        "phases": 1,
+        "weight_kg": 1.1,
+        "certifications": [
+          "CE",
+          "UL 1741",
+          "UL 62109"
+        ]
+      },
+      "datasheet_url": "/datasheets/enphase/iq8hc-datasheet.pdf",
+      "image_url": "/products/enphase/iq8hc.jpg",
+      "extracted_at": "2026-02-25T16:40:37.386797"
+    },
+    {
+      "sku": "HMS-800",
+      "brand": "HOYMILES",
+      "model": "HMS 800",
+      "category": "microinverter",
+      "specs": {
+        "power_w": 1000,
+        "power_kw": 1.0,
+        "efficiency_pct": 96.7,
+        "mppt_count": 5,
+        "dimensions_mm": "261x180x35",
+        "ip_rating": "IP67",
+        "certifications": [
+          "CE",
+          "EN 50549",
+          "EN 61000",
+          "EN 62109",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/hoymiles/hms-800-datasheet.pdf",
+      "image_url": "/products/hoymiles/hms-800.jpg",
+      "extracted_at": "2026-02-25T16:40:37.426223"
+    },
+    {
+      "sku": "HMT-2250",
+      "brand": "HOYMILES",
+      "model": "HMT 2250",
+      "category": "microinverter",
+      "specs": {
+        "efficiency_pct": 96.5,
+        "phases": 3,
+        "dimensions_mm": "330x250x35",
+        "weight_kg": 20.0,
+        "ip_rating": "IP67",
+        "operating_temp": "-20°C to +55°C",
+        "certifications": [
+          "CE",
+          "EN 50549",
+          "EN 61000",
+          "EN 62109",
+          "EN50549",
+          "UL1741",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/hoymiles/hmt-2250-datasheet.pdf",
+      "image_url": "/products/hoymiles/hmt-2250.jpg",
+      "extracted_at": "2026-02-25T16:40:37.454055"
+    },
+    {
+      "sku": "LUNA2000-5-E0",
+      "brand": "HUAWEI",
+      "model": "LUNA2000 5 E0",
+      "category": "battery",
+      "specs": {
+        "power_kw": 2.5,
+        "phases": 3,
+        "weight_kg": 12.0,
+        "ip_rating": "IP66",
+        "capacity_kwh": 5.0,
+        "certifications": [
+          "CE",
+          "IEC 60730",
+          "IEC62619",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/huawei/luna2000-5-e0-datasheet.pdf",
+      "image_url": "/products/huawei/luna2000-5-e0.jpg",
+      "extracted_at": "2026-02-25T16:40:37.469723"
+    },
+    {
+      "sku": "LUNA2000-C0",
+      "brand": "HUAWEI",
+      "model": "LUNA2000 C0",
+      "category": "battery",
+      "specs": {
+        "power_kw": 2.5,
+        "phases": 3,
+        "dimensions_mm": "670x150x600",
+        "weight_kg": 12.0,
+        "ip_rating": "IP66",
+        "capacity_kwh": 5.0,
+        "certifications": [
+          "CE",
+          "IEC 60730",
+          "IEC62619",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/huawei/luna2000-c0-datasheet.pdf",
+      "image_url": "/products/huawei/luna2000-c0.jpg",
+      "extracted_at": "2026-02-25T16:40:37.484700"
+    },
+    {
+      "sku": "P1300",
+      "brand": "HUAWEI",
+      "model": "P1300",
+      "category": "optimizer",
+      "specs": {
+        "power_kw": 2.0,
+        "efficiency_pct": 99.5,
+        "ip_rating": "IP68",
+        "operating_temp": "-40°C to +85°C",
+        "certifications": [
+          "IEC62109"
+        ]
+      },
+      "datasheet_url": "/datasheets/huawei/p1300-datasheet.pdf",
+      "image_url": "/products/huawei/p1300.jpg",
+      "extracted_at": "2026-02-25T16:40:37.496342"
+    },
+    {
+      "sku": "SUN2000-10K-MAP0",
+      "brand": "HUAWEI",
+      "model": "SUN2000 10K MAP0",
+      "category": "inverter",
+      "specs": {
+        "efficiency_pct": 98.4,
+        "phases": 3,
+        "weight_kg": 21.0,
+        "ip_rating": "IP66",
+        "certifications": [
+          "CE",
+          "EN50549",
+          "G99",
+          "IEC 61643",
+          "IEC61727",
+          "IEC62109",
+          "IEC62116",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/huawei/sun2000-10k-map0-datasheet.pdf",
+      "image_url": "/products/huawei/sun2000-10k-map0.jpg",
+      "extracted_at": "2026-02-25T16:40:37.506505"
+    },
+    {
+      "sku": "SUN2000-5K-MAP0",
+      "brand": "HUAWEI",
+      "model": "SUN2000 5K MAP0",
+      "category": "inverter",
+      "specs": {
+        "efficiency_pct": 98.4,
+        "phases": 3,
+        "weight_kg": 21.0,
+        "ip_rating": "IP66",
+        "certifications": [
+          "CE",
+          "EN50549",
+          "G99",
+          "IEC 61643",
+          "IEC61727",
+          "IEC62109",
+          "IEC62116",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/huawei/sun2000-5k-map0-datasheet.pdf",
+      "image_url": "/products/huawei/sun2000-5k-map0.jpg",
+      "extracted_at": "2026-02-25T16:40:37.516827"
+    },
+    {
+      "sku": "LUNA2000-S0",
+      "brand": "DATASHEETS",
+      "model": "LUNA2000 S0",
+      "category": "battery",
+      "specs": {
+        "power_kw": 2.5,
+        "phases": 3,
+        "weight_kg": 12.0,
+        "ip_rating": "IP66",
+        "capacity_kwh": 5.0,
+        "certifications": [
+          "CE",
+          "IEC 60730",
+          "IEC62619",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/datasheets/luna2000-s0.pdf",
+      "image_url": "/products/datasheets/luna2000-s0.jpg",
+      "extracted_at": "2026-02-25T16:40:37.533143"
+    },
+    {
+      "sku": "MERC-1300-P",
+      "brand": "DATASHEETS",
+      "model": "MERC 1300 P",
+      "category": "optimizer",
+      "specs": {
+        "power_kw": 2.0,
+        "efficiency_pct": 99.5,
+        "ip_rating": "IP68",
+        "certifications": [
+          "IEC62109"
+        ]
+      },
+      "datasheet_url": "/datasheets/datasheets/merc-1300-p.pdf",
+      "image_url": "/products/datasheets/merc-1300-p.jpg",
+      "extracted_at": "2026-02-25T16:40:37.544159"
+    },
+    {
+      "sku": "SCHARGER-SERIES",
+      "brand": "DATASHEETS",
+      "model": "SCHARGER SERIES",
+      "category": "ev-charger",
+      "specs": {
+        "power_kw": 1.4,
+        "phases": 3,
+        "weight_kg": 3.0,
+        "ip_rating": "IP54",
+        "certifications": [
+          "EN 300",
+          "EN 301",
+          "EN 50364",
+          "EN 50665",
+          "EN 62311",
+          "EN300",
+          "IEC 61851",
+          "IEC 62311",
+          "IEC 63000",
+          "UL94"
+        ]
+      },
+      "datasheet_url": "/datasheets/datasheets/scharger-series.pdf",
+      "image_url": "/products/datasheets/scharger-series.jpg",
+      "extracted_at": "2026-02-25T16:40:37.554157"
+    },
+    {
+      "sku": "SDONGLE-A05-WIFI",
+      "brand": "DATASHEETS",
+      "model": "SDONGLE A05 WIFI",
+      "category": "monitoring",
+      "specs": {
+        "dimensions_mm": "146x48x33",
+        "ip_rating": "IP65",
+        "certifications": [
+          "CE"
+        ]
+      },
+      "datasheet_url": "/datasheets/datasheets/sdongle-a05-wifi.pdf",
+      "image_url": "/products/datasheets/sdongle-a05-wifi.jpg",
+      "extracted_at": "2026-02-25T16:40:37.561657"
+    },
+    {
+      "sku": "SMARTGUARD-63A-T0",
+      "brand": "DATASHEETS",
+      "model": "SMARTGUARD 63A T0",
+      "category": "accessory",
+      "specs": {
+        "phases": 3,
+        "weight_kg": 17.0,
+        "ip_rating": "IP55"
+      },
+      "datasheet_url": "/datasheets/datasheets/smartguard-63a-t0.pdf",
+      "image_url": "/products/datasheets/smartguard-63a-t0.jpg",
+      "extracted_at": "2026-02-25T16:40:37.572327"
+    },
+    {
+      "sku": "SMARTPS-250A-T0",
+      "brand": "DATASHEETS",
+      "model": "SMARTPS 250A T0",
+      "category": "accessory",
+      "specs": {
+        "weight_kg": 26.0
+      },
+      "datasheet_url": "/datasheets/datasheets/smartps-250a-t0.pdf",
+      "image_url": "/products/datasheets/smartps-250a-t0.jpg",
+      "extracted_at": "2026-02-25T16:40:37.582598"
+    },
+    {
+      "sku": "SMARTPS-80AI-T0",
+      "brand": "DATASHEETS",
+      "model": "SMARTPS 80AI T0",
+      "category": "accessory",
+      "specs": {
+        "weight_kg": 29.0
+      },
+      "datasheet_url": "/datasheets/datasheets/smartps-80ai-t0.pdf",
+      "image_url": "/products/datasheets/smartps-80ai-t0.jpg",
+      "extracted_at": "2026-02-25T16:40:37.593953"
+    },
+    {
+      "sku": "SUN2000-100KTL-M2",
+      "brand": "DATASHEETS",
+      "model": "SUN2000 100KTL M2",
+      "category": "inverter",
+      "specs": {
+        "efficiency_pct": 99.0,
+        "phases": 3,
+        "dimensions_mm": "525x470x262",
+        "weight_kg": 25.0,
+        "ip_rating": "IP65",
+        "certifications": [
+          "CE",
+          "EN 50549",
+          "G98",
+          "G99",
+          "IEC 61643",
+          "IEC 62109",
+          "IEC61727",
+          "IEC62116",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/datasheets/sun2000-100ktl-m2.pdf",
+      "image_url": "/products/datasheets/sun2000-100ktl-m2.jpg",
+      "extracted_at": "2026-02-25T16:40:37.605230"
+    },
+    {
+      "sku": "SUN2000-30KTL-M3",
+      "brand": "DATASHEETS",
+      "model": "SUN2000 30KTL M3",
+      "category": "inverter",
+      "specs": {
+        "efficiency_pct": 98.7,
+        "dimensions_mm": "640x530x270",
+        "weight_kg": 43.0,
+        "ip_rating": "IP66",
+        "certifications": [
+          "CE",
+          "EN 50530",
+          "EN 62109",
+          "IEC 60068",
+          "IEC 61683",
+          "IEC 61727",
+          "IEC 62109",
+          "IEC 62116",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/datasheets/sun2000-30ktl-m3.pdf",
+      "image_url": "/products/datasheets/sun2000-30ktl-m3.jpg",
+      "extracted_at": "2026-02-25T16:40:37.617454"
+    },
+    {
+      "sku": "SUN2000-6KTL-L1",
+      "brand": "DATASHEETS",
+      "model": "SUN2000 6KTL L1",
+      "category": "inverter",
+      "specs": {
+        "efficiency_pct": 98.2,
+        "phases": 1,
+        "weight_kg": 12.0,
+        "ip_rating": "IP65",
+        "certifications": [
+          "CE",
+          "EN 50549",
+          "G98",
+          "G99",
+          "IEC 61643",
+          "IEC 62109",
+          "IEC61727",
+          "IEC62116",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/datasheets/sun2000-6ktl-l1.pdf",
+      "image_url": "/products/datasheets/sun2000-6ktl-l1.jpg",
+      "extracted_at": "2026-02-25T16:40:37.625367"
+    },
+    {
+      "sku": "SUN2000-8K-10K-LC0",
+      "brand": "DATASHEETS",
+      "model": "SUN2000 8K 10K LC0",
+      "category": "inverter",
+      "specs": {
+        "efficiency_pct": 98.1,
+        "phases": 1,
+        "weight_kg": 14.5,
+        "ip_rating": "IP66",
+        "certifications": [
+          "EN 301",
+          "EN 55011",
+          "EN 61000",
+          "EN 62920",
+          "IEC 61643",
+          "IEC61000",
+          "IEC62109"
+        ]
+      },
+      "datasheet_url": "/datasheets/datasheets/sun2000-8k-10k-lc0.pdf",
+      "image_url": "/products/datasheets/sun2000-8k-10k-lc0.jpg",
+      "extracted_at": "2026-02-25T16:40:37.639358"
+    },
+    {
+      "sku": "SUN2000-MAP0-SERIES",
+      "brand": "DATASHEETS",
+      "model": "SUN2000 MAP0 SERIES",
+      "category": "inverter",
+      "specs": {
+        "efficiency_pct": 98.4,
+        "phases": 3,
+        "weight_kg": 21.0,
+        "ip_rating": "IP66",
+        "certifications": [
+          "CE",
+          "EN50549",
+          "G99",
+          "IEC 61643",
+          "IEC61727",
+          "IEC62109",
+          "IEC62116",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/datasheets/sun2000-map0-series.pdf",
+      "image_url": "/products/datasheets/sun2000-map0-series.jpg",
+      "extracted_at": "2026-02-25T16:40:37.649570"
+    },
+    {
+      "sku": "SUN2000-MB0-SERIES",
+      "brand": "DATASHEETS",
+      "model": "SUN2000 MB0 SERIES",
+      "category": "inverter",
+      "specs": {
+        "power_kw": 21.0,
+        "efficiency_pct": 98.4,
+        "weight_kg": 21.0,
+        "ip_rating": "IP66",
+        "operating_temp": "-25°C to +60°C",
+        "certifications": [
+          "CE",
+          "EN50530",
+          "EN50549",
+          "G99",
+          "IEC 61643",
+          "IEC61683",
+          "IEC61727",
+          "IEC62109",
+          "IEC62116",
+          "VDE"
+        ]
+      },
+      "datasheet_url": "/datasheets/datasheets/sun2000-mb0-series.pdf",
+      "image_url": "/products/datasheets/sun2000-mb0-series.jpg",
+      "extracted_at": "2026-02-25T16:40:37.662116"
+    }
+  ]
+}

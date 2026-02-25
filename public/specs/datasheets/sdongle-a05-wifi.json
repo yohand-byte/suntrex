@@ -1,0 +1,16 @@
+{
+  "sku": "SDONGLE-A05-WIFI",
+  "brand": "DATASHEETS",
+  "model": "SDONGLE A05 WIFI",
+  "category": "monitoring",
+  "specs": {
+    "dimensions_mm": "146x48x33",
+    "ip_rating": "IP65",
+    "certifications": [
+      "CE"
+    ]
+  },
+  "datasheet_url": "/datasheets/datasheets/sdongle-a05-wifi.pdf",
+  "image_url": "/products/datasheets/sdongle-a05-wifi.jpg",
+  "extracted_at": "2026-02-25T16:40:37.561657"
+}

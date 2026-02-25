@@ -1,0 +1,18 @@
+# Missing Assets Report - 2026-02-25
+# Assets that could not be downloaded from official sources
+
+## Product Images (using fallback/generic images)
+- recom/panther-375.jpg → FALLBACK (Unsplash generic solar panel)
+- recom/panther-500.jpg → FALLBACK (Unsplash generic solar panel)
+- jasolar/jam54d40-420.jpg → FALLBACK (Unsplash generic solar panel)
+- k2systems/console-plus.jpg → FALLBACK (Unsplash generic accessory)
+
+## Datasheets (not downloaded)
+- enphase/iq8plus-datasheet.pdf → Enphase requires authentication for downloads
+- jasolar/jam54d40-420-datasheet.pdf → JA Solar blocks automated downloads (406 error)
+- recom/panther-375-datasheet.pdf → RECOM Solar site not found (recom.eu is healthcare)
+- esdec/clickfit-evo-installation-guide.pdf → ESDEC blocks direct downloads
+
+## Logos (placeholder or missing)
+- sma.svg → SVG text placeholder (SMA blocks all asset downloads)
+- trinasolar.png → Wide banner image, not ideal as logo (trina.svg placeholder exists)

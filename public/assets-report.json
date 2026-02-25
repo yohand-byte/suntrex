@@ -1,0 +1,136 @@
+{
+  "generated_at": "2026-02-25T16:30:00Z",
+  "summary": {
+    "product_images_downloaded": 26,
+    "product_images_from_official": 22,
+    "product_images_fallback": 4,
+    "product_images_missing": 0,
+    "datasheets_downloaded": 12,
+    "datasheets_missing": 4,
+    "logos_downloaded": 18,
+    "logos_real_assets": 15,
+    "logos_placeholder": 1,
+    "specs_extracted": 0
+  },
+  "product_images": {
+    "huawei": {
+      "status": "complete",
+      "count": 9,
+      "source": "Converted from existing webp assets",
+      "files": [
+        "sun2000-5k-map0.jpg",
+        "sun2000-8k-map0.jpg",
+        "sun2000-10k-map0.jpg",
+        "sun2000-12k-mb0.jpg",
+        "sun2000-8k-lc0.jpg",
+        "luna2000-5-e0.jpg",
+        "luna2000-c0.jpg",
+        "p1300.jpg",
+        "wlan-fe.jpg"
+      ]
+    },
+    "deye": {
+      "status": "complete",
+      "count": 5,
+      "source": "Official deyeinverter.com + authorized resellers",
+      "files": [
+        "sun-6k-sg03lp1.jpg",
+        "sun-8k-sg01lp1.jpg",
+        "sun-8k-sg04lp3.jpg",
+        "bos-gm51.jpg",
+        "se-g51pro.jpg"
+      ]
+    },
+    "hoymiles": {
+      "status": "complete",
+      "count": 4,
+      "source": "Official hoymiles.com",
+      "files": [
+        "hms-800.jpg",
+        "hms-1600.jpg",
+        "hmt-2250.jpg",
+        "dtu-pros.jpg"
+      ]
+    },
+    "enphase": {
+      "status": "complete",
+      "count": 4,
+      "source": "Official enphase.com store",
+      "files": [
+        "iq8plus.jpg",
+        "iq8hc.jpg",
+        "envoy-s.jpg",
+        "iq-relay-1p.jpg"
+      ]
+    },
+    "dualsun": {
+      "status": "complete",
+      "count": 1,
+      "source": "Official dualsun.com",
+      "files": ["flash-500.jpg"]
+    },
+    "esdec": {
+      "status": "complete",
+      "count": 2,
+      "source": "Converted from existing webp assets",
+      "files": ["clickfit-hook.jpg", "clickfit-rail.jpg"]
+    },
+    "recom": {
+      "status": "fallback",
+      "count": 2,
+      "source": "Unsplash generic solar panel",
+      "files": ["panther-375.jpg", "panther-500.jpg"]
+    },
+    "jasolar": {
+      "status": "fallback",
+      "count": 1,
+      "source": "Unsplash generic solar panel",
+      "files": ["jam54d40-420.jpg"]
+    },
+    "k2systems": {
+      "status": "fallback",
+      "count": 1,
+      "source": "Unsplash generic accessory",
+      "files": ["console-plus.jpg"]
+    }
+  },
+  "datasheets": {
+    "downloaded": [
+      "huawei/sun2000-5k-map0-datasheet.pdf",
+      "huawei/sun2000-10k-map0-datasheet.pdf",
+      "huawei/luna2000-5-e0-datasheet.pdf",
+      "huawei/luna2000-c0-datasheet.pdf",
+      "huawei/p1300-datasheet.pdf",
+      "deye/sun-6k-sg03lp1-datasheet.pdf",
+      "deye/sun-8k-sg04lp3-datasheet.pdf",
+      "deye/bos-gm51-datasheet.pdf",
+      "hoymiles/hms-800-datasheet.pdf",
+      "hoymiles/hmt-2250-datasheet.pdf",
+      "enphase/iq8hc-datasheet.pdf",
+      "dualsun/flash-500-datasheet.pdf"
+    ],
+    "missing": [
+      "enphase/iq8plus-datasheet.pdf",
+      "jasolar/jam54d40-420-datasheet.pdf",
+      "recom/panther-375-datasheet.pdf",
+      "esdec/clickfit-evo-installation-guide.pdf"
+    ]
+  },
+  "logos": {
+    "real_svg": [
+      "huawei.svg", "dualsun.svg", "enphase.svg", "esdec.svg",
+      "goodwe.svg", "hoymiles.svg", "k2systems.svg", "solaredge.svg",
+      "byd.svg"
+    ],
+    "real_png": [
+      "deye.png", "growatt.png", "jinko.png", "pytes.png",
+      "recom.png", "sungrow.png"
+    ],
+    "placeholder": ["sma.svg"],
+    "pre_existing": [
+      "canadian-solar.svg", "deye.svg", "growatt.svg", "ja-solar.svg",
+      "jinko.svg", "longi.svg", "risen.svg", "sungrow.svg", "trina.svg"
+    ]
+  },
+  "total_size_mb": 41.8
+}

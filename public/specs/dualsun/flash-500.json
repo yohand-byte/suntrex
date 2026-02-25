@@ -1,0 +1,15 @@
+{
+  "sku": "FLASH-500",
+  "brand": "DUALSUN",
+  "model": "FLASH 500",
+  "category": "panel",
+  "specs": {
+    "certifications": [
+      "IEC 61215",
+      "IEC 61730"
+    ]
+  },
+  "datasheet_url": "/datasheets/dualsun/flash-500-datasheet.pdf",
+  "image_url": "/products/dualsun/flash-500.jpg",
+  "extracted_at": "2026-02-25T16:40:37.369529"
+}

@@ -1,0 +1,27 @@
+{
+  "sku": "SCHARGER-SERIES",
+  "brand": "DATASHEETS",
+  "model": "SCHARGER SERIES",
+  "category": "ev-charger",
+  "specs": {
+    "power_kw": 1.4,
+    "phases": 3,
+    "weight_kg": 3.0,
+    "ip_rating": "IP54",
+    "certifications": [
+      "EN 300",
+      "EN 301",
+      "EN 50364",
+      "EN 50665",
+      "EN 62311",
+      "EN300",
+      "IEC 61851",
+      "IEC 62311",
+      "IEC 63000",
+      "UL94"
+    ]
+  },
+  "datasheet_url": "/datasheets/datasheets/scharger-series.pdf",
+  "image_url": "/products/datasheets/scharger-series.jpg",
+  "extracted_at": "2026-02-25T16:40:37.554157"
+}

@@ -1,0 +1,14 @@
+{
+  "sku": "SMARTGUARD-63A-T0",
+  "brand": "DATASHEETS",
+  "model": "SMARTGUARD 63A T0",
+  "category": "accessory",
+  "specs": {
+    "phases": 3,
+    "weight_kg": 17.0,
+    "ip_rating": "IP55"
+  },
+  "datasheet_url": "/datasheets/datasheets/smartguard-63a-t0.pdf",
+  "image_url": "/products/datasheets/smartguard-63a-t0.jpg",
+  "extracted_at": "2026-02-25T16:40:37.572327"
+}

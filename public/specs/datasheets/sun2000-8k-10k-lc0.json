@@ -1,0 +1,24 @@
+{
+  "sku": "SUN2000-8K-10K-LC0",
+  "brand": "DATASHEETS",
+  "model": "SUN2000 8K 10K LC0",
+  "category": "inverter",
+  "specs": {
+    "efficiency_pct": 98.1,
+    "phases": 1,
+    "weight_kg": 14.5,
+    "ip_rating": "IP66",
+    "certifications": [
+      "EN 301",
+      "EN 55011",
+      "EN 61000",
+      "EN 62920",
+      "IEC 61643",
+      "IEC61000",
+      "IEC62109"
+    ]
+  },
+  "datasheet_url": "/datasheets/datasheets/sun2000-8k-10k-lc0.pdf",
+  "image_url": "/products/datasheets/sun2000-8k-10k-lc0.jpg",
+  "extracted_at": "2026-02-25T16:40:37.639358"
+}

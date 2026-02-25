@@ -1,0 +1,26 @@
+{
+  "sku": "SUN2000-30KTL-M3",
+  "brand": "DATASHEETS",
+  "model": "SUN2000 30KTL M3",
+  "category": "inverter",
+  "specs": {
+    "efficiency_pct": 98.7,
+    "dimensions_mm": "640x530x270",
+    "weight_kg": 43.0,
+    "ip_rating": "IP66",
+    "certifications": [
+      "CE",
+      "EN 50530",
+      "EN 62109",
+      "IEC 60068",
+      "IEC 61683",
+      "IEC 61727",
+      "IEC 62109",
+      "IEC 62116",
+      "VDE"
+    ]
+  },
+  "datasheet_url": "/datasheets/datasheets/sun2000-30ktl-m3.pdf",
+  "image_url": "/products/datasheets/sun2000-30ktl-m3.jpg",
+  "extracted_at": "2026-02-25T16:40:37.617454"
+}

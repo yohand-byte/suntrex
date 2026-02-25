@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useCurrency } from "../CurrencyContext";
 import REAL_PRODUCTS from "../products";
 import ProductCard from "../components/catalog/ProductCard";
+import ProductModal from "../components/catalog/ProductModal";
 import { FilterSection, CheckFilter } from "../components/catalog/FilterSidebar";
 import RangeFilter from "../components/catalog/RangeFilter";
 import useResponsive from "../hooks/useResponsive";
@@ -20,6 +21,17 @@ const CATALOG = REAL_PRODUCTS.map((p) => ({
   mppt: p.mppt || 0,
   image: p.image,
   sku: p.sku,
+  // Enriched fields for ProductCard + ProductModal
+  efficiency: p.efficiency || null,
+  protection: p.protection || null,
+  weight: p.weight || null,
+  warranty: p.warranty || null,
+  dimensions: p.dimensions || null,
+  capacityKwh: p.capacityKwh || null,
+  certifications: p.certifications || [],
+  features: p.features || [],
+  datasheet: p.datasheet || null,
+  description: p.description || null,
   offers: [
     {
       sellerId: "S01",
@@ -189,6 +201,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
     trusted: false,
   });
   const [currentPage, setCurrentPage] = useState(1);
+  const [modalProduct, setModalProduct] = useState(null);
 
   /* ── Toggle helpers ── */
   const toggle = (setter) => (val) =>
@@ -760,6 +773,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
                 isLoggedIn={isLoggedIn}
                 onLogin={onLogin}
                 grouped={grouped}
+                onOpenModal={setModalProduct}
               />
             ))
           )}
@@ -806,6 +820,16 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
           </div>
         )}
       </main>
+
+      {/* ── Product Quick View Modal ── */}
+      {modalProduct && (
+        <ProductModal
+          product={modalProduct}
+          isLoggedIn={isLoggedIn}
+          onLogin={onLogin}
+          onClose={() => setModalProduct(null)}
+        />
+      )}
     </div>
   );
 }

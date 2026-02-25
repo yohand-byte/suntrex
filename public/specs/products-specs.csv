@@ -1,0 +1,26 @@
+sku,brand,model,category,power_kw,efficiency_pct,phases,mppt_count,weight_kg,ip_rating,warranty_years,capacity_kwh,dimensions_mm,operating_temp,certifications,datasheet_url,image_url
+BOS-GM51,DEYE,BOS GM51,battery,,,,,15.5,IP20,,5.12,589x590x1640,-20°C to +55°C,CE|IEC62619|UL1973|UL9540,/datasheets/deye/bos-gm51-datasheet.pdf,/products/deye/bos-gm51.jpg
+SUN-6K-SG03LP1,DEYE,SUN 6K SG03LP1,inverter,,,1,,,IP65,,,330x580x232,,CE|EN 50549|EN 61000|EN 62109|G98|G99|IEC 61727|IEC 62116|VDE,/datasheets/deye/sun-6k-sg03lp1-datasheet.pdf,/products/deye/sun-6k-sg03lp1.jpg
+SUN-8K-SG04LP3,DEYE,SUN 8K SG04LP3,inverter,0.42,,3,,,IP65,,,,,CE|EN 61000|EN 62109|G98|G99|IEC 61727|IEC 62116|VDE,/datasheets/deye/sun-8k-sg04lp3-datasheet.pdf,/products/deye/sun-8k-sg04lp3.jpg
+FLASH-500,DUALSUN,FLASH 500,panel,,,,,,,,,,,IEC 61215|IEC 61730,/datasheets/dualsun/flash-500-datasheet.pdf,/products/dualsun/flash-500.jpg
+IQ8HC,ENPHASE,IQ8HC,microinverter,,97.0,1,,1.1,,,,,,CE|UL 1741|UL 62109,/datasheets/enphase/iq8hc-datasheet.pdf,/products/enphase/iq8hc.jpg
+HMS-800,HOYMILES,HMS 800,microinverter,1.0,96.7,,5,,IP67,,,261x180x35,,CE|EN 50549|EN 61000|EN 62109|VDE,/datasheets/hoymiles/hms-800-datasheet.pdf,/products/hoymiles/hms-800.jpg
+HMT-2250,HOYMILES,HMT 2250,microinverter,,96.5,3,,20.0,IP67,,,330x250x35,-20°C to +55°C,CE|EN 50549|EN 61000|EN 62109|EN50549|UL1741|VDE,/datasheets/hoymiles/hmt-2250-datasheet.pdf,/products/hoymiles/hmt-2250.jpg
+LUNA2000-5-E0,HUAWEI,LUNA2000 5 E0,battery,2.5,,3,,12.0,IP66,,5.0,,,CE|IEC 60730|IEC62619|VDE,/datasheets/huawei/luna2000-5-e0-datasheet.pdf,/products/huawei/luna2000-5-e0.jpg
+LUNA2000-C0,HUAWEI,LUNA2000 C0,battery,2.5,,3,,12.0,IP66,,5.0,670x150x600,,CE|IEC 60730|IEC62619|VDE,/datasheets/huawei/luna2000-c0-datasheet.pdf,/products/huawei/luna2000-c0.jpg
+P1300,HUAWEI,P1300,optimizer,2.0,99.5,,,,IP68,,,,-40°C to +85°C,IEC62109,/datasheets/huawei/p1300-datasheet.pdf,/products/huawei/p1300.jpg
+SUN2000-10K-MAP0,HUAWEI,SUN2000 10K MAP0,inverter,,98.4,3,,21.0,IP66,,,,,CE|EN50549|G99|IEC 61643|IEC61727|IEC62109|IEC62116|VDE,/datasheets/huawei/sun2000-10k-map0-datasheet.pdf,/products/huawei/sun2000-10k-map0.jpg
+SUN2000-5K-MAP0,HUAWEI,SUN2000 5K MAP0,inverter,,98.4,3,,21.0,IP66,,,,,CE|EN50549|G99|IEC 61643|IEC61727|IEC62109|IEC62116|VDE,/datasheets/huawei/sun2000-5k-map0-datasheet.pdf,/products/huawei/sun2000-5k-map0.jpg
+LUNA2000-S0,DATASHEETS,LUNA2000 S0,battery,2.5,,3,,12.0,IP66,,5.0,,,CE|IEC 60730|IEC62619|VDE,/datasheets/datasheets/luna2000-s0.pdf,/products/datasheets/luna2000-s0.jpg
+MERC-1300-P,DATASHEETS,MERC 1300 P,optimizer,2.0,99.5,,,,IP68,,,,,IEC62109,/datasheets/datasheets/merc-1300-p.pdf,/products/datasheets/merc-1300-p.jpg
+SCHARGER-SERIES,DATASHEETS,SCHARGER SERIES,ev-charger,1.4,,3,,3.0,IP54,,,,,EN 300|EN 301|EN 50364|EN 50665|EN 62311|EN300|IEC 61851|IEC 62311|IEC 63000|UL94,/datasheets/datasheets/scharger-series.pdf,/products/datasheets/scharger-series.jpg
+SDONGLE-A05-WIFI,DATASHEETS,SDONGLE A05 WIFI,monitoring,,,,,,IP65,,,146x48x33,,CE,/datasheets/datasheets/sdongle-a05-wifi.pdf,/products/datasheets/sdongle-a05-wifi.jpg
+SMARTGUARD-63A-T0,DATASHEETS,SMARTGUARD 63A T0,accessory,,,3,,17.0,IP55,,,,,,/datasheets/datasheets/smartguard-63a-t0.pdf,/products/datasheets/smartguard-63a-t0.jpg
+SMARTPS-250A-T0,DATASHEETS,SMARTPS 250A T0,accessory,,,,,26.0,,,,,,,/datasheets/datasheets/smartps-250a-t0.pdf,/products/datasheets/smartps-250a-t0.jpg
+SMARTPS-80AI-T0,DATASHEETS,SMARTPS 80AI T0,accessory,,,,,29.0,,,,,,,/datasheets/datasheets/smartps-80ai-t0.pdf,/products/datasheets/smartps-80ai-t0.jpg
+SUN2000-100KTL-M2,DATASHEETS,SUN2000 100KTL M2,inverter,,99.0,3,,25.0,IP65,,,525x470x262,,CE|EN 50549|G98|G99|IEC 61643|IEC 62109|IEC61727|IEC62116|VDE,/datasheets/datasheets/sun2000-100ktl-m2.pdf,/products/datasheets/sun2000-100ktl-m2.jpg
+SUN2000-30KTL-M3,DATASHEETS,SUN2000 30KTL M3,inverter,,98.7,,,43.0,IP66,,,640x530x270,,CE|EN 50530|EN 62109|IEC 60068|IEC 61683|IEC 61727|IEC 62109|IEC 62116|VDE,/datasheets/datasheets/sun2000-30ktl-m3.pdf,/products/datasheets/sun2000-30ktl-m3.jpg
+SUN2000-6KTL-L1,DATASHEETS,SUN2000 6KTL L1,inverter,,98.2,1,,12.0,IP65,,,,,CE|EN 50549|G98|G99|IEC 61643|IEC 62109|IEC61727|IEC62116|VDE,/datasheets/datasheets/sun2000-6ktl-l1.pdf,/products/datasheets/sun2000-6ktl-l1.jpg
+SUN2000-8K-10K-LC0,DATASHEETS,SUN2000 8K 10K LC0,inverter,,98.1,1,,14.5,IP66,,,,,EN 301|EN 55011|EN 61000|EN 62920|IEC 61643|IEC61000|IEC62109,/datasheets/datasheets/sun2000-8k-10k-lc0.pdf,/products/datasheets/sun2000-8k-10k-lc0.jpg
+SUN2000-MAP0-SERIES,DATASHEETS,SUN2000 MAP0 SERIES,inverter,,98.4,3,,21.0,IP66,,,,,CE|EN50549|G99|IEC 61643|IEC61727|IEC62109|IEC62116|VDE,/datasheets/datasheets/sun2000-map0-series.pdf,/products/datasheets/sun2000-map0-series.jpg
+SUN2000-MB0-SERIES,DATASHEETS,SUN2000 MB0 SERIES,inverter,21.0,98.4,,,21.0,IP66,,,,-25°C to +60°C,CE|EN50530|EN50549|G99|IEC 61643|IEC61683|IEC61727|IEC62109|IEC62116|VDE,/datasheets/datasheets/sun2000-mb0-series.pdf,/products/datasheets/sun2000-mb0-series.jpg

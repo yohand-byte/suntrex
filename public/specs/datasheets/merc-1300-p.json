@@ -1,0 +1,17 @@
+{
+  "sku": "MERC-1300-P",
+  "brand": "DATASHEETS",
+  "model": "MERC 1300 P",
+  "category": "optimizer",
+  "specs": {
+    "power_kw": 2.0,
+    "efficiency_pct": 99.5,
+    "ip_rating": "IP68",
+    "certifications": [
+      "IEC62109"
+    ]
+  },
+  "datasheet_url": "/datasheets/datasheets/merc-1300-p.pdf",
+  "image_url": "/products/datasheets/merc-1300-p.jpg",
+  "extracted_at": "2026-02-25T16:40:37.544159"
+}

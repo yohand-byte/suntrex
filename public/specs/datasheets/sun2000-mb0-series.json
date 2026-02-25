@@ -1,0 +1,28 @@
+{
+  "sku": "SUN2000-MB0-SERIES",
+  "brand": "DATASHEETS",
+  "model": "SUN2000 MB0 SERIES",
+  "category": "inverter",
+  "specs": {
+    "power_kw": 21.0,
+    "efficiency_pct": 98.4,
+    "weight_kg": 21.0,
+    "ip_rating": "IP66",
+    "operating_temp": "-25°C to +60°C",
+    "certifications": [
+      "CE",
+      "EN50530",
+      "EN50549",
+      "G99",
+      "IEC 61643",
+      "IEC61683",
+      "IEC61727",
+      "IEC62109",
+      "IEC62116",
+      "VDE"
+    ]
+  },
+  "datasheet_url": "/datasheets/datasheets/sun2000-mb0-series.pdf",
+  "image_url": "/products/datasheets/sun2000-mb0-series.jpg",
+  "extracted_at": "2026-02-25T16:40:37.662116"
+}

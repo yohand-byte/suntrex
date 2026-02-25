@@ -1,0 +1,23 @@
+{
+  "sku": "LUNA2000-C0",
+  "brand": "HUAWEI",
+  "model": "LUNA2000 C0",
+  "category": "battery",
+  "specs": {
+    "power_kw": 2.5,
+    "phases": 3,
+    "dimensions_mm": "670x150x600",
+    "weight_kg": 12.0,
+    "ip_rating": "IP66",
+    "capacity_kwh": 5.0,
+    "certifications": [
+      "CE",
+      "IEC 60730",
+      "IEC62619",
+      "VDE"
+    ]
+  },
+  "datasheet_url": "/datasheets/huawei/luna2000-c0-datasheet.pdf",
+  "image_url": "/products/huawei/luna2000-c0.jpg",
+  "extracted_at": "2026-02-25T16:40:37.484700"
+}

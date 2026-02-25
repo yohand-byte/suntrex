@@ -1,0 +1,22 @@
+{
+  "sku": "BOS-GM51",
+  "brand": "DEYE",
+  "model": "BOS GM51",
+  "category": "battery",
+  "specs": {
+    "dimensions_mm": "589x590x1640",
+    "weight_kg": 15.5,
+    "ip_rating": "IP20",
+    "operating_temp": "-20°C to +55°C",
+    "capacity_kwh": 5.12,
+    "certifications": [
+      "CE",
+      "IEC62619",
+      "UL1973",
+      "UL9540"
+    ]
+  },
+  "datasheet_url": "/datasheets/deye/bos-gm51-datasheet.pdf",
+  "image_url": "/products/deye/bos-gm51.jpg",
+  "extracted_at": "2026-02-25T16:40:37.324905"
+}

@@ -1,0 +1,19 @@
+{
+  "sku": "IQ8HC",
+  "brand": "ENPHASE",
+  "model": "IQ8HC",
+  "category": "microinverter",
+  "specs": {
+    "efficiency_pct": 97.0,
+    "phases": 1,
+    "weight_kg": 1.1,
+    "certifications": [
+      "CE",
+      "UL 1741",
+      "UL 62109"
+    ]
+  },
+  "datasheet_url": "/datasheets/enphase/iq8hc-datasheet.pdf",
+  "image_url": "/products/enphase/iq8hc.jpg",
+  "extracted_at": "2026-02-25T16:40:37.386797"
+}

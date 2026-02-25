@@ -1,0 +1,18 @@
+{
+  "sku": "P1300",
+  "brand": "HUAWEI",
+  "model": "P1300",
+  "category": "optimizer",
+  "specs": {
+    "power_kw": 2.0,
+    "efficiency_pct": 99.5,
+    "ip_rating": "IP68",
+    "operating_temp": "-40°C to +85°C",
+    "certifications": [
+      "IEC62109"
+    ]
+  },
+  "datasheet_url": "/datasheets/huawei/p1300-datasheet.pdf",
+  "image_url": "/products/huawei/p1300.jpg",
+  "extracted_at": "2026-02-25T16:40:37.496342"
+}

@@ -1,0 +1,25 @@
+{
+  "sku": "SUN-8K-SG04LP3",
+  "brand": "DEYE",
+  "model": "SUN 8K SG04LP3",
+  "category": "inverter",
+  "specs": {
+    "power_w": 422,
+    "power_kw": 0.42,
+    "phases": 3,
+    "ip_rating": "IP65",
+    "certifications": [
+      "CE",
+      "EN 61000",
+      "EN 62109",
+      "G98",
+      "G99",
+      "IEC 61727",
+      "IEC 62116",
+      "VDE"
+    ]
+  },
+  "datasheet_url": "/datasheets/deye/sun-8k-sg04lp3-datasheet.pdf",
+  "image_url": "/products/deye/sun-8k-sg04lp3.jpg",
+  "extracted_at": "2026-02-25T16:40:37.350228"
+}
