@@ -1,13 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-const FAQ_RESPONSES = {
-  "Suivi de commande": "Pour suivre votre commande, rendez-vous dans Mes achats > Transactions. Vous y trouverez le statut et le numéro de suivi.",
-  "Retours / SAV": "Pour un retour ou SAV, contactez-nous à support@suntrex.com avec votre n° de commande. Délai de retour : 14 jours.",
-  "Facturation": "Vos factures sont disponibles dans Mes achats > Factures. Pour toute question, écrivez à compta@suntrex.com.",
-  "Autre question": "Un agent va prendre en charge votre demande. Temps d'attente estimé : < 5 min.",
-};
-
-const FAQ_OPTIONS = Object.keys(FAQ_RESPONSES);
+const FAQ_OPTIONS = ["Suivi de commande", "Retours / SAV", "Facturation", "Autre question"];
 
 const WELCOME_MSG = { id: 0, sender: "support", text: "👋 Bonjour ! Comment pouvons-nous vous aider ?" };
 
@@ -25,27 +18,56 @@ export default function ChatFab() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  const addSupportReply = (text) => {
+  const fetchAIReply = async (allMessages) => {
     setIsTyping(true);
-    setTimeout(() => {
+    // Build conversation history for the API (skip welcome message)
+    const apiMessages = allMessages
+      .filter((m) => m.id !== 0)
+      .map((m) => ({
+        role: m.sender === "user" ? "user" : "assistant",
+        content: m.text,
+      }));
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: apiMessages }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.reply) throw new Error(data.error || "No reply");
       setIsTyping(false);
-      setMessages((prev) => [...prev, { id: nextId++, sender: "support", text }]);
-    }, 1000);
+      setMessages((prev) => [...prev, { id: nextId++, sender: "support", text: data.reply }]);
+    } catch {
+      setIsTyping(false);
+      setMessages((prev) => [
+        ...prev,
+        { id: nextId++, sender: "support", text: "Désolé, une erreur est survenue. Contactez support@suntrex.com pour assistance." },
+      ]);
+    }
   };
 
   const handleFaq = (label) => {
     setShowFaq(false);
-    setMessages((prev) => [...prev, { id: nextId++, sender: "user", text: label }]);
-    addSupportReply(FAQ_RESPONSES[label]);
+    const newMsg = { id: nextId++, sender: "user", text: label };
+    setMessages((prev) => {
+      const updated = [...prev, newMsg];
+      fetchAIReply(updated);
+      return updated;
+    });
   };
 
   const handleSend = () => {
     const text = inputText.trim();
-    if (!text) return;
+    if (!text || isTyping) return;
     setInputText("");
     setShowFaq(false);
-    setMessages((prev) => [...prev, { id: nextId++, sender: "user", text }]);
-    addSupportReply("Un agent va prendre en charge votre demande. Temps d'attente estimé : < 5 min.");
+    const newMsg = { id: nextId++, sender: "user", text };
+    setMessages((prev) => {
+      const updated = [...prev, newMsg];
+      fetchAIReply(updated);
+      return updated;
+    });
   };
 
   const handleKeyDown = (e) => {
@@ -115,28 +137,23 @@ export default function ChatFab() {
 
   return (
     <>
-      {/* CSS keyframes for animation + typing dots */}
       <style>{`
         @keyframes chatPanelIn { from { opacity:0; transform:scale(.9) translateY(10px); } to { opacity:1; transform:scale(1) translateY(0); } }
         @keyframes typingDot { 0%,80%,100% { opacity:.3; } 40% { opacity:1; } }
       `}</style>
 
-      {/* Chat panel */}
       {open && (
         <div style={panelStyle}>
-          {/* Header */}
           <div style={headerStyle}>
             <span>Support SUNTREX</span>
             <button onClick={() => setOpen(false)} style={{ background: "none", border: "none", color: "#fff", cursor: "pointer", fontSize: 20, lineHeight: 1 }}>✕</button>
           </div>
 
-          {/* Messages */}
           <div style={bodyStyle}>
             {messages.map((m) => (
               <div key={m.id} style={m.sender === "support" ? supportBubble : userBubble}>{m.text}</div>
             ))}
 
-            {/* FAQ pills */}
             {showFaq && (
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 2 }}>
                 {FAQ_OPTIONS.map((label) => (
@@ -145,7 +162,6 @@ export default function ChatFab() {
               </div>
             )}
 
-            {/* Typing indicator */}
             {isTyping && (
               <div style={{ ...supportBubble, display: "flex", gap: 4, padding: "10px 16px" }}>
                 {[0, 1, 2].map((i) => (
@@ -157,7 +173,6 @@ export default function ChatFab() {
             <div ref={bottomRef} />
           </div>
 
-          {/* Input bar */}
           <div style={inputBarStyle}>
             <textarea
               rows={1}
@@ -166,15 +181,15 @@ export default function ChatFab() {
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={handleKeyDown}
               style={textareaStyle}
+              disabled={isTyping}
             />
-            <button onClick={handleSend} style={sendBtnStyle} aria-label="Envoyer">
+            <button onClick={handleSend} style={{ ...sendBtnStyle, opacity: isTyping ? 0.5 : 1 }} aria-label="Envoyer" disabled={isTyping}>
               <svg width="18" height="18" fill="none" stroke="#fff" strokeWidth="2" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
             </button>
           </div>
         </div>
       )}
 
-      {/* FAB button */}
       <button style={fabStyle} onClick={() => setOpen((v) => !v)}>
         {!open && <div style={badgeStyle} />}
         {open ? (
