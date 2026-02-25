@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import useResponsive from "./hooks/useResponsive";
 
 const B = {background:"#f8f8f8",borderRadius:12,border:"1px solid #e4e5ec",padding:20,minHeight:300,overflow:"hidden"};
 
 export default function AM({type}) {
   const { t } = useTranslation();
+  const { isMobile } = useResponsive();
   const [s, setS] = useState(0);
   useEffect(() => {setS(0); const t = setInterval(() => setS(v => v + 1), 600); return () => clearInterval(t);}, [type]);
 
@@ -102,11 +104,11 @@ export default function AM({type}) {
   if (type === "stockmgmt") return(<div style={B}>
     <div style={{fontSize:11,color:"#999",marginBottom:12,fontWeight:600}}>{t("mockups.stockMgmt.title")}</div>
     <div style={{background:"#fff",border:"1px solid #eee",borderRadius:10,overflow:"hidden"}}>
-      <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",padding:"10px 14px",background:"#f9f9f9",fontSize:11,fontWeight:600,color:"#999"}}><span>{t("mockups.stockMgmt.product")}</span><span>{t("mockups.stockMgmt.stock")}</span><span>{t("mockups.stockMgmt.price")}</span><span>{t("mockups.stockMgmt.status")}</span></div>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"2fr 1fr 1fr":"2fr 1fr 1fr 1fr",padding:"10px 14px",background:"#f9f9f9",fontSize:11,fontWeight:600,color:"#999"}}><span>{t("mockups.stockMgmt.product")}</span><span>{t("mockups.stockMgmt.stock")}</span><span>{t("mockups.stockMgmt.price")}</span>{!isMobile&&<span>{t("mockups.stockMgmt.status")}</span>}</div>
       {[{n:"SUN2000-10KTL",st:"500",p:"€1 180",c:"#4CAF50",l:t("mockups.stockMgmt.inStock"),d:1},{n:"SUN2000-5KTL",st:"12",p:"€689",c:"#f59e0b",l:t("mockups.stockMgmt.lowStock"),d:3},{n:"LUNA2000-5-S0",st:"88",p:"€1 890",c:"#4CAF50",l:t("mockups.stockMgmt.inStock"),d:5},{n:"SUN2000-3KTL",st:"0",p:"€479",c:"#e53e3e",l:t("mockups.stockMgmt.outOfStock"),d:7}].map((r,i)=>s>=r.d&&(
-        <div key={i} className="ar" style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",padding:"10px 14px",borderTop:"1px solid #f0f0f0",alignItems:"center"}}>
+        <div key={i} className="ar" style={{display:"grid",gridTemplateColumns:isMobile?"2fr 1fr 1fr":"2fr 1fr 1fr 1fr",padding:"10px 14px",borderTop:"1px solid #f0f0f0",alignItems:"center"}}>
           <span style={{fontSize:12,fontWeight:500}}>{r.n}</span><span style={{fontSize:12,fontWeight:600,color:r.c}}>{r.st}</span><span style={{fontSize:12}}>{r.p}</span>
-          <span style={{fontSize:10,fontWeight:600,padding:"2px 8px",borderRadius:10,background:r.c==="#4CAF50"?"#f0fdf4":r.c==="#f59e0b"?"#fffbeb":"#fef2f2",color:r.c,textAlign:"center"}}>{r.l}</span>
+          {!isMobile&&<span style={{fontSize:10,fontWeight:600,padding:"2px 8px",borderRadius:10,background:r.c==="#4CAF50"?"#f0fdf4":r.c==="#f59e0b"?"#fffbeb":"#fef2f2",color:r.c,textAlign:"center"}}>{r.l}</span>}
         </div>
       ))}
       {s>=9&&<div style={{padding:"10px 14px",background:"#fffbeb",fontSize:12,color:"#92400e",borderTop:"1px solid #f0f0f0"}}>{t("mockups.stockMgmt.aiAlert")}</div>}
@@ -116,8 +118,8 @@ export default function AM({type}) {
   // dashboard (default)
   return(<div style={B}>
     <div style={{fontSize:11,color:"#999",marginBottom:12,fontWeight:600}}>{t("mockups.dashboard.title")}</div>
-    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:10,marginBottom:16}}>
-      {[[t("mockups.dashboard.offers"),"124","#4CAF50"],[t("mockups.dashboard.sales"),"€45,2k","#E8700A"],[t("mockups.dashboard.orders"),"38","#3b82f6"],[t("mockups.dashboard.rating"),"4.8","#f59e0b"]].map(([l,v,c],i)=>s>=i*2&&<div key={i} className="ar" style={{textAlign:"center",padding:12,background:"#fff",borderRadius:10,border:"1px solid #eee"}}><div style={{fontSize:10,color:"#999"}}>{l}</div><div style={{fontSize:16,fontWeight:700,marginTop:2,color:c}}>{v}</div></div>)}
+    <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr 1fr":"1fr 1fr 1fr 1fr",gap:10,marginBottom:16}}>
+      {[[t("mockups.dashboard.offers"),"124","#4CAF50"],[t("mockups.dashboard.sales"),"€45,2k","#E8700A"],[t("mockups.dashboard.orders"),"38","#3b82f6"],[t("mockups.dashboard.rating"),"4.8","#f59e0b"]].map(([l,v,c],i)=>s>=i*2&&<div key={i} className="ar" style={{textAlign:"center",padding:isMobile?8:12,background:"#fff",borderRadius:10,border:"1px solid #eee"}}><div style={{fontSize:10,color:"#999"}}>{l}</div><div style={{fontSize:isMobile?14:16,fontWeight:700,marginTop:2,color:c}}>{v}</div></div>)}
     </div>
     {s>=6&&<div className="ar" style={{background:"#fff",border:"1px solid #eee",borderRadius:10,padding:12}}>
       <div style={{fontSize:11,color:"#999",marginBottom:8}}>{t("mockups.dashboard.latestOrders")}</div>

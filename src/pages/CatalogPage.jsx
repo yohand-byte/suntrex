@@ -6,6 +6,7 @@ import REAL_PRODUCTS from "../products";
 import ProductCard from "../components/catalog/ProductCard";
 import { FilterSection, CheckFilter } from "../components/catalog/FilterSidebar";
 import RangeFilter from "../components/catalog/RangeFilter";
+import useResponsive from "../hooks/useResponsive";
 
 /* ── Build catalog from real products ── */
 const CATALOG = REAL_PRODUCTS.map((p) => ({
@@ -98,6 +99,8 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
   const { category: urlCategory } = useParams();
   const navigate = useNavigate();
   const topRef = useRef(null);
+  const { isMobile } = useResponsive();
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   const PHASE_LABELS = { "1": t("catalog.monophase"), "3": t("catalog.triphase") };
 
@@ -407,9 +410,16 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
   };
 
   return (
-    <div style={S.page} ref={topRef}>
+    <div style={{...S.page, flexDirection: isMobile ? "column" : "row", padding: isMobile ? "16px 16px" : "24px 20px"}} ref={topRef}>
+      {/* Mobile filter toggle */}
+      {isMobile && (
+        <button onClick={() => setShowMobileFilters(!showMobileFilters)} style={{display:"flex",alignItems:"center",gap:8,padding:"10px 16px",borderRadius:8,border:"1px solid #ddd",background:"#fff",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"inherit",marginBottom:12,color:"#555"}}>
+          <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+          {t("catalog.filters")} {hasActiveFilters && <span style={{background:"#E8700A",color:"#fff",borderRadius:10,padding:"1px 6px",fontSize:11}}>{selectedBrands.length+selectedTypes.length+selectedPhases.length+selectedMppts.length+(inStockOnly?1:0)+(powerMin!=null||powerMax!=null?1:0)+(priceMin!=null||priceMax!=null?1:0)}</span>}
+        </button>
+      )}
       {/* ══════ SIDEBAR ══════ */}
-      <aside style={S.sidebar}>
+      <aside style={{...S.sidebar, display: isMobile ? (showMobileFilters ? "block" : "none") : "block", width: isMobile ? "100%" : 260}}>
         <h2
           style={{
             fontSize: 18,

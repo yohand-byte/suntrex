@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "../CurrencyContext";
 import REAL_PRODUCTS from "../products";
+import useResponsive from "../hooks/useResponsive";
 
 /* ── Build detail view from real products.js data ── */
 const BRAND_COLORS = {
@@ -171,6 +172,7 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const { formatMoney } = useCurrency();
+  const { isMobile } = useResponsive();
 
   const CATEGORY_LABELS = {
     inverters: t("catalog.inverters"), batteries: t("catalog.batteriesStorage"), optimizers: t("catalog.optimizers"),
@@ -225,7 +227,7 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
   });
 
   return (
-    <div style={S.page}>
+    <div style={{...S.page, padding: isMobile ? "16px 16px 40px" : "20px 24px 60px"}}>
       <div style={S.breadcrumb}>
         <span style={S.breadcrumbLink} onClick={()=>navigate(-1)}>{t("product.home")}</span>
         <svg width="10" height="10" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
@@ -234,8 +236,8 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
         <span style={S.breadcrumbCurrent}>{product.name}</span>
       </div>
 
-      <div style={S.productHeader}>
-        <div style={S.productImage}>
+      <div style={{...S.productHeader, flexDirection: isMobile ? "column" : "row", padding: isMobile ? 16 : 28}}>
+        <div style={{...S.productImage, width: isMobile ? "100%" : 240, height: isMobile ? 200 : 300}}>
           {product.image ? (
             <img src={product.image} alt={product.name} style={{ maxHeight: 300, maxWidth: "100%", objectFit: "contain", mixBlendMode: "multiply" }} />
           ) : (
@@ -293,11 +295,11 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
         <SpecsTable specs={product.specs.dimensions} />
       </Section>
 
-      <div style={S.rfpBanner}>
+      <div style={{...S.rfpBanner, flexDirection: isMobile ? "column" : "row", padding: isMobile ? "20px 16px" : "28px 32px"}}>
         <div>
-          <h3 style={{ color: "#fff", fontSize: 18, fontWeight: 700, marginBottom: 6 }}>{t("product.rfpBanner.title")}</h3>
-          <p style={{ color: "#a8d5ba", fontSize: 14, margin: 0 }}>{t("product.rfpBanner.subtitle")}</p>
-          <div style={{ display: "flex", gap: 16, marginTop: 12 }}>
+          <h3 style={{ color: "#fff", fontSize: isMobile ? 16 : 18, fontWeight: 700, marginBottom: 6 }}>{t("product.rfpBanner.title")}</h3>
+          <p style={{ color: "#a8d5ba", fontSize: isMobile ? 13 : 14, margin: 0 }}>{t("product.rfpBanner.subtitle")}</p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: isMobile ? 8 : 16, marginTop: 12 }}>
             {[t("product.rfpBanner.fast"), t("product.rfpBanner.free"), t("product.rfpBanner.noCommitment"), t("product.rfpBanner.responseTime")].map(tag => (
               <span key={tag} style={{ fontSize: 12, color: "#a8d5ba", display: "flex", alignItems: "center", gap: 4 }}>
                 <span style={{ color: "#4CAF50" }}>✓</span> {tag}

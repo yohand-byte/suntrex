@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import useResponsive from "../../hooks/useResponsive";
 
 const FAQ_OPTIONS = ["Suivi de commande", "Retours / SAV", "Facturation", "Autre question"];
 
@@ -13,6 +14,7 @@ export default function ChatFab() {
   const [isTyping, setIsTyping] = useState(false);
   const [showFaq, setShowFaq] = useState(true);
   const bottomRef = useRef(null);
+  const { isMobile } = useResponsive();
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -20,7 +22,6 @@ export default function ChatFab() {
 
   const fetchAIReply = async (allMessages) => {
     setIsTyping(true);
-    // Build conversation history for the API (skip welcome message)
     const apiMessages = allMessages
       .filter((m) => m.id !== 0)
       .map((m) => ({
@@ -78,8 +79,9 @@ export default function ChatFab() {
   };
 
   // --- styles ---
+  const fabSize = isMobile ? 44 : 52;
   const fabStyle = {
-    position: "fixed", bottom: 24, right: 24, width: 52, height: 52,
+    position: "fixed", bottom: isMobile ? 16 : 24, right: isMobile ? 16 : 24, width: fabSize, height: fabSize,
     borderRadius: "50%", border: "none", background: "#4CAF50", color: "#fff",
     cursor: "pointer", boxShadow: "0 4px 16px rgba(76,175,80,0.4)",
     display: "flex", alignItems: "center", justifyContent: "center", zIndex: 50,
@@ -91,8 +93,14 @@ export default function ChatFab() {
   };
 
   const panelStyle = {
-    position: "fixed", bottom: 88, right: 24, width: 380, height: 520,
-    borderRadius: 12, background: "#fff", boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
+    position: "fixed",
+    bottom: isMobile ? 0 : 88,
+    right: isMobile ? 0 : 24,
+    width: isMobile ? "100%" : 380,
+    height: isMobile ? "85vh" : 520,
+    borderRadius: isMobile ? "12px 12px 0 0" : 12,
+    background: "#fff",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
     display: "flex", flexDirection: "column", zIndex: 1000, overflow: "hidden",
     animation: "chatPanelIn .2s ease-out",
   };
@@ -119,7 +127,7 @@ export default function ChatFab() {
   };
 
   const inputBarStyle = {
-    display: "flex", alignItems: "center", gap: 8, padding: "10px 12px",
+    display: "flex", alignItems: "center", gap: 8, padding: isMobile ? "10px 12px 16px" : "10px 12px",
     borderTop: "1px solid #e5e7eb",
   };
 
@@ -190,14 +198,17 @@ export default function ChatFab() {
         </div>
       )}
 
-      <button style={fabStyle} onClick={() => setOpen((v) => !v)}>
-        {!open && <div style={badgeStyle} />}
-        {open ? (
-          <span style={{ fontSize: 22, lineHeight: 1 }}>✕</span>
-        ) : (
-          <svg width="22" height="22" fill="none" stroke="#fff" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-        )}
-      </button>
+      {/* Hide FAB when panel is open on mobile */}
+      {!(isMobile && open) && (
+        <button style={fabStyle} onClick={() => setOpen((v) => !v)}>
+          {!open && <div style={badgeStyle} />}
+          {open ? (
+            <span style={{ fontSize: 22, lineHeight: 1 }}>✕</span>
+          ) : (
+            <svg width="22" height="22" fill="none" stroke="#fff" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          )}
+        </button>
+      )}
     </>
   );
 }

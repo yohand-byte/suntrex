@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-import ChatFab from "./components/layout/ChatFab";
+import SuntrexSupportChat from "./components/chat/SuntrexSupportChat";
 import HomePage from "./pages/HomePage";
 import CatalogPage from "./pages/CatalogPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
@@ -33,6 +33,7 @@ export default function App() {
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet"/>
       <style>{`
         *{margin:0;padding:0;box-sizing:border-box}
+        html,body{overflow-x:hidden}
         @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
         @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
         @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -43,6 +44,14 @@ export default function App() {
         .ar{animation:slideUp .5s ease-out both}
         .ar:nth-child(1){animation-delay:.1s}.ar:nth-child(2){animation-delay:.3s}
         .ar:nth-child(3){animation-delay:.5s}.ar:nth-child(4){animation-delay:.7s}
+        @media(max-width:767px){
+          .hl:hover{transform:none;box-shadow:none}
+          .hide-mobile{display:none!important}
+          nav::-webkit-scrollbar{display:none}
+        }
+        @media(min-width:768px) and (max-width:1023px){
+          .hide-tablet{display:none!important}
+        }
       `}</style>
 
       <Header
@@ -83,7 +92,7 @@ export default function App() {
       </Routes>
 
       <Footer />
-      <ChatFab />
+      <SuntrexSupportChat userId={isLoggedIn ? "current-user-id" : null} />
 
       {showLogin && (
         <LoginModal

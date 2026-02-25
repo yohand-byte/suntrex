@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import useResponsive from "./hooks/useResponsive";
 
 /* ═══════════════════════════════════════════════════════════
    SUNTREX — Auth System v2
@@ -69,10 +70,10 @@ const formatPhoneInput = (value, countryCode) => {
 const S = {
   overlay: { position:"fixed", inset:0, zIndex:100, background:"rgba(0,0,0,0.5)", display:"flex", alignItems:"center", justifyContent:"center", backdropFilter:"blur(2px)" },
   modal: { background:"#fff", borderRadius:20, maxHeight:"90vh", overflow:"auto", boxShadow:"0 24px 80px rgba(0,0,0,0.25)", position:"relative" },
-  header: { padding:"28px 36px 0", textAlign:"center" },
+  header: { padding:"24px 24px 0", textAlign:"center" },
   logo: { display:"inline-flex", alignItems:"center", gap:8, marginBottom:16 },
   logoIcon: { width:36, height:36, borderRadius:8, background:"#E8700A", display:"flex", alignItems:"center", justifyContent:"center" },
-  body: { padding:"20px 36px 28px" },
+  body: { padding:"20px 24px 28px" },
   input: { width:"100%", height:44, borderRadius:10, border:"1px solid #d3d4db", padding:"0 14px", fontSize:14, outline:"none", fontFamily:"'DM Sans',sans-serif", transition:"border-color .2s", boxSizing:"border-box" },
   label: { fontSize:13, fontWeight:500, color:"#444", marginBottom:6, display:"block" },
   btn: { width:"100%", height:46, borderRadius:10, border:"none", background:"#E8700A", color:"#fff", fontSize:15, fontWeight:600, cursor:"pointer", fontFamily:"'DM Sans',sans-serif", transition:"background .2s" },
@@ -95,6 +96,7 @@ const SunIcon = () => (
    ══════════════════════════════════════════════════════ */
 export function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
   const { t } = useTranslation();
+  const { isMobile } = useResponsive();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -105,7 +107,7 @@ export function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
 
   return (
     <div style={S.overlay} onClick={onClose}>
-      <div style={{...S.modal, width:440}} onClick={e=>e.stopPropagation()}>
+      <div style={{...S.modal, width:isMobile?"calc(100% - 32px)":440}} onClick={e=>e.stopPropagation()}>
         <button style={S.close} onClick={onClose}>✕</button>
         <div style={S.header}>
           <div style={S.logo}>
@@ -144,6 +146,7 @@ export function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
    ══════════════════════════════════════════════════════ */
 export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
   const { t } = useTranslation();
+  const { isMobile } = useResponsive();
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({
     email: "", password: "", passwordConfirm: "",
@@ -302,12 +305,12 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
     <div style={S.overlay} onClick={onClose}>
       <div style={{
         ...S.modal,
-        width: step === 3 ? 440 : step === 0 ? 780 : 480,
-        display: step === 0 ? "flex" : "block",
+        width: isMobile ? "calc(100% - 32px)" : (step === 3 ? 440 : step === 0 ? 780 : 480),
+        display: step === 0 && !isMobile ? "flex" : "block",
       }} onClick={e=>e.stopPropagation()}>
 
-        {/* ── Side panel (step 0 only) ── */}
-        {step === 0 && (
+        {/* ── Side panel (step 0 only, hidden on mobile) ── */}
+        {step === 0 && !isMobile && (
           <div style={{
             width: 300, flexShrink: 0,
             background: "linear-gradient(160deg, #E8700A 0%, #c45a00 100%)",

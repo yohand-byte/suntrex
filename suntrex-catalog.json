@@ -1,0 +1,4330 @@
+[
+  {
+    "sku": "CO/AC-6K-ENPH-2E",
+    "name": "Coffret de protection AC de 4 à 6 kW monophasé avec 2 disjoncteurs différentiels 30 mA, disjoncteur général et parafoudr",
+    "brand": "ADEE electronic",
+    "category": "accessories",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "AE/AE500TMD-120BDE",
+    "name": "MODULE BI-VERRE TECHNOLOGIE HETERO JUNCTION, DEMI CELLULES AESOLAR 500 W - HJT FULL BLACK COMET (1902X1133X30MM) - GARAN",
+    "brand": "AE SOLAR (COMET)",
+    "category": "solar_panels",
+    "stock": 10,
+    "description": "Puissance nominale : 500W Poids : 25.5 Kg Garanties : 30 ans Pays d'origine : Allemagne"
+  },
+  {
+    "sku": "xxx/000/07",
+    "name": "Grillage métallique en acier inoxydable - Maille fine - Rouleau de filtre - Feuille 304 - 30 mesh - Treillis métallique ",
+    "brand": "ALEEIK",
+    "category": "accessories",
+    "stock": 5,
+    "description": "Grillage métallique en acier inoxydable - Maille fine - Rouleau de filtre - Feuille 304 - 30 mesh - Treillis métallique pour portes - Repousse les souris, les insectes et les serpents - 30 x 120 cm"
+  },
+  {
+    "sku": "DC/HSB6C-DC/V125A",
+    "name": "Disjoncteur photovoltaïque CC HSB6C-DC 2 pôles DC500 V 125 A",
+    "brand": "ANCLLO",
+    "category": "accessories",
+    "stock": 6,
+    "description": "ANCLLO Disjoncteur photovoltaïque CC HSB6C-DC 2 pôles DC500 V 125 A Système connecté au réseau de cellules solaires Disjoncteur photovoltaïque Installation sur rail DIN 35 mm"
+  },
+  {
+    "sku": "APS/EXT20A-DS3-H-960",
+    "name": "APSystems Extension de Garantie à 20 ans pour 1 DS3-H 960VA",
+    "brand": "AP Systems",
+    "category": "micro_inverters",
+    "stock": 0,
+    "description": "APSystems Extension de Garantie à 20 ans pour 1 DS3-H 960VA"
+  },
+  {
+    "sku": "APS/EXT20A-DS3-L-730",
+    "name": "APSystems Extension de Garantie à 20 ans pour 1 DS3-L 730VA",
+    "brand": "AP Systems",
+    "category": "micro_inverters",
+    "stock": 0,
+    "description": "APSystems Extension de Garantie à 20 ans pour 1 DS3-L 730VA"
+  },
+  {
+    "sku": "APS/EXT20A-DS3-XL-880",
+    "name": "APSystems Extension de Garantie à 20 ans pour 1 DS3-XL 880VA",
+    "brand": "AP Systems",
+    "category": "micro_inverters",
+    "stock": 0,
+    "description": "APSystems Extension de Garantie à 20 ans pour 1 DS3-XL 880VA"
+  },
+  {
+    "sku": "APS/EXT20A-QT2-TRI",
+    "name": "APSystems Extension de Garantie à 20 ans pour 1 QT2 triphasé 2000VA",
+    "brand": "AP Systems",
+    "category": "micro_inverters",
+    "stock": 0,
+    "description": "APSystems Extension de Garantie à 20 ans pour 1 QT2 triphasé 2000VA"
+  },
+  {
+    "sku": "APS/QT2-ENDCAP",
+    "name": "APSystems bouchon de fin de string pour QT2 triphasé",
+    "brand": "AP Systems",
+    "category": "micro_inverters",
+    "stock": 0,
+    "description": "APSystems bouchon de fin de string pour QT2 triphasé (Ref 2062050005) HS CODE: 85369010 - Poids: 0,05 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/Y3-ACBUS-2M",
+    "name": "APSystems câble rallonge Y3 de 2m pour DS3",
+    "brand": "AP Systems",
+    "category": "cables",
+    "stock": 0,
+    "description": "APSystems câble rallonge Y3 de 2m pour DS3 (Réf 2322304903) HS CODE: 85444290 - Poids: 0,47 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/DS3-XL-880",
+    "name": "APSystems micro-onduleur DS3 Duo 880VA - Connecteurs MC4 - Garantie 10 ans",
+    "brand": "AP Systems",
+    "category": "inverters",
+    "stock": 0,
+    "description": "APSystems micro-onduleur DS3 Duo 880VA - Connecteurs MC4 - Garantie 10 ans (Ref 117018) Poids: 3.1 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/DS3-H-960",
+    "name": "APSystems micro-onduleur DS3 H Duo 960VA - Connecteur MC4 - Garantie 10 ans",
+    "brand": "AP Systems",
+    "category": "inverters",
+    "stock": 0,
+    "description": "APSystems micro-onduleur DS3 H Duo 960VA - Connecteur MC4 - Garantie 10 ans (Ref 120018) HS CODE: 85044085 - Poids: 3,10 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/DS3-L-730",
+    "name": "APSystems micro-onduleur DS3-Light Duo 730VA - Connecteurs MC4 - Garantie 10 ans",
+    "brand": "AP Systems",
+    "category": "inverters",
+    "stock": 0,
+    "description": "APSystems micro-onduleur DS3-Light Duo 730VA - Connecteurs MC4 - Garantie 10 ans (Ref 118018) HS CODE: 85044085 - Poids: 2,70 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/QT2-TRI",
+    "name": "APSystems micro-onduleur QT2 triphasé 2000VA - Connecteurs MC4 - Garantie 10 ans",
+    "brand": "AP Systems",
+    "category": "inverters",
+    "stock": 0,
+    "description": "APSystems micro-onduleur QT2 triphasé 2000VA - Connecteurs MC4 - Garantie 10 ans (Ref 124056) HS CODE: 85044085 - Poids: 6 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/Y3-ACBUS-ENDCAP",
+    "name": "APsystems Bouchon de fin de string pour DS3 / DS3-L",
+    "brand": "AP Systems",
+    "category": "micro_inverters",
+    "stock": 0,
+    "description": "APsystems Bouchon de fin de string pour DS3 / DS3-L (Ref 2060700017) HS CODE: 85369010 - Poids: 0,05 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/QT2-ACBUS-2400MM",
+    "name": "APsystems Câble 2,5mm² AC pour micro-onduleur QT2 triphasé - 2,4m",
+    "brand": "AP Systems",
+    "category": "inverters",
+    "stock": 0,
+    "description": "APSYSTEMS - Câble 5 fils longueur 2,4m pour QT2 (réf 2322604802) HS CODE: 85444290 - Poids: 1,90 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/ECU-C",
+    "name": "APsystems ECU Commercial - Mesure de production & consommation pour DS3 - QT2 (Zigbee - Alimentation en 230V AC - Wifi i",
+    "brand": "AP Systems",
+    "category": "micro_inverters",
+    "stock": 0,
+    "description": "Tores de comptage non livrés avec la passerelle ECU-C- prendre 6 tores additionnels pour du triphasé- prendre 2 tores additionnels pour du monophasé (Ref 205018) HS CODE: 90303100 - Poids: 1 kg - Pays"
+  },
+  {
+    "sku": "APS/ECU-R",
+    "name": "APsystems ECU Résidentiel - Passerelle de communication pour DS3 - QT2 (Zigbee - Alimentation en 230V AC - Wifi intégrés",
+    "brand": "AP Systems",
+    "category": "micro_inverters",
+    "stock": 0,
+    "description": "APsystems ECU Résidentiel - Passerelle de communication pour DS3 - QT2 (Zigbee - Alimentation en 230V AC - Wifi intégrés) (Ref 209018) HS CODE: 90314990 - Poids: 0,59 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/80A",
+    "name": "APsystems Tor de mesure 80A pour ECU-C / 2 par phase",
+    "brand": "AP Systems",
+    "category": "micro_inverters",
+    "stock": 0,
+    "description": "APsystems Tor de mesure 80A pour ECU-C (Réf 18083020112) HS CODE: 90303100 - Poids: 0,09 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/Y3-ACBUS-CONCAP",
+    "name": "APsystems capuchon étanche pour connecteur Y3 (Option)",
+    "brand": "AP Systems",
+    "category": "cables",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "APS/QT2-C-FEMELLE",
+    "name": "APsystems connecteur femelle 5 fils pour QT2 triphasé",
+    "brand": "AP Systems",
+    "category": "cables",
+    "stock": 0,
+    "description": "APsystems connecteur femelle 5 fils pour QT2 triphasé (Ref 2300812032) HS CODE: 85369010 - Poids: 0,05 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/AC-FC",
+    "name": "APsystems connecteur femelle Mono DS3 pour câble AC",
+    "brand": "AP Systems",
+    "category": "cables",
+    "stock": 0,
+    "description": "APsystems connecteur femelle Mono DS3 pour câble AC (Ref [2300532032] HS CODE: 85369010 - Poids: 0,06 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/QT2-C-MALE",
+    "name": "APsystems connecteur mâle 5 fils pour QT2 triphasé",
+    "brand": "AP Systems",
+    "category": "cables",
+    "stock": 0,
+    "description": "APsystems connecteur mâle 5 fils pour QT2 triphasé (Ref 2300711032) HS CODE: 85369010 - Poids: 0,05 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/AC-MC",
+    "name": "APsystems connecteur mâle Mono DS3 pour câble AC",
+    "brand": "AP Systems",
+    "category": "cables",
+    "stock": 0,
+    "description": "APsystems connecteur mâle Mono DS3 pour câble AC (Ref 2300531032) HS CODE: 85369010 - Poids: 0,05 kg - Pays Origine: Chine"
+  },
+  {
+    "sku": "APS/Y3-CON-UNLOCKT",
+    "name": "APsystems outils de déconnexion pour connecteur Y3",
+    "brand": "AP Systems",
+    "category": "cables",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "ARC/503907",
+    "name": "ARCHOS T101HD 2+16GB NC 84713000",
+    "brand": "ARCHOS",
+    "category": "accessories",
+    "stock": 95,
+    "description": "UPC code : 690590039070"
+  },
+  {
+    "sku": "AUSTA/AU500-33V- MHB",
+    "name": "Module photovoltaïque Topcon technologie MBB, demi-cellule AUSTA 500W AU-132MHB FULL Black (2094*1134*35mm)",
+    "brand": "AUSTA",
+    "category": "solar_panels",
+    "stock": 2,
+    "description": "Poids : 26.1KG Emballage : 22Pcs par pal / 682Pcs par 40HC Fabricant : AUSTA GREEN ENERGY Eco-contribution (P) (base 0,50 Euro HT / Quantité)"
+  },
+  {
+    "sku": "xxx/000/02",
+    "name": "AVCXEC Connecteur PV Solaire 1000 V avec diode Anti-Retour Intégrée, 2 Pièces Connecteur De Fusible PV Solaire, Étanche ",
+    "brand": "AVCXEC",
+    "category": "solar_panels",
+    "stock": 5,
+    "description": "AVCXEC Connecteur PV Solaire 1000 V avec diode Anti-Retour Intégrée, 2 Pièces Connecteur De Fusible PV Solaire, Étanche IP67 Connecteur Solaire PV, Support De Diode Blocage Câble Panneau (15A)"
+  },
+  {
+    "sku": "BN/BBWX-1(12KW)",
+    "name": "AC COMBINER BOX ZBENY Model : BBWX-1(12KW)",
+    "brand": "BENNY",
+    "category": "accessories",
+    "stock": 0,
+    "description": "AC COMBINER BOX ZBENY Model : BBWX-1(12KW) Max input voltage : AC400V Rated output current : 25A IP65 - THREE PHASE Pays d'origine : China"
+  },
+  {
+    "sku": "BN/BBWX-1(3KW)",
+    "name": "AC COMBINER BOX ZBENY Model : BBWX-1(3KW)",
+    "brand": "BENNY",
+    "category": "accessories",
+    "stock": 0,
+    "description": "AC COMBINER BOX ZBENY Model : BBWX-1(3KW) Max input voltage : AC230V Rated output current : 25A IP65 - SINGLE PHASE Pays d'origine : China"
+  },
+  {
+    "sku": "BN/BBWX-1(6KW)",
+    "name": "AC COMBINER BOX ZBENY Model : BBWX-1(6KW)",
+    "brand": "BENNY",
+    "category": "accessories",
+    "stock": 0,
+    "description": "AC COMBINER BOX ZBENY Model : BBWX-1(6KW) Max input voltage : AC230V Rated output current : 40A IP65 - SINGLE PHASE Pays d'origine : China"
+  },
+  {
+    "sku": "DEY/3U-Hrack",
+    "name": "Armoire rack 13 unités pour batteries haute tension Deye BOS-G et BMS - peut contenir jusqu'à 12 modules série BOS-G et ",
+    "brand": "DEYE",
+    "category": "batteries",
+    "stock": 1,
+    "description": "EAN-13 8370000036739 Ref Fabricant : 3U-HRACK Dimensions : 589 x 590 x 2240 mm Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SE-G5.1Pro-B",
+    "name": "Batterie DEYE SE-G5.1 Pro-B assemblé avec des cellules LiFePO4 - Unité de base de 5.12 kWh / 51.2 V / 100 Ah - 6000 cycl",
+    "brand": "DEYE",
+    "category": "batteries",
+    "stock": 7,
+    "description": "Spécifications techniques: Chimie de la batterie : LiFePO4 Capacité : 100 Ah Tension nominale : 51,2 V Énergie nominale : 5,12 kWh Énergie utilisable : 4,6 kWh Dimensions : 440 x 133 x 540 mm Poids :"
+  },
+  {
+    "sku": "DEY/BOS-GM5.1",
+    "name": "Batterie Deye BOS-GM5.1 assemblé avec des cellules LiFePO4 - Unité de base de 5.12 kWh / 750V / 100 Ah - 6000 cycles - T",
+    "brand": "DEYE",
+    "category": "batteries",
+    "stock": 26,
+    "description": "Poids : 48kg Code EAN : 5905951587820 Garantie : 10 Years Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-XL02-A",
+    "name": "DEYE optimiseur de puissance SUN-XL02-A (Tension de 10 à 80V - Courant entrée max 15A) - Modèle: Deye SUN-XL02-A - Garan",
+    "brand": "DEYE",
+    "category": "optimizers",
+    "stock": 37,
+    "description": "Fabricant : DEYE Code EAN : 5905951587578 Code HS : 90308900 Longueur du câble : Entrée : 70 cm Sortie du câble : 100 cm personnalisable Mode de fixation : Au cadre Garantie : 25 ans Dimensions : L105"
+  },
+  {
+    "sku": "DEY/HVB750V/100A-EU",
+    "name": "Module de contrôle BMS DEYE HVB750V/100A-EU pour batteries BOS-G, HV - gestion avancée du stockage de l'énergie",
+    "brand": "DEYE",
+    "category": "batteries",
+    "stock": 3,
+    "description": "Poids : 24kg Code EAN : 5905951587813 Code NC : 85371010 Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-16K-SG01LP1-EU",
+    "name": "Onduleur Hybride Monophasé 16K-SG01LP1-EU",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "• Hybride réseau et hors réseau / Site isolé • Couplage AC / Retrofit AC: Stockage sur batterie de votre installation micro-onduleurs • 6 périodes de temps pour le chargement/déchargement de la batter"
+  },
+  {
+    "sku": "DEY/SUN-5K-SG03LP1-EU",
+    "name": "Onduleur Hybride Monophasé 5Kw-6Kw Deye SUN-5K-SG03LP1-EU - 2 MPTT - 370VAC - (330×580×232mm) - 25kg - Garantie 5 ans",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 7,
+    "description": "- Onduleur hybride tout intégré. - Fonctionnement sans batterie possible LCD tactile coloré, étanche (IP65). - Nécessite un disjoncteur différentiel Type B (pas d’isolation galvanique). - Garantie de"
+  },
+  {
+    "sku": "DEY/SUN-6K-SG03LP1-EU",
+    "name": "Onduleur Hybride Monophasé 6Kw Deye SUN-6K-SG03LP1-EU - 2 MPTT - 370VAC - (33×58×23,2cm) - 25kg - Garantie 5 ans",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 34,
+    "description": "• Hybride réseau et hors réseau / Site isolé • Couplage AC / Retrofit AC: Stockage sur batterie de votre installation micro-onduleurs • 6 périodes de temps pour le chargement/déchargement de la batter"
+  },
+  {
+    "sku": "DEY/SUN-6K-SG04LP1-EU",
+    "name": "Onduleur Hybride Monophasé 6Kw Deye SUN-6K-SG04LP1-EU - 2 MPTT - 370VAC - (330W x 433H x238D) - 15.1kg - Garantie 5 ans",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "• Hybride réseau et hors réseau / Site isolé • Couplage AC / Retrofit AC: Stockage sur batterie de votre installation micro-onduleurs • 6 périodes de temps pour le chargement/déchargement de la batter"
+  },
+  {
+    "sku": "DEY/SUN-8K-SG01LP1-EU",
+    "name": "Onduleur Hybride Monophasé 8Kw Deye SUN-8K-SG01LP1-EU - 2 MPTT (2+2) - 370VAC - (420W×670H×233D) - 32kg - Garantie 5 ans",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 8,
+    "description": "Fonctionne raccordé ou réseau et hors réseau Fonctionne avec ou sans batteries Intègre 2MPPTs Mise en parallèle possible jusqu'à 16 onduleurs Garantie 5 ans"
+  },
+  {
+    "sku": "DEY/SUN-8K-SG04LP1-EU",
+    "name": "Onduleur Hybride Monophasé 8Kw Deye SUN-8K-SG04LP1-EU - 2 MPTT - 370VAC - (330W x 433H x238D) - 15.1kg - Garantie 5 ans",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 1,
+    "description": "• Hybride réseau et hors réseau / Site isolé • Couplage AC / Retrofit AC: Stockage sur batterie de votre installation micro-onduleurs • 6 périodes de temps pour le chargement/déchargement de la batter"
+  },
+  {
+    "sku": "DEY/SUN-10K-SG01HP3-EU-BM4",
+    "name": "Onduleur Hybride Triphasé 10Kw Haute Voltage Deye SUN-10K-SG01HP3-EU - 2 MPTT - IP65 - (408W x 638H x237D) - 30,5kg - Ga",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Power Maximal DC : 13000W EAN code : 5905951584232 HS Code : 85044086 Poids : 30kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-10K-SG04LP3-EU",
+    "name": "Onduleur Hybride Triphasé 10Kw bas voltage Deye SUN-10K-SG04LP3-EU - 2/2+1 MPTT - 380VAC - (422W x 699.3H x279D) - 33,6k",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Garanties : 5 ans Dimensions : (702x422x281mm) Poids : 33,6kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-12K-SG01HP3-EU-BM4",
+    "name": "Onduleur Hybride Triphasé 12Kw Haute Voltage Deye SUN-12K-SG01HP3-EU - 2 MPTT - IP65 - (408W x 638H x237D) - 30,5kg - Ga",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Power Maximal DC : 15600W EAN code : 5905951584232 HS Code : 85044086 Poids : 30kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-12K-SG04LP3-EU",
+    "name": "Onduleur Hybride Triphasé 12Kw bas voltage Deye SUN-12K-SG04LP3-EU - 2/2+1 MPTT - 380VAC - (422W x 699.3H x279D) - 33,6k",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Garanties : 5 ans Dimensions : (702x422x281mm) Poids : 33,6kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-15K-SG01HP3-EU-BM4",
+    "name": "Onduleur Hybride Triphasé 15Kw Haute Voltage Deye SUN-15K-SG01HP3-EU - 2 MPTT - IP65 - (408W x 638H x237D) - 30,5kg - Ga",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Power Maximal DC : 19500W EAN code : 5905951584232 HS Code : 85044086 Poids : 30kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-20K-SG01HP3-EU-BM4",
+    "name": "Onduleur Hybride Triphasé 20Kw Haute Voltage Deye SUN-20K-SG01HP3-EU - 2 MPTT - IP65 - (408W x 638H x237D) - 30,5kg - Ga",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Power Maximal DC : 26000W EAN code : 5905951584232 HS Code : 85044086 Poids : 30kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-20K-SG05LP3-EU-SM2",
+    "name": "Onduleur Hybride Triphasé 20Kw bas voltage Deye SUN-20K-SG05LP3-EU -  (456W×750H×268.5D) - 51,9 kg - Garantie 5 ans",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Garanties : 5 ans Dimensions : (456W×750H×268.5D) Poids : 51,9kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-25K-SG01HP3-EU-BM4",
+    "name": "Onduleur Hybride Triphasé 25Kw Haute Voltage Deye SUN-25K-SG01HP3-EU - 2 MPTT - IP65 - (408W x 638H x237D) - 30,5kg - Ga",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Power Maximal DC : 32500W EAN code : 5905951584232 HS Code : 85044086 Poids : 30kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-30K-SG01HP3-EU-BM3",
+    "name": "Onduleur Hybride Triphasé 30Kw Haute Voltage Deye SUN-30K-SG01HP3-EU-B - 3 MPTT - IP65 - (527*894*294mm) - 102,5kg - Gar",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 1,
+    "description": "Poids : 102,5kg Code EAN : 5905951586113 Code SH : 85044086 Largeur : 527 mm Profondeur : 294 mm Hauteur : 894 mm Alimentation : triphasé Nombre de phases : 3 Communication : RS485 / CAN Garantie : 10"
+  },
+  {
+    "sku": "DEY/SUN-40K-SG01HP3-EU-BM4",
+    "name": "Onduleur Hybride Triphasé 40Kw Haute Voltage Deye SUN-40K-SG01HP3-EU-B - 4 MPTT - IP65 - (527*894*294mm) - 102,5kg - Gar",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Poids : 102,5kg Largeur : 527 mm Profondeur : 294 mm Hauteur : 894 mm Alimentation : triphasé Nombre de phases : 3 Communication : WIFI/RS485 / CAN Garantie : 10 ans Hybride : Oui AFCI : Facultatif Pu"
+  },
+  {
+    "sku": "DEY/SUN-50K-SG01HP3-EU-BM4",
+    "name": "Onduleur Hybride Triphasé 50Kw Haute Voltage Deye SUN-50K-SG01HP3-EU-BM4 - 4 MPTT - IP65 - (527W x 894H x294D) - 100kg -",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "HS Code : 85044086 EAN code 5905951584263 Puissance DC Max : 65000W Poids : 100 Kg Pays d'origine : Chine Garantie : 5 ans"
+  },
+  {
+    "sku": "DEY/SUN-5K-SG01HP3-EU-BM4",
+    "name": "Onduleur Hybride Triphasé 5Kw Haute Voltage Deye SUN-5K-SG01HP3-EU - 2 MPTT - IP65 - (408W x 638H x237D) - 30,5kg - Gara",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Power Maximal DC : 6500W EAN code : 5905951584232 HS Code : 85044086 Poids : 30kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-5K-SG04LP3-EU",
+    "name": "Onduleur Hybride Triphasé 5Kw bas voltage Deye SUN-5K-SG04LP3-EU - 2/1+1 MPTT - 380VAC - (422W x 699.3H x279D) - 33,6kg ",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 1,
+    "description": "Garanties : 5 ans Dimensions : (702x422x281mm) Poids : 33,6kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-6K-SG01HP3-EU-BM4",
+    "name": "Onduleur Hybride Triphasé 6Kw Haute Voltage Deye SUN-6K-SG01HP3-EU - 2 MPTT - IP65 - (408W x 638H x237D) - 30,5kg - Gara",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Power Maximal DC : 7800W EAN code : 5905951584232 HS Code : 85044086 Poids : 30kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-6K-SG04LP3-EU",
+    "name": "Onduleur Hybride Triphasé 6Kw bas voltage Deye SUN-6K-SG04LP3-EU - 2/1+1 MPTT - 380VAC - (422W x 699.3H x279D) - 33,6kg ",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Garanties : 5 ans Dimensions : (702x422x281mm) Poids : 33,6kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-8K-SG01HP3-EU-BM4",
+    "name": "Onduleur Hybride Triphasé 8Kw Haute Voltage Deye SUN-8K-SG01HP3-EU - 2 MPTT - IP65 - (408W x 638H x237D) - 30,5kg - Gara",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Power Maximal DC : 10400W EAN code : 5905951584232 HS Code : 85044086 Poids : 30kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-8K-SG04LP3-EU",
+    "name": "Onduleur Hybride Triphasé 8Kw bas voltage Deye SUN-8K-SG04LP3-EU - 2/1+1 MPTT - 380VAC - (422W x 699.3H x279D) - 33,6kg ",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 8,
+    "description": "Garanties : 5 ans Dimensions : (702x422x281mm) Poids : 33,6kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-6K-G06P3-EU-AM2",
+    "name": "Onduleur central Triphasé 6Kw bas voltage Deye SUN-6K-G06P3-EU-AM2 - 2/1+1 MPTT - 380VAC - (283W×463H×178D) - 11kg - Gar",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Garanties : 5 ans Dimensions : (283×463×178mm) Poids : 11kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "DEY/SUN-3.6K-SG03LP1-EU",
+    "name": "Onduleur hybride monophase bas voltage Deye SUN-3.6K-SG03LP1-EU - 2 MPTT - Puissance maximale AC 3.69(kW) - (580x330x232",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 1,
+    "description": "Caractéristiques techniques : Puissance nominale : 6 kW Efficacité maximale : 97,6% Compatibilité : Batteries au plomb-acide et lithium-ion Connectivité : Wi-Fi, Bluetooth, RS485, RS232, CAN Protectio"
+  },
+  {
+    "sku": "DEY/SUN-18K-G04",
+    "name": "Onduleurs tertiaires triphasé Haute Voltage Deye SUN-18K-G04 - 2 MPTT - Puissance maximale AC 19.8(kW) - CC Type II / CA",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Poids : 24,6kg Code EAN : 5905951584010 Code CN : 85044086 Dimensions : L330 x P206 x H508 mm Phase : triphasé Nombre de MPP : 2 Type Parafoudre : II 2 pièces. Garantie 5 ans Puissance nominale CA 18"
+  },
+  {
+    "sku": "DEY/SUN-20K-G04",
+    "name": "Onduleurs tertiaires triphasé Haute Voltage Deye SUN-20K-G04 - 2 MPTT - Puissance maximale AC 22(kW) - CC Type II / CA T",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 1,
+    "description": "Poids : 24,6kg Code EAN : 5905951584010 Code CN : 85044086 Dimensions : L330 x P206 x H508 mm Phase : triphasé Nombre de MPP : 2 Type Parafoudre : II 2 pièces. Garantie 5 ans Puissance nominale CA 20"
+  },
+  {
+    "sku": "DEY/SUN-25K-G04",
+    "name": "Onduleurs tertiaires triphasé Haute Voltage Deye SUN-25K-G04 - 2 MPTT - Puissance maximale AC 27.5(kW) - CC Type II / CA",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Poids : 24,6kg Code EAN : 5905951584010 Code CN : 85044086 Dimensions : L330 x P206 x H508 mm Phase : triphasé Nombre de MPP : 2 Type Parafoudre : II 2 pièces. Garantie 5 ans Puissance nominale CA 25"
+  },
+  {
+    "sku": "DEY/SUN-50K-G03",
+    "name": "Onduleurs tertiaires triphasé Haute Voltage Deye SUN-50K - 4 MPTT - Puissance maximale AC 65(kW) - Parafoudre CC/CA de t",
+    "brand": "DEYE",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Dimensions : 647,5W × 537H × 303,5P Poids : 44.5kg Garantie : 5 ans Pays d'origine : Chine"
+  },
+  {
+    "sku": "xxx/000/10",
+    "name": "Paire de câbles d'alimentation de batterie 150 mm 4AWG  et un câble de communication RJ45 de 250 mm",
+    "brand": "DEYE",
+    "category": "batteries",
+    "stock": 10,
+    "description": "Paire de câbles d'alimentation de batterie 150 mm 4AWG (les deux extrémités sont équipées de bornes étanches) et un câble de communication RJ45 de 250 mm pour le raccordement des batteries en parallèl"
+  },
+  {
+    "sku": "DEY/SUN-SMART-CT01",
+    "name": "SUN-SMART-CT01",
+    "brand": "DEYE",
+    "category": "accessories",
+    "stock": 100,
+    "description": "Le SUN-SMART-CT01 est un transformateur de courant de précision conçu pour le suivi en temps réel, compatible à la fois avec les communications LoRa et RS485, afin de transmettre les données en direct"
+  },
+  {
+    "sku": "DEY/SUN-SMART-TX01",
+    "name": "SUN-SMART-TX01",
+    "brand": "DEYE",
+    "category": "accessories",
+    "stock": 30,
+    "description": "Le SUN-SMART-TX01 est l’émetteur central LoRa qui intègre les dispositifs LoRa Deye avec les onduleurs hybrides, permettant une gestion énergétique intelligente et transparente de votre système solair"
+  },
+  {
+    "sku": "xxx/000/09",
+    "name": "Set Câble batterie Deye 1.5m (+/-) 3U-LPCable1.5",
+    "brand": "DEYE",
+    "category": "batteries",
+    "stock": 9,
+    "description": "Paire de câbles d'alimentation DC 4AWG (une extrémité avec une borne étanche, l'autre avec une borne en cuivre M10). La longueur par défaut est 1.5 m."
+  },
+  {
+    "sku": "DS/FLASH-425M-BV-TR",
+    "name": "DUALSUN FLASH 425 WC GLASS-GLASS N-TYPE - TRANSPARENT - 1722X1134X30MM - GARANTIE 25/30A",
+    "brand": "DUALSUN",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "DS/FLASH-375M-HC-FB",
+    "name": "MODULE DUALSUN FLASH 375 WC HALF CUT - FULL BLACK",
+    "brand": "DUALSUN",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Dimensions : 1755X1038X30MM Poids : 21KG Emballage : 36Pcs par pal Fabricant : DUAL SUN"
+  },
+  {
+    "sku": "DS/FLASH-425M-SH-FB",
+    "name": "Module Monocristallin DualSun Flash 425 Wc Shingle apparence Ultra Black (1899x1096x30mm) - Garantie 30/30 ans",
+    "brand": "DUALSUN",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Dimensions : 1899X1134X35MM Poids : 21.8KG Emballage : 31Pcs par pal Fabricant : DUALSUN Eco-contribution (P) (base 0,50 Euro HT / Quantité)"
+  },
+  {
+    "sku": "DS/FLASH-500M-HC-FB",
+    "name": "Module Monocristallin DualSun Flash 500 Wc Half-Cut Full Black (2094x1134x35mm) - Garantie 20/25Ans",
+    "brand": "DUALSUN",
+    "category": "solar_panels",
+    "stock": 7,
+    "description": "Ref fabricant : DS500-132M10-01 Garantie : 20/25Ans (25/25Ans si activation des garanties, conditions sur dualsun.com) Dimensions : 2094X1134X35MM Poids : 26KG Emballage : 31Pcs par pal Fabricant : DU"
+  },
+  {
+    "sku": "ELI/EL5-Pro-5KW",
+    "name": "Batterie ES Elitec Lithium EL-5 5KWH assemblé avec des cellules LiFePO4 - Unité de base de 5.12 kWh / 51.2 V / 100 Ah - ",
+    "brand": "ES Elitec",
+    "category": "batteries",
+    "stock": 1,
+    "description": "Spécifications techniques: Chimie de la batterie : LiFePO4 Capacité : 100 Ah Tension nominale : 51,2 V Énergie nominale : 5,12 kWh Énergie utilisable : 4,6 kWh Dimensions : 442 x 440 x 133 mm) Garanti"
+  },
+  {
+    "sku": "ELI/EL5-SETCABLE-2M",
+    "name": "Câble batterie ELITEC EL-5 / EL-10 2m (+/-) (Set 2 cables Rouge et Noir (PHBAT215)",
+    "brand": "ES Elitec",
+    "category": "batteries",
+    "stock": 1,
+    "description": ""
+  },
+  {
+    "sku": "ELI/EL-Box2-10KW",
+    "name": "ES Elitec Lithium EL-Box2 pour 2 Batteries 5Kw EL-5) - Boxe pour 2 x Unité de base de 5.12 kWh - Garantie 10 ans",
+    "brand": "ES Elitec",
+    "category": "batteries",
+    "stock": 1,
+    "description": "Garantie 10 ans Pays d'origine : Chine"
+  },
+  {
+    "sku": "ELI/EL5-KIT-SUPPORT",
+    "name": "Kit support batterie ELITEC (PHBAT213)",
+    "brand": "ES Elitec",
+    "category": "batteries",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "1009001",
+    "name": "Bague ClickFit",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - ACCESSORY / SKU:2500"
+  },
+  {
+    "sku": "1000005",
+    "name": "Bande EPDM 25mm x 25M ClickFit",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - MEMBRANE ROOF / SKU:2200"
+  },
+  {
+    "sku": "1003065",
+    "name": "Bloc de réglage de la hauteur ClickFit 15 mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - ACCESSORY / SKU:2500"
+  },
+  {
+    "sku": "1003061",
+    "name": "Cale de montage ClickFit 5-25 mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - ACCESSORY / SKU:2500"
+  },
+  {
+    "sku": "1008082",
+    "name": "ClickFit EVO - Adaptateur EPDM tole ondulé Optimizer ready - Paysage",
+    "brand": "ESDEC",
+    "category": "optimizers",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - SHEET ROOF / SKU:3300"
+  },
+  {
+    "sku": "1008081",
+    "name": "ClickFit EVO - Adaptateur EPDM tôle ondulée - Paysage",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - SHEET ROOF / SKU:3300"
+  },
+  {
+    "sku": "1008066",
+    "name": "ClickFit EVO - Bouchon de rail - Gris",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3600"
+  },
+  {
+    "sku": "1008066-B",
+    "name": "ClickFit EVO - Bouchon de rail - Noir",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3600"
+  },
+  {
+    "sku": "ESD/1008062",
+    "name": "ClickFit EVO - Clip Optimizer Ready",
+    "brand": "ESDEC",
+    "category": "optimizers",
+    "stock": 987,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3600 ESD/1008062"
+  },
+  {
+    "sku": "ESD/1008061",
+    "name": "ClickFit EVO - Coupleur de rail",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 8081,
+    "description": "REF : 1008061 CLICKFIT EVO - COUPLEUR DE RAIL CARTON 50 PCS MOQ 5O PCS FABRIQUANT : ESDEC ESD/1008061"
+  },
+  {
+    "sku": "ESD/1008045",
+    "name": "ClickFit EVO - Crochet de toit chevron - TrussHook",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 1762,
+    "description": "CLICKFIT - EVO - TILED ROOF / SKU:3100 ESD/1008045"
+  },
+  {
+    "sku": "ESD/1008040",
+    "name": "ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 3854,
+    "description": "REF : 1008040 CLICKFIT EVO - CROCHET DE TOIT LITEAU-FERMETTE - UNIVERSALHOOK CARTON 24 PCS MOQ 24 PCS FABRIQUANT : ESDEC"
+  },
+  {
+    "sku": "1008040-LT",
+    "name": "ClickFit EVO - Crochet de toit universel (basse température)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - TILED ROOF / SKU:3100"
+  },
+  {
+    "sku": "ESD/1008069",
+    "name": "ClickFit EVO - Embouts Torx 30",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 1983,
+    "description": "REF : 1008069 CLICKFIT EVO - EMBOUTS TORX 30 CARTON 50 PCS MOQ 50 PCS FABRIQUANT : ESDEC ESD/1008069"
+  },
+  {
+    "sku": "ESD/1008063",
+    "name": "ClickFit EVO - Entretoise caoutchouc protection tuile",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 8889,
+    "description": "REF : 1008063 CLICKFIT EVO - ENTRETOISE CAOUTCHOUC PROTECTION TUILE CARTON 100 PCS MOQ 10O PCS FABRIQUANT : ESDEC ESD/1008063"
+  },
+  {
+    "sku": "ESD/1008020-B",
+    "name": "ClickFit EVO - Etrier Universel Noir",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 5379,
+    "description": "REF : 1008020-B CLICKFIT EVO - ETRIER UNIVERSEL NOIR CARTON 100 PCS MOQ 100 PCS FABRIQUANT : ESDEC ESD/1008020-B"
+  },
+  {
+    "sku": "1008020",
+    "name": "ClickFit EVO - Etrier universel Gris",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3600"
+  },
+  {
+    "sku": "1008064",
+    "name": "ClickFit EVO - Guide d'aide au montage",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3600"
+  },
+  {
+    "sku": "ESD/1008035",
+    "name": "ClickFit EVO - Pince joint plié simple 14mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "ClickFit EVO Clameur de joint simple plié 14 mm REF : 1008035 FABRICANT : ESDEC ESD/1008035"
+  },
+  {
+    "sku": "1008092",
+    "name": "ClickFit EVO - Platine ISObouw d'adaptation",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - TILED ROOF / SKU:3100"
+  },
+  {
+    "sku": "1008050",
+    "name": "ClickFit EVO - Profil de montage SteelDeck Optimizer Ready - Paysage",
+    "brand": "ESDEC",
+    "category": "optimizers",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - SHEET ROOF / SKU:3300"
+  },
+  {
+    "sku": "1008051",
+    "name": "ClickFit EVO - Profil de montage SteelDeck Optimizer Ready - Portrait",
+    "brand": "ESDEC",
+    "category": "optimizers",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - SHEET ROOF / SKU:3300"
+  },
+  {
+    "sku": "1008131",
+    "name": "ClickFit EVO - Rail de montage 1188mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "REF : 1008131 CLICKFIT EVO - RAIL DE MONTAGE 1188MM CARTON 108 PCS MOQ 108 PCS FABRIQUANT : ESDEC"
+  },
+  {
+    "sku": "ESD/1008132",
+    "name": "ClickFit EVO - Rail de montage 2338mm - Bitume Isole",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 1930,
+    "description": "REF : 1008132 CLICKFIT EVO - RAIL DE MONTAGE 2338MM CARTON 108 PCS MOQ 108 PCS FABRIQUANT : ESDEC"
+  },
+  {
+    "sku": "1008143",
+    "name": "ClickFit EVO - Rail de montage 3374mm [DTO] [50 D]",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - RAILS / SKU:3008"
+  },
+  {
+    "sku": "ESD/1008133",
+    "name": "ClickFit EVO - Rail de montage 3488mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 324,
+    "description": "CLICKFIT - EVO - RAILS / SKU:3004 ESD/1008133"
+  },
+  {
+    "sku": "1008144",
+    "name": "ClickFit EVO - Rail de montage 4485mm [DTO] [50 D]",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - RAILS / SKU:3009"
+  },
+  {
+    "sku": "1008134",
+    "name": "ClickFit EVO - Rail de montage 4638mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - RAILS / SKU:3005"
+  },
+  {
+    "sku": "1008145",
+    "name": "ClickFit EVO - Rail de montage 5594mm [DTO] [50 D]",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - RAILS / SKU:3010"
+  },
+  {
+    "sku": "1008135",
+    "name": "ClickFit EVO - Rail de montage 5770mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - RAILS / SKU:3006"
+  },
+  {
+    "sku": "1008146",
+    "name": "ClickFit EVO - Rail de montage 6707mm [DTO] [50 D]",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - RAILS / SKU:3011"
+  },
+  {
+    "sku": "1008136",
+    "name": "ClickFit EVO - Rail de montage 6923mm [DTO] [50 D]",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - RAILS / SKU:3007"
+  },
+  {
+    "sku": "1008048",
+    "name": "ClickFit EVO - SteelDeck Paysage",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - SHEET ROOF / SKU:3300"
+  },
+  {
+    "sku": "1008049",
+    "name": "ClickFit EVO - SteelDeck Portrait",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - SHEET ROOF / SKU:3300"
+  },
+  {
+    "sku": "1008065-B",
+    "name": "ClickFit EVO - Support étrier final - Noir",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3600"
+  },
+  {
+    "sku": "1008065",
+    "name": "ClickFit EVO - Support étrier final gris",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3600"
+  },
+  {
+    "sku": "ESD/1008060-B",
+    "name": "ClickFit EVO - Terminaison de rail Noir",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 3747,
+    "description": "REF : 1008060-B CLICKFIT EVO - TERMINAISON DE RAIL NOIR CARTON 100 PCS MOQ 100 PCS FABRIQUANT : ESDEC ESD/1008060-B"
+  },
+  {
+    "sku": "1008060",
+    "name": "ClickFit EVO - Terminaison de rail gris",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3600"
+  },
+  {
+    "sku": "ESD/1008012",
+    "name": "ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 4551,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3500 ESD/1008012"
+  },
+  {
+    "sku": "ESD/1008085",
+    "name": "ClickFit EVO - Vis auto-taraudeuse 6.0 x 25 mm SW10 HEX/T30",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 100,
+    "description": "FASTENERS / SKU:1100"
+  },
+  {
+    "sku": "ESD/1003016",
+    "name": "ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 3394,
+    "description": "ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 FASTENERS / SKU:1100 ESD/1003016"
+  },
+  {
+    "sku": "1008010",
+    "name": "ClickFit EVO Adaptateur pour vis à double filetage M10-M12",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3500"
+  },
+  {
+    "sku": "1008031",
+    "name": "ClickFit EVO Pince Joint arrondi 23mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - STANDING SEAM ROOF / SKU:3200"
+  },
+  {
+    "sku": "1008033",
+    "name": "ClickFit EVO Pince Joint double plié 9mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - STANDING SEAM ROOF / SKU:3200"
+  },
+  {
+    "sku": "1008035",
+    "name": "ClickFit EVO Pince Joint plié simple 14mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - STANDING SEAM ROOF / SKU:3200"
+  },
+  {
+    "sku": "ESD/1008090",
+    "name": "ClickFit EVO Support de montage toit en fibrociment",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 1200,
+    "description": "CLICKFIT - EVO - CORRUGATED ROOF / SKU: 3400"
+  },
+  {
+    "sku": "1008011",
+    "name": "ClickFit EVO Vis à double filetage M10x200 mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3500"
+  },
+  {
+    "sku": "1008013",
+    "name": "ClickFit EVO Vis à double filetage M12x250mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3500"
+  },
+  {
+    "sku": "1008014",
+    "name": "ClickFit EVO Vis à double filetage M12x300mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3500"
+  },
+  {
+    "sku": "1008015",
+    "name": "ClickFit EVO Vis à double filetage M12x350mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - EVO - ACCESSORY / SKU:3500"
+  },
+  {
+    "sku": "ESD/1008042",
+    "name": "ClickFit EVO crochet de toit en ardoise",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 2528,
+    "description": "CLICKFIT - EVO - TILED ROOF / SKU:3100 ESD/1008042"
+  },
+  {
+    "sku": "1002060",
+    "name": "Collier de montage ClickFit",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - MEMBRANE ROOF / SKU:2200"
+  },
+  {
+    "sku": "1002080",
+    "name": "Connecteur croisé ClickFit",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - ACCESSORY / SKU:2500"
+  },
+  {
+    "sku": "1002020",
+    "name": "Crochet de fixation au toit large ClickFit (51-63 mm)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "1002021",
+    "name": "Crochet de fixation au toit large ClickFit (51-63 mm) HV",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "1002023",
+    "name": "Crochet de fixation au toit large ClickFit (51-63 mm) HVG",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "1002030",
+    "name": "Crochet de fixation au toit multi ClickFit (30-63 mm)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "1002031",
+    "name": "Crochet de fixation au toit multi ClickFit (30-63 mm) HV",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "1002033",
+    "name": "Crochet de fixation au toit multi ClickFit (30-63 mm) HVG",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "1002010",
+    "name": "Crochet de fixation au toit médium ClickFit (40-50 mm)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "1002011",
+    "name": "Crochet de fixation au toit médium ClickFit (40-50 mm) HV",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "1002013",
+    "name": "Crochet de fixation au toit médium ClickFit (40-50 mm) HVG",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "1002001",
+    "name": "Crochet de fixation au toit standard ClickFit (30-39 mm)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "1002002",
+    "name": "Crochet de fixation au toit standard ClickFit (30-39 mm) HV",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "1002004",
+    "name": "Crochet de fixation au toit standard ClickFit (30-39 mm) HVG",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "1002043",
+    "name": "Crochet de fixation pour bardage ClickFit [DTO] [15 D]",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "1002046",
+    "name": "Crochet en acier inoxydable réglable",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - TILED ROOF / SKU:2100"
+  },
+  {
+    "sku": "ESD/1003900",
+    "name": "ESDEC Joint d'étanchéité Kit Shell Tixophalte",
+    "brand": "ESDEC",
+    "category": "accessories",
+    "stock": 0,
+    "description": "ESDEC Joint d'étanchéité Kit Shell Tixophalte FASTENERS / SKU:1100 ESD/1003900"
+  },
+  {
+    "sku": "ESD/1003070",
+    "name": "ESDEC Rondelle ClickFit ø80 mm x 1 mm / Disque d’étanchéité tôle ondulée",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 214,
+    "description": "ESDEC Rondelle ClickFit ø80 mm x 1 mm Disque d’étanchéité tôle ondulée FASTENERS / SKU:1100 ESD/1003070"
+  },
+  {
+    "sku": "1003030",
+    "name": "Embout de rail de montage ClickFit noir",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - ACCESSORY / SKU:2500"
+  },
+  {
+    "sku": "ESD/670455",
+    "name": "FISCHER - Vis a bois PowerFast II 6,0X60 Tete fraisee, empreinte TX, zingue blanc, filetage total",
+    "brand": "ESDEC",
+    "category": "accessories",
+    "stock": 19538,
+    "description": "MARQUE : FISCHER REF : 670455"
+  },
+  {
+    "sku": "1004337",
+    "name": "FlatFix - Etrier Final Gris 37mm [DTO] [40 D]",
+    "brand": "ESDEC",
+    "category": "accessories",
+    "stock": 0,
+    "description": "CLAMPS / SKU:1200"
+  },
+  {
+    "sku": "1007012",
+    "name": "FlatFix Fusion - Embase support de toit",
+    "brand": "ESDEC",
+    "category": "accessories",
+    "stock": 0,
+    "description": "FLATFIX - FUSION / SKU:4300"
+  },
+  {
+    "sku": "1007621",
+    "name": "FlatFix Fusion - Profilé de base 210 mm noir",
+    "brand": "ESDEC",
+    "category": "accessories",
+    "stock": 0,
+    "description": "FLATFIX - FUSION / SKU:4300"
+  },
+  {
+    "sku": "1007086",
+    "name": "FlatFix Fusion Supports de ballast 2000",
+    "brand": "ESDEC",
+    "category": "accessories",
+    "stock": 0,
+    "description": "FLATFIX - FUSION / SKU:4300"
+  },
+  {
+    "sku": "1008086",
+    "name": "Kit pour toiture EPDM",
+    "brand": "ESDEC",
+    "category": "accessories",
+    "stock": 0,
+    "description": "FASTENERS / SKU:1100"
+  },
+  {
+    "sku": "1003003",
+    "name": "Pince de terminaison ClickFit CFA",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLAMPS / SKU:1200"
+  },
+  {
+    "sku": "1003950",
+    "name": "Pince de terminaison ClickFit CFA noire",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLAMPS / SKU:1200"
+  },
+  {
+    "sku": "1003004",
+    "name": "Pince de terminaison ClickFit CFB",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLAMPS / SKU:1200"
+  },
+  {
+    "sku": "1003040",
+    "name": "Plaque de raccord ClickFit",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "FASTENERS / SKU:1100"
+  },
+  {
+    "sku": "1001003",
+    "name": "Rail de montage ClickFit 3075mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - RAILS / SKU:2000"
+  },
+  {
+    "sku": "1001005",
+    "name": "Rail de montage ClickFit 6150 mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - RAILS / SKU:2000"
+  },
+  {
+    "sku": "1001200",
+    "name": "Rail de montage L = 2055mm [DTO] [50 D]",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - RAILS / SKU:2000"
+  },
+  {
+    "sku": "1001301",
+    "name": "Rail de montage L = 3400mm [DTO] [50 D]",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - RAILS / SKU:2000"
+  },
+  {
+    "sku": "1001400",
+    "name": "Rail de montage L = 4055mm [DTO] [50 D]",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - RAILS / SKU:2000"
+  },
+  {
+    "sku": "1001500",
+    "name": "Rail de montage L = 5055mm [DTO] [50 D]",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - RAILS / SKU:2000"
+  },
+  {
+    "sku": "1001501",
+    "name": "Rail de montage L = 5500mm [DTO] [50 D]",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "CLICKFIT - BASIC - RAILS / SKU:2000"
+  },
+  {
+    "sku": "ESD/16X5PATC",
+    "name": "Systeme de montage ESDEC 16X5 Paysage Bac Acier (82 PV)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Membres constitutifs... 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 84 pcs 2) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 252 pcs 3) [ESD/1"
+  },
+  {
+    "sku": "ESD/1X1PATC",
+    "name": "Systeme de montage ESDEC 1X1 Paysage Tuile canale",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 2 pcs 2) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 4 pcs 3) [ESD/1008020-B] Click"
+  },
+  {
+    "sku": "ESD/1X1POTP",
+    "name": "Systeme de montage ESDEC 1X1 Portrait Tuiles plates",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 4 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 4 pcs 3) [ESD/1008060-B] ClickFit EVO - Te"
+  },
+  {
+    "sku": "ESD/1X12POTA/500",
+    "name": "Systeme de montage ESDEC 1X12 Portrait Tuile ardoise (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 26 pcs 2) [ESD/1008042] ClickFit EVO crochet de toit en ardoise - 28 pcs 3) [ESD/670455] FISCHER - Vis a bois PowerFast II 6,0X60"
+  },
+  {
+    "sku": "ESD/1X12POTP/500",
+    "name": "Systeme de montage ESDEC 1X12 Portrait Tuiles Plates (500 W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 26 pcs 2) [ESD/1008045] ClickFit EVO - Crochet de toit chevron - TrussHook - 30 pcs 3) [ESD/670455] FISCHER - Vis a bois PowerFast"
+  },
+  {
+    "sku": "ESD/1X13POTP",
+    "name": "Systeme de montage ESDEC 1X13 Portrait Tuiles plates",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 28 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 26 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/1X4POTP",
+    "name": "Systeme de montage ESDEC 1X4 Portrait Tuiles plates",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 10 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 8 pcs 3) [ESD/1008060-B] ClickFit EVO - T"
+  },
+  {
+    "sku": "ESD/1X6PATA/500",
+    "name": "Systeme de montage ESDEC 1X6 Paysage Tuile ardoise (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 12 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 24 pcs 3) [ESD/1008042] ClickFit EVO crochet de t"
+  },
+  {
+    "sku": "ESD/1X8PATM",
+    "name": "Systeme de montage ESDEC 1X8 Paysage Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 16 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 32 pcs 3) [ESD/1008040] ClickFit EVO - Crochet de"
+  },
+  {
+    "sku": "ESD/1X8POTC",
+    "name": "Systeme de montage ESDEC 1X8 Portrait Tuile canale",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 16 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 18 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/2X10POTA",
+    "name": "Systeme de montage ESDEC 2X10 Portrait Tuile ardoise",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 44 pcs 2) [ESD/1008042] ClickFit EVO crochet de toit en ardoise - 36 pcs 3) [ESD/670455] FISCHER - Vis a bois PowerFast II 6,0X60"
+  },
+  {
+    "sku": "ESD/2X10POTM",
+    "name": "Systeme de montage ESDEC 2X10 Portrait Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 44 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 40 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/2X2POTA",
+    "name": "Systeme de montage ESDEC 2X2 Portrait Tuile ardoise",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 12 pcs 2) [ESD/1008042] ClickFit EVO crochet de toit en ardoise - 12 pcs 3) [ESD/670455] FISCHER - Vis a bois PowerFast II 6,0X60"
+  },
+  {
+    "sku": "ESD/2X2POTM",
+    "name": "Systeme de montage ESDEC 2X2 Portrait Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 12 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 12 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/2X2POTP",
+    "name": "Systeme de montage ESDEC 2X2 Portrait Tuiles plates",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 6 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 6 pcs 3) [ESD/1008060-B] ClickFit EVO - Te"
+  },
+  {
+    "sku": "ESD/2X3POTC",
+    "name": "Systeme de montage ESDEC 2X3 Portrait Tuile canale",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 16 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 16 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/2X3POTM",
+    "name": "Systeme de montage ESDEC 2X3 Portrait Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 16 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 16 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/2X3POTM/500",
+    "name": "Systeme de montage ESDEC 2X3 Portrait Tuile mécanique (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 16 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 16 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/2X4PATA",
+    "name": "Systeme de montage ESDEC 2X4 Paysage Tuile ardoise",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 8 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 24 pcs 3) [ESD/1008042] ClickFit EVO crochet de to"
+  },
+  {
+    "sku": "ESD/2X4PATC",
+    "name": "Systeme de montage ESDEC 2X4 Paysage Tuile canale",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 8 pcs 2) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 24 pcs 3) [ESD/1008020-B] Clic"
+  },
+  {
+    "sku": "ESD/2X4PATFC",
+    "name": "Systeme de montage ESDEC 2X4 Paysage Tuile fibreciment",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 8 pcs 2) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 24 pcs 3) [ESD/1008020-B] Clic"
+  },
+  {
+    "sku": "ESD/2X4PATM",
+    "name": "Systeme de montage ESDEC 2X4 Paysage Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 8 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 24 pcs 3) [ESD/1008040] ClickFit EVO - Crochet de"
+  },
+  {
+    "sku": "ESD/2X4POBA",
+    "name": "Systeme de montage ESDEC 2X4 Portrait Bac acier",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 16 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 20 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/2X4POBA/500",
+    "name": "Systeme de montage ESDEC 2X4 Portrait Bac acier (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 20 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 20 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/2X4POTA",
+    "name": "Systeme de montage ESDEC 2X4 Portrait Tuile ardoise",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 20 pcs 2) [ESD/1008042] ClickFit EVO crochet de toit en ardoise - 16 pcs 3) [ESD/670455] FISCHER - Vis a bois PowerFast II 6,0X60"
+  },
+  {
+    "sku": "ESD/2X4POTC",
+    "name": "Systeme de montage ESDEC 2X4 Portrait Tuile canale",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 16 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 20 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/2X4POTFC",
+    "name": "Systeme de montage ESDEC 2X4 Portrait Tuile fibreciment",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 16 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 20 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/2X4POTM",
+    "name": "Systeme de montage ESDEC 2X4 Portrait Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 20 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 16 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/2X4POTM/500",
+    "name": "Systeme de montage ESDEC 2X4 Portrait Tuile mécanique (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 20 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 20 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/2X4POTP",
+    "name": "Systeme de montage ESDEC 2X4 Portrait Tuiles plates",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 20 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 16 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/2X5PATM/500",
+    "name": "Systeme de montage ESDEC 2X5 Paysage Tuile mécanique/plate (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 12 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 32 pcs 3) [ESD/1008040] ClickFit EVO - Crochet de"
+  },
+  {
+    "sku": "ESD/2X5POTFC",
+    "name": "Systeme de montage ESDEC 2X5 Portrait Tuile fibreciment",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "COMPOSANTS: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 20 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 24 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/2X5POTM/500",
+    "name": "Systeme de montage ESDEC 2X5 Portrait Tuile mécanique (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 24 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 28 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/2X6PATM/500",
+    "name": "Systeme de montage ESDEC 2X6 Paysage Tuile mécanique (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 12 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 36 pcs 3) [ESD/1008040] ClickFit EVO - Crochet de"
+  },
+  {
+    "sku": "ESD/2X6POBA/500",
+    "name": "Systeme de montage ESDEC 2X6 Portrait Bac acier (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 24 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 28 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/2X6POTA",
+    "name": "Systeme de montage ESDEC 2X6 Portrait Tuile ardoise",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 28 pcs 2) [ESD/1008042] ClickFit EVO crochet de toit en ardoise - 24 pcs 3) [ESD/670455] FISCHER - Vis a bois PowerFast II 6,0X60"
+  },
+  {
+    "sku": "ESD/2X6POTM",
+    "name": "Systeme de montage ESDEC 2X6 Portrait Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 28 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 24 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/2X6POTM/500",
+    "name": "Systeme de montage ESDEC 2X6 Portrait Tuile mécanique (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 28 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 32 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/2X6POTP/500",
+    "name": "Systeme de montage ESDEC 2X6 Portrait Tuiles Plates (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 28 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 32 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/2X6POTP",
+    "name": "Systeme de montage ESDEC 2X6 Portrait Tuiles plates",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 28 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 24 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/2X8PABA",
+    "name": "Systeme de montage ESDEC 2X8 Paysage Bac acier",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 16 pcs 2) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 48 pcs 3) [ESD/1008020-B] Cli"
+  },
+  {
+    "sku": "ESD/2X8PATM",
+    "name": "Systeme de montage ESDEC 2X8 Paysage Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 16 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 48 pcs 3) [ESD/1008040] ClickFit EVO - Crochet de"
+  },
+  {
+    "sku": "ESD/2X8POBA",
+    "name": "Systeme de montage ESDEC 2X8 Portrait Bac acier",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 32 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 36 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/2X8POTA",
+    "name": "Systeme de montage ESDEC 2X8 Portrait Tuile ardoise",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 36 pcs 2) [ESD/1008042] ClickFit EVO crochet de toit en ardoise - 32 pcs 3) [ESD/670455] FISCHER - Vis a bois PowerFast II 6,0X60"
+  },
+  {
+    "sku": "ESD/2X8POTC",
+    "name": "Systeme de montage ESDEC 2X8 Portrait Tuile canale",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 32 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 36 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/2X8POTFC",
+    "name": "Systeme de montage ESDEC 2X8 Portrait Tuile fibreciment",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 32 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 36 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/2X8POTM",
+    "name": "Systeme de montage ESDEC 2X8 Portrait Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 36 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 32 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/2X8POTP",
+    "name": "Systeme de montage ESDEC 2X8 Portrait Tuiles plates",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 36 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 32 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/3X3PATC",
+    "name": "Systeme de montage ESDEC 3X3 Paysage Tuile canale",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 6 pcs 2) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 18 pcs 3) [ESD/1008020-B] Clic"
+  },
+  {
+    "sku": "ESD/3X4PATM/500",
+    "name": "Systeme de montage ESDEC 3X4 Paysage Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 8 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 32 pcs 3) [ESD/1008040] ClickFit EVO - Crochet de"
+  },
+  {
+    "sku": "ESD/3X5POTM/500",
+    "name": "Systeme de montage ESDEC 3X5 Portrait Tuile mécanique (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 36 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 42 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/3X6PATP/500",
+    "name": "Systeme de montage ESDEC 3X6 Paysage Tuiles plates (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003016] ClickFit EVO - Vis autoperceuse 6,3 x 42 mm - SW10/T30 - 12 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 48 pcs 3) [ESD/1008040] ClickFit EVO - Crochet de"
+  },
+  {
+    "sku": "ESD/3X6POBA/500",
+    "name": "Systeme de montage ESDEC 3X6 Portrait BAC ACIER",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 38 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 44 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/3X6POBIT",
+    "name": "Systeme de montage ESDEC 3X6 Portrait SHINGLE",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003070] ESDEC Rondelle ClickFit ø80 mm x 1 mm / Disque d’étanchéité tôle ondulée - 36 pcs 2) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 36 pcs 3) ["
+  },
+  {
+    "sku": "ESD/3X6POTC/500",
+    "name": "Systeme de montage ESDEC 3X6 Portrait Tuile Canale",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 38 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 44 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/3X6POTM",
+    "name": "Systeme de montage ESDEC 3X6 Portrait Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 42 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 36 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/3X6POTM/500",
+    "name": "Systeme de montage ESDEC 3X6 Portrait Tuile mécanique/Plates (500W)",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 42 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 48 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/3X8POBA",
+    "name": "Systeme de montage ESDEC 3X8 Portrait Bac acier",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 48 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 54 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/3X8POTA",
+    "name": "Systeme de montage ESDEC 3X8 Portrait Tuile ardoise",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 54 pcs 2) [ESD/1008042] ClickFit EVO crochet de toit en ardoise - 48 pcs 3) [ESD/670455] FISCHER - Vis a bois PowerFast II 6,0X60"
+  },
+  {
+    "sku": "ESD/3X8POTC",
+    "name": "Systeme de montage ESDEC 3X8 Portrait Tuile canale",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 48 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 54 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/3X8POTFC",
+    "name": "Systeme de montage ESDEC 3X8 Portrait Tuile fibreciment",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 48 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 54 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/3X8POTM",
+    "name": "Systeme de montage ESDEC 3X8 Portrait Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 54 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 48 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/3X8POTP",
+    "name": "Systeme de montage ESDEC 3X8 Portrait Tuiles Plates",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 1,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 54 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 48 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/4X11POTM",
+    "name": "Systeme de montage ESDEC 4X11 Portrait Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 96 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 88 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/4X4POBB",
+    "name": "Systeme de montage ESDEC 4X4 Portrait SCHINGLE",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003070] ESDEC Rondelle ClickFit ø80 mm x 1 mm / Disque d’étanchéité tôle ondulée - 32 pcs 2) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 32 pcs 3) ["
+  },
+  {
+    "sku": "ESD/4X6POTM",
+    "name": "Systeme de montage ESDEC 4X6 Portrait Tuile mécanique",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 56 pcs 2) [ESD/1008040] ClickFit EVO - Crochet de toit liteau-Fermette - UniversalHook - 48 pcs 3) [ESD/1008060-B] ClickFit EVO -"
+  },
+  {
+    "sku": "ESD/4X8POBA",
+    "name": "Systeme de montage ESDEC 4X8 Portrait Bac acier",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 64 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 72 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/4X8POBB",
+    "name": "Systeme de montage ESDEC 4X8 Portrait SCHINGLE",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1003070] ESDEC Rondelle ClickFit ø80 mm x 1 mm / Disque d’étanchéité tôle ondulée - 64 pcs 2) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 64 pcs 3) ["
+  },
+  {
+    "sku": "ESD/4X8POTA",
+    "name": "Systeme de montage ESDEC 4X8 Portrait Tuile ardoise",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 72 pcs 2) [ESD/1008042] ClickFit EVO crochet de toit en ardoise - 64 pcs 3) [ESD/670455] FISCHER - Vis a bois PowerFast II 6,0X60"
+  },
+  {
+    "sku": "ESD/4X8POTC",
+    "name": "Systeme de montage ESDEC 4X8 Portrait Tuile canale",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 64 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 72 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "ESD/4X8POTFC",
+    "name": "Systeme de montage ESDEC 4X8 Portrait Tuile fibreciment",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [ESD/1008012] ClickFit EVO - Tire-fond / Vis à double filetage M10x250mm - 64 pcs 2) [ESD/1008020-B] ClickFit EVO - Etrier Universel Noir - 72 pcs 3) [ESD/1008060-B] ClickFit EVO - Term"
+  },
+  {
+    "sku": "1000612",
+    "name": "Vis de fixation M6 x 12mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "FASTENERS / SKU:1100"
+  },
+  {
+    "sku": "1000612-B",
+    "name": "Vis de fixation M6 x 12mm - Black",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "FASTENERS / SKU:1100"
+  },
+  {
+    "sku": "1000655",
+    "name": "Vis de fixation M6 x 55mm",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "FASTENERS / SKU:1100"
+  },
+  {
+    "sku": "1006363",
+    "name": "Vis de montage 6.5 x 63 mm antivol",
+    "brand": "ESDEC",
+    "category": "mounting",
+    "stock": 0,
+    "description": "FASTENERS / SKU:1100"
+  },
+  {
+    "sku": "1003540",
+    "name": "Vis pour panneau de particules ClickFit 5 x 40 mm",
+    "brand": "ESDEC",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "FASTENERS / SKU:1100"
+  },
+  {
+    "sku": "1003560",
+    "name": "Vis pour panneau de particules ClickFit 5 x 60 mm [DTO] [7 D]",
+    "brand": "ESDEC",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "FASTENERS / SKU:1100"
+  },
+  {
+    "sku": "xxx/000/08",
+    "name": "Etiquette Adhésive \"Coupure Batterie\" installation avec Batteries\"",
+    "brand": "ETIPV",
+    "category": "batteries",
+    "stock": 93,
+    "description": "Guide UTE C15-712-2 ou XP C15-712-3 Adhésif de signalisation autocollant photovoltaïque de signalisation à placer sur: Interrupteur Sectionneur entrée BATTERIE du convertisseur Utilisation de matériau"
+  },
+  {
+    "sku": "ESS/ESB-KIT-SUPPORT-LESTABLE",
+    "name": "ESB - KIT SUPPORT LESTABLE - Support lestable pour modules photovoltaïques en acier Magnelis ZM310 en mode portrait 1 ou",
+    "brand": "Easy Solar Box®",
+    "category": "solar_panels",
+    "stock": 2,
+    "description": "CONFIGURATION : Modules en mode portrait 1 ou 2 panneau (x) Colis N°1 : Caisson - 2 plaques avant/arrière (42 x 50 cm) - 2 plaques latérales (82 x 50 cm) - 1 plaque de fond (42 x 80 cm) - 1 plaque sup"
+  },
+  {
+    "sku": "ESS/ESB-KIT EXTENSION",
+    "name": "ESB - Kit d'extension - Comprend : Deux éclisses de liaisons pour rail - Quatre écrous et boulons ZM M10",
+    "brand": "Easy Solar Box®",
+    "category": "mounting",
+    "stock": 1,
+    "description": "Colis N°3 : Éclisses de liaison entre ESB (optionnel) - 2 éclisses de rails (45 x 5 cm) - 1 sachet de 4 boulons ZM M10 et 4 écrous ZM M10 Poids (Kg) : 2 Kg Pays de fabrication : France (1support = 1 o"
+  },
+  {
+    "sku": "CO/AC-12KTRI-ENPH-IQ8-3E-36M",
+    "name": "Coffret AC 12 kW triphasé - disjoncteur différentiel 30mA 63A 4P - 2 X 20A 4P avec  2 Qrelay tri intégrés - parafoudre t",
+    "brand": "Enphase",
+    "category": "cables",
+    "stock": 49,
+    "description": "Nombre de modules : 2X18 Pays de fabrication : France"
+  },
+  {
+    "sku": "CO/AC-18KTRI-ENPH-IQ8-3E-54M",
+    "name": "Coffret AC 18 à 25 Kw triphasé - disjoncteur différentiel 30mA 63A 4P - 3 X 20A 4P avec  3 Qrelay tri intégrés - parafou",
+    "brand": "Enphase",
+    "category": "cables",
+    "stock": 8,
+    "description": "Nombre de modules : 3X18 Pays de fabrication : France"
+  },
+  {
+    "sku": "CO/AC-3K-ENPH-IQ8-13M",
+    "name": "Coffret AC 3 kW monophasé -  disjoncteur différentiel 30mA 25A 2P - 1 X 20A 2P avec 1 Qrelay intégré - parafoudre type 2",
+    "brand": "Enphase",
+    "category": "cables",
+    "stock": 30,
+    "description": "Nombre de modules : 13 Pays de fabrication : France"
+  },
+  {
+    "sku": "CO/AC-6K-ENPH-IQ8-2E-13M",
+    "name": "Coffret AC 6 kW monophasé -  disjoncteur différentiel 30mA 40A 2P - 2 X 20A 2P avec 2 Qrelay intégrés - parafoudre type ",
+    "brand": "Enphase",
+    "category": "cables",
+    "stock": 28,
+    "description": "Nombre de modules : 13 Pays de fabrication : France"
+  },
+  {
+    "sku": "CO/AC-9K-ENPH-IQ8-3E-18M",
+    "name": "Coffret AC 9 kW monophasé -  disjoncteur différentiel 30mA 63A 2P - 3 X 20A 2P avec 3 Qrelay intégrés - parafoudre type ",
+    "brand": "Enphase",
+    "category": "cables",
+    "stock": 47,
+    "description": "Nombre de modules : 18 Pays de fabrication : France"
+  },
+  {
+    "sku": "CO/AC-9KTRI-ENPH-IQ8-3E-24M",
+    "name": "Coffret AC 9 kW triphasé -  disjoncteur différentiel 30mA 63A 4P - 1 X 20A 4P avec 1 Qrelay tri intégré - parafoudre typ",
+    "brand": "Enphase",
+    "category": "cables",
+    "stock": 24,
+    "description": "Nombre de modules : 24 Pays de fabrication : France"
+  },
+  {
+    "sku": "EN/IQ-DISC",
+    "name": "Enphase Outil de deconnexion pour IQ (Ref Q-DISC-10)",
+    "brand": "Enphase",
+    "category": "accessories",
+    "stock": 55,
+    "description": "ENPHASE Q_DISC_10 – Outil de déconnexion IQ7/IQ8 Ref Enphase : 83409 HS CODE: N.C Poids (Kg) : 0.02 Kg Pays de fabrication : Chine"
+  },
+  {
+    "sku": "EN/IQ-RELAY-1P",
+    "name": "Enphase QRelay VDE pour installation en Monophasé (Q-RELAY-1P-FR)",
+    "brand": "Enphase",
+    "category": "accessories",
+    "stock": 450,
+    "description": "Jusqu’à 15 micro-onduleurs Enphase IQ-7/IQ8 ou 12 micro-onduleurs Enphase IQ-7+/IQ8 HS CODE: 85364900 Ref Enphase : 83400 UGS : Q-RELAY-1P-FR Poids (Kg) : 0.27 Kg Pays de fabrication : Chine"
+  },
+  {
+    "sku": "EN/IQ-RELAY-3P",
+    "name": "Enphase QRelay VDE pour installation en Triphasé (Q-RELAY-3P-INT)",
+    "brand": "Enphase",
+    "category": "accessories",
+    "stock": 359,
+    "description": "Poids (Kg) : 0.4 Kg Pays de fabrication : Chine Ref Enphase : 83416"
+  },
+  {
+    "sku": "EN/IQ-H",
+    "name": "Enphase câble IQ Paysage Monophasé (Q25-17-240)",
+    "brand": "Enphase",
+    "category": "cables",
+    "stock": 414,
+    "description": "Poids (Kg) : 0.34 Kg Pays de fabrication : Chine"
+  },
+  {
+    "sku": "EN/IQ-H-TRI",
+    "name": "Enphase câble IQ Paysage Triphasé (Q25-17-3P-160) (83420)",
+    "brand": "Enphase",
+    "category": "cables",
+    "stock": 415,
+    "description": "Ref Fabricant : Q25-17-3P-160 Poids (Kg) : 0.32 Kg Pays de fabrication : Chine"
+  },
+  {
+    "sku": "EN/IQ-V",
+    "name": "Enphase câble IQ Portrait Monophasé (Q25-10-240)",
+    "brand": "Enphase",
+    "category": "cables",
+    "stock": 0,
+    "description": "ENPHASE – Câble connecteur IQ7/IQ8 PORTRAIT monophasé – espacement connecteurs 1.3m HS CODE: 85444290 Poids: 0,3 kg Pays Origine: Chine"
+  },
+  {
+    "sku": "EN/IQ-V-TRI",
+    "name": "Enphase câble IQ Portrait Triphasé (Q25-10-3P-200)",
+    "brand": "Enphase",
+    "category": "cables",
+    "stock": 334,
+    "description": "Ref Fabricant : UGS : Q25-10-3P-200 Poids (Kg) : 0.32 Kg Pays de fabrication : Chine"
+  },
+  {
+    "sku": "EN/IQ-TERM",
+    "name": "Enphase embout de terminaison étanche pour câble IQ Monophasé (Q-TERM-R-10)",
+    "brand": "Enphase",
+    "category": "cables",
+    "stock": 193,
+    "description": "ENPHASE – Bouchon de terminaison IQ7/IQ7+/IQ8 – câble monophasé Ref Enphase : 83410 HS CODE: 85369010 Poids (Kg) : 0.03 Kg Pays de fabrication : Chine"
+  },
+  {
+    "sku": "EN/IQ-TERM-TRI",
+    "name": "Enphase embout de terminaison étanche pour câble IQ Triphasé (Q-TERM-3P-10)",
+    "brand": "Enphase",
+    "category": "cables",
+    "stock": 231,
+    "description": "Ref Enphase : 83411 Poids (Kg) : 0.03 Kg Pays de fabrication : Chine"
+  },
+  {
+    "sku": "EN/IQ8-AC",
+    "name": "Enphase micro-onduleur IQ8-AC - 366 VA - Entrée MC4 - (IQ8AC-72-M-INT)",
+    "brand": "Enphase",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Compatible cellule M10 - 360VA - Compatible 54, 60, 66 et 72 cellules ou 108, 120, 132 et 144 demi-cellules. Tension d'entrée max DC (V) : 60V Puissance nominale DC (W) : 530 Plage de fonctionnement M"
+  },
+  {
+    "sku": "EN/IQ8-HC",
+    "name": "Enphase micro-onduleur IQ8-HC - 384 VA - Entrée MC4 - (IQ8HC-72-M-INT)",
+    "brand": "Enphase",
+    "category": "inverters",
+    "stock": 124,
+    "description": "Compatible cellule M10 - 384VA - Compatible 54, 60, 66 et 72 cellules ou 108, 120, 132 et 144 demi-cellules. Tension d'entrée max DC (V) : 60V Puissance nominale DC (W) : 560 HS CODE: 85044085 Poids:"
+  },
+  {
+    "sku": "IQ8MC-72-M-INT",
+    "name": "Enphase micro-onduleur IQ8-MC - 330 VA - Entrée MC4 - (IQ8MC-72-M-INT)",
+    "brand": "Enphase",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Ce micro-onduleur Enphase est convient parfaitement pour un grand nombre de panneaux solaire à haut rendement avec 54-60-66 ou 72 cellules pouvant aller jusqu'à 480Wc. Garantie de 25 ans"
+  },
+  {
+    "sku": "EN/IQ8-PLUS",
+    "name": "Enphase micro-onduleur IQ8-PLUS - 300 VA - Entrée MC4 - (IQ8PLUS-72-M-INT)",
+    "brand": "Enphase",
+    "category": "inverters",
+    "stock": 647,
+    "description": "Puissance d’entrée maximale : 440 W Nombre de pieces : 18/Colis Poids (Kg) : 1.1 Kg Pays de fabrication : Chine Garantie : 25 ans"
+  },
+  {
+    "sku": "12DS425FBMENP1E",
+    "name": "KIT ENPHASE 5,10 KWC (12X425W) - MONO DUALSUN",
+    "brand": "Enphase",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Composants 1) [DS/FLASH-425M-SH-FB] Module Monocristallin DualSun Flash 425 Wc Shingle apparence Ultra Black (1899x1096x30mm) - Garantie 30/30 ans - 12 pcs 2) [EN/IQ8-HC] Enphase micro-onduleur IQ8-HC"
+  },
+  {
+    "sku": "8RE375FBMENP1E",
+    "name": "KITS 3KWC ENPHASE 375 W (MONO)",
+    "brand": "Enphase",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "PANNEAUX : 1) [RCM-375-6ME] Module Monocristallin Demi Cellules RECOM 375 Wc - PANTHER - Half-Cut Full Black - 8 pcs MICRO-ONDULEURS ENPHASE : 2) [EN/IQ8-PLUS] Enphase micro-onduleur IQ8-PLUS - 300 VA"
+  },
+  {
+    "sku": "EN/ENVOY",
+    "name": "Passerelle de communication Envoy S - Mono/Tri (Ref ENV-S-WB-230-F)",
+    "brand": "Enphase",
+    "category": "micro_inverters",
+    "stock": 131,
+    "description": "Envoy-S STANDARD compatible mono / triphasé HS CODE: 85176100 Ref: ENV-S-WB-230-F Poids (Kg) : 1 Kg Pays de fabrication : Chine"
+  },
+  {
+    "sku": "EN/ENVOY-METERED",
+    "name": "Passerelle de communication Envoy S Metered -  monophasé / triphasé + 2 tores de comptage inclus - Attention : en versio",
+    "brand": "Enphase",
+    "category": "micro_inverters",
+    "stock": 47,
+    "description": "Attention : en version Triphasé ajouter 4 pinces EN/PINCE-METERED-V2. Ref fabricant : ENV-S-EM-230 Poids (Kg) : 1 Kg Colisage : Carton de 12 pièces Pays de fabrication : Chine"
+  },
+  {
+    "sku": "EN/PINCE-METERED-CT100",
+    "name": "Pince ampèremétrique Slim pour ENVOY METERED (CT-100-SPLIT-ROW)",
+    "brand": "Enphase",
+    "category": "accessories",
+    "stock": 300,
+    "description": "ENPHASE Tore de mesure 100A nouvelle génération pour Envoy-S metered row Hauteur : 40 mm Profondeur : 26 mm Largeur : 27 mm Poids (Kg) : 0.15 Kg Ref Enphase : 83407 Pays de fabrication : Chine"
+  },
+  {
+    "sku": "FHE-500W-SP-MASTER",
+    "name": "Module Monocristallin Demi Cellules FHE SP MASTER 500 W Bas carbone - Half-Cut Full Black (2094X1134X30mm) - Eff: 21,06%",
+    "brand": "FHE MASTER",
+    "category": "solar_panels",
+    "stock": 10,
+    "description": "Puissance maximale (Pmax) [W] : 500 Efficacité des modules : 21,06% Épaisseur cadre(mm) : 30 Longueur câble(Mts) :1,5m Garantie produit : 30 ans Garantie production : 30 ans Poids : 26,0 kg"
+  },
+  {
+    "sku": "xxx/000/04",
+    "name": "Connecteur Diode Solaire,2 Pièces Connecteur PV Solaire 1000V avec diode Anti-Retour Intégrée Connecteur De Fusible PV S",
+    "brand": "FTJKGH",
+    "category": "solar_panels",
+    "stock": 16,
+    "description": "Connecteur Diode Solaire,2 Pièces Connecteur PV Solaire 1000V avec diode Anti-Retour Intégrée Connecteur De Fusible PV Solaire,IP67 Connecteur Solaire PV pour Solaire Photovoltaïque Panneau (20A)"
+  },
+  {
+    "sku": "FS/BAC+",
+    "name": "Bac fixation pour toit plat ConSole+  avec supports et visserie (composé du Plateau de montage + Rails d'extension + Mat",
+    "brand": "French Solar Industry",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Inclinaison : 15° Dimensions : 1150x525x458mm Hauteur des Étriers : 30 mm Poids (Kg) : 4.6 Kg Garantie du produit 10 ans Certifications : CE, RoHs Nombre de support a installer : Un support de plus pa"
+  },
+  {
+    "sku": "GSE/PPORDEMI1650113",
+    "name": "DEMI PLAQUE 1650/1135 POUR MODULE 400W",
+    "brand": "GSE",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "GSE/1X2POTM",
+    "name": "STRUCTURE GSE 1X2 PORTRAIT POUR TUILE MECANIQUE",
+    "brand": "GSE",
+    "category": "mounting",
+    "stock": 0,
+    "description": "COMPOSANTS: 1) [GSE/PPORDEMI1650113] DEMI PLAQUE 1650/1135 POUR MODULE 400W - 4 pcs 2) [GSE/ALUN] ABERGEMENT LATERAL UNIVERSEL NOIR - 4 pcs 3) [GSE/CROCHET] CROCHET FIXATION D'ABERGEMENT - 8 pcs 4) [G"
+  },
+  {
+    "sku": "GSE/2X3POTM",
+    "name": "STRUCTURE GSE 2X3 PORTRAIT POUR TUILE MECANIQUE",
+    "brand": "GSE",
+    "category": "mounting",
+    "stock": 0,
+    "description": "COMPOSANTS: 1) [GSE/PPORDEMI1650113] DEMI PLAQUE 1650/1135 POUR MODULE 400W - 12 pcs 2) [GSE/ALUN] ABERGEMENT LATERAL UNIVERSEL NOIR - 8 pcs 3) [GSE/CROCHET] CROCHET FIXATION D'ABERGEMENT - 16 pcs 4)"
+  },
+  {
+    "sku": "GSE/2X6POTM",
+    "name": "STRUCTURE GSE 2X6 PORTRAIT POUR TUILE MECANIQUE",
+    "brand": "GSE",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Comosants: 1) [GSE/PPOR1710/1040] PLAQUE PORTRAIT 375W NOIRE POUR MODULE RECOM 375W - 12 pcs 2) [GSE/ALUN] ABERGEMENT LATERAL UNIVERSEL NOIR - 8 pcs 3) [GSE/CROCHET] CROCHET FIXATION D'ABERGEMENT - 16"
+  },
+  {
+    "sku": "GSE/4X6POTM",
+    "name": "STRUCTURE GSE 4X6 PORTRAIT POUR TUILE MECANIQUE (400W)",
+    "brand": "GSE",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Comosants: 1) [GSE/PPOR1710/1040] PLAQUE PORTRAIT 375W NOIRE POUR MODULE RECOM 375W - 12 pcs 2) [GSE/ALUN] ABERGEMENT LATERAL UNIVERSEL NOIR - 8 pcs 3) [GSE/CROCHET] CROCHET FIXATION D'ABERGEMENT - 16"
+  },
+  {
+    "sku": "HM/DTSU666-3P/OND",
+    "name": "\"Hoymiles smart meter CHINT DTSU 666 triphasé 3*100A (Ref A7080191)  Modèle : DTSU666New-Via- CT-3*100A-OND\"",
+    "brand": "HOYMILES",
+    "category": "micro_inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HAS-3.0LV-EUG1",
+    "name": "Coupleur hybride monophasé Hoymiles  - HAS-3.0LV-EUG1 - Courant de sortie max. 13A - Compatible Batterie Lithium-ion/Plo",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HAS-3.6LV-EUG1",
+    "name": "Coupleur hybride monophasé Hoymiles  - HAS-3.6LV-EUG1 - Courant de sortie max. 16A - Compatible Batterie Lithium-ion/Plo",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HAS-4.6LV-EUG1",
+    "name": "Coupleur hybride monophasé Hoymiles  - HAS-4.6LV-EUG1 - Courant de sortie max. 20A - Compatible Batterie Lithium-ion/Plo",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HAS-5.0LV-EUG1",
+    "name": "Coupleur hybride monophasé Hoymiles  - HAS-5.0LV-EUG1 - Courant de sortie max. 22,7A - Compatible Batterie Lithium-ion/P",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 2,
+    "description": ""
+  },
+  {
+    "sku": "HM/HAT-10.0HV-EUG1",
+    "name": "Coupleur hybride triphasé Hoymiles  - HAT-10.0HV-EUG1 - Courant de sortie max. 24,2A - Compatible Batterie Lithium-ion/P",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HAT-5.0HV-EUG1",
+    "name": "Coupleur hybride triphasé Hoymiles  - HAT-5.0HV-EUG1 - Courant de sortie max. 15,2A - Compatible Batterie Lithium-ion/Pl",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HAT-6.0HV-EUG1",
+    "name": "Coupleur hybride triphasé Hoymiles  - HAT-6.0HV-EUG1 - Courant de sortie max. 18,2A - Compatible Batterie Lithium-ion/Pl",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HAT-8.0HV-EUG1",
+    "name": "Coupleur hybride triphasé Hoymiles  - HAT-8.0HV-EUG1 - Courant de sortie max. 24,2A - Compatible Batterie Lithium-ion/Pl",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HMS-PLUG-3M",
+    "name": "Câble plug-and-play HMS 3m (Ref A6050423)",
+    "brand": "HOYMILES",
+    "category": "cables",
+    "stock": 19,
+    "description": "Câble plug-and-play HMS 3m (Ref A6050423) Modèle : HMS Plug and Play Cable-CEE7/7-3m"
+  },
+  {
+    "sku": "HM/HMS-PLUG-5M",
+    "name": "Câble plug-and-play HMS 5m (Ref A6050464)",
+    "brand": "HOYMILES",
+    "category": "cables",
+    "stock": 29,
+    "description": "Câble plug-and-play HMS 5m (Ref A6050464) Modèle : HMS Plug and Play Cable-CEE7/7-5m"
+  },
+  {
+    "sku": "HM/HDTS-Ethernet-G1",
+    "name": "Data Transfer Stick - model: DTS-Ethernet-G1 (CD041239)",
+    "brand": "HOYMILES",
+    "category": "accessories",
+    "stock": 2,
+    "description": ""
+  },
+  {
+    "sku": "HM/DTS-WIFI-G1.HM",
+    "name": "Data Transfer Stick - model: DTS-WIFI-G1.HM (Ref CD041114)",
+    "brand": "HOYMILES",
+    "category": "monitoring",
+    "stock": 37,
+    "description": "Pays d'origine : Chine"
+  },
+  {
+    "sku": "HM/HMS-FIELD-CON",
+    "name": "HMS Field connector (Ref A3080484)",
+    "brand": "HOYMILES",
+    "category": "accessories",
+    "stock": 8,
+    "description": "Modèle : HMS Field connector"
+  },
+  {
+    "sku": "HM/HMS-SEAL",
+    "name": "Hoymiles Capuchon d’étanchéité HMS pour couvrir le port de connexion inutilisé sur le connecteur d’interconnexion AC (Re",
+    "brand": "HOYMILES",
+    "category": "cables",
+    "stock": 3000,
+    "description": "Hoymiles Capuchon d’étanchéité HMS pour couvrir le port de connexion inutilisé sur le connecteur d’interconnexion AC (Ref A3080505)"
+  },
+  {
+    "sku": "HM/HMT-DISC-AC3P",
+    "name": "Hoymiles Outil de deconnexion port connecteur AC-3P HMT",
+    "brand": "HOYMILES",
+    "category": "cables",
+    "stock": 89,
+    "description": "Hoymiles Outil de deconnexion port connecteur AC-3P HMT (Ref A3080303)"
+  },
+  {
+    "sku": "HM/HMS-DISC",
+    "name": "Hoymiles Outil de déconnexion pour connecteurs HMS (Ref A3080509)",
+    "brand": "HOYMILES",
+    "category": "cables",
+    "stock": 342,
+    "description": "Hoymiles Outil de déconnexion pour connecteurs HMS (Ref A3080509)"
+  },
+  {
+    "sku": "HM/HMT-UNL-AC3P",
+    "name": "Hoymiles Outil de déverrouillage pour connecteur AC-3P HMT",
+    "brand": "HOYMILES",
+    "category": "cables",
+    "stock": 90,
+    "description": "Hoymiles Outil de déverrouillage pour connecteur AC-3P HMT(Ref A3080304)"
+  },
+  {
+    "sku": "HM/DDSU666",
+    "name": "Hoymiles compteur analyseur / smart meter CHINT DDSU 666 avec tore de mesure monophasé 1*100A",
+    "brand": "HOYMILES",
+    "category": "micro_inverters",
+    "stock": 135,
+    "description": "Hoymiles compteur analyseur / smart meter CHINT DDSU 666 avec tore de mesure monophasé 1*100A (Ref CQ051131) Modèle : DDSU666New-Via-CT100A-HMicro"
+  },
+  {
+    "sku": "HM/DTSU666-3P",
+    "name": "Hoymiles compteur analyseur / smart meter CHINT DTSU 666 avec tore de mesure triphasé 3*100A",
+    "brand": "HOYMILES",
+    "category": "micro_inverters",
+    "stock": 123,
+    "description": "Hoymiles compteur analyseur / smart meter CHINT DTSU 666 avec tore de mesure triphasé 3*100A (Ref CQ051132) Modèle : DTSU666New-Via-CT3*100A-HMicro"
+  },
+  {
+    "sku": "HM/HMS-EXTCON-MC4",
+    "name": "Hoymiles connecteur d'extension AC étanche pour câble HMS (Ref A3080506)",
+    "brand": "HOYMILES",
+    "category": "cables",
+    "stock": 113,
+    "description": "Hoymiles connecteur d'extension AC étanche pour câble HMS (Ref A3080506)"
+  },
+  {
+    "sku": "HM/HMS-TRKCON-MC4",
+    "name": "Hoymiles connecteur d’interconnexion AC étanche pour câble HMS (Ref A3080507)",
+    "brand": "HOYMILES",
+    "category": "cables",
+    "stock": 3585,
+    "description": "Hoymiles connecteur d’interconnexion AC étanche pour câble HMS (Ref A3080507) (entre 2 micro onduleurs)"
+  },
+  {
+    "sku": "HM/HMT-12AWGTRI-3M",
+    "name": "Hoymiles câble Triphasé AC de 3m pour HMT avec connecteur AC-3P inclus - câble 12 AWG",
+    "brand": "HOYMILES",
+    "category": "cables",
+    "stock": 133,
+    "description": "Hoymiles câble Triphasé AC de 3m pour HMT avec connecteur AC-3P inclus - câble 12 AWG (Ref A6050225)"
+  },
+  {
+    "sku": "HM/HMS-CABLE-40-200",
+    "name": "Hoymiles câble de connexion AC de 2m pour micro-onduleurs HMS (Ref A3080516)",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 6223,
+    "description": "Hoymiles câble de connexion AC de 2m pour micro-onduleurs HMS (Ref A3080516) Modèle : HMS Connection Cable-EN40-200 Section des conducteurs : 3 x 4 mm2"
+  },
+  {
+    "sku": "HM/HMS-CABLE-3M",
+    "name": "Hoymiles câble de connexion AC de 3m pour micro-onduleurs HMS (Ref A3080518)",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 1095,
+    "description": "Hoymiles câble de connexion AC de 3m pour micro-onduleurs HMS (Ref A3080518) Modèle : HMS Connection Cable-EN40-300"
+  },
+  {
+    "sku": "HM/HMT-ENDCAP-AC3P",
+    "name": "Hoymiles embout de terminaison du port connecteur AC-3P HMT",
+    "brand": "HOYMILES",
+    "category": "cables",
+    "stock": 178,
+    "description": "Hoymiles embout de terminaison du port connecteur AC-3P HMT (Ref A3080306)"
+  },
+  {
+    "sku": "HM/HMS-1000-2T",
+    "name": "Hoymiles micro-onduleur 2 en 1 HMS-1000 - 1000 VA - Connecteurs MC4 - 2 MPPT - Garantie 12 ans - (Ref CV011606) - Modèle",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 14,
+    "description": "Micro-onduleur 2 en 1 à haute puissance de sortie 1000 VA max. (Ref CV011606) Nombre de pieces : 6/Colis Palette : 32 Colis Poids : 3.4 Kg Poids Colis : 20.5 Kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "HM/HMS-800-2T",
+    "name": "Hoymiles micro-onduleur 2 en 1 HMS-800 - 800 VA - Connecteurs MC4 - 2 MPPT (Modèle/Type : HMS-800-2T)",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 4061,
+    "description": "Hoymiles micro-onduleur 2 en 1 HMS-800 - 800 VA - Connecteurs MC4 - 2 MPPT Nombre de pieces : 6/Colis Palette : 32 Colis Poids : 3.4 Kg Pays d'origine : Chine Modèle/Type : HMS-800-2T Ref : CV011517"
+  },
+  {
+    "sku": "HM/HMS-900-2T",
+    "name": "Hoymiles micro-onduleur 2 en 1 HMS-900 - 900 VA - Connecteurs MC4 - 2 MPPT",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Micro-onduleur 2 en 1 à haute puissance de sortie 900 VA max."
+  },
+  {
+    "sku": "HM/HMS-2000-4T",
+    "name": "Hoymiles micro-onduleur 4 en 1 HMS-2000 - 2000 VA - Connecteurs MC4 - 4 MPPT",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Hoymiles micro-onduleur 4 en 1 HMS-2000 - 2000 VA - Connecteurs MC4 - 4 MPPT Dimensions : 331 × 218 × 40.6 mm Poids : 5.5 Kg Pays d'origine : Chine Modèle : HMS-2000-4T"
+  },
+  {
+    "sku": "HM/HMT-2000-4T",
+    "name": "Hoymiles micro-onduleur 4 en 1 HMT-2000 - 2000 VA - Connecteurs MC4 - 4 MPPT",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 72,
+    "description": "Hoymiles micro-onduleur 4 en 1 HMT-2000 - 2000 VA - Connecteurs MC4 - 4 MPPT - (Ref CV011403) Dimensions : 331 × 218 × 36,6mm Nombre de pieces : 5/Colis Poids : 4.9 Kg Pays d'origine : Chine Modèle :"
+  },
+  {
+    "sku": "HM/HMT-2250-6T",
+    "name": "Hoymiles micro-onduleur 6 en 1 HMT-2250 - 2250 VA - Connecteurs MC4 - 6 MPPT",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 86,
+    "description": "Hoymiles micro-onduleur 6 en 1 HMT-2250-6T - 2250 VA - Connecteurs MC4 - 6 MPPT - (Ref CV010707) Dimensions : 330 × 250 × 37mm Nombre de pieces : 5/Colis Poids : 6,0 Kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "HM/HMS-1600-4T",
+    "name": "Hoymiles micro-onduleur HMS-1600 - 1600 VA - Connecteurs MC4 - 4 MPPT",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 82,
+    "description": "Hoymiles micro-onduleur 4 en 1 HMS-1600 - 1600 VA - Connecteurs MC4 - 4 MPPT - (Ref CV011276) Dimensions : 331 × 218 × 36,6mm Nombre de pieces : 5/Colis Poids : 4.9 Kg Pays d'origine : Chine Modèle :"
+  },
+  {
+    "sku": "HM/DDSU666/OND",
+    "name": "Hoymiles smart meter CHINT DDSU 666 monophasé 1*100A (Ref A7080190)  Modèle : DDSU666New-Via-CT100A-OND",
+    "brand": "HOYMILES",
+    "category": "micro_inverters",
+    "stock": 0,
+    "description": "Modèle pour onduleur hybride (Ref A7080190) Modèle : DDSU666New-Via-CT100A-OND\""
+  },
+  {
+    "sku": "HM/HMS-TERMCON-MC4",
+    "name": "Hoymiles terminal connecteur AC étanche pour câble HMS (Ref A3080536)",
+    "brand": "HOYMILES",
+    "category": "cables",
+    "stock": 2933,
+    "description": "Hoymiles terminal connecteur AC étanche pour câble HMS (Ref A3080536)"
+  },
+  {
+    "sku": "HM/HYS-3.0LV-EUG1",
+    "name": "Onduleur hybride monophasé Hoymiles  - HYS-3.0LV-EUG1 (4,5 KW mono - 1MPPT) - Compatible Batterie Lithium-ion/Plomb-acid",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HYS-3.6LV-EUG1",
+    "name": "Onduleur hybride monophasé Hoymiles  - HYS-3.6LV-EUG1 (6 KW mono - 2MPPT) - Compatible Batterie Lithium-ion/Plomb-acide ",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HYS-4.6LV-EUG1",
+    "name": "Onduleur hybride monophasé Hoymiles  - HYS-4.6LV-EUG1 (7.5 KW mono - 2MPPT) - Compatible Batterie Lithium-ion/Plomb-acid",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HYS-5.0LV-EUG1",
+    "name": "Onduleur hybride monophasé Hoymiles  - HYS-5.0LV-EUG1 (7.5 KW mono - 2MPPT) - Compatible Batterie Lithium-ion/Plomb-acid",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HYS-6.0LV-EUG1",
+    "name": "Onduleur hybride monophasé Hoymiles  - HYS-6.0LV-EUG1 (7.5 KW mono - 2MPPT) - Compatible Batterie Lithium-ion/Plomb-acid",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HYT-10.0HV-EUG1",
+    "name": "Onduleur hybride triphasé Hoymiles  - HYT-10.0HV-EUG1 (15 KW Tri - 2MPPT) - Compatible Batterie Lithium-ion/Plomb-acide ",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HYT-12.0HV-EUG1",
+    "name": "Onduleur hybride triphasé Hoymiles  - HYT-12.0HV-EUG1 (15 KW Tri - 2MPPT) - Compatible Batterie Lithium-ion/Plomb-acide ",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HYT-5.0HV-EUG1",
+    "name": "Onduleur hybride triphasé Hoymiles  - HYT-5.0HV-EUG1 (7,5 KW Tri - 2MPPT) - Compatible Batterie Lithium-ion/Plomb-acide ",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HYT-6.0HV-EUG1",
+    "name": "Onduleur hybride triphasé Hoymiles  - HYT-6.0HV-EUG1 (9 KW Tri - 2MPPT) - Compatible Batterie Lithium-ion/Plomb-acide - ",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/HYT-8.0HV-EUG1",
+    "name": "Onduleur hybride triphasé Hoymiles  - HYT-8.0HV-EUG1 (12 KW Tri - 2MPPT) - Compatible Batterie Lithium-ion/Plomb-acide -",
+    "brand": "HOYMILES",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HM/DTU-Lite-S",
+    "name": "Passerelle de communication Hoymiles DTU-Lite-S - Mono/Tri  (Ref CD040978)",
+    "brand": "HOYMILES",
+    "category": "micro_inverters",
+    "stock": 39,
+    "description": "Passerelle de communication Hoymiles DTU-Lite-S - Mono/Tri (Ref CD040978) Modèle : DTU-LiteS(WIFI).SEU.HM"
+  },
+  {
+    "sku": "HM/DTU-Pro-S",
+    "name": "Passerelle de communication Hoymiles DTU-ProS - Mono/Tri (Ref CD040975)",
+    "brand": "HOYMILES",
+    "category": "micro_inverters",
+    "stock": 767,
+    "description": "Passerelle de communication Hoymiles DTU-Pro-S - Mono/Tri (Ref CD040975)"
+  },
+  {
+    "sku": "HM/DTU-Wlite-S",
+    "name": "Passerelle de communication Hoymiles DTU-Wlite-S (Wi-Fi) pour HMS",
+    "brand": "HOYMILES",
+    "category": "micro_inverters",
+    "stock": 0,
+    "description": "Module de télésurveillance DTU-WLite-S (Wi-Fi) HOYMILES pour HMS"
+  },
+  {
+    "sku": "HUA/DTSU666-H 100A(Three Phase)",
+    "name": "DTSU666-H 100A(Three Phase)",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 10,
+    "description": "Type : Compteur 3P3W/3P4W avec 3 TC 100 A/40 mA Plage : 0–100 A ; 176–288 V ph / 304–499 V ligne Précision : U/I ±0.5 %, P/E ±1 %, freq ±0.01 Hz Interface : RS485 9600 bps Modbus‑RTU ; conso ≤1 W Mont"
+  },
+  {
+    "sku": "HUA/EMMA-A02",
+    "name": "Gestionnaire d'énergie intelligent EMMA-A02 Huawei (Ref : EMMA-A02)",
+    "brand": "HUAWEI",
+    "category": "monitoring",
+    "stock": 4,
+    "description": "Assistant de gestion de l'énergie avec module WLAN/FE intégré. Optimisation de la planification PV et ESS basée sur la prédiction. Compatible avec les séries de Smart Energy Controller L1, LC0, M1, M5"
+  },
+  {
+    "sku": "HUA/SUN2000-100KTL-M2",
+    "name": "HUAWEI - Onduleur SUN2000- 100KTL-M2 (AFCI) - Onduleur triphasé 100kw 10MPPT",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 1,
+    "description": "SUN2000-100KTL-M2] HUAWEI - Onduleur SUN2000-100KTL-M2 (AFCI) - Onduleur triphasé 100kw 10MPPT Code HS : 85044086 Poids : 93kg Pays d'origine : Chine"
+  },
+  {
+    "sku": "HUA/SMART-MONO",
+    "name": "HUAWEI – DDSU666-H (MonoPhasé – Smart Power Sensor Mono (tores inclus) 100A) compteur d'énergie Mono PS-M (DDSU666-H)",
+    "brand": "HUAWEI",
+    "category": "monitoring",
+    "stock": 13,
+    "description": "Mesure de la consommation - Tores inclus 100 ou 250A - Affichage LCD - Précision de mesure de classe 1 - Consommation d'énergie globale ~ 1,5 W Modèle : DDSU666-H (MonoPhasé – Capteur de puissance int"
+  },
+  {
+    "sku": "HUA/BAT-BACK-1PH",
+    "name": "Huawei Batterie Back-up box 1 phase à placer en amont du coffret AC (02406294)",
+    "brand": "HUAWEI",
+    "category": "batteries",
+    "stock": 1,
+    "description": ""
+  },
+  {
+    "sku": "HUA/BAT-BACK-3PH",
+    "name": "Huawei Batterie Back-up box 3 phases à placer en amont du coffret AC (02406150)",
+    "brand": "HUAWEI",
+    "category": "batteries",
+    "stock": 1,
+    "description": ""
+  },
+  {
+    "sku": "HUA/BAT-LUNA2000-5-E0",
+    "name": "Huawei Batterie Luna 2000-5-E0 module de stockage 5 kW utile - Tension nominale 360V (3 batteries maximum par module DC ",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 76,
+    "description": "Profondeur : 150 mm Largeur : 360 mm Longueur : 670 mm Poids (Kg) : 50 Kg Garantie : 12 ans Pays de fabrication : Chine"
+  },
+  {
+    "sku": "HUA/BAT-DC-LUNA2000-C0",
+    "name": "Huawei Batterie Luna module/controleur de puissance DC/DC (ref LUNA2000-5KW-C0) - 01074646",
+    "brand": "HUAWEI",
+    "category": "batteries",
+    "stock": 49,
+    "description": "Huawei Batterie DC/DC module de puissance 01074646 Profondeur : 150 mm Largeur : 240 mm Longueur : 670 mm Poids (Kg) : 12 Kg Pays de fabrication : Chine"
+  },
+  {
+    "sku": "HUA/WLAN-FE",
+    "name": "Huawei Smart Dongle Wifi + Ethernet - WLAN -FE (Model: SDongleA-05)",
+    "brand": "HUAWEI",
+    "category": "monitoring",
+    "stock": 36,
+    "description": "HUAWEI - Smart Dongle - WLAN -FE (jusqu'a 10 onduleurs). Model: (SDongleA-05-WLAN-FE) Code HS : 85176200 Poids : 0.90kg Pays d'origine : Chine 146 x 48 x 33 mm"
+  },
+  {
+    "sku": "HUA/SMART-TRI",
+    "name": "Huawei Smart Power Sensor (compteur d'énergie) Triphasé PS-T (DTSU666-H) 250A/50mA  - permet de bloquer la ré-injection ",
+    "brand": "HUAWEI",
+    "category": "monitoring",
+    "stock": 15,
+    "description": "Mesure de la consommation - Tores inclus 100 ou 250A - Affichage LCD - Précision de mesure de classe 1 - Consommation d'énergie globale ~ 1,5 W Modèle : DTSU666-H (TriPhasé – Capteur de puissance inte"
+  },
+  {
+    "sku": "HUA/SMLOG-3000A-01EU",
+    "name": "Huawei SmartLogger 3000A01EU, Solar Smart Monitor & Data Logger with 4G",
+    "brand": "HUAWEI",
+    "category": "monitoring",
+    "stock": 2,
+    "description": "Conception de contrôle d'exportation intelligent zéro - Facile à installer sur site - Amélioration de la sécurité par parafoudre interne Réf Fab : SMARTLOGGER3000A01EU"
+  },
+  {
+    "sku": "HUA/P1300-SHORT",
+    "name": "Huawei optimiseur de puissance P1300 – Smart PV Optimizer – Pose paysage - Garantie 25 ans -  Modèle: MERC-1300W-P Cable",
+    "brand": "HUAWEI",
+    "category": "optimizers",
+    "stock": 0,
+    "description": "Puissance: 1300 W Catégorie de surtension : II Max. Efficacité : 99,5 %. Efficacité pondérée : 99,0 %. Classe de protection : IP68 Pays de fabrication : Chine Référence: MERC-1300W-P-shortcable"
+  },
+  {
+    "sku": "HUA/P1300-LONG",
+    "name": "Huawei optimiseur de puissance P1300 – Smart PV Optimizer – Pose paysage - Garantie 25 ans -  Modèle: MERC-1300W-P Long ",
+    "brand": "HUAWEI",
+    "category": "optimizers",
+    "stock": 100,
+    "description": "Puissance: 1300 W Catégorie de surtension : II Max. Efficacité : 99,5 %. Efficacité pondérée : 99,0 %. Classe de protection : IP68 Pays de fabrication : Chine Référence: MERC-1300W-P-longcable 149 mm"
+  },
+  {
+    "sku": "HUA/P600",
+    "name": "Huawei optimiseur de puissance P600  (Tension de 10 à 80V - Courant entrée max 14,5A) - Modèle: SUN2000-600W-P",
+    "brand": "HUAWEI",
+    "category": "optimizers",
+    "stock": 10,
+    "description": "Smart PV Optimizer Modèle: SUN2000-600W-P Poids (Kg) : 0.55 Kg Pays de fabrication : Chine"
+  },
+  {
+    "sku": "HUA/SUN2000-5KTL-L1",
+    "name": "Onduleur hybride monophasé Huawei - 5 KTL-L1 (Mono-2 MPPT) - Compatible Optimiseurs - Garantie 10 ans - (Ref SUN2000-5KT",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Poids (Kg) : 12 Kg Tension d'entrée max DC (V) : 100 Puissance nominale DC (W) : 7500 Plage de fonctionnement MPPT : 90 V - 560V Courant d'entrée max DC : 18A Puissance nominale AC (VA) : 6000 Pays de"
+  },
+  {
+    "sku": "HUA/SUN2000-6KTL-L1",
+    "name": "Onduleur hybride monophasé Huawei - 6 KTL-L1 (Mono-2 MPPT) - Compatible Optimiseurs - Garantie 10 ans - (Ref SUN2000-6KT",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 3,
+    "description": "Dimensions : 365 x 365 x 156 mm Poids (Kg) :12.6 Kg Tension d'entrée max DC (V) :100 Courant d'entrée max DC :18A Nombre de trackers MPPT :2 Puissance nominale AC (VA) :6000 Rendement européen (%) :97"
+  },
+  {
+    "sku": "HUA/SUN2000-2KTL-L1",
+    "name": "Onduleur hybride monophasé Huawei - SUN2000-2KTL-L1 - 2MPPT - Compatible Optimiseurs + antenne intégrée - Garantie 10 an",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Dimensions :365 x 365 mm x 156 mm Poids (Kg) :12.6 Kg Type d'onduleur :Hybride Nombre de trackers MPPT :2 Puissance nominale AC (VA) :3300 Pays de fabrication :Chine Garantie :10 ans Référence: SUN200"
+  },
+  {
+    "sku": "HUA/SUN2000-3,6KTL-L1",
+    "name": "Onduleur hybride monophasé Huawei - SUN2000-3,6KTL-L1 - 2MPPT - Compatible Optimiseurs + antenne intégrée - Garantie 10A",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Dimensions :365 x 365 x 156 mm Poids (Kg) :12.6 Kg Tension d'entrée max DC (V) :100 Courant d'entrée max DC :18A Nombre de trackers MPPT :2 Puissance nominale AC (VA) :3680 Rendement européen (%) :97,"
+  },
+  {
+    "sku": "HUA/SUN2000-3KTL-L1",
+    "name": "Onduleur hybride monophasé Huawei - SUN2000-3KTL-L1 - 2MPPT - Compatible Optimiseurs + antenne intégrée - Garantie 10A",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Dimensions : 365 x 365 x 156 mm Poids (Kg) :12.6 Kg Tension d'entrée max DC (V) :100 Courant d'entrée max DC :18A Nombre de trackers MPP :2 Puissance nominale AC (VA) :3300 Rendement européen (%) :97,"
+  },
+  {
+    "sku": "HUA/SUN2000-4,6KTL-L1",
+    "name": "Onduleur hybride monophasé Huawei - SUN2000-4,6KTL-L1 - 2 MPPT - Compatible Optimiseurs + antenne intégrée - Garantie 10",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Dimensions : 365 x 365 x 156 mm Poids (Kg) :12.6 Kg Tension d'entrée max DC (V) :100 Courant d'entrée max DC :18A Nombre de trackers MPPT :2 Puissance nominale AC (VA) :5000 Rendement européen (%) :97"
+  },
+  {
+    "sku": "HUA/SUN2000-4KTL-L1",
+    "name": "Onduleur hybride monophasé Huawei - SUN2000-4KTL-L1 - 2MPPT - Compatible Optimiseurs + antenne intégrée - Garantie 10A",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Dimensions : 365 x 365 x 156 mm Poids (Kg) :12.6 Kg Tension d'entrée max DC (V) :100 Courant d'entrée max DC :18A Nombre de trackers MPPT :2 Puissance nominale AC (VA) :4400 Rendement européen (%) :97"
+  },
+  {
+    "sku": "HUA/SUN2000-10K-LC0",
+    "name": "Onduleur hybride monophasé Huawei SUN2000-10K-LC0 monophasé (10000 VA - 3 MPPT) antenne intégrée - Garantie 10A",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 9,
+    "description": "Dimensions :365 x 425 mm x 150 mm Poids (Kg) :15 Kg Tension d'entrée max DC (V) :600 Puissance nominale DC (W) :12000 Courant d'entrée max DC :20A Nombre de trackers MPPT :3 Puissance nominale AC (VA)"
+  },
+  {
+    "sku": "HUA/SUN2000-8K-LC0",
+    "name": "Onduleur hybride monophasé Huawei SUN2000-8K-LC0 monophasé (8800 VA - 3 MPPT) antenne intégrée - Garantie 10A",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 10,
+    "description": "Dimensions : 365 x 425 x 150 mm Poids (Kg) :15 Kg Tension d'entrée max DC (V) :600 Puissance nominale DC (W) :12000 Courant d'entrée max DC :20A Nombre de trackers MPPT :3 Puissance nominale AC (VA) :"
+  },
+  {
+    "sku": "HUA/SUN2000-4KTL-M1",
+    "name": "Onduleur hybride triphasé 4kw Huawei - SUN2000-4-KTL-M1 - 2 MPPT - Compatible Optimiseurs - Garantie 10 ans + Dongle VLA",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Caractéristiques techniques : Dimensions : 470 x 525 x 146.5 mm Poids (Kg) : 17 Kg Tension d'entrée max DC (V) : 200 Puissance nominale DC (W) : 6000 Courant d'entrée max DC : 19.5A Nombre de trackers"
+  },
+  {
+    "sku": "HUA/SUN2000-10KTL-M1",
+    "name": "Onduleur hybride triphasé Huawei - SUN2000-10KTL-M1 - 2 MPPT - Compatible Optimiseurs - Garantie 10 ans + Dongle VLAN in",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Dimensions : 470 x 525 x 146.5 mm Poids (Kg) :17 Kg Type d'onduleur :Onduleur centralisé Type d'onduleur : Hybride Tension d'entrée max DC (V) : 200 Puissance nominale DC (W) : 10000 Plage de fonction"
+  },
+  {
+    "sku": "HUA/SUN2000-3KTL-M1",
+    "name": "Onduleur hybride triphasé Huawei - SUN2000-3KTL-M1 - 2 MPPT - Compatible Optimiseurs - Protection intégrée - Garantie 10",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Dimensions : 470 x 525 x 146.5 mm Poids (Kg) :17 Kg Type d'onduleur : Hybride Tension d'entrée max DC (V) : 200 Puissance nominale DC (W) : 4500 Plage de fonctionnement MPPT : 140 V - 980V Courant d'e"
+  },
+  {
+    "sku": "HUA/SUN2000-5KTL-M1",
+    "name": "Onduleur hybride triphasé Huawei - SUN2000-5KTL-M1 - 2 MPPT - Compatible Optimiseurs - Garantie 10 ans + Dongle VLAN int",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Dimensions : 470 x 525 x 146.5 mm Poids (Kg) :17 Kg Type d'onduleur : Hybride Tension d'entrée max DC (V) : 200 Puissance nominale DC (W) : 7500 Plage de fonctionnement MPPT : 140 V - 980V Courant d'e"
+  },
+  {
+    "sku": "HUA/SUN2000-6KTL-M1",
+    "name": "Onduleur hybride triphasé Huawei - SUN2000-6KTL-M1 - 2 MPPT - Compatible Optimiseurs - Garantie 10 ans + Dongle VLAN int",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Dimensions : 470 x 525 x 146.5 mm Poids (Kg) :17 Kg Type d'onduleur : Hybride Tension d'entrée max DC (V) : 200 Puissance nominale DC (W) : 9000 Plage de fonctionnement MPPT : 140 V - 980V Courant d'e"
+  },
+  {
+    "sku": "HUA/SUN2000-8KTL-M1",
+    "name": "Onduleur hybride triphasé Huawei - SUN2000-8KTL-M1 - 2 MPPT - Compatible Optimiseurs - Garantie 10 ans + Dongle VLAN int",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Dimensions : 470 x 525 x 146.5 mm Poids (Kg) :17 Kg Type d'onduleur : Hybride Tension d'entrée max DC (V) : 200 Puissance nominale DC (W) : 12000 Plage de fonctionnement MPPT : 140 V - 980V Courant d'"
+  },
+  {
+    "sku": "HUA/OND-15KTL-M5",
+    "name": "Onduleur triphasé Huawei  - 15 KTL M5 (16,5 KW tri - 2MPPT)  - Garantie 10 ans (Ref SUN2000-15KTL-M5)",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Ref : SUN2000-15KTL-M5 Type d'onduleur : Onduleur centralisé Poids (Kg) : 21 Kg"
+  },
+  {
+    "sku": "HUA/OND-20KTL-M5",
+    "name": "Onduleur triphasé Huawei  - 20 KTL M5 (22 KW tri - 2MPPT)  - Garantie 10 ans",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Ref : SUN2000-20KTL-M5 Type d'onduleur : Onduleur centralisé Poids (Kg) : 21 Kg"
+  },
+  {
+    "sku": "HUA/OND-30KTL-M3",
+    "name": "Onduleur triphasé Huawei  - 30 KTL M3 (30 KW tri - 4MPPT)  - Garantie 5 ans extensible à 10 ans",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 5,
+    "description": ""
+  },
+  {
+    "sku": "HUA/OND-50KTL-M3",
+    "name": "Onduleur triphasé Huawei Sun 2000 - 50 KTL-M3 (50 KW Tri-Sect+MC4+PARAF 5 Intégrés-4 MPPT) - Communication intégrée",
+    "brand": "HUAWEI",
+    "category": "inverters",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "HUA/P450",
+    "name": "Optimiseur Huawei P450-P2 (Tension de 10 à 80V - Courant entrée max 14,5A) Smart PV Optimizer– (Ref SUN2000-450WP2)",
+    "brand": "HUAWEI",
+    "category": "optimizers",
+    "stock": 1,
+    "description": "Profondeur : 28 mm Largeur : 140 mm Longueur : 75 mm Poids (Kg) : 0.55 Kg Tension d'entrée max DC (V) : 80 Puissance nominale DC (W) : 450 Courant d'entrée max DC : 14.5A Pays de fabrication : Chine"
+  },
+  {
+    "sku": "HUA/SCharger-22KT-S0",
+    "name": "SCharger-22KT-S0",
+    "brand": "HUAWEI",
+    "category": "ev_charging",
+    "stock": 10,
+    "description": "Borne de charge AC 1P, prise Type 2 Puissance réglable : 1.4–7.4 kW (6–32 A, 230 V) Comms : Wi‑Fi / Ethernet, Modbus TCP, OCPP 1.6, RFID/App/Bluetooth Protection : RCD Type A + DC 6 mA, IP54, IK10 Dim"
+  },
+  {
+    "sku": "HUA/SCharger-7KS-S0",
+    "name": "SCharger-7KS-S0",
+    "brand": "HUAWEI",
+    "category": "ev_charging",
+    "stock": 10,
+    "description": "Borne de charge AC 1P, prise Type 2 Puissance réglable : 1.4–7.4 kW (6–32 A, 230 V) Comms : Wi‑Fi / Ethernet, Modbus TCP, OCPP 1.6, RFID/App/Bluetooth Protection : RCD Type A + DC 6 mA, IP54, IK10 Dim"
+  },
+  {
+    "sku": "HUA/SUN2000-10K-MAP0",
+    "name": "SUN2000-10K-MAP0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 10,
+    "description": "Type : Onduleur triphasé hybride (avec support batterie) Puissance nominale AC : 10 000 W Puissance apparente max : 11 000 VA Efficacité maximale : 98,6 % Efficacité européenne pondérée : 98,1 % Tensi"
+  },
+  {
+    "sku": "HUA/SUN2000-12K-MAP0",
+    "name": "SUN2000-12K-MAP0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 7,
+    "description": "Type : Onduleur triphasé hybride (avec support batterie) Puissance nominale AC : 12 000 W Puissance apparente max : 13 200 VA Efficacité maximale : 98,6 % Efficacité européenne pondérée : 98,2 % Tensi"
+  },
+  {
+    "sku": "HUA/SUN2000-12K-MB0",
+    "name": "SUN2000-12K-MB0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 10,
+    "description": "Type : Onduleur hybride triphasé (batterie prête) Puissance AC nominale : 12000 W (13.2 kVA max) Rendement max : 98.4 % (européen 97.9 %) Entrée DC : 1100 V max, MPPT 200–1000 V, 2 x 30 A, 2 MPPT Sort"
+  },
+  {
+    "sku": "HUA/SUN2000-15K-MB0",
+    "name": "SUN2000-15K-MB0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 10,
+    "description": "Type : Onduleur hybride triphasé (batterie prête) Puissance AC nominale : 15000 W (16.5 kVA max) Rendement max : 98.4 % (européen 98.0 %) Entrée DC : 1100 V max, MPPT 200–1000 V, 2 x 30 A, 2 MPPT Sort"
+  },
+  {
+    "sku": "HUA/SUN2000-17K-MB0",
+    "name": "SUN2000-17K-MB0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 10,
+    "description": "Type : Onduleur hybride triphasé (batterie prête) Puissance AC nominale : 17000 W (18.7 kVA max) Rendement max : 98.4 % (européen 98.1 %) Entrée DC : 1100 V max, MPPT 200–1000 V, 2 x 30 A, 2 MPPT Sort"
+  },
+  {
+    "sku": "HUA/SUN2000-20K-MB0",
+    "name": "SUN2000-20K-MB0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 9,
+    "description": "Type : Onduleur hybride triphasé (batterie prête) Puissance AC nominale : 20000 W (22.0 kVA max) Rendement max : 98.4 % (européen 98.1 %) Entrée DC : 1100 V max, MPPT 200–1000 V, 2 x 30 A, 2 MPPT Sort"
+  },
+  {
+    "sku": "HUA/SUN2000-25K-MB0",
+    "name": "SUN2000-25K-MB0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 10,
+    "description": "Type : Onduleur hybride triphasé (batterie prête) Puissance AC nominale : 25000 W (27.5 kVA max) Rendement max : 98.4 % (européen 98.2 %) Entrée DC : 1100 V max, MPPT 200–1000 V, 2 x 30 A, 2 MPPT Sort"
+  },
+  {
+    "sku": "HUA/SUN2000-5K-MAP0",
+    "name": "SUN2000-5K-MAP0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 10,
+    "description": "Type : Onduleur triphasé hybride (avec support batterie) Puissance nominale AC : 5 000 W Puissance apparente max : 5 500 VA Efficacité maximale : 98,4 % Efficacité européenne pondérée : 97,5 % Tension"
+  },
+  {
+    "sku": "HUA/SUN2000-6K-MAP0",
+    "name": "SUN2000-6K-MAP0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 10,
+    "description": "Type : Onduleur triphasé hybride (avec support batterie) Puissance nominale AC : 6 000 W Puissance apparente max : 6 600 VA Efficacité maximale : 98,6 % Efficacité européenne pondérée : 97,7 % Tension"
+  },
+  {
+    "sku": "HUA/SUN2000-8K-MAP0",
+    "name": "SUN2000-8K-MAP0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 10,
+    "description": "Type : Onduleur triphasé hybride (avec support batterie) Puissance nominale AC : 8 000 W Puissance apparente max : 8 800 VA Efficacité maximale : 98,6 % Efficacité européenne pondérée : 98,0 % Tension"
+  },
+  {
+    "sku": "HUA/Smart dongle SdongleB-06-EU",
+    "name": "Smart dongle SdongleB-06-EU",
+    "brand": "HUAWEI",
+    "category": "monitoring",
+    "stock": 10,
+    "description": "\"Type : Dongle 4G/2G avec Wi‑Fi pour onduleurs Huawei Compatibilité : séries M0/M1/M2/M3/M5/MB0, jusqu’à 10 onduleurs Interface : USB, hotspot WLAN Indice de protection : IP65 ; conso typique 3.5 W Te"
+  },
+  {
+    "sku": "HUA/SmartGuard-63A-S0",
+    "name": "SmartGuard-63A-S0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 5,
+    "description": "Type : Coffret ATS + EMMA intégré, 1P 63 A Tension nominale : 220/230/240 V L/N+PE ; courant inv. 60 A Basculement : ≤20 ms (mode seamless) Interfaces : LAN/WAN, WLAN AP, 2×RS485, 2×DI, 2×DO Indice de"
+  },
+  {
+    "sku": "HUA/SmartGuard-63A-T0",
+    "name": "SmartGuard-63A-T0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 5,
+    "description": "Type : Coffret ATS + EMMA intégré, 3P 63 A Tension nominale : 380/400/415 V ou 220/230/240 V, L1/L2/L3/N+PE Basculement : ≤20 ms (MAP0) / ≤100 ms (M1/MB0) Interfaces : LAN/WAN, WLAN AP, 2×RS485, 2×DI,"
+  },
+  {
+    "sku": "HUA/SmartPS-100A-S0",
+    "name": "SmartPS-100A-S0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 10,
+    "description": "Type : Compteur 1P2W avec TC 100 A/40 mA Plage : 0–100 A ; 176–288 V AC Précision : U/I ±0.5 %, P/E ±1 %, freq ±0.01 Hz Interface : RS485 Modbus‑RTU ; Montage : rail DIN35 ; 100 × 36 × 65.5 mm ; IP20"
+  },
+  {
+    "sku": "HUA/SmartPS-250A-T0 Three-phase intelligent sensor",
+    "name": "SmartPS-250A-T0 Three-phase intelligent sensor",
+    "brand": "HUAWEI",
+    "category": "monitoring",
+    "stock": 10,
+    "description": "Type : Capteur/compteur 3P4W avec TC 250 A/50 mA Plage : 0–250 A ; 176–288 V ph / 304–500 V ligne Précision : U/I ±0.5 %, P/E ±1 %, freq ±0.01 Hz Interface : RS485 Modbus‑RTU (4800–115200 bps) Montage"
+  },
+  {
+    "sku": "HUASmartPS-80AI-T0",
+    "name": "SmartPS-80AI-T0",
+    "brand": "HUAWEI",
+    "category": "accessories",
+    "stock": 10,
+    "description": "Type : Capteur/compteur triphasé 3P3W/3P4W Plage : 0–80 A direct (extension via TC 1/5 A) Précision : U/I ±0.5 %, P/E ±1 %, freq ±0.01 Hz Interface : RS485 Modbus‑RTU (4800–115200 bps) Montage : rail"
+  },
+  {
+    "sku": "xxx/000/06",
+    "name": "Heschen Contacteur ca domestique, HS1-25, 2 pôles 1NO 1NC, AC 220V/240V tension de bobine, 35mm montage sur Rail DIN (12",
+    "brand": "Heschen",
+    "category": "mounting",
+    "stock": 11,
+    "description": "Heschen Contacteur ca domestique, HS1-25, 2 pôles 1NO 1NC, AC 220V/240V tension de bobine, 35mm montage sur Rail DIN (12)"
+  },
+  {
+    "sku": "xxx/000/01",
+    "name": "Heschen Disjoncteur miniature CC HSB6C-DC, 2 pôles, DC500 V 125 A, disjoncteur photovoltaïque, pour système solaire PV, ",
+    "brand": "Heschen",
+    "category": "solar_panels",
+    "stock": 26,
+    "description": "Courant nominal : 125 A Tension nominale : 500 V CC Capacité de rupture : 8 ka Nombre de pôles : 2P Type D"
+  },
+  {
+    "sku": "JA/JAM54S30-410-MC4",
+    "name": "Module cellules PERC 11BB Demi Cellules JA Solar JAM54S30 410/MR 395-420 1500V Black Frame MC4-EVO2",
+    "brand": "JA Solar",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Nom de la série: JAM54S30 395-420/MR Puissance (Wp): 410 Nom du modèle: JAM54S30 410/MR Années de garantie: 12 Classe de protection: IP68 Type de connecteur: MC4-EVO2 Section du câble (mm²) : 4 Longue"
+  },
+  {
+    "sku": "JA/JAM54D40-GB-420-MC4",
+    "name": "Module cellules PERC 16BB Demi Cellules Bifacial JA Solar JAM54D40 415-440/GB/1500V MC4-EVO2",
+    "brand": "JA Solar",
+    "category": "solar_panels",
+    "stock": 85,
+    "description": "Nom de la série: JAM54D40 420-445/GB Puissance (Wp): 420 Nom du modèle: JAM54D40 420/GB Années de garantie: 12 Classe de protection: IP68 Type de connecteur: MC4-EVO2 Section du câble (mm²) : 4 Longue"
+  },
+  {
+    "sku": "JOR/004006648",
+    "name": "JORISIDE - Clip de mise à la terre ARAYMOND Rayvolt (004006648 ou 220492)",
+    "brand": "JORISOLAR",
+    "category": "accessories",
+    "stock": 560,
+    "description": "Réf fabricant : 004006648 Garantie : 10 ans Poids : 0.005 Kg Pays d'origine : France"
+  },
+  {
+    "sku": "JOR/000016379",
+    "name": "JORISIDE - Kit avec bride centrale aluminium ST02 30-50mm + TERRAGRIF (16379)",
+    "brand": "JORISOLAR",
+    "category": "accessories",
+    "stock": 0,
+    "description": "Réf fabricant : (16379) Garantie : 10 ans Poids : 0.10 Kg Pays d'origine : France"
+  },
+  {
+    "sku": "JOR/000019506",
+    "name": "JORISIDE - Kit de bride centrale ST02 30-50 noire avec Terragrif (000019506 ou 4039807)",
+    "brand": "JORISOLAR",
+    "category": "accessories",
+    "stock": 1318,
+    "description": "Réf fabricant : (000019506 ou 4039807) Garantie : 10 ans Poids : 0.10 Kg Pays d'origine : France"
+  },
+  {
+    "sku": "JOR/4008148",
+    "name": "JORISIDE - Kit de bride latérale noire 34-35",
+    "brand": "JORISOLAR",
+    "category": "accessories",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "JOR/000019505",
+    "name": "JORISIDE - Kit de bride latérale noire Jorisolar 30-31 (000019505)",
+    "brand": "JORISOLAR",
+    "category": "accessories",
+    "stock": 865,
+    "description": ""
+  },
+  {
+    "sku": "JOR/000010720",
+    "name": "JORISIDE - Rail Jorisolar Opti'Roof 100mm (10720)",
+    "brand": "JORISOLAR",
+    "category": "mounting",
+    "stock": 1152,
+    "description": "Mode de pose : Paysage Réf fabricant : 000010720 Garantie : 10 ans Poids : 0.12 Kg Pays d'origine : France"
+  },
+  {
+    "sku": "JOR/004004059",
+    "name": "JORISIDE - Rail Jorisolar support alu RS-R 385mm Portrait (4004059)",
+    "brand": "JORISOLAR",
+    "category": "mounting",
+    "stock": 928,
+    "description": "Mode de pose : portrait ou paysage Réf fabricant : 004004059 Garantie : 10 ans Poids : 0.41 Kg Pays d'origine : France"
+  },
+  {
+    "sku": "JOR/004004249",
+    "name": "JORISIDE - Rondelle de frein inox (4004249)",
+    "brand": "JORISOLAR",
+    "category": "accessories",
+    "stock": 362,
+    "description": "Réf fabricant : (4004249) Garantie : 10 ans Poids : 0.01 Kg Pays d'origine : France"
+  },
+  {
+    "sku": "JOR/004001967",
+    "name": "JORISIDE - Vis Inox fixation support Jorisolar 6,3x22 (4001967)",
+    "brand": "JORISOLAR",
+    "category": "mounting",
+    "stock": 7660,
+    "description": "Réf fabricant : 004001967 Garantie : 10 ans Poids : 0.03 Kg Pays d'origine : France"
+  },
+  {
+    "sku": "JOR/004007563",
+    "name": "JORISIDE - Vis M8 x 16 inox (4007563)",
+    "brand": "JORISOLAR",
+    "category": "accessories",
+    "stock": 362,
+    "description": "Réf fabricant : (4007563) Garantie : 10 ans Poids : 0.12 Kg Pays d'origine : France"
+  },
+  {
+    "sku": "JOR/004004061",
+    "name": "JORISIDE - Écrou coulissant Alu M8 (4004061)",
+    "brand": "JORISOLAR",
+    "category": "accessories",
+    "stock": 362,
+    "description": "Réf fabricant : (4004061) Garantie : 10 ans Poids : 0.01 Kg Pays d'origine : France"
+  },
+  {
+    "sku": "JOR/2X4PATM/30MM",
+    "name": "Systeme de montage JORISIDE 2X4 Paysage Bac acier",
+    "brand": "JORISOLAR",
+    "category": "mounting",
+    "stock": 1,
+    "description": "COMPOSANTS: 1) [JOR/000010720] JORISIDE - Rail Jorisolar Opti'Roof 100mm (10720) - 24 pcs 2) [JOR/004004061] JORISIDE - Écrou coulissant Alu M8 (4004061) - 4 pcs 3) [JOR/004007563] JORISIDE - Vis M8 x"
+  },
+  {
+    "sku": "JOR/2X4POTM/30MM",
+    "name": "Systeme de montage JORISIDE 2X4 Portrait Bac acier",
+    "brand": "JORISOLAR",
+    "category": "mounting",
+    "stock": 0,
+    "description": "COMPOSANTS: 1) [JOR/004004059] JORISIDE - Rail Jorisolar support alu RS-R 385mm Portrait (4004059) - 20 pcs 2) [JOR/004004061] JORISIDE - Écrou coulissant Alu M8 (4004061) - 4 pcs 3) [JOR/004007563] J"
+  },
+  {
+    "sku": "JOR/2X8POTM/30MM",
+    "name": "Systeme de montage JORISIDE 2X8 Portrait Bac acier",
+    "brand": "JORISOLAR",
+    "category": "mounting",
+    "stock": 3,
+    "description": "COMPOSANTS: 1) [JOR/004004059] JORISIDE - Rail Jorisolar support alu RS-R 385mm Portrait (4004059) - 36 pcs 2) [JOR/004004061] JORISIDE - Écrou coulissant Alu M8 (4004061) - 8 pcs 3) [JOR/004007563] J"
+  },
+  {
+    "sku": "FUS-PV-30A",
+    "name": "fusible PV 1000V DC 30A",
+    "brand": "Jadeshay",
+    "category": "accessories",
+    "stock": 16,
+    "description": "Connecteur de fusible PV Solaire 1000V DC IP67 Connecteur Solaire Photovoltaïque Étanche Connecteur de Diode Solaire for Système PV Solaire (30A)"
+  },
+  {
+    "sku": "K2S/2003523",
+    "name": "BlackCover SingleRail 36",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "K2 BlackCover pour le recouvrement noir des extrémités des rails du K2 SingleRail 36 et du K2 SingleRail 36 light. Longueur du couvercle : 150 mm."
+  },
+  {
+    "sku": "K2S/2004123",
+    "name": "Dome 6 Connector 195 Set : Rail de jonction utilisé comme élément de jonction entre deux rails Dome 6 Base Set.",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "K2S/2004125",
+    "name": "Dome 6.10 Peak : Composant pour l'élévation du module du système Dome 6.10",
+    "brand": "K2 SYSTEMS",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "K2S/2003243",
+    "name": "Dome 6.10 SD : Élément de support du module frontal pour le système Dome 6.10",
+    "brand": "K2 SYSTEMS",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "K2S/2003126",
+    "name": "Dome Mat S 380 : Appui Mat S. Grâce à  son élasticité, il absorbe les tolérances et protège la membrane du toit",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "K2S/2003150",
+    "name": "Dome Porter short : Porter K2 pour un éventuel lestage rapide et simple pour les systèmes Dome 6.",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "K2S/2002300",
+    "name": "Dome SpeedPorter : Pour le lestage sur le système de toiture plate K2 Dome 6 Classic",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "K2S/1001643",
+    "name": "Ecrou-prisonnier MK2 avec clip de montage, Acier inox",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "L'écrou-prisonnier s’insère sur le rail K2 à n’importe quelle hauteur. Une légère pression sur la pièce permet ensuite de le déplacer facilement dans le rail. Matériau: acier inox 1.4301, PA."
+  },
+  {
+    "sku": "K2S/2004057",
+    "name": "K2 Adaptateur + vis StairPlate pour fixation micro-onduleurs/optimiseurs sur rails (kit)",
+    "brand": "K2 SYSTEMS",
+    "category": "inverters",
+    "stock": 0,
+    "description": "La StairPlate K2 est la solution parfaite pour installer les micro-onduleurs et les optimiseurs de Solar Edge, Huawei et Enphase. Avec la StairPlate, ces appareils peuvent être facilement accrochés à"
+  },
+  {
+    "sku": "K2S/2004278",
+    "name": "K2 BasicRail 22; 4.80 m : Rail de montage K2 longueur 4,80m",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "K2S/1004767",
+    "name": "K2 Bouchon pour Single Rail 36 (Noir)",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "EndCap K2 pour boucher les extrémités du rail SingleRail 36, SingleRail 36 light et CrossRail 36. Matériau: polyamide renforcé en fibres de verre."
+  },
+  {
+    "sku": "K2S/1004765",
+    "name": "K2 Bouchon pour SolidRail Light (Noir)",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "EndCap K2 pour boucher les extrémités du rail SolidRail Light 37 K2. Matériau: polyamide renforcé en fibres de verre."
+  },
+  {
+    "sku": "K2S/2002589",
+    "name": "K2 Bride Exterieure Noire - cadre 30-42mm",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 2,
+    "description": "Noir anodisé / etrier universel (final) Simple clic pour la fixation de modules PV d'une hauteur de cadre de 30-42 mm. Non compatible avec K2 Dome 6 System et K2 FlatRail, SolidRail L/ LS /XL et Cross"
+  },
+  {
+    "sku": "K2S/2002610",
+    "name": "K2 Bride Exterieure Noire pour MiniRail ou Dome 6 et V - cadre 30-50mm",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Matériau: aluminium anodisé (EN AW 6063 T66, EN AW 6082 T6), inox (1.4301)."
+  },
+  {
+    "sku": "K2S/2003072",
+    "name": "K2 Bride Intermédiaire Noire - cadre 30-42mm",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 2,
+    "description": "Etrier universel (intermédiaire) en noir anodisé. Pour fixation de modules d'une hauteur de cadre de 30 à 42 mm. Non compatible avec les rails Dome 6 System et FlatRail, SolidRail L/ LS /XL et CrossRa"
+  },
+  {
+    "sku": "K2S/2002609",
+    "name": "K2 Bride Intermédiaire Noire pour MiniRail ou Dome 6 et V- cadre 30-50mm",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Matériau: aluminium anodisé EN AW 6063 T66; EN AW 6082 T6, inox (1.4301)."
+  },
+  {
+    "sku": "K2S/2001976",
+    "name": "K2 Connecteur de rails Single Rail 36",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Elément de jonction utilisé pour la liaison entre deux rails SingleRail 36 K2. Vis incluses. Matériau: aluminium EN AW-6063 T66, acier inox A2"
+  },
+  {
+    "sku": "K2S/2003175",
+    "name": "K2 Crochet CrossHook 2 pour tuiles béton plates (Singlerail)",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Crochets de toit pour toitures en tuiles béton plates, conformes aux spécifications BS EN 490. Prémonté avec Climber 36/50m et vis. Matériau: acier inox (1.4301)"
+  },
+  {
+    "sku": "K2S/2003144",
+    "name": "K2 Crochet SingleHook-CrossHook 4S (Singlerail)",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Crochets de toit pour tuiles avec 3 réglages de la hauteur sur la plaque de base (40, 47, 54mm) et 30mm de réglage du bras. Hauteur totale 120,5 – 165,1mm. Pour chevrons à partir de 48 mm (chevrons ét"
+  },
+  {
+    "sku": "K2S/1001068",
+    "name": "K2 Crochet SolidHook Coppo à hauteur réglable pour tuiles Canal (Solidrail)",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Crochet SolidHook Coppo à hauteur réglable pour couverture en tuiles Canal. Etrier avec trou oblong pour le montage de SolidRails avec vis à tête marteau et écrou M10. Dimension: Plaque de base: 150x6"
+  },
+  {
+    "sku": "K2S/1000214",
+    "name": "K2 Crochet de toit FlatTile pour tuiles plates (Solidrail)",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Crochets de toit pour couverture en tuiles plates. Etrier avec trou oblong pour le montage de SolidRails avec vis à tête marteau et écrou M10. Plaque de base: 40x50 mm, Hauteur sous bras: 33 mm, Haute"
+  },
+  {
+    "sku": "K2S/1000373",
+    "name": "K2 Crochets de toit pour ardoise 40x250x6/6x40mm M10 (Crochet de toit Slate Tile)",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Crochet de toit pour couverture en ardoise. Etrier avec trou oblong pour le montage de SolidRail avec vis à tête marteau M10. Bras: 40x250x6 mm - Hauteur totale: 72 mm. Matériau: Acier inox A2 (1.4301"
+  },
+  {
+    "sku": "K2S/2002870",
+    "name": "K2 Câble Manager PA 66 W - Attaches de câbles avec raccords",
+    "brand": "K2 SYSTEMS",
+    "category": "cables",
+    "stock": 0,
+    "description": "Collier de serrage avec fixation pour le maintien extérieur des câbles solaires. LxL: 200x4,6 mm"
+  },
+  {
+    "sku": "K2S/1000042",
+    "name": "K2 Ecrou M10 à embase avec cran d'arret",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 0,
+    "description": "Écrous hexagonaux à embase crantée M10; DIN 6923 A2 M 10. Le cran d’arrêt empêche tout desserrement. Matériau: Acier inox A2"
+  },
+  {
+    "sku": "K2S/2003542",
+    "name": "K2 Griffe de mise à la terre K2MI Duo 18 (compatible avec le MiniRail)",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Accessoires de montage pour la mise à la terre des cadres des modules."
+  },
+  {
+    "sku": "K2S/2001881",
+    "name": "K2 Griffe de mise à la terre K2SZ (compatible avec : SingleRail / SolidRail / SpeedRail / MultiRail)",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Accessoires de montage pour établir la liaison équipotentielle des systèmes de montage K2 ou pour la mise à la terre des modules. Systèmes incompatibles : BasicRail (montage en paysage). Matériau : Ac"
+  },
+  {
+    "sku": "K2S/2002341",
+    "name": "K2 MiniRail longueur 0,38m (pose en portrait ou paysage sur Bac Acier) - 4 Vis",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Rails courts pour montage de modules photovoltaïques sur toitures BAC ACIER. 4 vis avec rondelle pour tôle mince inclus. Matériau: aluminium EN AW-6063 T66, EPDM, acier inox A2"
+  },
+  {
+    "sku": "K2S/2003220",
+    "name": "K2 Single Rail 36 de 2,25 m",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Rail de montage K2 avec connexion latérale longueur 2,25 m. Prévu pour différents types de toitures. Matériau : Aluminium EN AW-6063 T66"
+  },
+  {
+    "sku": "K2S/2004257",
+    "name": "K2 Single Rail 36 de 2,5 m - remplace la K2S/2003220",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Rail de montage K2 avec connexion latérale longueur 2,50 m. Prévu pour différents types de toitures. Matériau : Aluminium EN AW-6063 T66"
+  },
+  {
+    "sku": "K2S/2004258",
+    "name": "K2 Single Rail 36 de 3,65 m - remplace la K2S/2003221",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Rail de montage K2 avec connexion latérale longueur 3,65 m. Prévu pour différents types de toitures. Matériau : Aluminium EN AW-6063 T66"
+  },
+  {
+    "sku": "K2S/1004367",
+    "name": "K2 SolidRail Light de 2.10 m",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Rail de montage K2. Application variable pour différents types de toiture. Longueur 2,10 m. Matériau: Aluminium EN AW-6063 T66"
+  },
+  {
+    "sku": "K2S/2004112",
+    "name": "K2 Vis bois HecoTopix 8x100 (Conditionnement par 50pcs)",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 0,
+    "description": "Vis à bois à tête plate 8x100 avec certification ETA, garantissant un montage rapide et sûr sans préperçage. Entraînement : T-Drive (T-40), matériau : acier inoxydable A2. Fabricant : HECO, Reisser ou"
+  },
+  {
+    "sku": "K2S/2003272",
+    "name": "K2 Vis à double filetage SingleRail M10x180",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Vis à double filetage M10x180, tête hexagonale, clé de 7 mm, avec rondelle d d’étanchéité. Prémonté avec Climber. Fixation des vis dans la structure porteuse en bois, pour toitures en fibrociment. Hom"
+  },
+  {
+    "sku": "K2S/2003273",
+    "name": "K2 Vis à double filetage SingleRail M10x200",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Vis à double filetage M10x200, tête hexagonale, clé de 7 mm, avec rondelle d d’étanchéité. Prémonté avec Climber. Fixation des vis dans la structure porteuse en bois, pour toitures en fibrociment. Hom"
+  },
+  {
+    "sku": "K2S/2003274",
+    "name": "K2 Vis à double filetage SingleRail M10x250",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Vis à double filetage M10x250, tête hexagonale, clé de 7 mm, avec rondelle d d’étanchéité. Prémonté avec Climber. Fixation des vis dans la structure porteuse en bois, pour toitures en fibrociment. Hom"
+  },
+  {
+    "sku": "K2S/1000041",
+    "name": "K2 Vis à tête marteau 28/15 M10",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 0,
+    "description": "Vis à tête marteau M10x30 à insérer dans la partie inférieure du SolidRail. Elle peut être montée à n'importe quel endroit et déplacée ultérieurement si nécessaire. Forme tête : 28/15. Dimension tête"
+  },
+  {
+    "sku": "K2S/2002568",
+    "name": "K2S Crochets SingleHook FT pour tuiles plates sur SingleRail",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Crochets de toit pour tuiles plates. Support avec trou oblong pour le montage direct et le réglage en hauteur du SingleRail. Incluant une vis à tête marteau M8x25 (acier inoxydable A2) et un écrou de"
+  },
+  {
+    "sku": "K2S/2002651",
+    "name": "K2S Crochets SingleHook Vario (crochets pour tuiles à fort galbe sur SingleRail)",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Crochet de toit réglable en hauteur. Le bras du crochet est muni d d’un trou oblong pour le montage et le réglage du SingleRail. Vis à tête marteau et écrous à embase avec cran d’arrêt pour l'assemblé"
+  },
+  {
+    "sku": "K2S/2001735",
+    "name": "K2S Vis à tete cylindrique M8x16 avec cran d'arret",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 0,
+    "description": "Vis à tête creuse crantée M8x16 / Socket Head Bolt serrated M8x16"
+  },
+  {
+    "sku": "K2S/2002683",
+    "name": "Kit L-Adaptateur SingleRail K2",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Kit pour relier le SingleRail au crochet. Le kit est composé de : 1x L-Adapter SingleRail (2002652), Aluminium EN AW-6063 T66, 1x Ecrou à embase avec cran d’arrêt M8 (2002744), acier inox A2, 1x vis à"
+  },
+  {
+    "sku": "K2S/1004107",
+    "name": "Kit connecteur de rail SolidRail Ultra Light / Light",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Pour une connexion rapide et facile de deux K2 SolidRail XS, UltraLight ou Light. Kit Connecteur comprenant les vis et les écrous."
+  },
+  {
+    "sku": "K2S/2004141",
+    "name": "Mat-S Tool : Outil de montage pour fixer le Mat S sur le BasicRail",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "K2S/2003024",
+    "name": "Pince pour joint debout CF:x SingleRail",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Pince pour le montage du SingleRail sur taule à joint debout en zinc titane, aluminium, inox ou acier galvanisé. Réf. produit : 2003024 GTIN: 4251786212095 POIDS : 0.143 Kg Matériau : pince en alumini"
+  },
+  {
+    "sku": "K2S/2001712",
+    "name": "Pince pour joint debout SolidRail",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Pince avec trou rond pour fixation du K2 SolidRail sur taule à joint debout. Largeur d‘ouverture: 3,5 mm. Matériau: Acier inox A2"
+  },
+  {
+    "sku": "K2S/2004096",
+    "name": "S-Dome 6.10 Base Set L : Ensemble de rails de base préassemblés pour le système S-Dome 6.10",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "K2S/2003249",
+    "name": "S-Dome 6.10 Windbreaker short : Windbreaker K2 pour évacuer le vent à  l’arrière du S-Dome 6.10 système.",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "STRUCTUREK2",
+    "name": "STRUCTURE K2",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "1) Ecrou-prisonnier MK2 avec clip de montage, Acier inox - 1 PCS - SKU: K2S/1001643 2) K2S Vis à tete cylindrique M8x16 avec cran d'arret - 1 PCS - SKU: K2S/2001735"
+  },
+  {
+    "sku": "K2S/2X4POTZ",
+    "name": "Systeme de montage K2Systems 3kW (2X4) toit Zinc",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Composants: 1) [K2S/2001712] Pince pour joint debout SolidRail - 48 pcs 2) [K2S/1000637] Vis à tête marteau 28/15 M10 - 100 pcs 3) [K2S/1000042] K2 Ecrou M10 à embase avec cran d'arret - 100 pcs 4) [K"
+  },
+  {
+    "sku": "K2S/2003427",
+    "name": "Thread-forming metal screw 4,8x20 : Vis à tôle autoperceuse K2 à tête hexagonale avec rondelle d’étanchéité 4,8x20 pour ",
+    "brand": "K2 SYSTEMS",
+    "category": "mounting",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "K2S/1006398",
+    "name": "Vis pour agglomérés Drill autoperceuse et Tête fraisée 6x70/42",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 0,
+    "description": "Vis pour agglomérés Drill autoperceuse et Tête fraisée 6x70/42. Utilisation pour l'article 1000373 - SolidHook Slate Roof Hook. Drive size: TX25. Matériau: A2"
+  },
+  {
+    "sku": "K2S/2001729",
+    "name": "Vis à tête cylindrique denture de blocage M8x20 ISO 4762.",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 0,
+    "description": "Vis à tête cylindrique denture de blocage M8x20 ISO 4762. Clé de: 6. Matériau: Acier inox A2"
+  },
+  {
+    "sku": "K2S/1000637",
+    "name": "Vis à tête marteau 28/15 M10",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 0,
+    "description": "Vis à tête marteau M10x20 à insérer dans la partie inférieure du SolidRail K2. Elle peut être montée à n'importe quel endroit et déplacée ultérieurement si nécessaire. Forme tête : 28/15. Dimension tê"
+  },
+  {
+    "sku": "K2S/2002937",
+    "name": "Vis à tôle autoperceuse K2 à tête hexagonale avec rondelle d’étanchéité 6x25",
+    "brand": "K2 SYSTEMS",
+    "category": "accessories",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "CAB/KBE/DC-6-500M",
+    "name": "\"KBE Câble spécial solaire certifié TUV 6mm². Touret 500 mètres (noir) - SOLAR DB+ H1Z2Z2-K 1x6mm2 CuSn - T- 500m (Ref 7",
+    "brand": "KBE",
+    "category": "cables",
+    "stock": 0,
+    "description": "KBE - SOLAR DB+ H1Z2Z2-K 1x6mm2 CuSn noir - T-500m Code article : [730600015060QUSW] HS CODE: 85446010 Poids (Kg) : 38 Kg Pays de fabrication : Allemagne"
+  },
+  {
+    "sku": "CO/AC-125TRI-1E",
+    "name": "Coffret de protection AC triphasé  pour 1 Ond 125 kVA Tri+ PR + Poly",
+    "brand": "MADEnR",
+    "category": "accessories",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "THA-500W-TP-PANDA",
+    "name": "MODULE MONOCRISTALLIN THALEOS DEMI CELLULES, TOPCON, PANDA PRO 500 W - HALF-CUT FULL BLACK - GARANTIE 25/20 ANS",
+    "brand": "PANDA (Thaleos)",
+    "category": "solar_panels",
+    "stock": 15,
+    "description": "Poids : 25.0 Kg Garantie : 25 ans Dimensions (L x l x e) : 2094x1134x35 mm"
+  },
+  {
+    "sku": "PYT/BUSTI-CABLE-2M-",
+    "name": "0000AWG M10-M10 Négatif (Noir) - Câble d'alimentation busbar-onduleur 2m ((2*M10, 107 mm² / 325A)) (Ref : 161412100462)",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 1,
+    "description": ""
+  },
+  {
+    "sku": "PYT/BUSTI-CABLE-2M+",
+    "name": "0000AWG M10-M10 Positif (Rouge) - Câble d'alimentation busbar-onduleur 2m ((2*M10, 107 mm² / 325A)) (Ref : 161412100461)",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 1,
+    "description": ""
+  },
+  {
+    "sku": "PYT/BTI-V5-M10-CABLE-2M-",
+    "name": "0AWG Amphénol 8.0-M10 Négatif (Noir) - Câble d'alimentation batterie-onduleur 2m (M10, 53 mm2 / 200A) s'adapte à V5 alph",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Pays d'origine: Chine"
+  },
+  {
+    "sku": "PYT/BTI-V5-M10-CABLE-2M+",
+    "name": "0AWG Amphénol 8.0-M10 Positif (Rouge) - Câble d'alimentation batterie-onduleur 2m (M10, 53 mm2 / 200A) s'adapte à V5 alp",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Pays d'origine: Chine"
+  },
+  {
+    "sku": "PYT/BTI-M10-CABLE-2M-",
+    "name": "4AWG Amphénol 5.7-M10 Negatif (Noir) - Câble d'alimentation batterie-onduleur 2m (M8, 21 mm2 / 120A) s'adapte à l'E-Box ",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Pays d'origine: Chine"
+  },
+  {
+    "sku": "PYT/BTI-M10-CABLE-2M+",
+    "name": "4AWG Amphénol 5.7-M10 Positif (Orange) - Câble d'alimentation batterie-onduleur 2m (M8, 21 mm2 / 120A) s'adapte à l'E-Bo",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Pays d'origine: Chine"
+  },
+  {
+    "sku": "PYT/Busbar-600A",
+    "name": "600A BUSBAR - Avec 6 x vis à bornes M10 - Note maximale actuelle 600A (Ref : 110409100027)",
+    "brand": "PYTES",
+    "category": "ev_charging",
+    "stock": 1,
+    "description": ""
+  },
+  {
+    "sku": "PYT/V-Box-IC-3V5",
+    "name": "Armoire intérieure V-Box-IC pour V5 / V5a peut contenir jusqu'à 3 pièces V5 / V5a - 2 armoires max empilable. (Ref 11040",
+    "brand": "PYTES",
+    "category": "batteries_accessories",
+    "stock": 1,
+    "description": ""
+  },
+  {
+    "sku": "PYT/E-Box-48100R-C16",
+    "name": "Batterie PYTES E-Box 48100R-C16 assemblé avec des cellules LiFePO4 - Unité de base de 5.12 kWh / 51.2 V / 100 Ah - 6000 ",
+    "brand": "PYTES",
+    "category": "batteries",
+    "stock": 2,
+    "description": "Modele : E-Box-48100R-C(EU-PytesLogo) Pallet : 33u/pal Garantie : 10 ans Ref : 110402100007 Pays d'origine : Chine (câbles batterie à batterie inclus)"
+  },
+  {
+    "sku": "PYT/V5°",
+    "name": "Batterie PYTES V5° LiFePO4 - Unité de base de 5.12 kWh / 51.2 V / 100 Ah - Plus de 6000 cycles - Technologie Lithium Fer",
+    "brand": "PYTES",
+    "category": "batteries",
+    "stock": 0,
+    "description": "Batterie PYTES V5° (Boulon PHOENIX M6) assemblé avec des cellules LiFePO4 - Unité de base de 5.12 kWh / 51.2 V / 100 Ah - Plus de 6000 cycles - Technologie Lithium Fer Phosphate - IP55 - 440x530x140mm"
+  },
+  {
+    "sku": "PYT/C3500RJ45",
+    "name": "Batterie-onduleur câble de communication 3,5 m (Ref 161412101071)",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 9,
+    "description": "Pays d'origine: Chine"
+  },
+  {
+    "sku": "PYT/BTI-V5°-M10-CABLE-2M-",
+    "name": "Câble d'alimentation (Noir) batterie-onduleur 2m (M10, 53 mm2 / 200A) s'adapte à V5° (Ref : 161412101026)",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Pays d'origine: Chine"
+  },
+  {
+    "sku": "PYT/BTI-V5°-M8-CABLE-2M-",
+    "name": "Câble d'alimentation (Noir) batterie-onduleur 2m (M8 - BTIP2000AM-SCN) s'adapte à V5° (Ref : 161412100245)",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 5,
+    "description": "Pays d'origine: Chine"
+  },
+  {
+    "sku": "PYT/BTI-M8-CABLE-2M-",
+    "name": "Câble d'alimentation (Noir) batterie-onduleur 2m (M8 - BTIP2000AM-SCN) s'adapte à l'E-Box 48100R / E-Box 4850 (Ref : 161",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Pays d'origine: Chine"
+  },
+  {
+    "sku": "PYT/BTI-V5°-M10-CABLE-2M+",
+    "name": "Câble d'alimentation Positif (Rouge) batterie-onduleur 2m (M10, 53 mm2 / 200A) s'adapte à V5° (Ref : 161412101024)",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Pays d'origine: Chine"
+  },
+  {
+    "sku": "PYT/BTI-V5°-M8-CABLE-2M+",
+    "name": "Câble d'alimentation Positif (Rouge) batterie-onduleur 2m (M8 - BTIP2000AM-SCP) s'adapte à V5° (Ref : 161412100244)",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 5,
+    "description": "Pays d'origine: Chine"
+  },
+  {
+    "sku": "PYT/BTI-M8-CABLE-2M+",
+    "name": "Câble d'alimentation Positif (Rouge) batterie-onduleur 2m (M8 - BTIP2000AM-SCP) s'adapte à l'E-Box 48100R / E-Box 4850 (",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Pays d'origine: Chine"
+  },
+  {
+    "sku": "PYT/LSW-5-DONGLE-V5",
+    "name": "Câble d'extension de dongle Wifi pour LSW-5 (Ref 110409100170)",
+    "brand": "PYTES",
+    "category": "cables",
+    "stock": 7,
+    "description": ""
+  },
+  {
+    "sku": "PYT/CONSOLE",
+    "name": "Câble de console pour le firmware mise à niveau - Câble de débogage de la console-Pytes (Ref 161412100916 )",
+    "brand": "PYTES",
+    "category": "cables",
+    "stock": 4,
+    "description": ""
+  },
+  {
+    "sku": "PYT/V5ALPHA/KIT-5KW",
+    "name": "KIT BATTERIE 5 KWH ALPHA PYTES POUR INSTALLATION MONOPHASE/TRIPHASE",
+    "brand": "PYTES",
+    "category": "batteries",
+    "stock": 0,
+    "description": "COMPOSANTS : 1) [PYT/V5-alpha] Batterie PYTES V5 alpha LiFePO4 - Unité de base de 5.12 kWh / 51.2 V / 100 Ah - Plus de 6000 cycles - Technologie Lithium Fer Phosphate - IP55 - Garantie 11 ans - (Ref :"
+  },
+  {
+    "sku": "PYT/E-Box/KIT-5KW",
+    "name": "KIT BATTERIE 5 KWH E-Box PYTES POUR INSTALLATION MONOPHASE/TRIPHASE",
+    "brand": "PYTES",
+    "category": "batteries",
+    "stock": 0,
+    "description": "COMPOSANTS : 1) [PYT/E-Box-48100R-C16] Batterie PYTES E-Box 48100R-C16 - 5.12 kWh / 51.2 V / 100 Ah - 6000 cycles - 440x620x117mm (2.6U) - 1 pcs 2) [PYT/C3500RJ45] Batterie-onduleur câble de communica"
+  },
+  {
+    "sku": "PYT/V5°/KIT-5KW",
+    "name": "KIT BATTERIE 5 KWH PYTES POUR INSTALLATION MONOPHASE/TRIPHASE",
+    "brand": "PYTES",
+    "category": "batteries",
+    "stock": 0,
+    "description": "COMPOSANTS : 1) [PYT/V5°] Batterie PYTES V5° LiFePO4 - Unité de base de 5.12 kWh / 51.2 V / 100 Ah - Plus de 6000 cycles - Technologie Lithium Fer Phosphate - IP55 - Garantie 11 ans - (Ref : 110402100"
+  },
+  {
+    "sku": "PYT/V5°/KIT-5KW-DEYE",
+    "name": "KIT BATTERIE 5 KWH PYTES POUR INSTALLATION MONOPHASE/TRIPHASE AVEC ONDULEUR DEYE",
+    "brand": "PYTES",
+    "category": "inverters",
+    "stock": 0,
+    "description": "COMPOSANTS : 1) [PYT/V5°] Batterie PYTES V5° LiFePO4 - Unité de base de 5.12 kWh / 51.2 V / 100 Ah - Plus de 6000 cycles - Technologie Lithium Fer Phosphate - IP55 - Garantie 11 ans - (Ref : 110402100"
+  },
+  {
+    "sku": "PYT/EXT-CABLE-LSW-5-V5",
+    "name": "LSW-5 Wifi Dongle pour V5/V5a (Ref 162002100019)",
+    "brand": "PYTES",
+    "category": "monitoring",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "PYT/BRACKETS-SET-V5",
+    "name": "Set de supports pour V5 ou V5 alpha - Chaque ensemble contient 4 pièces de supports (Ref 150208100001)",
+    "brand": "PYTES",
+    "category": "accessories",
+    "stock": 5,
+    "description": ""
+  },
+  {
+    "sku": "QC/400-DU-BLK-M-G11S+",
+    "name": "Module Monocristallin Demi Cellules QCELLS 400 Wc - Q.PEAK DUO BLK M-G11S+ SERIES (1722X1134X30mm) - Garantie 25/25 ans ",
+    "brand": "Q.PEAK",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Puissance nominale : 400 W Type de cellule : Mono Nombre de cellules : 108 Efficacité du module : 20,48 % Garantie du produit : 25 ans Garantie de performance : 25 ans à 86% de la puissance nominale"
+  },
+  {
+    "sku": "QC/500-DU-ML-G11.2",
+    "name": "Module Monocristallin Demi Cellules QCELLS 500 Wc - Q.PEAK DUO ML-G11 SERIES (2054X1134X32mm) - Garantie 25/25 ans",
+    "brand": "Q.PEAK",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Dimensions : 2054X1134X32MM Poids : 26KG Fabricant : QCELLS Eco-contribution (P) (base 0,50 Euro HT / Quantité)"
+  },
+  {
+    "sku": "xxx/000/03",
+    "name": "Coffret Electrique Etanche Exterieur IP65 5 Modules, Avec 4 Bornes, 2 Connecteurs, pour une Utilisation à l'extérieur, S",
+    "brand": "Qiyiche",
+    "category": "solar_panels",
+    "stock": 16,
+    "description": "Coffret Electrique Etanche, Coffret Electrique Etanche Exterieur IP65 5 Modules, Avec 4 Bornes, 2 Connecteurs, pour une Utilisation à l'extérieur, Sites Industriels, Postes de Charge (5 Modules)"
+  },
+  {
+    "sku": "RCM-375-6ME-ECO",
+    "name": "MODULE MONOCRISTALLIN DEMI CELLULES DUALSUN FLASH 375 WC - FULL BLACK",
+    "brand": "RECOM SILLIA",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "COMPOSANTS: 1) [RCM-375-6ME] Module Monocristallin Demi Cellules RECOM 375 Wc - PANTHER - Half-Cut Full Black - Garantie 25/25 ans - HS 85414300 - 36u/pal - 1 pcs Dimensions : 1755X1038X30mm Poids : 1"
+  },
+  {
+    "sku": "RCM-375-6ME",
+    "name": "Module Monocristallin Demi Cellules RECOM 375 Wc - PANTHER - Half-Cut Full Black (1755X1038X30mm) - Garantie 25/25 ans -",
+    "brand": "RECOM SILLIA",
+    "category": "solar_panels",
+    "stock": 4055,
+    "description": "Dimensions : 1755X1038X30MM Poids : 19KG Emballage : 36Pcs par pal / 26 pal par 40HC / 1001Pcs par 40HC Fabricant : RECOM SILLIA Eco-contribution (P) (base 0,50 Euro HT / Quantité)"
+  },
+  {
+    "sku": "RCM-400-6ME",
+    "name": "Module Monocristallin Demi Cellules RECOM 400 Wc - PANTHER - Half-Cut Full Black (1722X1134X30mm) - Garantie 25/25 ans -",
+    "brand": "RECOM SILLIA",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Dimensions : 1722X1134X30MM Poids : 20.5KG Emballage : 36Pcs par pal / 26 pal par 40HC / 1001Pcs par 40HC Fabricant : RECOM SILLIA Eco-contribution (P) (base 0,50 Euro HT / Quantité)"
+  },
+  {
+    "sku": "RCM-500-7MM",
+    "name": "Module Monocristallin Demi Cellules RECOM 500 Wc - PANTHER - Half-Cut Full Black (2094X1134X30mm) - Garantie 30/30 ans -",
+    "brand": "RECOM SILLIA",
+    "category": "solar_panels",
+    "stock": 1400,
+    "description": "Dimensions : 2094X1134X30MM Poids : 26KG Emballage : 36Pcs par pal / 22 pal par 40HC / 792Pcs par 40HC Fabricant : RECOM SILLIA Eco-contribution (P) (base 0,50 Euro HT / Quantité)"
+  },
+  {
+    "sku": "RG/RMHT54-360O1",
+    "name": "Module Monocristallin REGITEC 360 Wc - 182mm 16BB 108Cells Topcon BIPV Module - (1722X1134X30mm) - Garantie 30/25 ans - ",
+    "brand": "REGITEC",
+    "category": "solar_panels",
+    "stock": 28,
+    "description": "Poids (Kg) : 20.5 Kg Rendement européen (%) : 18,40 Pays de fabrication : Allemagne Garantie : 30 ANS"
+  },
+  {
+    "sku": "RE/CONSOLE+",
+    "name": "Bac à lester ConSole+ de Renusol avec supports et visserie ((composé de 2 Support Console profilé alu Réf: R400005 et 1 ",
+    "brand": "RENUSOL",
+    "category": "accessories",
+    "stock": 120,
+    "description": "Ref fabricant : 520075-K HS CODE: 39269097 Profondeur : 1100 mm Dimensions : 1730x1100x390mm Poids (Kg) : 8.44 Kg Garantie du produit 10 ans Pays de fabrication : Allemagne"
+  },
+  {
+    "sku": "RE/460001",
+    "name": "Rails de rallonge pour ConSole+, Permet le montage des modules d’une largeur supérieure à 1085 mm. ((composé de 2 rails ",
+    "brand": "RENUSOL",
+    "category": "solar_panels",
+    "stock": 264,
+    "description": "Ref fabricant : 460001 Poids (Kg) : 0.04 Kg Pays de fabrication : Allemagne HS CODE: 76042100"
+  },
+  {
+    "sku": "FHE/SP2",
+    "name": "KIT: SENSORPILOT 3 BOX FHE MINI ROUTEUR 6 PINCES ALIMENTATION - COFFRET ÉTANCHE IP",
+    "brand": "SENSORPILOT",
+    "category": "monitoring",
+    "stock": 0,
+    "description": "Garantie 5 ans (Eco-contribution (P) 0,120 cts)"
+  },
+  {
+    "sku": "CAB/OM/DC-4-75M",
+    "name": "OMERIN Câble spécial solaire certifié TUV 4mm². 75 mètres (noir)",
+    "brand": "SOLARPLAST",
+    "category": "cables",
+    "stock": 0,
+    "description": "SOLARPLAST H1Z2Z2-K 1x4mm2 CuSn noir - C-75m Code article : 490400010937001 Pays de fabrication : France"
+  },
+  {
+    "sku": "CAB/OM/DC-4-1M",
+    "name": "OMERIN Câble spécial solaire certifié TUV 4mm². Par mètre (noir)",
+    "brand": "SOLARPLAST",
+    "category": "cables",
+    "stock": 0,
+    "description": "SOLARPLAST H1Z2Z2-K 1x4mm2 CuSn noir - C-1m Code article : 490400010916001-500M Pays de fabrication : France"
+  },
+  {
+    "sku": "CAB/OM/DC-4-500M",
+    "name": "OMERIN Câble spécial solaire certifié TUV 4mm². Touret 500 mètres (noir)",
+    "brand": "SOLARPLAST",
+    "category": "cables",
+    "stock": 9,
+    "description": "SOLARPLAST H1Z2Z2-K 1x4mm2 CuSn noir - T-500m Code article : 490400010916001-500M Poids (Kg) : 28.5 Kg Pays de fabrication : France"
+  },
+  {
+    "sku": "CAB/OM/DC-6-1M",
+    "name": "OMERIN Câble spécial solaire certifié TUV 6mm². Par mètre (noir)",
+    "brand": "SOLARPLAST",
+    "category": "cables",
+    "stock": 0,
+    "description": "OMERIN Câble spécial solaire certifié TUV 6mm². Touret au mètre (noir) - SOLAR DB+ H1Z2Z2-K 1x6mm2 CuSn Code produit : 490600010916001"
+  },
+  {
+    "sku": "CAB/OM/DC-6-500M",
+    "name": "OMERIN Câble spécial solaire certifié TUV 6mm². Touret 500 mètres (noir)",
+    "brand": "SOLARPLAST",
+    "category": "cables",
+    "stock": 0,
+    "description": "SOLARPLAST H1Z2Z2-K 1x6mm2 CuSn noir - T-500m Code article : 490600010916001 Poids (Kg) : 38 Kg Pays de fabrication : France"
+  },
+  {
+    "sku": "MC/FYMC4+",
+    "name": "STÄUBLI – Connecteur Y Multi Contact MC4 (+) (connexion : 1 femelle et 2 mâles côté module) (32.0019)",
+    "brand": "STÄUBLI",
+    "category": "solar_panels",
+    "stock": 10,
+    "description": "STÄUBLI - Connecteur “Y” Multi Contact MC4 (+) Broche de dérivation PV-AZS4 - IP67 - Max 30APour une connexion en parallèle ou en série-parallèle de panneau PV RÉF Fabricant: [32.0189] HS CODE: 853690"
+  },
+  {
+    "sku": "MC/FYMC4-",
+    "name": "STÄUBLI – Connecteur Y Multi Contact MC4 (-) (connexion : 1 mâle et 2 femelles côté module) (32.0018)",
+    "brand": "STÄUBLI",
+    "category": "solar_panels",
+    "stock": 10,
+    "description": "STÄUBLI - Connecteur “Y” Multi Contact MC4 (-) Broche de dérivation PV-AZB4 - IP67 - Max 30APour une connexion en parallèle ou en série-parallèle de panneau PV RÉF Fabricant: [32.0188] HS CODE: 853690"
+  },
+  {
+    "sku": "MC/RAL2M-MC4",
+    "name": "STÄUBLI – Multi Contact Rallonge MC4 4mm² d'un longeur de 2 mètres (73003100-20021)",
+    "brand": "STÄUBLI",
+    "category": "cables",
+    "stock": 20,
+    "description": "RÉF Fabricant: [73003100-20021] HS CODE: 85444290 Poids: 0,13 kg Pays Origine: France"
+  },
+  {
+    "sku": "SP/428M-P7-DC-FB",
+    "name": "SUNPOWER 428WC - P7 DC PERFORMANCE 7 - BI-VERRE - FULL BLACK",
+    "brand": "SUNPOWER",
+    "category": "solar_panels",
+    "stock": 15,
+    "description": "Dimensions : 1790x1134x30 mm Garantie : 30 ans Poids : 24.80kg Référence : SP/428M-P7-DC-FB"
+  },
+  {
+    "sku": "SP/405M-P6-DC-FB",
+    "name": "SUNPOWER PANNEAU PHOTOVOLTAÏQUE 410W – MONO-CRISTALLIN DEMI CELLULE - « SPR-P6-410-BLK » – FULL BLACK",
+    "brand": "SUNPOWER",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "SP/400M-MAX3-CN",
+    "name": "SunPower 400 Wc - MAX3 - Cadre noir (1690x1046x40mm) - Garantie 40/40 ans",
+    "brand": "SUNPOWER",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "SunPower 400 Wc - MAX3 - Cadre noir (1690x1046x40mm) - Garantie 40/40 ans (conditionnée à l’enregistrement en ligne des numéros de série) - 26u/pal"
+  },
+  {
+    "sku": "SP/425M-MAX3-CN",
+    "name": "SunPower 425 Wc - MAX3 - Cadre noir - Fond blanc -  Dimensions (1812x1046x40 mm) - Garantie 40/40 ans - 26 u/pal",
+    "brand": "SUNPOWER",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "SUNPOWER-ModuleMAX3 425Wc - Cadre noir - Fond blanc Dimensions 1812 x 1046 x 40 mm HS CODE: 85414300 Poids: 21,2 kg Rendement européen (%) : 22,4 Pays Origine: Mexique"
+  },
+  {
+    "sku": "SP/500M-P7-DC-FB",
+    "name": "SunPower 500Wc - P7 DC Performance 7 - Bi-verre - Full Black (1996x1134x30mm) - Garantie 30/30ans (Ref : SPR-P7-500-BLK-",
+    "brand": "SUNPOWER",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Caractéristiques techniques Largeur : 1134 mm Longueur : 1996 mm Profondeur : 30 mm Poids (Kg) : 27.5 Kg Puissance (W): 500 Rendement européen (%) : 22,1% Pays de fabrication : Chine Garantie : 30 ans"
+  },
+  {
+    "sku": "SR/54M410HLPro-FB",
+    "name": "Module photovoltaïque Mono MBB, demi-cellule RC 410W-430W SR-54M410HL Full Black series (1723x1133x30mm) - Garantie 30/2",
+    "brand": "SUNRISE",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Poids (Kg) : 20 Kg Puissance nominale DC (W) : 410 Rendement européen (%) : 21,01% Pays de fabrication : Chine Garantie : 30 ans"
+  },
+  {
+    "sku": "SR/54M410HLPro-AQ",
+    "name": "Module photovoltaïque Mono MBB, demi-cellule Sunrise 410W SR-54M410HL Pro Aquaman series (1723x1133x35mm) - Garantie 30/",
+    "brand": "SUNRISE",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Poids (Kg) : 20 Kg Puissance nominale DC (W) : 410 Rendement européen (%) : 21,01% Pays de fabrication : Chine Garantie : 30 ans"
+  },
+  {
+    "sku": "SR/66M500NHLPro-FB",
+    "name": "Module photovoltaïque Mono SMBB, TOP Con,  demi-cellule Sunrise GOLIATH 500W 66M500NHLPro-FB Full Black series (2093x113",
+    "brand": "SUNRISE",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Poids (Kg) : 25.9 Kg Puissance nominale DC (W) : 500 Rendement européen (%) : 21,08% Pays de fabrication : Chine Garantie : 30 ans"
+  },
+  {
+    "sku": "SR/60M500NHLPro-FB",
+    "name": "SUNRISE PANNEAU PHOTOVOLTAÏQUE 500W – TOP CON SMBB DEMI CELLULE - « SR-60M500NHLPro » – SERIE FULL BLACK",
+    "brand": "SUNRISE",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Poids (Kg) : 25.9 Kg Puissance nominale DC (W) : 500 Pays de fabrication : Chine Garantie : 30 ans"
+  },
+  {
+    "sku": "EL/AC-AGCP100A",
+    "name": "AGCP 4P 100A Schneider Electric -  Easypact CVS100B 25kA (Centrale de 36 à 60 kVA)",
+    "brand": "Schneider Electric",
+    "category": "accessories",
+    "stock": 0,
+    "description": ""
+  },
+  {
+    "sku": "AVC/OE00910",
+    "name": "Avasco Solar - Solar Speed Unité de base SUD (équerre + rail) Equerre Paysage Sud  12,5° - 1600mm ALU  (Ref : OE00910)",
+    "brand": "Solar Speed",
+    "category": "mounting",
+    "stock": 0,
+    "description": "Type de pose : Paysage Système de fixation pour : Toiture terrasse Dimensions : (Lxlxh) 1600 x 0 x 0 mm Poids unitaire 3.61 Kg Acier zinc-magnésium"
+  },
+  {
+    "sku": "AVC/OG00964",
+    "name": "Avasco Solar - Solar-Speed Boulon inox A2 M8x45 DIN912 (100pcs)",
+    "brand": "Solar Speed",
+    "category": "accessories",
+    "stock": 0,
+    "description": "AVASCO SOLAR - Boulon inox A2 M8x45 DIN912"
+  },
+  {
+    "sku": "AVC/OE00913",
+    "name": "Avasco Solar - Solar-Speed Caoutchouc préforé 300 x 60 x 15 MM - (300 x 60 x 15 mm)",
+    "brand": "Solar Speed",
+    "category": "accessories",
+    "stock": 0,
+    "description": "AVASCO SOLAR -&nbsp;EPDM - caoutchouc Type de pose : Paysage Système de fixation pour : Toiture terrasse Dimensions : (Lxlxh) 300 x 60 x 15 mm"
+  },
+  {
+    "sku": "AVC/OG00362",
+    "name": "Avasco Solar - Solar-Speed Clame simple extrême / Etrier de terminaison 30mm Noir (Ref : OG00362)",
+    "brand": "Solar Speed",
+    "category": "accessories",
+    "stock": 0,
+    "description": "AVASCO SOLAR - Etrier de terminaison 30mm Type de pose : Paysage Système de fixation pour : Toiture terrasse Poids unitaire 0.03 Kg"
+  },
+  {
+    "sku": "AVC/OE00912",
+    "name": "Avasco Solar - Solar-Speed Cornière de lestage L.2131/2210MM",
+    "brand": "Solar Speed",
+    "category": "accessories",
+    "stock": 0,
+    "description": "AVASCO SOLAR - Cornière de lestage Longueur/Largeur du module: 2131/2210MM Type de pose : Paysage Système de fixation pour : Toiture terrasse Dimensions : (Lxlxh) 2131 x 2210 x 0 mm Poids unitaire 2.1"
+  },
+  {
+    "sku": "AVC/OG00963",
+    "name": "Avasco Solar - Solar-Speed Etrier intermediaire Noir",
+    "brand": "Solar Speed",
+    "category": "accessories",
+    "stock": 0,
+    "description": "Type de pose : Paysage Système de fixation pour : Toiture terrasse Poids unitaire 0.05 Kg"
+  },
+  {
+    "sku": "AVC/OE00911",
+    "name": "Avasco Solar - Solar-Speed Plaque arrière Longueur du module: 2108MM profile en aluminium",
+    "brand": "Solar Speed",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Type de pose : Paysage Système de fixation pour : Toiture terrasse Dimensions : (Lxlxh) 2108 x 0 x 0 mm Poids unitaire 3.13 Kg"
+  },
+  {
+    "sku": "AVC/OG00045",
+    "name": "Avasco Solar - Solar-Speed Rivet plastique (Réf : OG00045)",
+    "brand": "Solar Speed",
+    "category": "accessories",
+    "stock": 0,
+    "description": "AVASCO SOLAR -&nbsp;EPDM - caoutchouc Réf Fabricant : OG00045"
+  },
+  {
+    "sku": "AVC/OG00210",
+    "name": "Avasco Solar - Solar-Speed Support central cornière - Support de lestage (Ref : OG00210)",
+    "brand": "Solar Speed",
+    "category": "accessories",
+    "stock": 0,
+    "description": "Type de pose : Paysage Système de fixation pour : Toiture terrasse Dimensions : (Lxlxh) 1731 x 1805 x 0 mm Poids unitaire 0.48 Kg"
+  },
+  {
+    "sku": "AVC/OG00040",
+    "name": "Avasco Solar - Solar-Speed Vis autoforante Avasco 6,5x19mm (500pc) - (Ref : OG00040)",
+    "brand": "Solar Speed",
+    "category": "accessories",
+    "stock": 3,
+    "description": "AVASCO SOLAR - Vis à tôle inox + rondelle 6.5x19 mm - boite de 500pcs Type de pose : Paysage Système de fixation pour : Toiture terrasse Poids unitaire 5 Kg"
+  },
+  {
+    "sku": "SE/ONDSE90K-DC",
+    "name": "SolarEdge - Onduleur triphasé SE 90K - DC Switch & MC4 - Garantie 12 ans (nécessite 3 x  unité secondaire, ref: SE/ONDSE",
+    "brand": "SolarEdge",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Détails techniques Puissance nominale (W) : 90 000 AC 90 000 VA DC 135 000 W Rendement : 98,0% Phasé : triphasé MPPT : 3 Protection du boîtier IP65 ARC Fault Detection : Non Batteries compatibles : No"
+  },
+  {
+    "sku": "SE/ONDSE-SU-K",
+    "name": "SolarEdge - Unité secondaire avec technologie Synergy Nouvelle Version -  Garantie 12A (3x pour SE-90K) (SESUK-RW00INNN4",
+    "brand": "SolarEdge",
+    "category": "accessories",
+    "stock": 0,
+    "description": "Détails techniques: Puissance nominale (W) 90K AC/90K VA/ DC 135kW Rendement: 98,0% Phasé: triphasé MPPT: 3 Protection: IP65 ARC Fault Detection: Non Batteries compatibles: Non Dimensions: 29,5 x 56,0"
+  },
+  {
+    "sku": "SE/MTR-3Y-400V-A",
+    "name": "SolarEdge Electricity Meter boitier de mesure de production & consommation 1Ph/3Ph 230/400V (SE-MTR-3Y-400V-A Compteur d",
+    "brand": "SolarEdge",
+    "category": "monitoring",
+    "stock": 0,
+    "description": "Caractéristiques : - Fréquence AC : 45-65 Hz - Consommation électrique (max.) : 3 W - Temps de réponse : ≤200 ms - Température de fonctionnement : -40 à +85 °C - Indice de protection : IP20 - Convient"
+  },
+  {
+    "sku": "SE/CT-SPL-250A-A",
+    "name": "SolarEdge Transformateur de courant 250A, pour 50Hz (SECT-SPL-250A-A)",
+    "brand": "SolarEdge",
+    "category": "accessories",
+    "stock": 0,
+    "description": "N° pièce fabricant SECT-SPL-250A-A Certifications : BE FR NL LU DE ES Type d'accessoires : Metering, Logger, Power Supply Dimensions : 4,09 x 4,62 x 6,54 cm Poids : 0,2kg Conditionnement : 1,0 pieces"
+  },
+  {
+    "sku": "xxx/000/05",
+    "name": "Barre Omnibus M8 300A, Plaques en Laiton, Bornes en Acier Inoxydable, Bloc de Distribution D'énergie pour Automobiles, V",
+    "brand": "Spacnana",
+    "category": "ev_charging",
+    "stock": 1,
+    "description": "Barre Omnibus M8 300A, Plaques en Laiton, Bornes en Acier Inoxydable, Bloc de Distribution D'énergie pour Automobiles, Voitures, Bateaux, 2 Pièces"
+  },
+  {
+    "sku": "TRI/500M-BV",
+    "name": "TRINA SOLAR 500 WC BI-VERRE N-TYPE VERTEX S+ - CADRE NOIR TEDLAR BLANC - 1961X1134X30MM - GARANTIE 25ANS/30ANS - (REF : ",
+    "brand": "Trinasolar",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Dimensions : 1961x 1134 x 30 mm Garantie : 25 ans Poids : 23.50kg Référence : TRI/500M-BV Pays d'origine : Chine"
+  },
+  {
+    "sku": "UZ/L051100-A1",
+    "name": "Batterie UZ-L051100-A1 Power Lite Plus assemblé avec des cellules  CALB LiFePO4 - Unité de base de 5.12 kWh / 51.2 V / 1",
+    "brand": "UZ ENERGY",
+    "category": "batteries",
+    "stock": 45,
+    "description": "Spécifications techniques: Chimie de la batterie : LiFePO4 Capacité : 100 Ah Tension nominale : 51,2 V Énergie nominale : 5,12 kWh Énergie utilisable : 4,6 kWh Poids : environ 45 kg Période de garanti"
+  },
+  {
+    "sku": "UZ/L051100-A1-Pro",
+    "name": "Batterie UZ-L051100-A1 Pro assemblé avec des cellules LiFePO4 - Unité de base de 5.12 kWh / 51.2 V / 100 Ah - 6000 cycle",
+    "brand": "UZ ENERGY",
+    "category": "batteries",
+    "stock": 0,
+    "description": "Spécifications techniques: Chimie de la batterie : LiFePO4 Capacité : 100 Ah Tension nominale : 51,2 V Énergie nominale : 5,12 kWh Énergie utilisable : 4,6 kWh Poids : environ 45 kg Période de garanti"
+  },
+  {
+    "sku": "UZ/C300-CASE",
+    "name": "Boîtier de batterie ; Modèle : C300, Câble de sortie CA03/CA11, Courant max. 100 A, 5 kW. - Type mural",
+    "brand": "UZ ENERGY",
+    "category": "batteries",
+    "stock": 45,
+    "description": "Boîtier de batterie ; Modèle : C300, Câble de sortie CA03/CA11, Courant max. 100 A, 5 kW. - Type mural"
+  },
+  {
+    "sku": "UZ/1XL051100-A1",
+    "name": "KIT BATTERIE 5 KWH UZ ENERGY POUR INSTALLATION MONOPHASE AVEC COFFRET",
+    "brand": "UZ ENERGY",
+    "category": "batteries",
+    "stock": 0,
+    "description": "COMPOSANTS : 1) [UZ/L051100-A1] Batterie UZ-L051100-A1 Power Lite Plus assemblé avec des cellules CALB LiFePO4 - Unité de base de 5.12 kWh / 51.2 V / 100 Ah - 6000 cycles - Technologie Lithium Fer Pho"
+  },
+  {
+    "sku": "UZ/CA05",
+    "name": "Modle: CA05  - Câble parallèle Batterie/Batterie UZ-L051100-A1 Pro - (Applicable accessories C300 / C100)",
+    "brand": "UZ ENERGY",
+    "category": "batteries",
+    "stock": 0,
+    "description": "Modle: CA05 - Câble parallèle Batterie/Batterie UZ-L051100-A1 Pro - (Applicable accessories C300 / C100), inclus: 1 câble d'alimentation positif, 0,6 m 1 câble d'alimentation négatif, 0,6 m 1 câble de"
+  },
+  {
+    "sku": "UZ/CA02",
+    "name": "Modèle : CA02 - Câble parallèle Batterie/Batterie UZ-L051100-A1 Pro - (Accessoires compatibles : rack F13L / H100)",
+    "brand": "UZ ENERGY",
+    "category": "batteries",
+    "stock": 0,
+    "description": "\"Modèle : CA02 - Câble parallèle Batterie/Batterie UZ-L051100-A1 Pro - (Accessoires compatibles : rack F13L / H100), inclus: 1 câble d'alimentation positif, 0,185 m 1 câble d'alimentation négatif, 0,1"
+  },
+  {
+    "sku": "UZ/CA03",
+    "name": "Modèle : CA03 / M8 - Câble de sortie pour Batterie UZ-L051100-A1 Pro",
+    "brand": "UZ ENERGY",
+    "category": "batteries",
+    "stock": 48,
+    "description": "Modèle : CA03 / M8 - Câble de sortie pour Batterie UZ-L051100-A1 vers onduleur: 1 câble d'alimentation positif, 1,5 m 1 câble d'alimentation négatif, 1,5 m 1 câble de communication, 1,5 m 1 câble de t"
+  },
+  {
+    "sku": "UZ/CA04",
+    "name": "Modèle : CA04 / M10  - Câble parallèle Batterie UZ-L051100-A1 / Onduleur - inclus set complet",
+    "brand": "UZ ENERGY",
+    "category": "inverters",
+    "stock": 20,
+    "description": "Modele: CA04 / M10 - Câble parallèle Batterie UZ-L051100-A1 / Onduleur - inclus: 1 câble d'alimentation positif, 1,5 m 1 câble d'alimentation négatif, 1,5 m 1 câble de communication, 1,5 m 1 câble de"
+  },
+  {
+    "sku": "UZ/CA04-A",
+    "name": "Modèle : CA04-A / M6  - Câble parallèle Batterie UZ-L051100-A1 / Onduleur - inclus set complet",
+    "brand": "UZ ENERGY",
+    "category": "inverters",
+    "stock": 20,
+    "description": "Modèle : CA04-A / M6 - Câble parallèle Batterie UZ-L051100-A1 / Onduleur - inclus: 1 câble d'alimentation positif, 1,5 m 1 câble d'alimentation négatif, 1,5 m 1 câble de communication, 1,5 m 1 câble d"
+  },
+  {
+    "sku": "UZ/TERMINAL-",
+    "name": "Modèle : PSRP6XA25 Negative terminal connector",
+    "brand": "UZ ENERGY",
+    "category": "accessories",
+    "stock": 48,
+    "description": "Modèle : PSRP6XA25 Negative terminal connector"
+  },
+  {
+    "sku": "UZ/TERMINAL+",
+    "name": "Modèle : PSRP6XB25 Positive terminal connector",
+    "brand": "UZ ENERGY",
+    "category": "accessories",
+    "stock": 48,
+    "description": "Modèle : PSRP6XB25 Positive terminal connector"
+  },
+  {
+    "sku": "UZ/T100A-WiF",
+    "name": "Modèle : T100A/T300A - Clé Wi-Fi, surveillance à distance de la batterie et connexion OTA",
+    "brand": "UZ ENERGY",
+    "category": "batteries",
+    "stock": 48,
+    "description": "Modèle : T100A - Clé Wi-Fi, surveillance à distance de la batterie et connexion OTA"
+  },
+  {
+    "sku": "VS/Sub-1G",
+    "name": "Passerelle de communication VaySunic Sub-1G - Mono/Tri  (Ref Sub-1G)",
+    "brand": "VaySunic",
+    "category": "micro_inverters",
+    "stock": 1,
+    "description": ""
+  },
+  {
+    "sku": "VS/FM-SEAL",
+    "name": "VaySunic Capuchon d’étanchéité FM pour couvrir le port de connexion inutilisé sur le connecteur d’interconnexion AC (Ref",
+    "brand": "VaySunic",
+    "category": "cables",
+    "stock": 2,
+    "description": ""
+  },
+  {
+    "sku": "VS/FM-DISC",
+    "name": "VaySunic Outil de déconnexion pour connecteurs FM (Ref ) -  Modèle : FM Truck Tool",
+    "brand": "VaySunic",
+    "category": "cables",
+    "stock": 2,
+    "description": ""
+  },
+  {
+    "sku": "VS/FM-TRKCON-MC4",
+    "name": "VaySunic connecteur d’interconnexion AC étanche pour câble FM (Ref 900705000007) - Modèle : FM Truck Connector",
+    "brand": "VaySunic",
+    "category": "cables",
+    "stock": 10,
+    "description": ""
+  },
+  {
+    "sku": "VS/FM-CABLE-40-220",
+    "name": "VaySunic câble de connexion AC de 2,2m pour micro-onduleurs VM (Ref 9007033000009)",
+    "brand": "VaySunic",
+    "category": "inverters",
+    "stock": 10,
+    "description": ""
+  },
+  {
+    "sku": "VS/VM1000BE-P2",
+    "name": "VaySunic micro-onduleur 2 en 1 VM1000BE-P2 - 1000 VA - Connecteurs MC4 - 2 MPPT - Garantie 15 ans - Modèle : VM1000BE-P2",
+    "brand": "VaySunic",
+    "category": "inverters",
+    "stock": 0,
+    "description": "Puissance du Module Courant (W): 390 to 680W+ Plage de Tension de Fonctionnement (V): 14-63V Nombre de MPPTs: 2 Puissance de sortie nominale (VA): 1000VA Courant de sortie nominal (A): 4.35A Dimension"
+  },
+  {
+    "sku": "VS/FM-TERMCON-M",
+    "name": "VaySunic terminal connecteur Male AC étanche pour câble FM (Ref 900705000008) -  Modèle : FM Male Connector",
+    "brand": "VaySunic",
+    "category": "cables",
+    "stock": 2,
+    "description": ""
+  },
+  {
+    "sku": "TRI/440M-BV-BC",
+    "name": "Trina Solar 440 Wc Bi-Verre BAS CARBONE N-TYPE Vertex S+ 5 cadre noir tedlar blanc - 1762x1134x30mm - Garantie produit 2",
+    "brand": "Vertex S+",
+    "category": "solar_panels",
+    "stock": 0,
+    "description": "Tension de circuit ouvert : 52.6V Courant de court-circuit : 10.71A Paramètres mécaniques : Dimensions : 1762*1134*30mm Poids : 21,0 kg"
+  }
+]

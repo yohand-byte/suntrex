@@ -1,13 +1,14 @@
 import { useTranslation } from "react-i18next";
 
-export default function CatCard({ img, title, sub, count, big, small, onClick, montage, bg, buttonLabel }) {
+export default function CatCard({ img, title, sub, count, big, small, onClick, montage, bg, buttonLabel, mobileHeight }) {
   const { t } = useTranslation();
   const pad = big ? 28 : small ? 18 : 22;
   const fs = big ? 26 : small ? 17 : 20;
+  const heightStyle = mobileHeight ? { height: mobileHeight } : undefined;
 
   if (montage) {
     return (
-      <div className="hl" onClick={onClick} style={{borderRadius:12,cursor:"pointer",position:"relative",overflow:"hidden",gridRow:big?"1/3":undefined,background:bg||"linear-gradient(135deg,#1a2332 0%,#2d3f52 100%)"}}>
+      <div className="hl" onClick={onClick} style={{borderRadius:12,cursor:"pointer",position:"relative",overflow:"hidden",gridRow:mobileHeight?undefined:(big?"1/3":undefined),background:bg||"linear-gradient(135deg,#1a2332 0%,#2d3f52 100%)",...heightStyle}}>
         <img src={img} alt={title} style={{position:"absolute",right:0,bottom:0,height:"90%",maxWidth:"65%",objectFit:"contain",objectPosition:"right bottom",opacity:0.92}}/>
         <div style={{position:"absolute",inset:0,background:"linear-gradient(90deg,rgba(0,0,0,0.45) 0%,rgba(0,0,0,0.05) 60%,transparent 100%)"}}/>
         <div style={{position:"relative",zIndex:1,padding:pad,display:"flex",flexDirection:"column",justifyContent:"flex-end",height:"100%"}}>
@@ -21,7 +22,7 @@ export default function CatCard({ img, title, sub, count, big, small, onClick, m
   }
 
   return (
-    <div className="hl" onClick={onClick} style={{borderRadius:12,cursor:"pointer",position:"relative",overflow:"hidden",gridRow:big?"1/3":undefined}}>
+    <div className="hl" onClick={onClick} style={{borderRadius:12,cursor:"pointer",position:"relative",overflow:"hidden",gridRow:mobileHeight?undefined:(big?"1/3":undefined),...heightStyle}}>
       <img src={img} alt={title} style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}}/>
       <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.65) 100%)"}}/>
       <div style={{position:"relative",zIndex:1,padding:pad,display:"flex",flexDirection:"column",justifyContent:"flex-end",height:"100%"}}>
