@@ -76,6 +76,8 @@ npm run build
 | [Implementation Backlog (2026-02-26)](docs/IMPLEMENTATION-BACKLOG-2026-02-26.md) | Backlog exécutable sprint 1-2 semaines |
 | [Codex Multi Prompts MVP (2026-02-26)](docs/CODEX-MULTI-PROMPTS-MVP-2026-02-26.md) | Prompts prêts à l'emploi par stream d'exécution |
 | [Roadmap Parallèle Q2 2026](docs/ROADMAP-PARALLEL-2026-Q2.md) | Plan daté avec suivi par validation de lignes |
+| [AI Review Workflow](docs/AI-REVIEW-WORKFLOW.md) | Processus Codex + Claude pour auto-critique fiable |
+| [Mode d'emploi AI Review](docs/MODE-EMPLOI-AI-REVIEW.md) | Guide simple et concret pour piloter le workflow |
 | [Changelog](docs/CHANGELOG.md) | Historique des modifications |
 
 ## 🎛️ Strategy Artifact
