@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "review:export": "bash ./scripts/review_oneclick_export.sh --base origin/main",
+    "review:import": "bash ./scripts/review_oneclick_import.sh"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.97.0",

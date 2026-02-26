@@ -78,6 +78,7 @@ npm run build
 | [Roadmap Parallèle Q2 2026](docs/ROADMAP-PARALLEL-2026-Q2.md) | Plan daté avec suivi par validation de lignes |
 | [AI Review Workflow](docs/AI-REVIEW-WORKFLOW.md) | Processus Codex + Claude pour auto-critique fiable |
 | [Mode d'emploi AI Review](docs/MODE-EMPLOI-AI-REVIEW.md) | Guide simple et concret pour piloter le workflow |
+| [Free Hybrid MCP Workflow](docs/FREE-HYBRID-MCP-WORKFLOW.md) | Mode "1 clic" sans cout API additionnel |
 | [Changelog](docs/CHANGELOG.md) | Historique des modifications |
 
 ## 🎛️ Strategy Artifact
