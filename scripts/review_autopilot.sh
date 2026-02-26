@@ -6,7 +6,7 @@ set -euo pipefail
 # 2) wait for user to copy Claude response
 # 3) run import + fix automatically
 #
-# Intended for macOS with pbcopy/pbpaste.
+# Clipboard compatible with macOS/Linux (pbpaste/xclip/wl-paste).
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 EXPORT_SCRIPT="$ROOT_DIR/scripts/review_oneclick_export.sh"
@@ -19,15 +19,31 @@ POLL_SECONDS=2
 
 mkdir -p "$OUT_DIR"
 
-if ! command -v pbpaste >/dev/null 2>&1; then
-  echo "pbpaste not found. This autopilot currently supports macOS clipboard." >&2
+clip_read() {
+  if command -v pbpaste >/dev/null 2>&1; then
+    pbpaste
+    return 0
+  fi
+  if command -v xclip >/dev/null 2>&1; then
+    xclip -selection clipboard -o
+    return 0
+  fi
+  if command -v wl-paste >/dev/null 2>&1; then
+    wl-paste
+    return 0
+  fi
+  return 1
+}
+
+if ! clip_read >/dev/null 2>&1; then
+  echo "No clipboard read tool found (pbpaste/xclip/wl-paste)." >&2
   exit 1
 fi
 
 echo "Step 1/3: preparing review packet..."
 bash "$EXPORT_SCRIPT" --base HEAD~1 --max-lines 500 --open reuse
 
-REQUEST_CLIPBOARD="$(pbpaste)"
+REQUEST_CLIPBOARD="$(clip_read || true)"
 REQUEST_HASH="$(printf "%s" "$REQUEST_CLIPBOARD" | shasum -a 256 | awk '{print $1}')"
 
 echo
@@ -45,7 +61,7 @@ while true; do
     exit 1
   fi
 
-  CLIP="$(pbpaste || true)"
+  CLIP="$(clip_read || true)"
   if [[ -n "$CLIP" ]]; then
     HASH="$(printf "%s" "$CLIP" | shasum -a 256 | awk '{print $1}')"
     if [[ "$HASH" != "$REQUEST_HASH" ]]; then
@@ -68,4 +84,3 @@ echo
 echo "Done."
 echo "Open and paste this in Codex:"
 echo "  $ROOT_DIR/review/codex_fix_request.md"
-

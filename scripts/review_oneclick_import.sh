@@ -79,7 +79,10 @@ if [[ "$RESP_CHARS" -lt 40 ]] || [[ "$RESP_LINES" -lt 2 ]]; then
   exit 1
 fi
 
-if [[ "$FIRST_LINE" =~ ^(npm|yarn|pnpm|bash|git)[[:space:]] ]]; then
+# Detect likely shell command in clipboard first line.
+# Keep false-positive risk low by requiring a command-like prefix.
+if [[ "$FIRST_LINE" =~ ^(npm|yarn|pnpm|bash|sh|zsh|git|node|docker|curl|cd|cat|rm|mv|cp|ls)[[:space:]] ]] \
+   && ! [[ "$FIRST_LINE" =~ ^git[[:space:]].*(showed|found|diff) ]]; then
   echo "Clipboard appears to contain a shell command, not a Claude review." >&2
   echo "First line: $FIRST_LINE" >&2
   echo "Copy full Claude response, then run again." >&2
