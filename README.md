@@ -72,6 +72,8 @@ npm run build
 | [UI/UX Guidelines](docs/UI-UX-GUIDELINES.md) | Design system et références |
 | [Stripe Architecture](docs/STRIPE-ARCHITECTURE.md) | Paiements, Connect, sécurité |
 | [Security](docs/SECURITY.md) | Politique de sécurité |
+| [Marketplace Audit (2026-02-26)](docs/AUDIT-MARKETPLACE-2026-02-26.md) | Audit produit/UI-UX/logique métier orienté marketplace |
+| [Implementation Backlog (2026-02-26)](docs/IMPLEMENTATION-BACKLOG-2026-02-26.md) | Backlog exécutable sprint 1-2 semaines |
 | [Changelog](docs/CHANGELOG.md) | Historique des modifications |
 
 ## 🛠️ Stack Technique
@@ -104,4 +106,3 @@ Une équipe jeune avec du métier et des idées à revendre.
 ---
 
 *SUNTREX — Marketplace B2B Solaire Européenne — 2026*
-
