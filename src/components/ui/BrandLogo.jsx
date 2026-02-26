@@ -1,27 +1,50 @@
 import { useState } from "react";
 
-export default function BrandLogo({ brand }) {
-  const [failed, setFailed] = useState(false);
+// Best available logo file for each brand slug
+const LOGO_FILES = {
+  huawei: "huawei.svg",
+  jinko: "jinko.svg",
+  trina: "trinasolar.png",
+  longi: "longi.svg",
+  "ja-solar": "ja-solar.svg",
+  "canadian-solar": "canadian-solar.svg",
+  sma: "sma.svg",
+  sungrow: "sungrow.png",
+  solaredge: "solaredge.svg",
+  goodwe: "goodwe.svg",
+  growatt: "growatt.png",
+  risen: "risen.svg",
+  byd: "byd.svg",
+  deye: "deye.png",
+  enphase: "enphase.svg",
+};
 
-  if (!failed) {
+export default function BrandLogo({ brand }) {
+  const [err, setErr] = useState(false);
+  const file = LOGO_FILES[brand.f];
+
+  if (err || !file) {
     return (
-      <img
-        src={`/logos/${brand.f}.svg`}
-        alt={brand.n}
-        style={{ height: 36, maxWidth: 140, objectFit: "contain" }}
-        onError={() => setFailed(true)}
-      />
+      <span style={{
+        fontSize: brand.n.length > 12 ? 14 : 18,
+        fontWeight: 700,
+        color: brand.c,
+        whiteSpace: "nowrap",
+        minWidth: 100,
+        textAlign: "center",
+        fontFamily: "'Inter', 'DM Sans', sans-serif",
+      }}>
+        {brand.n}
+      </span>
     );
   }
+
   return (
-    <span style={{
-      fontSize: brand.n.length > 10 ? 16 : 20,
-      fontWeight: 800,
-      color: brand.c,
-      whiteSpace: "nowrap",
-      fontFamily: "'Inter', 'DM Sans', sans-serif",
-    }}>
-      {brand.n}
-    </span>
+    <img
+      src={`/logos/${file}`}
+      alt={brand.n}
+      style={{ height: 28, objectFit: "contain", maxWidth: 140, minWidth: 80 }}
+      onError={() => setErr(true)}
+    />
   );
 }

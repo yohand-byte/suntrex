@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 45"><text x="0" y="34" font-family="Arial,Helvetica,sans-serif" font-size="32" font-weight="bold" fill="#e60012">risen</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700');</style></defs>
+  <text x="60" y="35" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700" fill="#e60012" letter-spacing="2">Risen</text>
+  <text x="148" y="35" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="500" fill="#e60012">Energy</text>
+</svg>

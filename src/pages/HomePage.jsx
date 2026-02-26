@@ -3,27 +3,27 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "../CurrencyContext";
 import REAL_PRODUCTS from "../products";
+import CATALOG, { getProductImage } from "../data/catalog";
 import BrandLogo from "../components/ui/BrandLogo";
 import AutoSlides from "../components/ui/AutoSlides";
 import CatCard from "../components/ui/CatCard";
 import useResponsive from "../hooks/useResponsive";
 
-// Featured products for homepage (pick best sellers)
-const PRODUCTS = [
-  REAL_PRODUCTS.find(p => p.id === "hw-sun2000-10k-lc0"),
-  REAL_PRODUCTS.find(p => p.id === "hw-luna2000-5-e0"),
-  REAL_PRODUCTS.find(p => p.id === "hw-sun2000-6k-map0"),
-  REAL_PRODUCTS.find(p => p.id === "hw-sun2000-12k-mb0"),
-  REAL_PRODUCTS.find(p => p.id === "hw-merc-1300-p"),
-].map(p => ({
-  id: p.id,
-  name: p.name,
-  power: p.power || p.capacity || "",
-  type: p.type,
-  stock: p.stock,
-  price: p.price,
-  img: p.image || "",
-}));
+// Featured products: top 10 from CSV catalog (priority brands, in stock, sorted by stock desc)
+const PRIORITY_BRANDS = /HUAWEI|DEYE|HOYMILES|Enphase|PYTES/i;
+const FEATURED_PRODUCTS = CATALOG
+  .filter(p => PRIORITY_BRANDS.test(p.brand) && p.stock > 0 && p.price > 10)
+  .sort((a, b) => b.stock - a.stock)
+  .slice(0, 10)
+  .map((p, i) => ({
+    id: `csv-${p.sku || i}`,
+    name: p.name,
+    power: p.power,
+    type: p.type || p.category,
+    stock: p.stock,
+    price: p.price,
+    img: getProductImage(p),
+  }));
 
 const BRANDS = [
   { n:"Huawei", c:"#e4002b", f:"huawei" },{ n:"Jinko Solar", c:"#1a8c37", f:"jinko" },
@@ -203,7 +203,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       <section style={{padding:"16px 0",borderBottom:"1px solid #e4e5ec",overflow:"hidden",position:"relative"}}>
         <div style={{position:"absolute",left:0,top:0,bottom:0,width:isMobile?40:100,background:"linear-gradient(to right,#fff,transparent)",zIndex:2}}/>
         <div style={{position:"absolute",right:0,top:0,bottom:0,width:isMobile?40:100,background:"linear-gradient(to left,#fff,transparent)",zIndex:2}}/>
-        <div className="marquee" style={{display:"flex",alignItems:"center",gap:isMobile?24:48,width:"max-content"}}>
+        <div className="marquee" style={{display:"flex",alignItems:"center",gap:isMobile?24:32,alignItems:"center",width:"max-content"}}>
           {[...BRANDS,...BRANDS].map((b,i)=>(
             <BrandLogo key={i} brand={b}/>
           ))}
@@ -213,15 +213,15 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       {/* PRODUCTS */}
       <section style={{padding:isMobile?"32px 16px":"48px 40px"}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",marginBottom:isMobile?16:24}}>
-          <div><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,marginBottom:12}}/><h2 style={{fontSize:isMobile?20:26,fontWeight:700}}>{t("home.products.title")}</h2></div>
+          <div><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,marginBottom:12}}/><h2 style={{fontSize:isMobile?20:26,fontWeight:700}}>{t("home.products.title")}</h2><p style={{fontSize:13,color:"#7b7b7b",marginTop:4}}>{CATALOG.length} {t("home.products.available", "produits disponibles")}</p></div>
           <Link to="/catalog" style={{fontSize:13,color:"#7b7b7b",textDecoration:"underline"}}>{t("home.products.viewAll")}</Link>
         </div>
         <div style={{display:"grid",gridTemplateColumns:productGridCols,gap:isMobile?10:16}}>
-          {PRODUCTS.map(p=>(
+          {FEATURED_PRODUCTS.map(p=>(
             <div key={p.id} className="hl" onClick={()=>navigate(`/product/${p.id}`)} style={{borderRadius:10,border:"1px solid #e4e5ec",background:"#fff",overflow:"hidden",cursor:"pointer",display:"flex",flexDirection:"column"}}>
               <div style={{padding:"8px 12px 0"}}><span style={{fontSize:11,color:"#4CAF50",fontWeight:500}}>{"● "+p.stock.toLocaleString()+" "+t("common.pcs")}</span></div>
-              <div style={{height:isMobile?110:150,display:"flex",alignItems:"center",justifyContent:"center",background:"#fff",padding:isMobile?8:16}}>
-                <img src={p.img} alt={p.name} style={{maxHeight:isMobile?90:130,maxWidth:"100%",objectFit:"contain"}} onError={e=>{e.target.style.display="none"}}/>
+              <div style={{height:isMobile?110:150,display:"flex",alignItems:"center",justifyContent:"center",background:"#fff",padding:isMobile?12:20}}>
+                <img src={p.img} alt={p.name} style={{maxHeight:isMobile?90:130,maxWidth:"100%",objectFit:"contain"}} onError={e=>{e.target.onerror=null;e.target.style.opacity="0.3"}}/>
               </div>
               <div style={{padding:isMobile?"8px 10px 12px":"10px 12px 14px",flex:1,display:"flex",flexDirection:"column"}}>
                 <h3 style={{fontSize:isMobile?12:13,fontWeight:600,marginBottom:6,lineHeight:1.3}}>{p.name}</h3>
