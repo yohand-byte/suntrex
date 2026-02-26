@@ -37,6 +37,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Review workflow artifacts
+review/*.md
+
 # Testing
 coverage/
 

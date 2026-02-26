@@ -84,6 +84,21 @@ Ce que ca fait:
 
 Tu n'as plus qu'a coller cette demande dans Codex.
 
+## Mode sans retaper de commandes (autopilot)
+
+Option 1 (terminal, une seule commande):
+```bash
+npm run review:auto
+```
+
+Option 2 (zero commande, double-clic):
+- Double-clique `review.command` dans le dossier projet.
+
+Ce mode:
+1. exporte le packet,
+2. attend que tu copies la reponse Claude,
+3. lance automatiquement import + fix.
+
 ## Notes
 
 - Sur macOS, les scripts utilisent `pbcopy` / `pbpaste`.
