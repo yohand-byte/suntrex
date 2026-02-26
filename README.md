@@ -74,7 +74,14 @@ npm run build
 | [Security](docs/SECURITY.md) | Politique de sécurité |
 | [Marketplace Audit (2026-02-26)](docs/AUDIT-MARKETPLACE-2026-02-26.md) | Audit produit/UI-UX/logique métier orienté marketplace |
 | [Implementation Backlog (2026-02-26)](docs/IMPLEMENTATION-BACKLOG-2026-02-26.md) | Backlog exécutable sprint 1-2 semaines |
+| [Codex Multi Prompts MVP (2026-02-26)](docs/CODEX-MULTI-PROMPTS-MVP-2026-02-26.md) | Prompts prêts à l'emploi par stream d'exécution |
+| [Roadmap Parallèle Q2 2026](docs/ROADMAP-PARALLEL-2026-Q2.md) | Plan daté avec suivi par validation de lignes |
 | [Changelog](docs/CHANGELOG.md) | Historique des modifications |
+
+## 🎛️ Strategy Artifact
+
+- Premium strategy console (Business Plan + MVP + Roadmap interactive):  
+  `/artifacts/premium-strategy-console.html`
 
 ## 🛠️ Stack Technique
 
