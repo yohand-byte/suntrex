@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "review:export": "bash ./scripts/review_oneclick_export.sh --base origin/main",
-    "review:import": "bash ./scripts/review_oneclick_import.sh"
+    "review:import": "bash ./scripts/review_oneclick_import.sh",
+    "review:fix": "bash ./scripts/codex_fix_from_review.sh"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.97.0",

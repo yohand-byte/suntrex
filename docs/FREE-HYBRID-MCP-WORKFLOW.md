@@ -57,9 +57,23 @@ Fichiers generes:
 6. Re-review si necessaire.
 7. Merge.
 
+## Etape auto "fix request" pour Codex
+
+Apres import:
+```bash
+npm run review:fix
+```
+
+Ce que ca fait:
+- lit `review/todo.md`
+- extrait automatiquement les points P0/P1
+- genere `review/codex_fix_request.md`
+- copie la demande dans le presse-papiers
+
+Tu n'as plus qu'a coller cette demande dans Codex.
+
 ## Notes
 
 - Sur macOS, les scripts utilisent `pbcopy` / `pbpaste`.
 - Sur Linux, ils essayent `xclip` ou `wl-copy/wl-paste`.
 - Sans outil clipboard, utilise `--file` pour l'import.
-
