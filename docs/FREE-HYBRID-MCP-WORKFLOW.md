@@ -30,6 +30,18 @@ ou
 ./scripts/review_oneclick_export.sh --base origin/main
 ```
 
+Modes d'ouverture:
+```bash
+# Reutiliser un onglet Claude existant (par defaut)
+npm run review:export
+
+# Ne rien ouvrir (tu restes sur ton app/projet)
+npm run review:export:noopen
+
+# Ouvrir l'app mac Claude (si installee)
+npm run review:export:app
+```
+
 Puis dans Claude:
 - Colle (Cmd+V).
 - Envoie.

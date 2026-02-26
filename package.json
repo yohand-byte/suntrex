@@ -8,7 +8,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "review:export": "bash ./scripts/review_oneclick_export.sh --base origin/main",
+    "review:export": "bash ./scripts/review_oneclick_export.sh --base HEAD~1 --max-lines 500 --open reuse",
+    "review:export:noopen": "bash ./scripts/review_oneclick_export.sh --base HEAD~1 --max-lines 500 --open none",
+    "review:export:app": "bash ./scripts/review_oneclick_export.sh --base HEAD~1 --max-lines 500 --open app",
     "review:import": "bash ./scripts/review_oneclick_import.sh",
     "review:fix": "bash ./scripts/codex_fix_from_review.sh"
   },
