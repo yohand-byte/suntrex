@@ -42,6 +42,17 @@ npm run review:export:noopen
 npm run review:export:app
 ```
 
+Cibler un projet Claude precis:
+```bash
+# Option ponctuelle
+./scripts/review_oneclick_export.sh --project-url "https://claude.ai/project/019c86a7-e2dc-72ce-b455-ed0e3ded1ea5"
+
+# Option persistante (recommandee)
+echo "https://claude.ai/project/019c86a7-e2dc-72ce-b455-ed0e3ded1ea5" > review/.claude_project_url
+```
+
+Le script essaie d'abord de reutiliser un onglet `claude.ai/project/...`, puis fallback sur n'importe quel onglet Claude.
+
 Puis dans Claude:
 - Colle (Cmd+V).
 - Envoie.

@@ -21,6 +21,7 @@ USE_STAGED="0"
 PATH_FILTER=""
 MAX_LINES="600"
 OPEN_MODE="reuse" # reuse | browser | none | app
+CLAUDE_TARGET_URL="${CLAUDE_PROJECT_URL:-}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -44,12 +45,24 @@ while [[ $# -gt 0 ]]; do
       OPEN_MODE="${2:-}"
       shift 2
       ;;
+    --project-url)
+      CLAUDE_TARGET_URL="${2:-}"
+      shift 2
+      ;;
     *)
       echo "Unknown argument: $1" >&2
       exit 1
       ;;
   esac
 done
+
+if [[ -z "$CLAUDE_TARGET_URL" ]] && [[ -f "$OUT_DIR/.claude_project_url" ]]; then
+  CLAUDE_TARGET_URL="$(tr -d '\r' < "$OUT_DIR/.claude_project_url" | head -n 1)"
+fi
+
+if [[ -z "$CLAUDE_TARGET_URL" ]]; then
+  CLAUDE_TARGET_URL="https://claude.ai"
+fi
 
 if [[ -z "$BASE_REF" ]]; then
   echo "Base ref cannot be empty" >&2
@@ -106,6 +119,7 @@ Source: $SOURCE_LABEL
 Base ref: $BASE_REF
 Head: $(git -C "$ROOT_DIR" rev-parse --short HEAD)
 Branch: $(git -C "$ROOT_DIR" branch --show-current)
+Claude target URL: $CLAUDE_TARGET_URL
 Path filter: ${PATH_FILTER:-<none>}
 Patch lines: $PATCH_LINES (truncated: $TRUNCATED, max: $MAX_LINES)
 
@@ -163,7 +177,7 @@ open_claude() {
       ;;
     app)
       if command -v open >/dev/null 2>&1; then
-        if open -a "Claude" >/dev/null 2>&1; then
+        if open -a "Claude" "$CLAUDE_TARGET_URL" >/dev/null 2>&1; then
           echo "Opened Claude mac app."
           return 0
         fi
@@ -180,7 +194,59 @@ open_claude() {
   esac
 
   if [[ "$OPEN_MODE" == "reuse" ]] && command -v osascript >/dev/null 2>&1; then
-    # Reuse existing Claude tab in Safari/Chrome if possible; avoid opening new tab every time.
+    # Reuse existing Claude PROJECT tab first, then any Claude tab.
+    if osascript <<'APPLESCRIPT' >/dev/null 2>&1
+tell application "Safari"
+  if it is running then
+    set foundTab to false
+    repeat with w in windows
+      repeat with t in tabs of w
+        if (URL of t contains "claude.ai/project/") then
+          set current tab of w to t
+          set index of w to 1
+          activate
+          set foundTab to true
+          exit repeat
+        end if
+      end repeat
+      if foundTab then exit repeat
+    end repeat
+    if foundTab then return
+  end if
+end tell
+error "no-safari-tab"
+APPLESCRIPT
+    then
+      echo "Reused existing Claude project tab in Safari."
+      return 0
+    fi
+
+    if osascript <<'APPLESCRIPT' >/dev/null 2>&1
+tell application "Google Chrome"
+  if it is running then
+    set foundTab to false
+    repeat with w in windows
+      repeat with t in tabs of w
+        if (URL of t contains "claude.ai/project/") then
+          set active tab index of w to (index of t)
+          set index of w to 1
+          activate
+          set foundTab to true
+          exit repeat
+        end if
+      end repeat
+      if foundTab then exit repeat
+    end repeat
+    if foundTab then return
+  end if
+end tell
+error "no-chrome-tab"
+APPLESCRIPT
+    then
+      echo "Reused existing Claude project tab in Chrome."
+      return 0
+    fi
+
     if osascript <<'APPLESCRIPT' >/dev/null 2>&1
 tell application "Safari"
   if it is running then
@@ -235,16 +301,16 @@ APPLESCRIPT
   fi
 
   if command -v open >/dev/null 2>&1; then
-    open "https://claude.ai"
-    echo "Opened https://claude.ai"
+    open "$CLAUDE_TARGET_URL"
+    echo "Opened $CLAUDE_TARGET_URL"
     return 0
   fi
   if command -v xdg-open >/dev/null 2>&1; then
-    xdg-open "https://claude.ai" >/dev/null 2>&1 &
-    echo "Opened https://claude.ai"
+    xdg-open "$CLAUDE_TARGET_URL" >/dev/null 2>&1 &
+    echo "Opened $CLAUDE_TARGET_URL"
     return 0
   fi
-  echo "Could not auto-open browser. Open manually: https://claude.ai"
+  echo "Could not auto-open browser. Open manually: $CLAUDE_TARGET_URL"
 }
 
 copy_clipboard || true
