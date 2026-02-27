@@ -47,6 +47,7 @@ MAIN_WORKFLOW_ID="${MAIN_WORKFLOW_ID:-wnarPrvFAgYu0rmF}"
 DEAD_WORKFLOW_ID="${DEAD_WORKFLOW_ID:-0Q23FXcq1VsHZgrr}"
 WEBHOOK_PATH="${WEBHOOK_PATH:-webhook/stripe-payment-webhook}"
 WEBHOOK_URL="${WEBHOOK_URL:-}"
+REQUIRE_HTTPS_WEBHOOK="${REQUIRE_HTTPS_WEBHOOK:-true}"
 SUPABASE_URL="${SUPABASE_URL:-${VITE_SUPABASE_URL:-}}"
 SUPABASE_SERVICE_ROLE_KEY="${SUPABASE_SERVICE_ROLE_KEY:-}"
 STRIPE_WEBHOOK_SECRET="${STRIPE_WEBHOOK_SECRET:-}"
@@ -136,6 +137,12 @@ if [ -z "$reachable_url" ]; then
   warn "Use WEBHOOK_URL=... npm run n8n:postcheck to force the exact production URL"
 else
   ok "Webhook URL reachable ($reachable_url) -> HTTP $reachable_code"
+  if [ "$REQUIRE_HTTPS_WEBHOOK" = "true" ]; then
+    if [[ "$reachable_url" != https://* ]]; then
+      fail "Webhook URL is not HTTPS ($reachable_url). Stripe preprod/prod requires public HTTPS."
+    fi
+    ok "Webhook URL uses HTTPS"
+  fi
 fi
 
 # 5) Supabase write-path sanity (read only)

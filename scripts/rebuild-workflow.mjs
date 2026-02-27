@@ -4,10 +4,24 @@
  * Run: /opt/homebrew/opt/node@22/bin/node scripts/rebuild-workflow.mjs
  */
 
-const API_KEY = 'n8n_api_ac504f192e4cdd1eb95ccb8b6d7237999e44b199ad78879876c7dcb19569cd28750d74f9bb6a66e6';
-const N8N = 'http://localhost:5678';
-const WF_ID = 'wnarPrvFAgYu0rmF';
-const SUPABASE = 'https://uigoadkslyztxgzahmwv.supabase.co';
+import { readFileSync } from 'fs';
+
+const DEFAULT_MCP_JSON = '/Users/yohanaboujdid/Downloads/suntrex/.mcp.json';
+
+function readMcpEnv(filePath) {
+  try {
+    const mcp = JSON.parse(readFileSync(filePath, 'utf8'));
+    return mcp?.mcpServers?.['n8n-mcp']?.env || {};
+  } catch {
+    return {};
+  }
+}
+
+const mcpEnv = readMcpEnv(process.env.MCP_JSON_PATH || DEFAULT_MCP_JSON);
+const API_KEY = process.env.N8N_API_KEY || mcpEnv.N8N_API_KEY || '';
+const N8N = process.env.N8N_API_URL || mcpEnv.N8N_API_URL || 'http://localhost:5678';
+const WF_ID = process.env.MAIN_WORKFLOW_ID || 'wnarPrvFAgYu0rmF';
+const SUPABASE = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || 'https://uigoadkslyztxgzahmwv.supabase.co';
 
 const ok  = s => console.log('  ✅ ' + s);
 const err = s => console.log('  ❌ ' + s);
@@ -578,6 +592,11 @@ const connections = {
 
 // ── PUSH TO N8N ───────────────────────────────────────────────────────────────
 console.log('\n━━━ SUNTREX — Clean Workflow Rebuild ━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
+if (!API_KEY) {
+  err('Missing N8N_API_KEY (set env var or configure .mcp.json)');
+  process.exit(1);
+}
+
 console.log('  Nodes to push:', nodes.length, '(unique IDs, no duplicates)');
 
 const payload = {

@@ -7,13 +7,26 @@
  */
 
 import { createHmac } from 'crypto';
+import { readFileSync } from 'fs';
 
-const API_KEY     = 'n8n_api_ac504f192e4cdd1eb95ccb8b6d7237999e44b199ad78879876c7dcb19569cd28750d74f9bb6a66e6';
-const N8N         = 'http://localhost:5678';
-const SUPABASE    = 'https://uigoadkslyztxgzahmwv.supabase.co';
-const WF_MAIN     = 'wnarPrvFAgYu0rmF';
-const WF_DL       = '0Q23FXcq1VsHZgrr';
-const WEBHOOK_URL = `${N8N}/webhook/${WF_MAIN}/stripe-webhook-entry/stripe-webhook-entry`;
+const DEFAULT_MCP_JSON = '/Users/yohanaboujdid/Downloads/suntrex/.mcp.json';
+
+function readMcpEnv(filePath) {
+  try {
+    const mcp = JSON.parse(readFileSync(filePath, 'utf8'));
+    return mcp?.mcpServers?.['n8n-mcp']?.env || {};
+  } catch {
+    return {};
+  }
+}
+
+const mcpEnv = readMcpEnv(process.env.MCP_JSON_PATH || DEFAULT_MCP_JSON);
+const API_KEY  = process.env.N8N_API_KEY || mcpEnv.N8N_API_KEY || '';
+const N8N      = process.env.N8N_API_URL || mcpEnv.N8N_API_URL || 'http://localhost:5678';
+const SUPABASE = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || 'https://uigoadkslyztxgzahmwv.supabase.co';
+const WF_MAIN  = process.env.MAIN_WORKFLOW_ID || 'wnarPrvFAgYu0rmF';
+const WF_DL    = process.env.DEAD_WORKFLOW_ID || '0Q23FXcq1VsHZgrr';
+const WEBHOOK_URL = process.env.WEBHOOK_URL || `${N8N}/webhook/${WF_MAIN}/stripe-webhook-entry/stripe-webhook-entry`;
 
 let passed = 0, failed = 0;
 
@@ -35,6 +48,12 @@ async function get(url, headers = {}) {
 
 // ── CHECK 1 — n8n health ─────────────────────────────────────────────────────
 hdr('CHECK 1/7 — n8n Health & Auth');
+if (!API_KEY) {
+  fail('N8N_API_KEY missing (set env var or configure .mcp.json)');
+  console.log('\nRerun: N8N_API_KEY=... /opt/homebrew/opt/node@22/bin/node scripts/validate-strict.mjs');
+  process.exit(1);
+}
+
 const health = await get(`${N8N}/healthz`);
 health.data?.status === 'ok' ? ok('n8n running') : fail('n8n unreachable');
 

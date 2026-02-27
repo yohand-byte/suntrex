@@ -1,4 +1,4 @@
-# SUNTREX n8n — Prod Checklist & E2E Tests
+# SUNTREX n8n — Preprod/Prod Checklist & E2E Tests
 
 ## Workflows créés
 
@@ -10,7 +10,7 @@
 
 ---
 
-## Actions avant production
+## Actions avant preprod/production
 
 ### 1. Domaine HTTPS public (bloquant)
 
@@ -30,6 +30,21 @@ URL finale à mettre dans Stripe Dashboard :
 ```
 https://n8n.suntrex.eu/webhook/wnarPrvFAgYu0rmF/webhook/stripe-payment-webhook
 ```
+
+Exigence sécurité (bloquante) :
+- Endpoint Stripe webhook = URL publique en `https://` uniquement
+- `http://` et `localhost` interdits dans Stripe Dashboard pour preprod/prod
+
+---
+
+### 1.b Signature webhook Stripe (bloquant)
+
+- `STRIPE_WEBHOOK_SECRET` doit être défini dans n8n (Settings → Variables)
+- Requête sans header `stripe-signature` ou avec signature invalide = rejet sécurité
+- Aucun update `Order` ne doit être exécuté si la signature est invalide
+- Vérification obligatoire avant go-live :
+  - `npm run n8n:postcheck`
+  - `/opt/homebrew/opt/node@22/bin/node scripts/validate-strict.mjs`
 
 ---
 
@@ -131,6 +146,9 @@ await stripe.paymentIntents.create({
 |----------|--------|
 | `STRIPE_WEBHOOK_SECRET` | Stripe Dashboard → Webhooks → Signing secret |
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase → Settings → API → service_role |
+
+Runbook détaillé rotation + vérifications post-rotation :
+- `docs/PREPROD-SECURITY-CHECKLIST.md`
 
 ---
 

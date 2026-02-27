@@ -8,14 +8,24 @@
 
 import { readFileSync, writeFileSync } from 'fs';
 
-const N8N        = 'http://localhost:5678';
-const MCP_JSON   = '/Users/yohanaboujdid/Downloads/suntrex/.mcp.json';
+const DEFAULT_MCP_JSON = '/Users/yohanaboujdid/Downloads/suntrex/.mcp.json';
+const MCP_JSON   = process.env.MCP_JSON_PATH || DEFAULT_MCP_JSON;
 const ADMIN_EMAIL = 'admin@suntrex.com';
 const WF_MAIN    = 'wnarPrvFAgYu0rmF';
 const WF_DL      = '0Q23FXcq1VsHZgrr';
 
-// Current API key (update after each rotation)
-const CURRENT_API_KEY = 'n8n_api_ac504f192e4cdd1eb95ccb8b6d7237999e44b199ad78879876c7dcb19569cd28750d74f9bb6a66e6';
+function readMcpEnv(filePath) {
+  try {
+    const mcp = JSON.parse(readFileSync(filePath, 'utf8'));
+    return mcp?.mcpServers?.['n8n-mcp']?.env || {};
+  } catch {
+    return {};
+  }
+}
+
+const mcpEnv = readMcpEnv(MCP_JSON);
+const N8N = process.env.N8N_API_URL || mcpEnv.N8N_API_URL || 'http://localhost:5678';
+const CURRENT_API_KEY = process.env.N8N_API_KEY || mcpEnv.N8N_API_KEY || '';
 
 const ok  = s => console.log('  ✅ ' + s);
 const err = s => console.log('  ❌ ' + s);
@@ -30,6 +40,11 @@ async function apiGet(path, key = CURRENT_API_KEY) {
 
 // ── STEP 1 — Verify n8n running ───────────────────────────────────────────────
 hdr('STEP 1/4 — Verify n8n Running');
+if (!CURRENT_API_KEY) {
+  err('Missing N8N_API_KEY (set env var or configure .mcp.json)');
+  process.exit(1);
+}
+
 const health = await fetch(N8N + '/healthz').then(r => r.json()).catch(() => null);
 if (health?.status !== 'ok') {
   err('n8n not running — start it first: bash start-n8n.sh tunnel');
@@ -136,9 +151,11 @@ A. STRIPE WEBHOOK SECRET
    5. Rerun: /opt/homebrew/opt/node@22/bin/node scripts/validate-strict.mjs
 
 B. SUPABASE SERVICE ROLE KEY
-   ⚠️  Cannot be rotated without Supabase support contact.
-   If compromised: update RLS policies immediately + contact support.
-   Current key remains valid — just ensure it's only in n8n Variables.
+   1. Supabase Dashboard → Project Settings → API
+   2. Rotate project JWT secret (regenerates anon + service_role)
+   3. Copy new service_role key
+   4. n8n → Settings → Variables → SUPABASE_SERVICE_ROLE_KEY = <new key>
+   5. Rerun: npm run n8n:postcheck
 
 C. VERIFY STRIPE WEBHOOK ENDPOINT URL
    URL must be: https://n8n.suntrex.eu/webhook/${WF_MAIN}/stripe-webhook-entry/stripe-webhook-entry

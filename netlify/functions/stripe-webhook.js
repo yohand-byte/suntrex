@@ -19,6 +19,15 @@ const { createClient } = require("@supabase/supabase-js");
 let stripeClient = null;
 let supabaseAdmin = null;
 
+function getHeader(headers, name) {
+  if (!headers) return "";
+  const needle = name.toLowerCase();
+  for (const [key, value] of Object.entries(headers)) {
+    if (key.toLowerCase() === needle) return Array.isArray(value) ? value[0] : value;
+  }
+  return "";
+}
+
 function getStripeClient() {
   if (stripeClient) return stripeClient;
   if (!process.env.STRIPE_SECRET_KEY) {
@@ -63,8 +72,18 @@ exports.handler = async (event) => {
     return { statusCode: 500, body: "Webhook secret not configured" };
   }
 
+  const requireHttps = process.env.REQUIRE_WEBHOOK_HTTPS === "true" || process.env.NODE_ENV === "production";
+  const forwardedProto = String(getHeader(event.headers, "x-forwarded-proto") || "");
+  if (requireHttps && forwardedProto) {
+    const protoValues = forwardedProto.split(",").map((p) => p.trim().toLowerCase());
+    if (!protoValues.includes("https")) {
+      console.error("[webhook] Rejected non-HTTPS webhook request");
+      return { statusCode: 400, body: "Webhook Error: HTTPS is required" };
+    }
+  }
+
   // ── Signature verification (MANDATORY) ──
-  const sig = event.headers["stripe-signature"] || event.headers["Stripe-Signature"];
+  const sig = String(getHeader(event.headers, "stripe-signature") || "");
   if (!sig) {
     return { statusCode: 400, body: "Webhook Error: Missing stripe-signature header" };
   }
