@@ -61,6 +61,103 @@ const fail = (statusCode, message) => ({
   body: JSON.stringify({ success: false, error: message }),
 });
 
+async function resolveCompanyForUser(supabase, user) {
+  // Legacy schema: Company.owner_id + snake_case Stripe fields
+  const legacy = await supabase
+    .from("Company")
+    .select("id, name, country, vat_number, stripe_account_id, kyc_status")
+    .eq("owner_id", user.id)
+    .maybeSingle();
+
+  if (!legacy.error && legacy.data) {
+    return {
+      schema: "legacy",
+      id: legacy.data.id,
+      name: legacy.data.name,
+      country: legacy.data.country,
+      vatNumber: legacy.data.vat_number || "",
+      stripeAccountId: legacy.data.stripe_account_id || null,
+      kycStatus: legacy.data.kyc_status || null,
+    };
+  }
+
+  // Current schema: User.email -> User.companyId -> Company.id + camelCase fields
+  const userRow = await supabase
+    .from("User")
+    .select("id, companyId, email, role")
+    .eq("email", user.email)
+    .maybeSingle();
+
+  if (userRow.error || !userRow.data?.companyId) {
+    return null;
+  }
+
+  const company = await supabase
+    .from("Company")
+    .select("id, name, country, vatNumber, stripeAccountId, kybStatus, stripeOnboardingDone")
+    .eq("id", userRow.data.companyId)
+    .maybeSingle();
+
+  if (company.error || !company.data) {
+    return null;
+  }
+
+  return {
+    schema: "camel",
+    id: company.data.id,
+    name: company.data.name,
+    country: company.data.country,
+    vatNumber: company.data.vatNumber || "",
+    stripeAccountId: company.data.stripeAccountId || null,
+    kycStatus: company.data.kybStatus || null,
+  };
+}
+
+async function updateCompanyAfterAccountCreate(supabase, companyRef, stripeAccountId) {
+  if (companyRef.schema === "legacy") {
+    const { error } = await supabase
+      .from("Company")
+      .update({
+        stripe_account_id: stripeAccountId,
+      })
+      .eq("id", companyRef.id);
+    return error;
+  }
+
+  const { error } = await supabase
+    .from("Company")
+    .update({
+      stripeAccountId: stripeAccountId,
+      stripeOnboardingDone: false,
+    })
+    .eq("id", companyRef.id);
+  return error;
+}
+
+async function syncKycStatusToCompany(supabase, companyRef, kycStatus) {
+  if (companyRef.schema === "legacy") {
+    const { error } = await supabase
+      .from("Company")
+      .update({ kyc_status: kycStatus })
+      .eq("id", companyRef.id);
+    return error;
+  }
+
+  const kybStatus =
+    kycStatus === "approved" ? "APPROVED"
+      : kycStatus === "rejected" ? "REJECTED"
+      : "PENDING";
+
+  const { error } = await supabase
+    .from("Company")
+    .update({
+      kybStatus,
+      stripeOnboardingDone: kycStatus === "approved",
+    })
+    .eq("id", companyRef.id);
+  return error;
+}
+
 /* ── Auth: verify Supabase JWT ── */
 async function getAuthUser(event, supabase) {
   const authHeader = event.headers.authorization || event.headers.Authorization;
@@ -130,21 +227,15 @@ exports.handler = async (event) => {
 async function handleCreateAccount(supabase, user) {
   const stripe = getStripeClient();
 
-  // Fetch company
-  const { data: company, error: companyErr } = await supabase
-    .from("Company")
-    .select("id, name, country, vat_number, stripe_account_id, kyc_status")
-    .eq("owner_id", user.id)
-    .single();
-
-  if (companyErr || !company) {
+  const company = await resolveCompanyForUser(supabase, user);
+  if (!company) {
     return fail(404, "Company not found. Complete company registration first.");
   }
 
   // Already has a Stripe account
-  if (company.stripe_account_id) {
+  if (company.stripeAccountId) {
     return ok({
-      stripe_account_id: company.stripe_account_id,
+      stripe_account_id: company.stripeAccountId,
       already_exists: true,
     });
   }
@@ -175,7 +266,7 @@ async function handleCreateAccount(supabase, user) {
     metadata: {
       suntrex_company_id: company.id,
       suntrex_user_id: user.id,
-      vat_number: company.vat_number || "",
+      vat_number: company.vatNumber || "",
     },
     settings: {
       payouts: {
@@ -184,13 +275,8 @@ async function handleCreateAccount(supabase, user) {
     },
   });
 
-  // Persist stripe_account_id in Company
-  const { error: updateErr } = await supabase
-    .from("Company")
-    .update({
-      stripe_account_id: account.id,
-    })
-    .eq("id", company.id);
+  // Persist stripe account ID in Company
+  const updateErr = await updateCompanyAfterAccountCreate(supabase, company, account.id);
 
   if (updateErr) {
     console.error("[stripe-connect] Failed to save stripe_account_id:", updateErr);
@@ -208,18 +294,13 @@ async function handleCreateAccount(supabase, user) {
 async function handleCreateOnboardingLink(supabase, user) {
   const stripe = getStripeClient();
 
-  const { data: company, error } = await supabase
-    .from("Company")
-    .select("id, stripe_account_id")
-    .eq("owner_id", user.id)
-    .single();
-
-  if (error || !company?.stripe_account_id) {
+  const company = await resolveCompanyForUser(supabase, user);
+  if (!company?.stripeAccountId) {
     return fail(400, "No Stripe account found. Call create-account first.");
   }
 
   const accountLink = await stripe.accountLinks.create({
-    account: company.stripe_account_id,
+    account: company.stripeAccountId,
     refresh_url: `${FRONTEND_URL}/dashboard/seller/kyc?refresh=true`,
     return_url: `${FRONTEND_URL}/dashboard/seller/kyc?success=true`,
     type: "account_onboarding",
@@ -239,17 +320,12 @@ async function handleCreateOnboardingLink(supabase, user) {
 async function handleCheckStatus(supabase, user) {
   const stripe = getStripeClient();
 
-  const { data: company, error } = await supabase
-    .from("Company")
-    .select("id, stripe_account_id, kyc_status")
-    .eq("owner_id", user.id)
-    .single();
-
-  if (error || !company) {
+  const company = await resolveCompanyForUser(supabase, user);
+  if (!company) {
     return fail(404, "Company not found");
   }
 
-  if (!company.stripe_account_id) {
+  if (!company.stripeAccountId) {
     return ok({
       kyc_status: "not_started",
       charges_enabled: false,
@@ -259,16 +335,13 @@ async function handleCheckStatus(supabase, user) {
   }
 
   // Fetch live status from Stripe (source of truth)
-  const account = await stripe.accounts.retrieve(company.stripe_account_id);
+  const account = await stripe.accounts.retrieve(company.stripeAccountId);
 
   const kyc_status = deriveKycStatus(account);
 
   // Sync status back to Supabase
-  if (kyc_status !== company.kyc_status) {
-    const { error: syncErr } = await supabase
-      .from("Company")
-      .update({ kyc_status })
-      .eq("id", company.id);
+  if (kyc_status !== company.kycStatus) {
+    const syncErr = await syncKycStatusToCompany(supabase, company, kyc_status);
     if (syncErr) {
       console.warn("[stripe-connect] Unable to sync kyc_status:", syncErr.message);
     }
