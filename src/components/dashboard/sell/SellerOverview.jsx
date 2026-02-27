@@ -58,7 +58,7 @@ function KycBanner({ status, data, error, actionError, busy, lang, onStart, onRe
 
   const blockedFields = data?.requirements?.currently_due || [];
   const kycMeta = data
-    ? `${lang === "fr" ? "Paiements" : "Charges"}: ${data.charges_enabled ? "ON" : "OFF"} · ${lang === "fr" ? "Virements" : "Payouts"}: ${data.payouts_enabled ? "ON" : "OFF"}`
+    ? `${lang === "fr" ? "Paiements" : "Payments"}: ${data.charges_enabled ? (lang === "fr" ? "ACTIF" : "ON") : (lang === "fr" ? "INACTIF" : "OFF")} · ${lang === "fr" ? "Virements" : "Payouts"}: ${data.payouts_enabled ? (lang === "fr" ? "ACTIF" : "ON") : (lang === "fr" ? "INACTIF" : "OFF")}`
     : null;
 
   // not_started: never created Stripe account
@@ -261,7 +261,7 @@ export default function SellerOverview() {
             <StatCard icon={"💰"} label={lang === "fr" ? "Revenus du mois" : "Month revenue"} value={formatPrice(stats.monthRevenue)} trend={{ value: "+14%", positive: true }} onClick={() => setActiveSection("sales")} />
             <StatCard icon={"📦"} label={lang === "fr" ? "Commandes" : "Orders"} value={stats.totalOrders} />
             <StatCard icon={"📋"} label={lang === "fr" ? "Offres actives" : "Active listings"} value={stats.activeListings} onClick={() => setActiveSection("offers")} />
-            <StatCard icon={"⭐"} label="Rating" value={`${stats.avgRating}/5`} subtitle={`${stats.totalReviews} avis`} />
+            <StatCard icon={"⭐"} label="Rating" value={`${stats.avgRating}/5`} subtitle={`${stats.totalReviews} ${lang === "fr" ? "avis" : "reviews"}`} />
           </div>
 
           {/* Revenue chart */}
@@ -317,7 +317,7 @@ export default function SellerOverview() {
               cursor: "pointer", fontFamily: T.font,
               minHeight: 44,
             }}>
-              {lang === "fr" ? "Voir les details" : "View details"}
+              {lang === "fr" ? "Voir les détails" : "View details"}
             </button>
           </div>
         </div>
