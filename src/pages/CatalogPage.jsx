@@ -49,7 +49,7 @@ const CATALOG = REAL_PRODUCTS.map((p) => ({
   ],
 }));
 
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 24;
 
 const TAG_COLORS = {
   brand: { bg: "#e3f2fd", color: "#1565c0" },
@@ -417,24 +417,40 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
     </span>
   );
 
-  /* ── Page buttons ── */
+  /* ── Page buttons (smart pagination with ellipses) ── */
   const renderPageButtons = () => {
-    const pages = [];
+    const delta = 2;
+    const range = [];
     for (let i = 1; i <= totalPages; i++) {
-      pages.push(
+      if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
+        range.push(i);
+      }
+    }
+    const rangeWithDots = [];
+    let prev = 0;
+    for (const i of range) {
+      if (prev && i - prev > 1) rangeWithDots.push("...");
+      rangeWithDots.push(i);
+      prev = i;
+    }
+    return rangeWithDots.map((item, idx) => {
+      if (item === "...") {
+        return (
+          <span key={`dots-${idx}`} style={{ padding: "4px 6px", color: "#999", fontSize: 13, userSelect: "none" }}>
+            …
+          </span>
+        );
+      }
+      return (
         <button
-          key={i}
-          onClick={() => goToPage(i)}
-          style={{
-            ...S.pageBtn,
-            ...(currentPage === i ? S.pageBtnActive : {}),
-          }}
+          key={item}
+          onClick={() => goToPage(item)}
+          style={{ ...S.pageBtn, ...(currentPage === item ? S.pageBtnActive : {}) }}
         >
-          {i}
+          {item}
         </button>
       );
-    }
-    return pages;
+    });
   };
 
   return (
