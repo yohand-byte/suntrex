@@ -49,3 +49,7 @@ coverage/
 .vercel
 .netlify
 .env*.local
+
+.mcp.json
+claude,md
+n8n-workflow-test.json
