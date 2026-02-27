@@ -50,16 +50,16 @@ run_gate() {
     echo "- Result: ❌ FAIL" >> "$REPORT_FILE"
     echo "- Exit code: $rc" >> "$REPORT_FILE"
     echo "" >> "$REPORT_FILE"
-    echo "```" >> "$REPORT_FILE"
+    echo '```' >> "$REPORT_FILE"
     tail -n 120 /tmp/orch_gate.out >> "$REPORT_FILE"
-    echo "```" >> "$REPORT_FILE"
+    echo '```' >> "$REPORT_FILE"
     return $rc
   fi
   echo "- Result: ✅ PASS" >> "$REPORT_FILE"
   echo "" >> "$REPORT_FILE"
-  echo "```" >> "$REPORT_FILE"
+  echo '```' >> "$REPORT_FILE"
   tail -n 40 /tmp/orch_gate.out >> "$REPORT_FILE"
-  echo "```" >> "$REPORT_FILE"
+  echo '```' >> "$REPORT_FILE"
   return 0
 }
 
@@ -161,9 +161,9 @@ for b in "${BRANCHES[@]}"; do
   echo "- Files changed: $files_changed" >> "$REPORT_FILE"
   echo "" >> "$REPORT_FILE"
   echo "#### Files impacted" >> "$REPORT_FILE"
-  echo "```" >> "$REPORT_FILE"
+  echo '```' >> "$REPORT_FILE"
   git diff --name-only "$prev_sha..$new_sha" >> "$REPORT_FILE"
-  echo "```" >> "$REPORT_FILE"
+  echo '```' >> "$REPORT_FILE"
 
   run_gate "Build" "npm run build" || {
     [ "${ROLLBACK_ON_FAIL:-0}" = "1" ] && git reset --hard HEAD~1
