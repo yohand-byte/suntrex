@@ -102,6 +102,10 @@ Règles critiques :
 
 ## Infrastructure
 
+### Preprod readiness
+- Checklist operationnelle: `docs/PREPROD-SECURITY-CHECKLIST.md`
+- Rotation secrete + verification: `scripts/final-rotation.mjs`, `npm run n8n:postcheck`, `scripts/validate-strict.mjs`
+
 ### Secrets
 ```
 .env                    → JAMAIS commité (dans .gitignore)
