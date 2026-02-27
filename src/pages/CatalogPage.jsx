@@ -148,6 +148,11 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
     () => [
       { id: "all", label: t("catalog.allProducts"), count: CATALOG.length },
       {
+        id: "panels",
+        label: t("catalog.solarPanels", "Panneaux solaires"),
+        count: CATALOG.filter((p) => p.category === "panels").length,
+      },
+      {
         id: "inverters",
         label: t("catalog.inverters"),
         count: CATALOG.filter((p) => p.category === "inverters").length,
@@ -156,6 +161,16 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
         id: "batteries",
         label: t("catalog.batteriesStorage"),
         count: CATALOG.filter((p) => p.category === "batteries").length,
+      },
+      {
+        id: "cables",
+        label: t("catalog.cables", "Câbles"),
+        count: CATALOG.filter((p) => p.category === "cables").length,
+      },
+      {
+        id: "mounting",
+        label: t("catalog.mounting", "Systèmes de montage"),
+        count: CATALOG.filter((p) => p.category === "mounting").length,
       },
       {
         id: "optimizers",

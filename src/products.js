@@ -792,11 +792,22 @@ const PRODUCTS = [
   },
 ];
 
+// ─── Zoho enriched products (618 items) ──────────────────────────────────────
+import ZOHO_PRODUCTS from "./data/zoho-products.json";
+
+const ALL_PRODUCTS = [
+  ...PRODUCTS,
+  ...ZOHO_PRODUCTS,
+];
+
 // Category definitions for the catalog
 export const CATEGORIES = [
   { id: "all", name: "Tous les produits", icon: "📦" },
+  { id: "panels", name: "Panneaux solaires", icon: "☀️" },
   { id: "inverters", name: "Onduleurs", icon: "⚡" },
   { id: "batteries", name: "Stockage", icon: "🔋" },
+  { id: "cables", name: "Câbles", icon: "🔌" },
+  { id: "mounting", name: "Systèmes de montage", icon: "🏗️" },
   { id: "optimizers", name: "Optimiseurs", icon: "📈" },
   { id: "ev-chargers", name: "Bornes de recharge", icon: "🚗" },
   { id: "accessories", name: "Accessoires", icon: "🔧" },
@@ -804,24 +815,24 @@ export const CATEGORIES = [
 
 // Helper functions
 export const getProductsByCategory = (cat) =>
-  cat === "all" ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
+  cat === "all" ? ALL_PRODUCTS : ALL_PRODUCTS.filter(p => p.category === cat);
 
 export const getProductById = (id) =>
-  PRODUCTS.find(p => p.id === id);
+  ALL_PRODUCTS.find(p => p.id === id);
 
 export const searchProducts = (query) => {
   const q = query.toLowerCase();
-  return PRODUCTS.filter(p =>
+  return ALL_PRODUCTS.filter(p =>
     p.name.toLowerCase().includes(q) ||
     p.sku.toLowerCase().includes(q) ||
-    p.brand.toLowerCase().includes(q) ||
+    (p.brand || "").toLowerCase().includes(q) ||
     (p.type && p.type.toLowerCase().includes(q))
   );
 };
 
-export const getProductCount = () => PRODUCTS.length;
+export const getProductCount = () => ALL_PRODUCTS.length;
 
 export const getTotalStock = () =>
-  PRODUCTS.reduce((sum, p) => sum + (p.stock || 0), 0);
+  ALL_PRODUCTS.reduce((sum, p) => sum + (p.stock || 0), 0);
 
-export default PRODUCTS;
+export default ALL_PRODUCTS;
