@@ -28,6 +28,7 @@
         "npm:react-i18next@^16.5.4",
         "npm:react-router-dom@^7.13.1",
         "npm:react@^19.2.0",
+        "npm:stripe@^16.12.0",
         "npm:tailwindcss@^4.2.1",
         "npm:vite@^7.3.1"
       ]

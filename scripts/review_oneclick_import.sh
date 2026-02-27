@@ -52,7 +52,9 @@ if [[ -n "$INPUT_FILE" ]]; then
     echo "File not found: $INPUT_FILE" >&2
     exit 1
   fi
-  cp "$INPUT_FILE" "$RESP_FILE"
+  if [[ "$(cd "$(dirname "$INPUT_FILE")" && pwd)/$(basename "$INPUT_FILE")" != "$(cd "$(dirname "$RESP_FILE")" && pwd)/$(basename "$RESP_FILE")" ]]; then
+    cp "$INPUT_FILE" "$RESP_FILE"
+  fi
 else
   if ! read_clipboard > "$RESP_FILE"; then
     echo "No clipboard tool found. Use --file <path>." >&2
@@ -62,6 +64,28 @@ fi
 
 if [[ ! -s "$RESP_FILE" ]]; then
   echo "Response is empty. Copy Claude reply and retry." >&2
+  exit 1
+fi
+
+RESP_LINES="$(wc -l < "$RESP_FILE" | tr -d ' ')"
+RESP_CHARS="$(wc -c < "$RESP_FILE" | tr -d ' ')"
+FIRST_LINE="$(sed -n '1p' "$RESP_FILE" | tr -d '\r')"
+
+# Guardrail: detect accidental clipboard content (commands/snippets) instead of Claude review.
+if [[ "$RESP_CHARS" -lt 40 ]] || [[ "$RESP_LINES" -lt 2 ]]; then
+  echo "Imported content looks too short to be a review." >&2
+  echo "First line: $FIRST_LINE" >&2
+  echo "Copy full Claude response, then run again." >&2
+  exit 1
+fi
+
+# Detect likely shell command in clipboard first line.
+# Keep false-positive risk low by requiring a command-like prefix.
+if [[ "$FIRST_LINE" =~ ^(npm|yarn|pnpm|bash|sh|zsh|git|node|docker|curl|cd|cat|rm|mv|cp|ls)[[:space:]] ]] \
+   && ! [[ "$FIRST_LINE" =~ ^git[[:space:]].*(showed|found|diff) ]]; then
+  echo "Clipboard appears to contain a shell command, not a Claude review." >&2
+  echo "First line: $FIRST_LINE" >&2
+  echo "Copy full Claude response, then run again." >&2
   exit 1
 fi
 
@@ -103,4 +127,3 @@ echo "Generated TODO checklist: $TODO_FILE"
 echo
 echo "Next step for Codex:"
 echo "Use $TODO_FILE and apply P0/P1 fixes first."
-

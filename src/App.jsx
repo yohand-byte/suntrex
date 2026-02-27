@@ -7,6 +7,9 @@ import HomePage from "./pages/HomePage";
 import CatalogPage from "./pages/CatalogPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import TransactionChatPage from "./pages/TransactionChatPage";
+import BuyerDashboard from "./components/dashboard/BuyerDashboard";
+import SellerDashboard from "./components/dashboard/SellerDashboard";
+import DashboardLayout from "./components/dashboard/DashboardLayout";
 import { LoginModal, RegisterModal } from "./AuthSystem";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -23,6 +26,7 @@ export default function App() {
   const location = useLocation();
 
   const isVerified = isLoggedIn && currentUser?.kycStatus === "verified";
+  const isDashboard = location.pathname.startsWith("/dashboard");
 
   useEffect(() => { window.scrollTo(0, 0); }, [location.pathname]);
 
@@ -54,13 +58,15 @@ export default function App() {
         }
       `}</style>
 
-      <Header
-        isLoggedIn={isLoggedIn}
-        currentUser={currentUser}
-        onShowLogin={()=>setShowLogin(true)}
-        onShowRegister={()=>setShowRegister(true)}
-        onLogout={handleLogout}
-      />
+      {!isDashboard && (
+        <Header
+          isLoggedIn={isLoggedIn}
+          currentUser={currentUser}
+          onShowLogin={()=>setShowLogin(true)}
+          onShowRegister={()=>setShowRegister(true)}
+          onLogout={handleLogout}
+        />
+      )}
 
       <Routes>
         <Route path="/" element={
@@ -89,10 +95,15 @@ export default function App() {
             currentUser={currentUser}
           />
         }/>
+        <Route path="/dashboard" element={<DashboardLayout />} />
+        <Route path="/dashboard/buy" element={<DashboardLayout initialTab="buy" />} />
+        <Route path="/dashboard/sell" element={<DashboardLayout initialTab="sell" />} />
+        <Route path="/dashboard/buyer" element={<BuyerDashboard />} />
+        <Route path="/dashboard/seller" element={<SellerDashboard />} />
       </Routes>
 
-      <Footer />
-      <SuntrexSupportChat userId={isLoggedIn ? "current-user-id" : null} />
+      {!isDashboard && <Footer />}
+      {!isDashboard && <SuntrexSupportChat userId={isLoggedIn ? "current-user-id" : null} />}
 
       {showLogin && (
         <LoginModal

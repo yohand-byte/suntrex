@@ -30,6 +30,29 @@ ou
 ./scripts/review_oneclick_export.sh --base origin/main
 ```
 
+Modes d'ouverture:
+```bash
+# Reutiliser un onglet Claude existant (par defaut)
+npm run review:export
+
+# Ne rien ouvrir (tu restes sur ton app/projet)
+npm run review:export:noopen
+
+# Ouvrir l'app mac Claude (si installee)
+npm run review:export:app
+```
+
+Cibler un projet Claude precis:
+```bash
+# Option ponctuelle
+./scripts/review_oneclick_export.sh --project-url "https://claude.ai/project/019c86a7-e2dc-72ce-b455-ed0e3ded1ea5"
+
+# Option persistante (recommandee)
+echo "https://claude.ai/project/019c86a7-e2dc-72ce-b455-ed0e3ded1ea5" > review/.claude_project_url
+```
+
+Le script essaie d'abord de reutiliser un onglet `claude.ai/project/...`, puis fallback sur n'importe quel onglet Claude.
+
 Puis dans Claude:
 - Colle (Cmd+V).
 - Envoie.
@@ -71,6 +94,21 @@ Ce que ca fait:
 - copie la demande dans le presse-papiers
 
 Tu n'as plus qu'a coller cette demande dans Codex.
+
+## Mode sans retaper de commandes (autopilot)
+
+Option 1 (terminal, une seule commande):
+```bash
+npm run review:auto
+```
+
+Option 2 (zero commande, double-clic):
+- Double-clique `review.command` dans le dossier projet.
+
+Ce mode:
+1. exporte le packet,
+2. attend que tu copies la reponse Claude,
+3. lance automatiquement import + fix.
 
 ## Notes
 
