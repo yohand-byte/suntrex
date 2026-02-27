@@ -30,7 +30,7 @@ const PROFILE_MENU = [
   { id: "logout",     icon: "\uD83D\uDEAA", label: "Log out",           labelFr: "Deconnexion" },
 ];
 
-export default function DashboardTopbar({ activeTab, onTabChange, onProfileAction, onNotificationClick, unreadCount = 0, user, lang = "fr", onSearch, kycStatus, onKycAction }) {
+export default function DashboardTopbar({ activeTab, onTabChange, onProfileAction, onNotificationClick, unreadCount = 0, user, lang = "fr", onSearch, kycStatus, onKycAction, kycBusy = false }) {
   const { isMobile, isTablet } = useResponsive();
   const [profileOpen, setProfileOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -131,6 +131,7 @@ export default function DashboardTopbar({ activeTab, onTabChange, onProfileActio
         {!isMobile && activeTab === "sell" && kycStatus && KYC_PILL[kycStatus] && (
           <button
             onClick={onKycAction}
+            disabled={kycBusy}
             style={{
               background: KYC_PILL[kycStatus].bg,
               color: "#fff",
@@ -140,7 +141,7 @@ export default function DashboardTopbar({ activeTab, onTabChange, onProfileActio
               height: 32,
               fontSize: 12,
               fontWeight: 600,
-              cursor: "pointer",
+              cursor: kycBusy ? "not-allowed" : "pointer",
               fontFamily: "'DM Sans', sans-serif",
               whiteSpace: "nowrap",
               flexShrink: 0,
@@ -148,9 +149,10 @@ export default function DashboardTopbar({ activeTab, onTabChange, onProfileActio
               display: "flex",
               alignItems: "center",
               transition: "opacity 0.15s ease",
+              opacity: kycBusy ? 0.7 : 1,
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.85"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+            onMouseEnter={(e) => { if (!kycBusy) e.currentTarget.style.opacity = "0.85"; }}
+            onMouseLeave={(e) => { if (!kycBusy) e.currentTarget.style.opacity = "1"; }}
             aria-label={lang === "fr" ? KYC_PILL[kycStatus].label.fr : KYC_PILL[kycStatus].label.en}
           >
             {lang === "fr" ? KYC_PILL[kycStatus].label.fr : KYC_PILL[kycStatus].label.en}
@@ -298,7 +300,7 @@ export default function DashboardTopbar({ activeTab, onTabChange, onProfileActio
                   minHeight: 44,
                 }}
               >
-                {tab.label}
+                {lang === "fr" ? tab.labelFr : tab.label}
                 {tab.id === "notifications" && unreadCount > 0 && (
                   <span style={{
                     marginLeft: 6,

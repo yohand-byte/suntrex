@@ -43,6 +43,17 @@ const MOBILE_TABS = [
   { id: "notifications", icon: "\uD83D\uDD14", label: "Notifs", labelFr: "Notifs" },
 ];
 
+const KYC_STATES = new Set(["not_started", "pending", "in_review", "rejected", "approved", "demo"]);
+
+function normalizeKycStatus(rawStatus) {
+  const status = String(rawStatus || "").toLowerCase();
+  if (KYC_STATES.has(status)) return status;
+  if (status === "pending_review" || status === "under_review") return "in_review";
+  if (status === "requires_input" || status === "needs_info") return "pending";
+  if (status === "disabled") return "rejected";
+  return "not_started";
+}
+
 export default function DashboardLayout({ initialTab = "buy", user: propUser, company: propCompany }) {
   const { isMobile, isTablet } = useResponsive();
   const [activeTab, setActiveTab] = useState(initialTab);
@@ -67,22 +78,32 @@ export default function DashboardLayout({ initialTab = "buy", user: propUser, co
         body: JSON.stringify({ action: "check-status" }),
       });
       setKycData(res);
-      setKycStatus(res.kyc_status || "not_started");
+      setKycStatus(normalizeKycStatus(res.kyc_status));
       setKycActionError(null);
     } catch {
       setKycStatus("demo"); // no session or API unavailable → demo mode
     }
   }, []);
 
-  // Fetch on mount
-  useEffect(() => { fetchKycStatus(); }, [fetchKycStatus]);
-
-  // Re-fetch on return from Stripe onboarding (?success=true or ?refresh=true)
+  // Fetch on mount and handle return from Stripe onboarding (?success=true / ?refresh=true)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (params.get("success") === "true" || params.get("refresh") === "true") {
-      fetchKycStatus();
+    const fromStripeReturn = params.get("success") === "true" || params.get("refresh") === "true";
+
+    if (fromStripeReturn) {
+      setActiveTab("sell");
+      setActiveSection(DEFAULT_SECTIONS.sell);
+      setTransactionId(null);
+
+      // Clean query flags once consumed so a refresh does not re-trigger onboarding flow.
+      params.delete("success");
+      params.delete("refresh");
+      const cleanQuery = params.toString();
+      const cleanUrl = `${window.location.pathname}${cleanQuery ? `?${cleanQuery}` : ""}${window.location.hash}`;
+      window.history.replaceState({}, "", cleanUrl);
     }
+
+    fetchKycStatus();
   }, [fetchKycStatus]);
 
   const startOnboarding = useCallback(async () => {
@@ -168,6 +189,20 @@ export default function DashboardLayout({ initialTab = "buy", user: propUser, co
     setActiveSection("notif-center");
   }, []);
 
+  const handleKycAction = useCallback(() => {
+    if (kycStatus === "not_started") {
+      startOnboarding();
+      return;
+    }
+    if (kycStatus === "in_review") {
+      fetchKycStatus();
+      return;
+    }
+    if (kycStatus === "pending" || kycStatus === "rejected") {
+      resumeOnboarding();
+    }
+  }, [kycStatus, fetchKycStatus, startOnboarding, resumeOnboarding]);
+
   const contextValue = {
     user,
     company,
@@ -207,7 +242,8 @@ export default function DashboardLayout({ initialTab = "buy", user: propUser, co
           user={user}
           lang={lang}
           kycStatus={kycStatus}
-          onKycAction={kycStatus === "not_started" ? startOnboarding : resumeOnboarding}
+          onKycAction={handleKycAction}
+          kycBusy={kycBusy}
         />
 
         {/* Main content area: sidebar + content */}
