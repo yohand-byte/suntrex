@@ -14,10 +14,12 @@
     "review:import": "bash ./scripts/review_oneclick_import.sh",
     "review:fix": "bash ./scripts/codex_fix_from_review.sh",
     "review:next": "bash ./scripts/review_oneclick_import.sh && bash ./scripts/codex_fix_from_review.sh",
-    "review:auto": "bash ./scripts/review_autopilot.sh"
+    "review:auto": "bash ./scripts/review_autopilot.sh",
+    "n8n:postcheck": "bash ./scripts/n8n_post_rotation_check.sh"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.97.0",
+    "stripe": "^16.12.0",
     "i18next": "^25.8.13",
     "i18next-browser-languagedetector": "^8.2.1",
     "js-cookie": "^3.0.5",

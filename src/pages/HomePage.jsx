@@ -203,7 +203,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       <section style={{padding:"16px 0",borderBottom:"1px solid #e4e5ec",overflow:"hidden",position:"relative"}}>
         <div style={{position:"absolute",left:0,top:0,bottom:0,width:isMobile?40:100,background:"linear-gradient(to right,#fff,transparent)",zIndex:2}}/>
         <div style={{position:"absolute",right:0,top:0,bottom:0,width:isMobile?40:100,background:"linear-gradient(to left,#fff,transparent)",zIndex:2}}/>
-        <div className="marquee" style={{display:"flex",alignItems:"center",gap:isMobile?24:32,alignItems:"center",width:"max-content"}}>
+        <div className="marquee" style={{display:"flex",alignItems:"center",gap:isMobile?24:32,width:"max-content"}}>
           {[...BRANDS,...BRANDS].map((b,i)=>(
             <BrandLogo key={i} brand={b}/>
           ))}

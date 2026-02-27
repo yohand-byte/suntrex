@@ -1,10 +1,11 @@
-import React, { useState, useCallback, createContext, useContext } from "react";
+import React, { useState, useEffect, useCallback, createContext, useContext } from "react";
 import { T } from "./tokens";
 import { useResponsive } from "./shared/useResponsive";
 import DashboardTopbar from "./DashboardTopbar";
 import DashboardSidebar from "./DashboardSidebar";
 import DashboardRouter, { DEFAULT_SECTIONS } from "./DashboardRouter";
 import { MOCK_BUYER, MOCK_SELLER } from "./dashboardUtils";
+import { apiFetch } from "../../lib/supabase";
 
 // ── Dashboard Context ──────────────────────────────────────────────
 export const DashboardContext = createContext({
@@ -17,6 +18,14 @@ export const DashboardContext = createContext({
   setActiveTab: () => {},
   setActiveSection: () => {},
   navigateToTransaction: () => {},
+  // KYC gate
+  kycStatus: null,
+  kycData: null,
+  kycBusy: false,
+  kycActionError: null,
+  refreshKyc: () => {},
+  startOnboarding: () => {},
+  resumeOnboarding: () => {},
 });
 
 export const useDashboard = () => useContext(DashboardContext);
@@ -44,6 +53,87 @@ export default function DashboardLayout({ initialTab = "buy", user: propUser, co
   // Use prop user or demo user
   const user = propUser || DEMO_USER;
   const company = propCompany || DEMO_COMPANY;
+
+  // ── KYC state (single source of truth for topbar + SellerOverview) ──
+  const [kycStatus, setKycStatus] = useState(null);
+  const [kycData, setKycData] = useState(null);
+  const [kycBusy, setKycBusy] = useState(false);
+  const [kycActionError, setKycActionError] = useState(null);
+
+  const fetchKycStatus = useCallback(async () => {
+    try {
+      const res = await apiFetch("/api/stripe-connect", {
+        method: "POST",
+        body: JSON.stringify({ action: "check-status" }),
+      });
+      setKycData(res);
+      setKycStatus(res.kyc_status || "not_started");
+      setKycActionError(null);
+    } catch {
+      setKycStatus("demo"); // no session or API unavailable → demo mode
+    }
+  }, []);
+
+  // Fetch on mount
+  useEffect(() => { fetchKycStatus(); }, [fetchKycStatus]);
+
+  // Re-fetch on return from Stripe onboarding (?success=true or ?refresh=true)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("success") === "true" || params.get("refresh") === "true") {
+      fetchKycStatus();
+    }
+  }, [fetchKycStatus]);
+
+  const startOnboarding = useCallback(async () => {
+    setKycBusy(true);
+    setKycActionError(null);
+    try {
+      await apiFetch("/api/stripe-connect", {
+        method: "POST",
+        body: JSON.stringify({ action: "create-account" }),
+      });
+      const res = await apiFetch("/api/stripe-connect", {
+        method: "POST",
+        body: JSON.stringify({ action: "create-onboarding-link" }),
+      });
+      if (res.url) window.location.href = res.url;
+    } catch (err) {
+      setKycActionError(err.message);
+    } finally {
+      setKycBusy(false);
+    }
+  }, []);
+
+  const resumeOnboarding = useCallback(async () => {
+    setKycBusy(true);
+    setKycActionError(null);
+    try {
+      const res = await apiFetch("/api/stripe-connect", {
+        method: "POST",
+        body: JSON.stringify({ action: "create-onboarding-link" }),
+      });
+      if (res.url) { window.location.href = res.url; return; }
+    } catch (err) {
+      const msg = err.message || "";
+      if (msg.includes("expired") || msg.includes("refresh")) {
+        try {
+          const refreshRes = await apiFetch("/api/stripe-connect", {
+            method: "POST",
+            body: JSON.stringify({ action: "refresh-link" }),
+          });
+          if (refreshRes.url) { window.location.href = refreshRes.url; return; }
+        } catch (refreshErr) {
+          setKycActionError(refreshErr.message);
+          setKycBusy(false);
+          return;
+        }
+      }
+      setKycActionError(msg);
+    } finally {
+      setKycBusy(false);
+    }
+  }, []);
 
   const unreadCount = DEMO_NOTIFICATIONS.filter(n => !n.read).length;
 
@@ -88,6 +178,14 @@ export default function DashboardLayout({ initialTab = "buy", user: propUser, co
     setActiveTab: handleTabChange,
     setActiveSection: handleSectionChange,
     navigateToTransaction,
+    // KYC gate
+    kycStatus,
+    kycData,
+    kycBusy,
+    kycActionError,
+    refreshKyc: fetchKycStatus,
+    startOnboarding,
+    resumeOnboarding,
   };
 
   return (
@@ -108,6 +206,8 @@ export default function DashboardLayout({ initialTab = "buy", user: propUser, co
           unreadCount={unreadCount}
           user={user}
           lang={lang}
+          kycStatus={kycStatus}
+          onKycAction={kycStatus === "not_started" ? startOnboarding : resumeOnboarding}
         />
 
         {/* Main content area: sidebar + content */}
@@ -218,6 +318,18 @@ export default function DashboardLayout({ initialTab = "buy", user: propUser, co
                       height: 8,
                       borderRadius: "50%",
                       background: T.red,
+                      border: "2px solid #fff",
+                    }} />
+                  )}
+                  {tab.id === "sell" && kycStatus && kycStatus !== "approved" && kycStatus !== "demo" && (
+                    <span style={{
+                      position: "absolute",
+                      top: 4,
+                      right: 8,
+                      width: 8,
+                      height: 8,
+                      borderRadius: "50%",
+                      background: kycStatus === "rejected" ? T.red : T.yellow,
                       border: "2px solid #fff",
                     }} />
                   )}

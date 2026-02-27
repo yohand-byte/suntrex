@@ -10,6 +10,14 @@ const TABS = [
   { id: "notifications", label: "NOTIFICATIONS", labelFr: "NOTIFICATIONS" },
 ];
 
+// ── KYC pill config (sell tab only) ───────────────────────────────
+const KYC_PILL = {
+  not_started: { bg: "#f97316", label: { fr: "🔐 Activer vendeur", en: "🔐 Activate seller" } },
+  pending:     { bg: "#f59e0b", label: { fr: "⏳ Finaliser KYC",   en: "⏳ Complete KYC"   } },
+  in_review:   { bg: "#3b82f6", label: { fr: "🔍 KYC en cours",    en: "🔍 KYC in review"  } },
+  rejected:    { bg: "#ef4444", label: { fr: "⚠ KYC requis",       en: "⚠ KYC required"   } },
+};
+
 // ── Profile dropdown items ─────────────────────────────────────────
 const PROFILE_MENU = [
   { id: "account",    icon: "\uD83D\uDC64", label: "Account details",   labelFr: "Details du compte" },
@@ -22,7 +30,7 @@ const PROFILE_MENU = [
   { id: "logout",     icon: "\uD83D\uDEAA", label: "Log out",           labelFr: "Deconnexion" },
 ];
 
-export default function DashboardTopbar({ activeTab, onTabChange, onProfileAction, onNotificationClick, unreadCount = 0, user, lang = "fr", onSearch }) {
+export default function DashboardTopbar({ activeTab, onTabChange, onProfileAction, onNotificationClick, unreadCount = 0, user, lang = "fr", onSearch, kycStatus, onKycAction }) {
   const { isMobile, isTablet } = useResponsive();
   const [profileOpen, setProfileOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -116,6 +124,36 @@ export default function DashboardTopbar({ activeTab, onTabChange, onProfileActio
             display: "flex", alignItems: "center", gap: 4,
           }}>
             {"\uD83C\uDDEB\uD83C\uDDF7"} {lang === "fr" ? "French" : "English"}-EUR {"\u25BE"}
+          </button>
+        )}
+
+        {/* KYC pill — desktop only, sell tab, not approved */}
+        {!isMobile && activeTab === "sell" && kycStatus && KYC_PILL[kycStatus] && (
+          <button
+            onClick={onKycAction}
+            style={{
+              background: KYC_PILL[kycStatus].bg,
+              color: "#fff",
+              border: "none",
+              borderRadius: 20,
+              padding: "0 14px",
+              height: 32,
+              fontSize: 12,
+              fontWeight: 600,
+              cursor: "pointer",
+              fontFamily: "'DM Sans', sans-serif",
+              whiteSpace: "nowrap",
+              flexShrink: 0,
+              minHeight: 44,
+              display: "flex",
+              alignItems: "center",
+              transition: "opacity 0.15s ease",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.85"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+            aria-label={lang === "fr" ? KYC_PILL[kycStatus].label.fr : KYC_PILL[kycStatus].label.en}
+          >
+            {lang === "fr" ? KYC_PILL[kycStatus].label.fr : KYC_PILL[kycStatus].label.en}
           </button>
         )}
 
