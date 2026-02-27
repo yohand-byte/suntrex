@@ -55,11 +55,21 @@ else
   exit 1
 fi
 
-# Charger les vars depuis .env.local
-set -o allexport
-# shellcheck disable=SC1090
-source <(grep -v '^#' "$ENV_FILE" | grep -v '^$' | grep '=')
-set +o allexport
+# Charger les vars depuis .env.local (parser robuste, sans source)
+while IFS= read -r line || [[ -n "$line" ]]; do
+  [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+  [[ "$line" != *=* ]] && continue
+
+  key="${line%%=*}"
+  value="${line#*=}"
+
+  # Trim espaces autour de la clé et retire CR éventuel en fin de valeur
+  key="${key#"${key%%[![:space:]]*}"}"
+  key="${key%"${key##*[![:space:]]}"}"
+  value="${value%$'\r'}"
+
+  export "$key=$value"
+done < "$ENV_FILE"
 
 # Vérif vars critiques
 MISSING_VARS=0
@@ -97,15 +107,20 @@ fi
 
 info "Login en tant que $EMAIL..."
 
-AUTH_RESPONSE=$(curl -sf --max-time 10 \
+AUTH_RAW=$(curl -s --max-time 10 -w '\n__HTTP_CODE__:%{http_code}' \
   -X POST "$SUPABASE_URL/auth/v1/token?grant_type=password" \
   -H "apikey: $VITE_SUPABASE_ANON_KEY" \
   -H "Content-Type: application/json" \
-  -d "{\"email\":\"$EMAIL\",\"password\":\"$PASSWORD\"}" 2>&1) || {
-    fail "Requête auth Supabase échouée"
-    echo "  Response: $AUTH_RESPONSE"
-    exit 1
-  }
+  -d "{\"email\":\"$EMAIL\",\"password\":\"$PASSWORD\"}" 2>&1)
+
+AUTH_HTTP_CODE="${AUTH_RAW##*__HTTP_CODE__:}"
+AUTH_RESPONSE="${AUTH_RAW%__HTTP_CODE__:*}"
+
+if [[ -z "$AUTH_HTTP_CODE" || "$AUTH_HTTP_CODE" -ge 400 ]]; then
+  fail "Requête auth Supabase échouée (HTTP ${AUTH_HTTP_CODE:-unknown})"
+  echo "  Response: $AUTH_RESPONSE"
+  exit 1
+fi
 
 TOKEN=$(echo "$AUTH_RESPONSE" | jq -r '.access_token // empty')
 if [[ -z "$TOKEN" ]]; then
