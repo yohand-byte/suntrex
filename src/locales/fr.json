@@ -388,7 +388,16 @@
         "formatNotAccepted": "Format non accepté. Utilisez PDF, JPG ou PNG.",
         "fileTooLarge": "Fichier trop volumineux. Maximum 10 Mo.",
         "invalidFileName": "Nom de fichier invalide.",
-        "passwordsMatch": "Les mots de passe correspondent"
+        "passwordsMatch": "Les mots de passe correspondent",
+        "siretNotFound": "SIRET/SIREN non trouvé dans la base INSEE.",
+        "siretApiError": "Erreur lors de la vérification. Réessayez.",
+        "emailInvalid": "Adresse email invalide.",
+        "passwordsMismatch": "Les mots de passe ne correspondent pas.",
+        "consentRequired": "Vous devez accepter les conditions générales.",
+        "siretVerifyFirst": "Veuillez d'abord vérifier votre SIRET.",
+        "kycRequired": "Un document de vérification est requis.",
+        "fileFormatInvalid": "Format de fichier non accepté (PDF, JPG, PNG uniquement).",
+        "fileNameInvalid": "Nom de fichier invalide."
       },
       "passwordRules": {
         "minChars": "Minimum 8 caractères",

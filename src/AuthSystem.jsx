@@ -35,25 +35,25 @@ const getCountryConfig = (code) => COUNTRIES.find(c => c.code === code) || COUNT
 
 const validatePhone = (t, phone, countryCode) => {
   const cleaned = phone.replace(/\s+/g, " ").trim();
-  if (!cleaned) return { valid: false, error: t("auth.validation.phoneRequired") };
+  if (!cleaned) return { valid: false, error: t("auth.register.validation.phoneRequired") };
   const cfg = getCountryConfig(countryCode);
-  if (!cleaned.startsWith("+")) return { valid: false, error: t("auth.validation.phoneMustStartWith", { prefix: cfg.phonePrefix }) };
-  if (!cleaned.startsWith(cfg.phonePrefix) && countryCode !== "OTHER") return { valid: false, error: t("auth.validation.phoneMustStartWithForCountry", { prefix: cfg.phonePrefix, country: t("auth.countries." + countryCode) }) };
+  if (!cleaned.startsWith("+")) return { valid: false, error: t("auth.register.validation.phoneMustStartWith", { prefix: cfg.phonePrefix }) };
+  if (!cleaned.startsWith(cfg.phonePrefix) && countryCode !== "OTHER") return { valid: false, error: t("auth.register.validation.phoneMustStartWithForCountry", { prefix: cfg.phonePrefix, country: t("auth.countries." + countryCode) }) };
   const digitsOnly = cleaned.replace(/[^\d]/g, "");
-  if (digitsOnly.length < 9) return { valid: false, error: t("auth.validation.phoneTooShort") };
-  if (digitsOnly.length > 15) return { valid: false, error: t("auth.validation.phoneTooLong") };
+  if (digitsOnly.length < 9) return { valid: false, error: t("auth.register.validation.phoneTooShort") };
+  if (digitsOnly.length > 15) return { valid: false, error: t("auth.register.validation.phoneTooLong") };
   return { valid: true, error: "" };
 };
 
 const validateVat = (t, vat, countryCode) => {
   const cleaned = vat.replace(/\s+/g, "").toUpperCase();
-  if (!cleaned) return { valid: false, error: t("auth.validation.vatRequired") };
+  if (!cleaned) return { valid: false, error: t("auth.register.validation.vatRequired") };
   const cfg = getCountryConfig(countryCode);
   // Must start with country prefix (except CH which uses CHE)
   const expectedPrefix = countryCode === "CH" ? "CHE" : countryCode;
-  if (countryCode !== "OTHER" && !cleaned.startsWith(expectedPrefix)) return { valid: false, error: t("auth.validation.vatMustStartWith", { prefix: expectedPrefix }) };
-  if (cleaned.length < cfg.vatDigits - 3) return { valid: false, error: t("auth.validation.vatTooShort") };
-  if (cleaned.length > cfg.vatDigits + 3) return { valid: false, error: t("auth.validation.vatTooLong") };
+  if (countryCode !== "OTHER" && !cleaned.startsWith(expectedPrefix)) return { valid: false, error: t("auth.register.validation.vatMustStartWith", { prefix: expectedPrefix }) };
+  if (cleaned.length < cfg.vatDigits - 3) return { valid: false, error: t("auth.register.validation.vatTooShort") };
+  if (cleaned.length > cfg.vatDigits + 3) return { valid: false, error: t("auth.register.validation.vatTooLong") };
   return { valid: true, error: "" };
 };
 
@@ -170,7 +170,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
   const lookupSiret = async () => {
     const cleaned = form.siret.replace(/\s/g, "");
     if (cleaned.length < 9) {
-      setSirenError(t("auth.validation.siretMinLength"));
+      setSirenError(t("auth.register.validation.siretMinLength"));
       return;
     }
     setSirenLoading(true);
@@ -198,8 +198,8 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
     } catch (err) {
       setSirenError(
         err.message === "not_found"
-          ? t("auth.validation.siretNotFound")
-          : t("auth.validation.siretApiError")
+          ? t("auth.register.validation.siretNotFound")
+          : t("auth.register.validation.siretApiError")
       );
     }
     setSirenLoading(false);
@@ -207,19 +207,19 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
 
   /* ── Password strength rules ── */
   const pwRules = [
-    { label: t("auth.passwordRules.minChars"), test: form.password.length >= 8 },
-    { label: t("auth.passwordRules.uppercase"), test: /[A-Z]/.test(form.password) },
-    { label: t("auth.passwordRules.lowercase"), test: /[a-z]/.test(form.password) },
-    { label: t("auth.passwordRules.digit"), test: /[0-9]/.test(form.password) },
-    { label: t("auth.passwordRules.special"), test: /[!@#$%^&*]/.test(form.password) },
+    { label: t("auth.register.passwordRules.minChars"), test: form.password.length >= 8 },
+    { label: t("auth.register.passwordRules.uppercase"), test: /[A-Z]/.test(form.password) },
+    { label: t("auth.register.passwordRules.lowercase"), test: /[a-z]/.test(form.password) },
+    { label: t("auth.register.passwordRules.digit"), test: /[0-9]/.test(form.password) },
+    { label: t("auth.register.passwordRules.special"), test: /[!@#$%^&*]/.test(form.password) },
   ];
   const pwScore = pwRules.filter(r => r.test).length;
   const pwAllValid = pwScore === 5;
   const pwMatch = form.password.length > 0 && form.passwordConfirm.length > 0 && form.password === form.passwordConfirm;
-  const pwStrength = pwScore <= 1 ? { label: t("auth.passwordStrength.weak"), color: "#dc2626" }
-    : pwScore <= 3 ? { label: t("auth.passwordStrength.medium"), color: "#f59e0b" }
-    : pwScore === 4 ? { label: t("auth.passwordStrength.strong"), color: "#84cc16" }
-    : { label: t("auth.passwordStrength.veryStrong"), color: "#4CAF50" };
+  const pwStrength = pwScore <= 1 ? { label: t("auth.register.passwordStrength.weak"), color: "#dc2626" }
+    : pwScore <= 3 ? { label: t("auth.register.passwordStrength.medium"), color: "#f59e0b" }
+    : pwScore === 4 ? { label: t("auth.register.passwordStrength.strong"), color: "#84cc16" }
+    : { label: t("auth.register.passwordStrength.veryStrong"), color: "#4CAF50" };
 
   const canNext = () => {
     if (step === 0) {
@@ -239,24 +239,24 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
 
   const next = () => {
     if (step === 0) {
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) { setError(t("auth.validation.emailInvalid")); return; }
-      if (!pwAllValid) { setError(t("auth.validation.passwordRulesNotMet")); return; }
-      if (!pwMatch) { setError(t("auth.validation.passwordsMismatch")); return; }
-      if (!form.consentCGV) { setError(t("auth.validation.consentRequired")); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) { setError(t("auth.register.validation.emailInvalid")); return; }
+      if (!pwAllValid) { setError(t("auth.register.validation.passwordRulesNotMet")); return; }
+      if (!pwMatch) { setError(t("auth.register.validation.passwordsMismatch")); return; }
+      if (!form.consentCGV) { setError(t("auth.register.validation.consentRequired")); return; }
     }
     if (step === 1) {
-      if (form.country === "FR" && !sirenVerified) { setError(t("auth.validation.siretVerifyFirst")); return; }
-      if (!form.companyName.trim()) { setError(t("auth.validation.companyNameRequired")); return; }
+      if (form.country === "FR" && !sirenVerified) { setError(t("auth.register.validation.siretVerifyFirst")); return; }
+      if (!form.companyName.trim()) { setError(t("auth.register.validation.companyNameRequired")); return; }
       const vatResult = validateVat(t, form.vatNumber, form.country);
       if (!vatResult.valid) { setVatError(vatResult.error); setError(vatResult.error); return; }
-      if (!form.address.trim()) { setError(t("auth.validation.addressRequired")); return; }
-      if (!form.postalCode.trim()) { setError(t("auth.validation.postalCodeRequired")); return; }
-      if (!form.city.trim()) { setError(t("auth.validation.cityRequired")); return; }
+      if (!form.address.trim()) { setError(t("auth.register.validation.addressRequired")); return; }
+      if (!form.postalCode.trim()) { setError(t("auth.register.validation.postalCodeRequired")); return; }
+      if (!form.city.trim()) { setError(t("auth.register.validation.cityRequired")); return; }
       const phoneResult = validatePhone(t, form.phone, form.country);
       if (!phoneResult.valid) { setPhoneError(phoneResult.error); setError(phoneResult.error); return; }
       setPhoneError(""); setVatError("");
     }
-    if (step === 2 && !form.kycDocUploaded) { setError(t("auth.validation.kycRequired")); return; }
+    if (step === 2 && !form.kycDocUploaded) { setError(t("auth.register.validation.kycRequired")); return; }
     setError("");
     if (step < 3) setStep(step + 1);
   };
@@ -276,19 +276,19 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
     // Validate file type
     const allowedTypes = ["application/pdf", "image/jpeg", "image/png"];
     if (!allowedTypes.includes(file.type)) {
-      setError(t("auth.validation.fileFormatInvalid"));
+      setError(t("auth.register.validation.fileFormatInvalid"));
       return;
     }
 
     // Validate file size (10 MB max)
     if (file.size > 10 * 1024 * 1024) {
-      setError(t("auth.validation.fileTooLarge"));
+      setError(t("auth.register.validation.fileTooLarge"));
       return;
     }
 
     // Validate file name (not empty/suspicious)
     if (!file.name || file.name.length < 3) {
-      setError(t("auth.validation.fileNameInvalid"));
+      setError(t("auth.register.validation.fileNameInvalid"));
       return;
     }
 
@@ -320,17 +320,17 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
           }}>
             <div style={{textAlign:"center"}}>
               <div style={{fontSize:40,marginBottom:14}}>☀️</div>
-              <h3 style={{color:"#fff",fontSize:18,fontWeight:700,marginBottom:8,lineHeight:1.3}}>{t("auth.sidePanel.joinSuntrex")}</h3>
+              <h3 style={{color:"#fff",fontSize:18,fontWeight:700,marginBottom:8,lineHeight:1.3}}>{t("auth.register.sidePanel.joinSuntrex")}</h3>
               <p style={{color:"rgba(255,255,255,0.85)",fontSize:12,lineHeight:1.6,marginBottom:20}}>
-                {t("auth.sidePanel.subtitle")}
+                {t("auth.register.sidePanel.subtitle")}
               </p>
               <div style={{display:"flex",flexDirection:"column",gap:8,textAlign:"left"}}>
                 {[
-                  { icon:"💰", text: t("auth.sidePanel.exclusiveB2B") },
-                  { icon:"🔍", text: t("auth.sidePanel.compareThousands") },
-                  { icon:"🚚", text: t("auth.sidePanel.suntrexDelivery") },
-                  { icon:"🤖", text: t("auth.sidePanel.aiTools") },
-                  { icon:"🔒", text: t("auth.sidePanel.securePayments") },
+                  { icon:"💰", text: t("auth.register.sidePanel.exclusiveB2B") },
+                  { icon:"🔍", text: t("auth.register.sidePanel.compareThousands") },
+                  { icon:"🚚", text: t("auth.register.sidePanel.suntrexDelivery") },
+                  { icon:"🤖", text: t("auth.register.sidePanel.aiTools") },
+                  { icon:"🔒", text: t("auth.register.sidePanel.securePayments") },
                 ].map((item,i) => (
                   <div key={i} style={{display:"flex",alignItems:"center",gap:8,color:"rgba(255,255,255,0.9)",fontSize:11}}>
                     <span>{item.icon}</span> {item.text}
@@ -431,9 +431,9 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                     }}/>
                   {form.passwordConfirm.length > 0 && (
                     pwMatch ? (
-                      <div style={{fontSize:11,color:"#16a34a",marginTop:3}}>{t("auth.validation.passwordsMatch")}</div>
+                      <div style={{fontSize:11,color:"#16a34a",marginTop:3}}>{t("auth.register.validation.passwordsMatch")}</div>
                     ) : (
-                      <div style={{fontSize:11,color:"#dc2626",marginTop:3}}>{t("auth.validation.passwordsMismatch")}</div>
+                      <div style={{fontSize:11,color:"#dc2626",marginTop:3}}>{t("auth.register.validation.passwordsMismatch")}</div>
                     )
                   )}
                 </div>
@@ -444,21 +444,21 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                     <input type="checkbox" checked={form.consentCGV} onChange={e=>update("consentCGV",e.target.checked)}
                       style={{marginTop:2,accentColor:"#4CAF50",width:15,height:15,flexShrink:0}}/>
                     <span style={{fontSize:11,color:"#444",lineHeight:1.5}}>
-                      {t("auth.consent.terms")} <a href="#" style={{color:"#E8700A"}}>{t("auth.consent.termsLink")}</a> {t("auth.consent.and")} <a href="#" style={{color:"#E8700A"}}>{t("auth.consent.privacyLink")}</a>. <span style={{color:"#dc2626"}}>*</span>
+                      J'accepte les <a href="#" style={{color:"#E8700A"}}>{t("auth.register.consent.termsLink")}</a> et la <a href="#" style={{color:"#E8700A"}}>{t("auth.register.consent.privacyLink")}</a>. <span style={{color:"#dc2626"}}>*</span>
                     </span>
                   </label>
                   <label style={{display:"flex",gap:8,cursor:"pointer",alignItems:"flex-start"}}>
                     <input type="checkbox" checked={form.consentMarketing} onChange={e=>update("consentMarketing",e.target.checked)}
                       style={{marginTop:2,accentColor:"#4CAF50",width:15,height:15,flexShrink:0}}/>
                     <span style={{fontSize:11,color:"#666",lineHeight:1.5}}>
-                      {t("auth.consent.marketing")}
+                      {t("auth.register.consent.marketing")}
                     </span>
                   </label>
                   <label style={{display:"flex",gap:8,cursor:"pointer",alignItems:"flex-start"}}>
                     <input type="checkbox" checked={form.consentPartners} onChange={e=>update("consentPartners",e.target.checked)}
                       style={{marginTop:2,accentColor:"#4CAF50",width:15,height:15,flexShrink:0}}/>
                     <span style={{fontSize:11,color:"#666",lineHeight:1.5}}>
-                      {t("auth.consent.partners")}
+                      {t("auth.register.consent.partners")}
                     </span>
                   </label>
                 </div>

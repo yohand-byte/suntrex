@@ -388,7 +388,16 @@
         "formatNotAccepted": "Μη αποδεκτή μορφή. Χρησιμοποιήστε PDF, JPG ή PNG.",
         "fileTooLarge": "Αρχείο πολύ μεγάλο. Μέγιστο 10 MB.",
         "invalidFileName": "Μη έγκυρο όνομα αρχείου.",
-        "passwordsMatch": "Οι κωδικοί ταιριάζουν"
+        "passwordsMatch": "Οι κωδικοί ταιριάζουν",
+        "siretNotFound": "Ο SIRET/SIREN δεν βρέθηκε στη βάση INSEE.",
+        "siretApiError": "Σφάλμα επαλήθευσης. Δοκιμάστε ξανά.",
+        "emailInvalid": "Μη έγκυρη διεύθυνση email.",
+        "passwordsMismatch": "Οι κωδικοί πρόσβασης δεν ταιριάζουν.",
+        "consentRequired": "Πρέπει να αποδεχτείτε τους όρους και τις προϋποθέσεις.",
+        "siretVerifyFirst": "Παρακαλώ επαληθεύστε πρώτα το SIRET σας.",
+        "kycRequired": "Απαιτείται έγγραφο επαλήθευσης.",
+        "fileFormatInvalid": "Μη αποδεκτή μορφή αρχείου (μόνο PDF, JPG, PNG).",
+        "fileNameInvalid": "Μη έγκυρο όνομα αρχείου."
       },
       "passwordRules": {
         "minChars": "Ελάχιστο 8 χαρακτήρες",
