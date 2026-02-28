@@ -14,6 +14,9 @@ const MySales = lazy(() => import("./sell/MySales"));
 const SellerOverview = lazy(() => import("./sell/SellerOverview"));
 const WarehouseManager = lazy(() => import("./sell/WarehouseManager"));
 
+// Messaging
+const MessagingInbox = lazy(() => import("./messaging/MessagingInbox"));
+
 // Transaction
 const TransactionPage = lazy(() => import("./transaction/TransactionPage"));
 
@@ -54,6 +57,7 @@ function SectionLoader() {
 const SECTION_MAP = {
   // Buy
   "purchases": MyPurchases,
+  "messages": MessagingInbox,
   "addresses": DeliveryAddresses,
   "rfq": BuyerRFQ,
   "finance": BuyerOverview, // Finance section defaults to overview for now

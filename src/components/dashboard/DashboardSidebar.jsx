@@ -9,6 +9,7 @@ const SIDEBAR_BUY = {
       title: "BUY", titleFr: "ACHETER", collapsible: true, defaultOpen: true,
       items: [
         { id: "purchases",  icon: "\uD83D\uDECD\uFE0F", label: "My purchases",           labelFr: "Mes achats" },
+        { id: "messages",    icon: "\uD83D\uDCAC",       label: "Messages",               labelFr: "Messagerie", badge: "3" },
         { id: "addresses",   icon: "\uD83D\uDCCD",       label: "Delivery addresses",     labelFr: "Adresses de livraison" },
         { id: "rfq",         icon: "\uD83D\uDCC4",       label: "Requests for Proposals", labelFr: "Demandes de devis", badge: "NEW" },
         { id: "finance",     icon: "\uD83C\uDFE6",       label: "SUNTREX Finance",        labelFr: "SUNTREX Finance", badge: "NEW" },
@@ -30,9 +31,10 @@ const SIDEBAR_SELL = {
     {
       title: "SELL", titleFr: "VENDRE", collapsible: true, defaultOpen: true,
       items: [
-        { id: "offers",       icon: "\uD83D\uDCCB", label: "Manage offers",  labelFr: "Gerer les offres" },
+        { id: "offers",       icon: "\uD83D\uDCCB", label: "Manage offers",  labelFr: "Gérer les offres" },
         { id: "sales",        icon: "\uD83D\uDCB0", label: "My sales",       labelFr: "Mes ventes" },
-        { id: "warehouses",   icon: "\uD83C\uDFED", label: "Warehouses",     labelFr: "Entrepots" },
+        { id: "messages",     icon: "\uD83D\uDCAC", label: "Messages",       labelFr: "Messagerie", badge: "3" },
+        { id: "warehouses",   icon: "\uD83C\uDFED", label: "Warehouses",     labelFr: "Entrepôts" },
       ],
     },
     {
