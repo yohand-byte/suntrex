@@ -89,6 +89,12 @@ export default function App() {
             isLoggedIn={isVerified}
             onLogin={()=>setShowRegister(true)}
           />
+        <Route path="/checkout/:productId" element={
+          <CheckoutPage
+            isLoggedIn={isVerified}
+            onLogin={()=>setShowRegister(true)}
+          />
+        }/>
         }/>
         <Route path="/transaction/:id" element={
           <TransactionChatPage
