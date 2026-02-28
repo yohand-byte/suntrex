@@ -693,7 +693,7 @@ function AuthModal({ isOpen, onClose, onAuth, initialMode = "register" }) {
 
         // Create company
         await sb.from('companies').insert({
-          owner_id: userId, name: companyName, country,
+          owner_user_id: userId, legal_name: companyName, country_code: country,
           vat_number: vatNumber || null, vat_verified: vatVerified || false,
           vat_company_name: vatResult?.company || null,
           vat_address: vatResult?.address || null,

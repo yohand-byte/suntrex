@@ -160,8 +160,8 @@ export function useAuth() {
       const { error: companyError } = await supabase
         .from('companies')
         .insert({
-          owner_id: userId,
-          name: companyName,
+          owner_user_id: userId,
+          legal_name: companyName,
           country,
           vat_number: vatNumber || null,
           vat_verified: vatVerified || false,
