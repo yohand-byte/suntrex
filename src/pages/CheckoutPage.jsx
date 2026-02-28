@@ -3,6 +3,11 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "../CurrencyContext";
 import ALL_PRODUCTS from "../products";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+
+/* ── Stripe initialization (publishable key from env) ── */
+var stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || "pk_test_placeholder");
 import useResponsive from "../hooks/useResponsive";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -198,42 +203,135 @@ function DeliveryForm({ data, setData }) {
   </div>;
 }
 
-// ── Payment step (Stripe Elements placeholder — needs @stripe/react-stripe-js) ──
-function PaymentStep({ total, formatMoney, language, onPay, loading, error }) {
+// ── Stripe CardElement style ──
+var CARD_ELEMENT_OPTIONS = {
+  style: {
+    base: {
+      fontSize: "15px",
+      fontFamily: "'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+      color: "#1a1a2e",
+      "::placeholder": { color: "#9aa0a6" },
+      padding: "14px",
+    },
+    invalid: { color: "#ea4335", iconColor: "#ea4335" },
+  },
+  hidePostalCode: true,
+};
+
+// ── Inner payment form (must be inside <Elements>) ──
+function StripePaymentForm({ total, formatMoney, language, onSuccess, onError }) {
+  var stripe = useStripe();
+  var elements = useElements();
+  var _s = useState(false), loading = _s[0], setLoading = _s[1];
+  var _e = useState(null), error = _e[0], setError = _e[1];
+  var _r = useState(false), cardReady = _r[0], setCardReady = _r[1];
+
+  async function handleSubmit() {
+    if (!stripe || !elements) return;
+    setLoading(true);
+    setError(null);
+    try {
+      var cardElement = elements.getElement(CardElement);
+      if (!cardElement) throw new Error("Card element not found");
+
+      // Confirm the PaymentIntent with the card
+      var result = await stripe.confirmCardPayment(
+        onSuccess._clientSecret, // passed via closure
+        { payment_method: { card: cardElement } }
+      );
+
+      if (result.error) {
+        // 3DS failed or card declined
+        throw new Error(result.error.message || "Paiement refusé");
+      }
+
+      if (result.paymentIntent && result.paymentIntent.status === "succeeded") {
+        onSuccess(result.paymentIntent);
+      } else if (result.paymentIntent && result.paymentIntent.status === "requires_action") {
+        // 3DS should be handled automatically, but just in case
+        throw new Error("Vérification 3D Secure requise. Veuillez réessayer.");
+      }
+    } catch (err) {
+      setError(err.message || "Une erreur est survenue");
+      if (onError) onError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return <div>
+    {/* Card input */}
+    <div style={{ border: "1px solid " + (error ? C.red : cardReady ? C.green : C.border), borderRadius: 8, padding: 4, marginBottom: 16, background: "#fff", transition: "border-color .2s" }}>
+      <CardElement
+        options={CARD_ELEMENT_OPTIONS}
+        onChange={function(e) {
+          setCardReady(e.complete);
+          if (e.error) setError(e.error.message);
+          else setError(null);
+        }}
+      />
+    </div>
+
+    {/* 3DS badge */}
+    <div style={{ display: "flex", gap: 6, alignItems: "center", marginBottom: 12, fontSize: 11, color: C.teal }}>
+      <span>🔒</span>
+      <span>3D Secure / SCA activé automatiquement (requis EU)</span>
+    </div>
+
+    {/* Escrow badge */}
+    <div style={{ display: "flex", gap: 12, marginBottom: 16, padding: 12, background: C.purpleLight, borderRadius: 8, border: "1px solid " + C.purple + "20" }}>
+      <span style={{ fontSize: 20, flexShrink: 0 }}>🛡️</span>
+      <div style={{ fontSize: 12, color: C.purple, lineHeight: 1.5 }}>
+        <b>Escrow SUNTREX</b> — Vos fonds sont sécurisés et ne seront transférés au vendeur qu'après confirmation de réception.
+      </div>
+    </div>
+
+    {/* Error */}
+    {error && <div style={{ padding: 12, background: C.redLight, borderRadius: 8, color: C.red, fontSize: 13, fontWeight: 600, marginBottom: 16 }}>⚠️ {error}</div>}
+
+    {/* Pay button */}
+    <button onClick={handleSubmit} disabled={loading || !cardReady || !stripe} style={{ width: "100%", padding: "14px 24px", background: (loading || !cardReady) ? C.textDim : C.orange, color: "#fff", border: "none", borderRadius: 10, fontSize: 15, fontWeight: 700, cursor: (loading || !cardReady) ? "default" : "pointer", fontFamily: C.font, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, boxShadow: loading ? "none" : "0 4px 14px rgba(232,112,10,0.3)", transition: "all .2s" }}>
+      {loading
+        ? <><span style={{ width: 18, height: 18, border: "2px solid #fff4", borderTop: "2px solid #fff", borderRadius: "50%", animation: "spin 0.8s linear infinite", display: "inline-block" }} /> Traitement en cours...</>
+        : <>🔒 Payer {formatMoney(total, language)}</>
+      }
+    </button>
+
+    {/* Payment methods */}
+    <div style={{ display: "flex", justifyContent: "center", gap: 16, marginTop: 16 }}>
+      {["Visa", "Mastercard", "AMEX", "SEPA"].map(function(m) {
+        return <span key={m} style={{ fontSize: 10, color: C.textDim, fontWeight: 600, padding: "3px 8px", border: "1px solid " + C.borderLight, borderRadius: 4 }}>{m}</span>;
+      })}
+    </div>
+  </div>;
+}
+
+// ── Payment step (wraps Stripe Elements provider) ──
+function PaymentStep({ total, formatMoney, language, clientSecret, onSuccess, onError }) {
+  if (!clientSecret) {
+    return <div style={{ border: "1px solid " + C.border, borderRadius: C.radiusLg, overflow: "hidden" }}>
+      <div style={{ padding: "16px 20px", background: C.surface, borderBottom: "1px solid " + C.borderLight }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: C.text }}>💳 Paiement sécurisé</div>
+      </div>
+      <div style={{ padding: 40, textAlign: "center" }}>
+        <span style={{ width: 24, height: 24, border: "3px solid " + C.borderLight, borderTop: "3px solid " + C.orange, borderRadius: "50%", animation: "spin 0.8s linear infinite", display: "inline-block" }} />
+        <div style={{ fontSize: 13, color: C.textDim, marginTop: 12 }}>Préparation du paiement sécurisé...</div>
+      </div>
+    </div>;
+  }
+
+  var elementsOptions = { clientSecret: clientSecret, appearance: { theme: "stripe", variables: { fontFamily: "'DM Sans', sans-serif", colorPrimary: C.orange } } };
+  // Attach clientSecret to onSuccess for the form to use
+  onSuccess._clientSecret = clientSecret;
+
   return <div style={{ border: "1px solid " + C.border, borderRadius: C.radiusLg, overflow: "hidden" }}>
     <div style={{ padding: "16px 20px", background: C.surface, borderBottom: "1px solid " + C.borderLight }}>
       <div style={{ fontSize: 14, fontWeight: 700, color: C.text }}>💳 Paiement sécurisé</div>
     </div>
     <div style={{ padding: 20 }}>
-      {/* Stripe Elements will mount here once @stripe/react-stripe-js is installed */}
-      <div id="stripe-card-element" style={{ padding: 14, border: "1px solid " + C.border, borderRadius: 8, marginBottom: 16, minHeight: 44, background: "#fafafa" }}>
-        <div style={{ fontSize: 13, color: C.textDim, textAlign: "center", padding: 10 }}>
-          Stripe Elements — carte bancaire sécurisée
-          <div style={{ fontSize: 11, marginTop: 4 }}>3D Secure / SCA activé automatiquement (requis EU)</div>
-        </div>
-      </div>
-
-      <div style={{ display: "flex", gap: 12, marginBottom: 16, padding: 12, background: C.purpleLight, borderRadius: 8, border: "1px solid " + C.purple + "20" }}>
-        <span style={{ fontSize: 20, flexShrink: 0 }}>🛡️</span>
-        <div style={{ fontSize: 12, color: C.purple, lineHeight: 1.5 }}>
-          <b>Escrow SUNTREX</b> — Vos fonds sont sécurisés et ne seront transférés au vendeur qu'après confirmation de réception.
-        </div>
-      </div>
-
-      {error && <div style={{ padding: 12, background: C.redLight, borderRadius: 8, color: C.red, fontSize: 13, fontWeight: 600, marginBottom: 16 }}>⚠️ {error}</div>}
-
-      <button onClick={onPay} disabled={loading} style={{ width: "100%", padding: "14px 24px", background: loading ? C.textDim : C.orange, color: "#fff", border: "none", borderRadius: 10, fontSize: 15, fontWeight: 700, cursor: loading ? "default" : "pointer", fontFamily: C.font, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, boxShadow: loading ? "none" : "0 4px 14px rgba(232,112,10,0.3)", transition: "all .2s" }}>
-        {loading
-          ? <><span style={{ width: 18, height: 18, border: "2px solid #fff4", borderTop: "2px solid #fff", borderRadius: "50%", animation: "spin 0.8s linear infinite", display: "inline-block" }} /> Traitement en cours...</>
-          : <>🔒 Payer {formatMoney(total, language)}</>
-        }
-      </button>
-
-      <div style={{ display: "flex", justifyContent: "center", gap: 16, marginTop: 16 }}>
-        {["Visa", "Mastercard", "AMEX", "SEPA"].map(function(m) {
-          return <span key={m} style={{ fontSize: 10, color: C.textDim, fontWeight: 600, padding: "3px 8px", border: "1px solid " + C.borderLight, borderRadius: 4 }}>{m}</span>;
-        })}
-      </div>
+      <Elements stripe={stripePromise} options={elementsOptions}>
+        <StripePaymentForm total={total} formatMoney={formatMoney} language={language} onSuccess={onSuccess} onError={onError} />
+      </Elements>
     </div>
   </div>;
 }
@@ -260,7 +358,7 @@ function ConfirmationStep({ orderId, navigate }) {
       })}
     </div>
     <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 28 }}>
-      <button onClick={function() { navigate("/dashboard/buy"); }} style={{ padding: "12px 24px", background: C.orange, color: "#fff", border: "none", borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: C.font }}>Voir ma commande</button>
+      <button onClick={function() { navigate("/delivery/" + orderId); }} style={{ padding: "12px 24px", background: C.orange, color: "#fff", border: "none", borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: C.font }}>Voir ma commande</button>
       <button onClick={function() { navigate("/catalog"); }} style={{ padding: "12px 24px", background: C.bg, color: C.textSec, border: "1px solid " + C.border, borderRadius: 10, fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: C.font }}>Continuer les achats</button>
     </div>
   </div>;
@@ -319,6 +417,9 @@ export default function CheckoutPage({ isLoggedIn, onLogin }) {
   var deliveryCost = offer.delivery === "suntrex" ? (subtotal > 5000 ? 0 : 89) : 0;
   var total = subtotal + deliveryCost;
 
+  var _cs = useState(null), clientSecret = _cs[0], setClientSecret = _cs[1];
+  var _oid = useState(null), orderId = _oid[0], setOrderId = _oid[1];
+
   function canProceed() {
     if (step === 0) return quantity >= 1;
     if (step === 1) return delivery.company && delivery.firstName && delivery.lastName && delivery.address && delivery.zip && delivery.city && delivery.country && delivery.phone;
@@ -326,28 +427,68 @@ export default function CheckoutPage({ isLoggedIn, onLogin }) {
   }
 
   function handleNext() {
-    if (step < 2) setStep(step + 1);
+    if (step < 2) {
+      setStep(step + 1);
+      // When advancing to payment step, create PaymentIntent
+      if (step === 1) createPaymentIntent();
+    }
   }
 
   function handleBack() {
     if (step > 0) setStep(step - 1);
   }
 
-  async function handlePay() {
+  async function createPaymentIntent() {
     setPayLoading(true);
     setPayError(null);
     try {
-      // In production: call backend to create PaymentIntent, then confirm with Stripe Elements
-      // For MVP demo: simulate payment success after delay
-      await new Promise(function(r) { setTimeout(r, 2000); });
-      setOrderId("ST-" + Math.floor(1000 + Math.random() * 9000));
-      setStep(3);
+      var res = await fetch(CHECKOUT_API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // In production: pass Supabase auth token
+          // "Authorization": "Bearer " + supabaseToken,
+        },
+        body: JSON.stringify({
+          action: "create-payment-intent",
+          listingId: offer.listingId || product.id,
+          quantity: quantity,
+          currency: "eur",
+          deliveryMode: deliveryCost === 0 ? "suntrex_express" : "standard",
+        }),
+      });
+      var data = await res.json();
+      if (!data.success) throw new Error(data.error || "Erreur serveur");
+      setClientSecret(data.client_secret);
+      setOrderId(data.order_id);
     } catch (err) {
-      setPayError(err.message || "Une erreur est survenue. Veuillez réessayer.");
+      // Fallback for demo mode (no backend connected)
+      console.warn("[Checkout] Backend unavailable, using demo mode:", err.message);
+      setClientSecret(null); // Will show loading state, or we use demo
+      setPayError(null);
     } finally {
       setPayLoading(false);
     }
   }
+
+  function handlePaymentSuccess(paymentIntent) {
+    // Payment succeeded — show confirmation
+    if (!orderId) setOrderId("ST-" + Math.floor(1000 + Math.random() * 9000));
+    setStep(3);
+  }
+
+  function handlePaymentError(message) {
+    setPayError(message);
+  }
+
+  // Demo fallback: if no clientSecret after 5s, enable demo mode
+  var _demo = useState(false), demoMode = _demo[0], setDemoMode = _demo[1];
+  useEffect(function() {
+    if (step === 2 && !clientSecret) {
+      var timer = setTimeout(function() { setDemoMode(true); }, 3000);
+      return function() { clearTimeout(timer); };
+    }
+  }, [step, clientSecret]);
 
   return <div style={{ fontFamily: C.font, background: C.surface, minHeight: "100vh" }}>
     <style>{"@keyframes spin{to{transform:rotate(360deg)}}"}</style>
@@ -377,7 +518,40 @@ export default function CheckoutPage({ isLoggedIn, onLogin }) {
           <div style={{ flex: 1, minWidth: 0 }}>
             {step === 0 && <OrderSummary product={product} offer={offer} quantity={quantity} setQuantity={setQuantity} formatMoney={formatMoney} language={language} />}
             {step === 1 && <DeliveryForm data={delivery} setData={setDelivery} />}
-            {step === 2 && <PaymentStep total={total} formatMoney={formatMoney} language={language} onPay={handlePay} loading={payLoading} error={payError} />}
+            {step === 2 && (demoMode ? (
+              /* Demo mode fallback when backend is not connected */
+              <div style={{ border: "1px solid " + C.border, borderRadius: C.radiusLg, overflow: "hidden" }}>
+                <div style={{ padding: "16px 20px", background: C.surface, borderBottom: "1px solid " + C.borderLight }}>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: C.text }}>💳 Paiement sécurisé</div>
+                </div>
+                <div style={{ padding: 20 }}>
+                  <div style={{ padding: 12, background: C.orangeLight, borderRadius: 8, border: "1px solid " + C.orange + "30", marginBottom: 16 }}>
+                    <div style={{ fontSize: 12, color: C.orange, fontWeight: 600 }}>⚡ Mode démonstration</div>
+                    <div style={{ fontSize: 11, color: C.textSec, marginTop: 4 }}>Backend non connecté. Ajoutez VITE_STRIPE_PUBLISHABLE_KEY dans vos variables d'environnement.</div>
+                  </div>
+                  <div style={{ display: "flex", gap: 12, marginBottom: 16, padding: 12, background: C.purpleLight, borderRadius: 8, border: "1px solid " + C.purple + "20" }}>
+                    <span style={{ fontSize: 20, flexShrink: 0 }}>🛡️</span>
+                    <div style={{ fontSize: 12, color: C.purple, lineHeight: 1.5 }}>
+                      <b>Escrow SUNTREX</b> — Vos fonds sont sécurisés et ne seront transférés au vendeur qu'après confirmation de réception.
+                    </div>
+                  </div>
+                  {payError && <div style={{ padding: 12, background: C.redLight, borderRadius: 8, color: C.red, fontSize: 13, fontWeight: 600, marginBottom: 16 }}>⚠️ {payError}</div>}
+                  <button onClick={function() { setPayLoading(true); setTimeout(function() { setOrderId("ST-" + Math.floor(1000 + Math.random() * 9000)); setStep(3); setPayLoading(false); }, 2000); }} disabled={payLoading} style={{ width: "100%", padding: "14px 24px", background: payLoading ? C.textDim : C.orange, color: "#fff", border: "none", borderRadius: 10, fontSize: 15, fontWeight: 700, cursor: payLoading ? "default" : "pointer", fontFamily: C.font, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, boxShadow: "0 4px 14px rgba(232,112,10,0.3)", transition: "all .2s" }}>
+                    {payLoading
+                      ? <><span style={{ width: 18, height: 18, border: "2px solid #fff4", borderTop: "2px solid #fff", borderRadius: "50%", animation: "spin 0.8s linear infinite", display: "inline-block" }} /> Simulation en cours...</>
+                      : <>🔒 Simuler le paiement {formatMoney(total, language)}</>
+                    }
+                  </button>
+                  <div style={{ display: "flex", justifyContent: "center", gap: 16, marginTop: 16 }}>
+                    {["Visa", "Mastercard", "AMEX", "SEPA"].map(function(m) {
+                      return <span key={m} style={{ fontSize: 10, color: C.textDim, fontWeight: 600, padding: "3px 8px", border: "1px solid " + C.borderLight, borderRadius: 4 }}>{m}</span>;
+                    })}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <PaymentStep total={total} formatMoney={formatMoney} language={language} clientSecret={clientSecret} onSuccess={handlePaymentSuccess} onError={handlePaymentError} />
+            ))}
 
             {/* Navigation */}
             {step < 3 && <div style={{ display: "flex", justifyContent: "space-between", marginTop: 20 }}>
