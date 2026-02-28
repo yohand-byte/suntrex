@@ -10,6 +10,7 @@ import TransactionChatPage from "./pages/TransactionChatPage";
 import BuyerDashboard from "./components/dashboard/BuyerDashboard";
 import SellerDashboard from "./components/dashboard/SellerDashboard";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
+import DeliveryTrackerPage from "./pages/DeliveryTrackerPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import { LoginModal, RegisterModal } from "./AuthSystem";
 
@@ -95,6 +96,7 @@ export default function App() {
             onLogin={()=>setShowRegister(true)}
           />
         }/>
+        <Route path="/delivery/:orderId" element={<DeliveryTrackerPage />} />
         }/>
         <Route path="/transaction/:id" element={
           <TransactionChatPage
