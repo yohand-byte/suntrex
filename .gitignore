@@ -49,3 +49,4 @@ coverage/
 .vercel
 .netlify
 .env*.local
+.aider*
