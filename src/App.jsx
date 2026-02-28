@@ -5,7 +5,7 @@ import Footer from "./components/layout/Footer";
 import SuntrexSupportChat from "./components/chat/SuntrexSupportChat";
 import HomePage from "./pages/HomePage";
 import CatalogPage from "./pages/CatalogPage";
-import ProductDetailPage from "./pages/ProductDetailPage";
+import ProductDetailPage from "./pages/ProductDetailPageV2";
 import TransactionChatPage from "./pages/TransactionChatPage";
 import BuyerDashboard from "./components/dashboard/BuyerDashboard";
 import SellerDashboard from "./components/dashboard/SellerDashboard";
