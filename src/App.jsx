@@ -7,6 +7,8 @@ import HomePage from "./pages/HomePage";
 import CatalogPage from "./pages/CatalogPage";
 import ProductDetailPage from "./pages/ProductDetailPageV2";
 import TransactionChatPage from "./pages/TransactionChatPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import DeliveryTrackerPage from "./pages/DeliveryTrackerPage";
 import BuyerDashboard from "./components/dashboard/BuyerDashboard";
 import SellerDashboard from "./components/dashboard/SellerDashboard";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
@@ -98,6 +100,13 @@ export default function App() {
         }/>
         <Route path="/delivery/:orderId" element={<DeliveryTrackerPage />} />
         }/>
+        <Route path="/checkout/:productId" element={
+          <CheckoutPage
+            isLoggedIn={isVerified}
+            onLogin={()=>setShowRegister(true)}
+          />
+        }/>
+        <Route path="/delivery/:orderId" element={<DeliveryTrackerPage />} />
         <Route path="/transaction/:id" element={
           <TransactionChatPage
             isLoggedIn={isVerified}
