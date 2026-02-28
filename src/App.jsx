@@ -7,11 +7,12 @@ import HomePage from "./pages/HomePage";
 import CatalogPage from "./pages/CatalogPage";
 import ProductDetailPage from "./pages/ProductDetailPageV2";
 import TransactionChatPage from "./pages/TransactionChatPage";
-import CheckoutPage from "./pages/CheckoutPage";
-import DeliveryTrackerPage from "./pages/DeliveryTrackerPage";
 import BuyerDashboard from "./components/dashboard/BuyerDashboard";
 import SellerDashboard from "./components/dashboard/SellerDashboard";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
+import CheckoutPage from "./pages/CheckoutPage";
+import DeliveryTrackerPage from "./pages/DeliveryTrackerPage";
+import AdminDashboard from "./pages/AdminDashboard";
 import { LoginModal, RegisterModal } from "./AuthSystem";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -104,6 +105,7 @@ export default function App() {
             currentUser={currentUser}
           />
         }/>
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/dashboard" element={<DashboardLayout />} />
         <Route path="/dashboard/buy" element={<DashboardLayout initialTab="buy" />} />
         <Route path="/dashboard/sell" element={<DashboardLayout initialTab="sell" />} />
