@@ -9,20 +9,20 @@ import AutoSlides from "../components/ui/AutoSlides";
 import CatCard from "../components/ui/CatCard";
 import useResponsive from "../hooks/useResponsive";
 
-// Featured products: top 10 from CSV catalog (priority brands, in stock, sorted by stock desc)
+// Featured products: top 10 from real product catalog (priority brands, in stock, sorted by stock desc)
 const PRIORITY_BRANDS = /HUAWEI|DEYE|HOYMILES|Enphase|PYTES/i;
-const FEATURED_PRODUCTS = CATALOG
+const FEATURED_PRODUCTS = REAL_PRODUCTS
   .filter(p => PRIORITY_BRANDS.test(p.brand) && p.stock > 0 && p.price > 10)
   .sort((a, b) => { const aH = /huawei/i.test(a.brand) ? 1 : 0; const bH = /huawei/i.test(b.brand) ? 1 : 0; if (bH !== aH) return bH - aH; return b.stock - a.stock; })
   .slice(0, 10)
-  .map((p, i) => ({
-    id: `csv-${(p.sku || String(i)).replace(/\//g, "-")}`,
+  .map(p => ({
+    id: p.id,
     name: p.name,
     power: p.power,
     type: p.type || p.category,
     stock: p.stock,
     price: p.price,
-    img: getProductImage(p),
+    img: p.image || getProductImage(p),
   }));
 
 const BRANDS = [

@@ -5,6 +5,19 @@ import { useCurrency } from "../CurrencyContext";
 import REAL_PRODUCTS from "../products";
 import useResponsive from "../hooks/useResponsive";
 
+/* ── Category fallback images (real photos, never SVG placeholders) ── */
+const CATEGORY_FALLBACK_IMAGES = {
+  panels: "/categories/panels.jpg",
+  inverters: "/categories/inverters.jpg",
+  batteries: "/categories/batteries.jpg",
+  "micro-inverters": "/categories/inverters.jpg",
+  optimizers: "/categories/inverters.jpg",
+  "ev-chargers": "/categories/category-onduleurs.png",
+  mounting: "/categories/category-accessoires.png",
+  accessories: "/categories/category-accessoires.png",
+  cables: "/categories/electrical.jpg",
+};
+
 /* ── Build detail view from real products.js data ── */
 const BRAND_COLORS = {
   Huawei: "#e4002b", Deye: "#0068b7", Enphase: "#f47920", SMA: "#cc0000",
@@ -25,7 +38,7 @@ function buildProductDetail(p, t, categoryLabels) {
     categoryLabel: categoryLabels[p.category] || p.category,
     subtitle: [p.type, p.phases ? `${p.phases}-Phase` : null, p.power || p.capacity].filter(Boolean).join(" — "),
     description: p.description || (p.features ? p.features.join(". ") + "." : ""),
-    datasheet: p.datasheet || `${p.sku}-datasheet.pdf`,
+    datasheet: (p.datasheet && (p.datasheet.startsWith("/") || p.datasheet.startsWith("http"))) ? p.datasheet : null,
     specs: {
       general: [
         { label: t("product.specLabels.sku"), value: p.sku },
@@ -179,43 +192,25 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
     "ev-chargers": t("catalog.chargingStations"), accessories: t("catalog.accessories"), panels: t("home.categories.solarPanels"),
   };
 
-  const MOCK_PRODUCTS = {
-    "PAN001": {
-      id: "PAN001", name: "Jinko Tiger Neo N-type 575W", brand: "Jinko Solar", brandColor: "#1a8c37",
-      category: "panels", categoryLabel: CATEGORY_LABELS["panels"], subtitle: "Monocrystalline N-Type",
-      description: "The Tiger Neo series leverages Jinko's latest N-type TOPCon cell technology, delivering industry-leading efficiency up to 22.27%.",
-      datasheet: "jinko-tiger-neo-575w-datasheet.pdf",
-      specs: {
-        general: [{ label: t("product.specLabels.seriesName", "Nom de la série"), value: "Tiger Neo N-type 72HL4" },{ label: t("product.specLabels.powerRange", "Gamme de puissance (Wp)"), value: "555-580" },{ label: t("product.specLabels.modelName", "Nom du modèle"), value: "JKM575N-72HL4-V" },{ label: t("product.specLabels.warrantyYears", "Années de garantie"), value: "15" }],
-        electrical: [{ label: t("product.specLabels.modulePower", "Puissance du module"), value: "575 W" },{ label: t("product.specLabels.vmpp", "Tension Vmpp (V)"), value: "42.57" },{ label: t("product.specLabels.efficiencyPercent", "Efficacité (%)"), value: "22.27" }],
-        mechanical: [{ label: t("product.specLabels.cellType", "Type de cellule"), value: "N-Type TOPCon" },{ label: t("product.specLabels.cellCount", "Nombre de cellules"), value: "144 (6x24)" }],
-        dimensions: [{ label: t("product.specLabels.height", "Hauteur (mm)"), value: "2278" },{ label: t("product.specLabels.width", "Largeur (mm)"), value: "1134" },{ label: t("product.specLabels.weight"), value: "28.4" }],
-      },
-      offers: [
-        { sellerId: "S03", sellerName: "EnerSol ES", country: "ES", flag: "🇪🇸", rating: 4.5, reviews: 56, stock: 3000, price: 95, availableDate: null, badge: null, bankTransfer: true, delivery: "seller" },
-        { sellerId: "S01", sellerName: "SolarTech DE", country: "DE", flag: "🇩🇪", rating: 4.9, reviews: 132, stock: 5000, price: 98, availableDate: null, badge: "trusted", bankTransfer: true, delivery: "suntrex" },
-      ],
-    },
-    "INV002": {
-      id: "INV002", name: "Huawei SUN2000-5KTL-M2", brand: "Huawei", brandColor: "#e4002b",
-      category: "inverters", categoryLabel: CATEGORY_LABELS["inverters"], subtitle: "String Inverter — Monophasé",
-      description: "L'onduleur string résidentiel de Huawei avec rendement maximal de 98.4%, compatible avec l'optimiseur SUN2000-450W-P2 et la batterie LUNA2000.",
-      datasheet: "huawei-sun2000-5ktl-m2-datasheet.pdf",
-      specs: {
-        general: [{ label: t("product.specLabels.seriesName", "Nom de la série"), value: "SUN2000-2/3/3.68/4/4.6/5/6KTL-M2" },{ label: t("product.specLabels.modelName", "Nom du modèle"), value: "SUN2000-5KTL-M2" },{ label: t("product.specLabels.warrantyYears", "Années de garantie"), value: "10 (extensible à 20)" }],
-        electrical: [{ label: t("product.specLabels.nominalAcPower", "Puissance nominale AC"), value: "5000 W" },{ label: t("product.specLabels.maxDcPower", "Puissance max DC"), value: "7500 W" },{ label: t("product.specLabels.maxEfficiency"), value: "98.4%" },{ label: t("product.specLabels.mpptCount"), value: "2" }],
-        mechanical: [{ label: t("product.specLabels.coolingType", "Type de refroidissement"), value: "Convection naturelle" },{ label: t("product.specLabels.protectionRating"), value: "IP65" }],
-        dimensions: [{ label: t("product.specLabels.height", "Hauteur (mm)"), value: "365" },{ label: t("product.specLabels.width", "Largeur (mm)"), value: "295" },{ label: t("product.specLabels.weight"), value: "10.5" }],
-      },
-      offers: [
-        { sellerId: "S01", sellerName: "SolarTech DE", country: "DE", flag: "🇩🇪", rating: 4.9, reviews: 132, stock: 380, price: 689, availableDate: null, badge: "trusted", bankTransfer: true, delivery: "suntrex" },
-        { sellerId: "S03", sellerName: "EnerSol ES", country: "ES", flag: "🇪🇸", rating: 4.5, reviews: 56, stock: 200, price: 710, availableDate: null, badge: null, bankTransfer: true, delivery: "seller" },
-      ],
-    },
-  };
-
   const realProduct = REAL_PRODUCTS.find(p => p.id === id);
-  const product = realProduct ? buildProductDetail(realProduct, t, CATEGORY_LABELS) : (MOCK_PRODUCTS[id] || MOCK_PRODUCTS["INV002"]);
+
+  if (!realProduct) {
+    return (
+      <div style={{ ...S.page, textAlign: "center", paddingTop: 80 }}>
+        <div style={{ fontSize: 64, marginBottom: 16 }}>🔍</div>
+        <h1 style={{ fontSize: 22, fontWeight: 700, color: "#222", marginBottom: 8 }}>{t("product.notFound", "Produit non trouvé")}</h1>
+        <p style={{ fontSize: 15, color: "#888", marginBottom: 24 }}>{t("product.notFoundDesc", "Ce produit n'existe pas ou a été retiré du catalogue.")}</p>
+        <button
+          onClick={() => navigate("/catalog")}
+          style={{ background: "#1a3a2a", color: "#fff", border: "none", borderRadius: 8, padding: "12px 24px", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}
+        >
+          {t("product.backToCatalog", "Retour au catalogue")}
+        </button>
+      </div>
+    );
+  }
+
+  const product = buildProductDetail(realProduct, t, CATEGORY_LABELS);
   const [sortOffers, setSortOffers] = useState("price-asc");
 
   const sortedOffers = [...product.offers].sort((a, b) => {
@@ -238,14 +233,12 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
 
       <div style={{...S.productHeader, flexDirection: isMobile ? "column" : "row", padding: isMobile ? 16 : 28}}>
         <div style={{...S.productImage, width: isMobile ? "100%" : 240, height: isMobile ? 200 : 300}}>
-          {product.image ? (
-            <img src={product.image} alt={product.name} style={{ maxHeight: 300, maxWidth: "100%", objectFit: "contain", mixBlendMode: "multiply" }} />
-          ) : (
-            <div style={{ textAlign: "center", color: "#ccc" }}>
-              <svg width="48" height="48" fill="none" stroke="#ddd" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-              <div style={{ fontSize: 11, marginTop: 4 }}>{product.brand}</div>
-            </div>
-          )}
+          <img
+            src={product.image || CATEGORY_FALLBACK_IMAGES[product.category] || "/categories/panels.jpg"}
+            alt={product.name}
+            style={{ maxHeight: 300, maxWidth: "100%", objectFit: "contain", mixBlendMode: "multiply" }}
+            onError={e => { e.target.onerror = null; e.target.src = CATEGORY_FALLBACK_IMAGES[product.category] || "/categories/panels.jpg"; }}
+          />
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ ...S.brandTag, color: product.brandColor }}>{product.brand}</div>
@@ -266,22 +259,24 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
         <div style={{ background: "#fafafa", borderRadius: 10, padding: "20px 24px", fontSize: 14, lineHeight: 1.7, color: "#444" }}>{product.description}</div>
       </Section>
 
-      <Section title={t("product.downloads")}>
-        <a href={product.datasheet} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-          <div style={{ ...S.downloadRow, cursor: "pointer", transition: "background .15s" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <div style={{ width: 36, height: 36, borderRadius: 8, background: "#e8f5e9", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <svg width="16" height="16" fill="none" stroke="#4CAF50" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+      {product.datasheet && (
+        <Section title={t("product.downloads")}>
+          <a href={product.datasheet} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+            <div style={{ ...S.downloadRow, cursor: "pointer", transition: "background .15s" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <div style={{ width: 36, height: 36, borderRadius: 8, background: "#e8f5e9", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg width="16" height="16" fill="none" stroke="#4CAF50" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                </div>
+                <div>
+                  <span style={{ fontSize: 13, color: "#333", fontWeight: 500 }}>{t("product.datasheet")} — {product.name}</span>
+                  <span style={{ fontSize: 11, color: "#888", display: "block", marginTop: 2 }}>{product.datasheet.startsWith("/") ? "PDF" : t("product.productPage")}</span>
+                </div>
               </div>
-              <div>
-                <span style={{ fontSize: 13, color: "#333", fontWeight: 500 }}>{t("product.datasheet")} — {product.name}</span>
-                <span style={{ fontSize: 11, color: "#888", display: "block", marginTop: 2 }}>{product.datasheet.startsWith("/") ? "PDF" : t("product.productPage")}</span>
-              </div>
+              <svg width="18" height="18" fill="none" stroke="#4CAF50" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
             </div>
-            <svg width="18" height="18" fill="none" stroke="#4CAF50" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          </div>
-        </a>
-      </Section>
+          </a>
+        </Section>
+      )}
 
       <Section title={`${t("product.technicalSpecs")} — ${product.name}`}>
         <SpecsTable specs={[...product.specs.general, ...product.specs.electrical]} />
