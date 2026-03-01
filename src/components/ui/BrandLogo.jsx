@@ -42,6 +42,7 @@ export default function BrandLogo({ brand }) {
         objectFit: "contain",
         flexShrink: 0,
         display: "block",
+        filter: "brightness(0)",
       }}
       onError={() => {
         if (ext === "svg") setExt("png");
