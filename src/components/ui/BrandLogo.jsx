@@ -43,8 +43,10 @@ export default function BrandLogo({ brand }) {
     <img
       src={`/logos/${file}`}
       alt={brand.n}
-      style={{ height: 28, objectFit: "contain", maxWidth: 140, minWidth: 80 }}
+      style={{ height: 24, objectFit: "contain", maxWidth: 120, minWidth: 60, opacity: 0.7, transition: "opacity 0.2s ease" }}
       onError={() => setErr(true)}
+      onMouseEnter={e => e.currentTarget.style.opacity = "1"}
+      onMouseLeave={e => e.currentTarget.style.opacity = "0.7"}
     />
   );
 }

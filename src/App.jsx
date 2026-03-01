@@ -46,7 +46,7 @@ export default function App() {
         @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
         @keyframes dotPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
         .fade-in{animation:fadeIn .4s ease-out forwards}
-        .marquee{animation:marquee 25s linear infinite}.marquee:hover{animation-play-state:paused}
+        .marquee{animation:marquee 30s linear infinite;will-change:transform;transform:translateZ(0)}.marquee:hover{animation-play-state:paused}
         .hl{transition:transform .2s,box-shadow .2s}.hl:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.08)}
         .ar{animation:slideUp .5s ease-out both}
         .ar:nth-child(1){animation-delay:.1s}.ar:nth-child(2){animation-delay:.3s}
