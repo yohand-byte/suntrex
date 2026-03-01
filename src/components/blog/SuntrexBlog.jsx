@@ -510,7 +510,8 @@ export default function SuntrexBlog() {
   const filtered = articles.filter(a => {
     if (!a.published && view !== "admin") return false;
     const mc = activeCat === "all" || a.category === activeCat;
-    const ms = !search || a.title.toLowerCase().includes(search.toLowerCase()) || a.excerpt.toLowerCase().includes(search.toLowerCase()) || a.tags?.some(t => t.toLowerCase().includes(search.toLowerCase()));
+    const q = search.toLowerCase().trim();
+    const ms = !q || a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q) || a.content?.toLowerCase().includes(q) || a.tags?.some(t => t.toLowerCase().includes(q));
     return mc && ms;
   });
 
