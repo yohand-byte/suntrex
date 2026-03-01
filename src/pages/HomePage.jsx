@@ -29,8 +29,8 @@ const BRANDS = [
   { n:"Huawei", f:"huawei" },{ n:"Jinko Solar", f:"jinko" },
   { n:"Trina Solar", f:"trina" },{ n:"LONGi", f:"longi" },
   { n:"SMA", f:"sma" },{ n:"Sungrow", f:"sungrow" },
-  { n:"SolarEdge", f:"solaredge" },{ n:"GoodWe", f:"goodwe" },
-  { n:"Risen Energy", f:"risen" },{ n:"BYD", f:"byd" },
+  { n:"SolarEdge", f:"solaredge" },
+  { n:"BYD", f:"byd" },
   { n:"Enphase", f:"enphase" },{ n:"DualSun", f:"dualsun" },
   { n:"Esdec", f:"esdec" },{ n:"K2 Systems", f:"k2systems" },
 ];
@@ -198,10 +198,10 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
         </div>
       </section>
 
-      {/* BRANDS MARQUEE — sun.store pattern: opacity 0.3, 30px height, 48px gap */}
-      <section style={{padding:"16px 0",borderBottom:"1px solid #e4e5ec",overflow:"hidden",position:"relative"}}>
-        <div style={{opacity:0.3}}>
-          <div className="marquee" style={{display:"flex",alignItems:"center",gap:48,width:"max-content",paddingRight:48}}>
+      {/* BRANDS MARQUEE — uniform spacing, opacity 0.35 */}
+      <section style={{padding:'16px 0',borderBottom:'1px solid #e4e5ec',overflow:'hidden',position:'relative'}}>
+        <div style={{opacity:0.35}}>
+          <div className='marquee' style={{display:'flex',alignItems:'center',gap:24,width:'max-content',paddingRight:24}}>
             {[...BRANDS,...BRANDS].map((b,i)=>(
               <BrandLogo key={i} brand={b}/>
             ))}
