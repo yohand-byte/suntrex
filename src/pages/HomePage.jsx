@@ -26,14 +26,13 @@ const FEATURED_PRODUCTS = CATALOG
   }));
 
 const BRANDS = [
-  { n:"Huawei", c:"#e4002b", f:"huawei" },{ n:"Jinko Solar", c:"#1a8c37", f:"jinko" },
-  { n:"Trina Solar", c:"#cc0000", f:"trina" },{ n:"LONGi", c:"#008c44", f:"longi" },
-  { n:"JA Solar", c:"#003da6", f:"ja-solar" },{ n:"Canadian Solar", c:"#003ca6", f:"canadian-solar" },
-  { n:"SMA", c:"#cc0000", f:"sma" },{ n:"Sungrow", c:"#1a5aa6", f:"sungrow" },
-  { n:"SolarEdge", c:"#e21e26", f:"solaredge" },{ n:"GoodWe", c:"#007ac1", f:"goodwe" },
-  { n:"Growatt", c:"#ee7203", f:"growatt" },{ n:"Risen Energy", c:"#e60012", f:"risen" },
-  { n:"BYD", c:"#c00", f:"byd" },{ n:"Deye", c:"#0068b7", f:"deye" },
-  { n:"Enphase", c:"#f47920", f:"enphase" },
+  { n:"Huawei", f:"huawei" },{ n:"Jinko Solar", f:"jinko" },
+  { n:"Trina Solar", f:"trina" },{ n:"LONGi", f:"longi" },
+  { n:"SMA", f:"sma" },{ n:"Sungrow", f:"sungrow" },
+  { n:"SolarEdge", f:"solaredge" },{ n:"GoodWe", f:"goodwe" },
+  { n:"Risen Energy", f:"risen" },{ n:"BYD", f:"byd" },
+  { n:"Enphase", f:"enphase" },{ n:"DualSun", f:"dualsun" },
+  { n:"Esdec", f:"esdec" },{ n:"K2 Systems", f:"k2systems" },
 ];
 
 const CAT_COLORS = { inverters:"#E8700A", batteries:"#4CAF50", optimizers:"#3b82f6", "ev-chargers":"#8b5cf6", accessories:"#64748b", panels:"#eab308" };
