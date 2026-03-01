@@ -58,7 +58,7 @@ exports.handler = async (event) => {
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
+        model: "claude-3-5-sonnet-20241022",
         max_tokens: 2000,
         messages: [
           {
@@ -99,7 +99,7 @@ IMPORTANT: Réponds UNIQUEMENT avec du JSON valide, sans aucun texte avant ou ap
       return {
         statusCode: 502,
         headers,
-        body: JSON.stringify({ error: "AI generation failed", details: response.status }),
+        body: JSON.stringify({ error: "AI generation failed", details: response.status, reason: errText.includes("credit balance") ? "insufficient_credits" : "api_error" }),
       };
     }
 
@@ -136,7 +136,7 @@ IMPORTANT: Réponds UNIQUEMENT avec du JSON valide, sans aucun texte avant ou ap
       seo_title: parsed.seo_title,
       seo_description: parsed.seo_description,
       ai_generated: true,
-      ai_model: "claude-sonnet-4-20250514",
+      ai_model: "claude-3-5-sonnet-20241022",
       ai_prompt: topic,
     };
 
