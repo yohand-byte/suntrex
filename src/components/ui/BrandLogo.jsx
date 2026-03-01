@@ -1,7 +1,11 @@
 import { useState } from "react";
 
-// Map brand slug → logo file (prefer SVG, fallback to PNG)
-const LOGO_FILES = {
+/**
+ * BrandLogo — renders real SVG brand logos
+ * Pattern: same as sun.store (height:30px, max-width:135px, object-fit:contain)
+ */
+
+const LOGO_MAP = {
   huawei: "huawei.svg",
   jinko: "jinko.svg",
   trina: "trina.svg",
@@ -12,44 +16,37 @@ const LOGO_FILES = {
   sungrow: "sungrow.svg",
   solaredge: "solaredge.svg",
   goodwe: "goodwe.svg",
-  growatt: "growatt.svg",
+  growatt: "growatt.png",
   risen: "risen.svg",
   byd: "byd.svg",
-  deye: "deye.svg",
+  deye: "deye.png",
   enphase: "enphase.svg",
   hoymiles: "hoymiles.svg",
+  esdec: "esdec.svg",
+  dualsun: "dualsun.svg",
+  k2systems: "k2systems.svg",
 };
 
 export default function BrandLogo({ brand }) {
   const [err, setErr] = useState(false);
-  const file = LOGO_FILES[brand.f];
+  const file = LOGO_MAP[brand.f];
 
   if (err || !file) {
-    return (
-      <span style={{
-        fontSize: brand.n.length > 12 ? 13 : 16,
-        fontWeight: 700,
-        color: brand.c,
-        whiteSpace: "nowrap",
-        minWidth: 80,
-        textAlign: "center",
-        fontFamily: "'DM Sans', 'Inter', sans-serif",
-        letterSpacing: "0.5px",
-      }}>
-        {brand.n}
-      </span>
-    );
+    // Fallback: clean text, no image
+    return null;
   }
 
   return (
     <img
       src={`/logos/${file}`}
       alt={brand.n}
+      loading="lazy"
       style={{
-        height: 28,
+        display: "flex",
+        height: 30,
+        maxWidth: 135,
         objectFit: "contain",
-        maxWidth: 140,
-        minWidth: 60,
+        width: "100%",
       }}
       onError={() => setErr(true)}
     />
