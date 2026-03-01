@@ -1,6 +1,6 @@
 // netlify/functions/blog-ai-generate.js
 // AI Article Generation for SUNTREX Blog
-// Uses Anthropic Claude API server-side (API key never exposed)
+// Uses Mistral AI API server-side (API key never exposed)
 // URL: /.netlify/functions/blog-ai-generate
 
 const { createClient } = require("@supabase/supabase-js");
@@ -37,87 +37,51 @@ exports.handler = async (event) => {
   }
 
   try {
-    const { topic, category, userId } = JSON.parse(event.body);
+    const { topic, category } = JSON.parse(event.body);
 
     if (!topic || !category) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: "Missing topic or category" }) };
     }
 
-    // TODO: Verify user is admin via Supabase auth
-    // const { data: { user }, error } = await supabase.auth.getUser(token);
-    // if (!user || user.role !== 'admin') return 403;
-
     const categoryLabel = CATEGORIES[category] || category;
 
-    // Call Claude API
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    // Call Mistral AI API
+    const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": process.env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
+        "Authorization": `Bearer ${process.env.MISTRAL_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "claude-3-5-sonnet-20241022",
-        max_tokens: 2000,
+        model: "mistral-large-latest",
         messages: [
           {
+            role: "system",
+            content: `Tu es le rédacteur en chef du blog SUNTREX, marketplace B2B d'équipements photovoltaïques en Europe. Tu écris des articles professionnels, factuels, orientés installateurs et distributeurs solaires. Ton ton est expert mais accessible. Tu utilises des données réelles du marché PV européen 2026 (406 GW cumulés UE, modules N-type TOPCon 70%+ des livraisons, stockage à 70$/kWh). Tu termines toujours par un CTA vers SUNTREX. Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.`,
+          },
+          {
             role: "user",
-            content: `Tu es le rédacteur en chef du blog SUNTREX, marketplace B2B européenne d'équipements photovoltaïques. Génère un article de blog professionnel.
-
-Contexte SUNTREX:
-- Marketplace B2B PV européenne avec 638+ produits
-- Marques: Huawei, Deye, Jinko, Trina, LONGi, Canadian Solar, BYD, Enphase, SMA, SolarEdge, Risen, Sungrow, Growatt, GoodWe
-- Commissions 5% sous les concurrents (sun.store, SolarTraders)
-- Service SUNTREX DELIVERY avec vérification colis
-- Cible: installateurs et distributeurs solaires en Europe
-- Marché: 406 GW installés en UE, capacité mondiale 3 TW début 2026
-
-Sujet: "${topic}"
-Catégorie: ${categoryLabel}
-
-IMPORTANT: Réponds UNIQUEMENT avec du JSON valide, sans aucun texte avant ou après, sans backticks markdown.
-
-{
-  "title": "titre accrocheur, orienté installateurs/distributeurs PV",
-  "slug": "slug-url-seo-optimise-en-minuscules",
-  "excerpt": "résumé percutant, 2 phrases max, 160 caractères max",
-  "content": "article complet 500-800 mots. Utilise des sections avec **Titre Section** en gras. Inclus des données réelles du marché PV européen 2026. Termine par un appel à l'action vers SUNTREX.",
-  "tags": ["tag1", "tag2", "tag3", "tag4"],
-  "seo_title": "titre SEO optimisé (60 chars max) | SUNTREX Blog",
-  "seo_description": "meta description 155 caractères max, inclure le mot-clé principal",
-  "read_time": 7
-}`,
+            content: `Écris un article de blog sur "${topic}" pour la catégorie "${categoryLabel}". Retourne UNIQUEMENT ce JSON: {"title":"titre accrocheur 60 chars max","slug":"url-friendly-slug","excerpt":"résumé 2 phrases 155 chars pour SEO","content":"article 500-700 mots avec sections **Titre Section** et données marché réelles, CTA SUNTREX à la fin","tags":["tag1","tag2","tag3","tag4"],"seo_title":"titre SEO 60 chars | SUNTREX Blog","seo_description":"meta description 155 chars","read_time":7}`,
           },
         ],
+        temperature: 0.7,
+        max_tokens: 2000,
+        response_format: { type: "json_object" },
       }),
     });
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error("Claude API error:", response.status, errText);
+      console.error("Mistral API error:", response.status, errText);
       return {
         statusCode: 502,
         headers,
-        body: JSON.stringify({ error: "AI generation failed", details: response.status, reason: errText.includes("credit balance") ? "insufficient_credits" : "api_error" }),
+        body: JSON.stringify({ error: "AI generation failed", details: response.status }),
       };
     }
 
     const data = await response.json();
-    const text = data.content?.map((b) => b.text || "").join("") || "";
-    const clean = text.replace(/```json|```/g, "").trim();
-
-    let parsed;
-    try {
-      parsed = JSON.parse(clean);
-    } catch (parseErr) {
-      console.error("JSON parse error:", parseErr, "Raw:", text.slice(0, 500));
-      return {
-        statusCode: 422,
-        headers,
-        body: JSON.stringify({ error: "Failed to parse AI response", raw: text.slice(0, 200) }),
-      };
-    }
+    const parsed = JSON.parse(data.choices[0].message.content);
 
     // Build article object
     const article = {
@@ -136,7 +100,7 @@ IMPORTANT: Réponds UNIQUEMENT avec du JSON valide, sans aucun texte avant ou ap
       seo_title: parsed.seo_title,
       seo_description: parsed.seo_description,
       ai_generated: true,
-      ai_model: "claude-3-5-sonnet-20241022",
+      ai_model: "mistral-large-latest",
       ai_prompt: topic,
     };
 
