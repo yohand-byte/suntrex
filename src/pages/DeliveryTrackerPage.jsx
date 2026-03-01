@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import useResponsive from "../hooks/useResponsive";
 
 /* ═══════════════════════════════════════════════════════════════
-   SUNTREX — Sprint 4: Delivery Tracker Page
+   SUNTREX — Delivery Tracker Page
    
    SUNTREX DELIVERY — Suivi de colis avec vérification QR
    

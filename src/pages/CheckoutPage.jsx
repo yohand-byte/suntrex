@@ -11,7 +11,7 @@ var stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || "p
 import useResponsive from "../hooks/useResponsive";
 
 /* ═══════════════════════════════════════════════════════════════
-   SUNTREX — Sprint 3: Checkout Page
+   SUNTREX — Checkout Page
    
    Flow: ProductDetail → "Détails de l'offre" → Checkout → Stripe Payment → Confirmation
    

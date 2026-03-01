@@ -6,17 +6,19 @@ import PriceGate from "./PriceGate";
 import SellerBadge from "./SellerBadge";
 import useResponsive from "../../hooks/useResponsive";
 
-/* ── Category gradient backgrounds for image fallback ── */
-const CATEGORY_GRADIENTS = {
-  inverters:   "linear-gradient(135deg, #1a5aa6 0%, #0d3d7a 100%)",
-  batteries:   "linear-gradient(135deg, #16a34a 0%, #064e2a 100%)",
-  panels:      "linear-gradient(135deg, #d97706 0%, #92400e 100%)",
-  optimizers:  "linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%)",
-  cables:      "linear-gradient(135deg, #374151 0%, #111827 100%)",
-  accessories: "linear-gradient(135deg, #374151 0%, #111827 100%)",
-  "ev-chargers": "linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%)",
-  mounting:    "linear-gradient(135deg, #6b7280 0%, #374151 100%)",
+/* ── Category fallback images (real photos, never SVG/gradient placeholders) ── */
+const CATEGORY_FALLBACK_IMAGES = {
+  panels: "/categories/panels.jpg",
+  inverters: "/categories/inverters.jpg",
+  batteries: "/categories/batteries.jpg",
+  "micro-inverters": "/categories/inverters.jpg",
+  optimizers: "/categories/inverters.jpg",
+  "ev-chargers": "/categories/category-onduleurs.png",
+  mounting: "/categories/category-accessoires.png",
+  accessories: "/categories/category-accessoires.png",
+  cables: "/categories/electrical.jpg",
 };
+const DEFAULT_FALLBACK = "/products/huawei/sun2000-5k-map0.jpg";
 
 /* ── Brand colors ── */
 const BRAND_COLORS = {
@@ -114,30 +116,13 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
                 onError={(e) => { e.target.style.display = "none"; }}
               />
             )}
-            {product.image && !imgError ? (
-              <img
-                src={product.image}
-                alt={product.name}
-                loading="lazy"
-                style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", mixBlendMode: "multiply" }}
-                onError={() => setImgError(true)}
-              />
-            ) : (
-              <div style={{
-                width: "100%", height: "100%", borderRadius: 8,
-                background: CATEGORY_GRADIENTS[product.category] || "linear-gradient(135deg, #374151 0%, #111827 100%)",
-                display: "flex", flexDirection: "column",
-                alignItems: "center", justifyContent: "center",
-                padding: "8px",
-              }}>
-                <span style={{ fontSize: 12, fontWeight: 700, color: "#fff", textAlign: "center", lineHeight: 1.2 }}>
-                  {product.brand || "SUNTREX"}
-                </span>
-                <span style={{ fontSize: 9, color: "rgba(255,255,255,0.65)", marginTop: 3, textAlign: "center" }}>
-                  {product.category}
-                </span>
-              </div>
-            )}
+            <img
+              src={imgError ? (CATEGORY_FALLBACK_IMAGES[product.category] || DEFAULT_FALLBACK) : (product.image || CATEGORY_FALLBACK_IMAGES[product.category] || DEFAULT_FALLBACK)}
+              alt={product.name}
+              loading="lazy"
+              style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", mixBlendMode: "multiply" }}
+              onError={(e) => { if (!imgError) { setImgError(true); } else { e.target.onerror = null; e.target.src = DEFAULT_FALLBACK; } }}
+            />
           </div>
           {offerCount > 1 && grouped && (
             <span style={{ fontSize: 11, color: "#888" }}>{offerCount} {t("catalog.offers")}</span>

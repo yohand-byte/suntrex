@@ -105,7 +105,7 @@ function KycBanner({ status, data, error, actionError, busy, lang, onStart, onRe
 }
 
 /* ═══════════════════════════════════════════════════════════
-   SellerOverview — enrichi Sprint 7
+   SellerOverview
    ═══════════════════════════════════════════════════════════ */
 export default function SellerOverview() {
   const { isMobile } = useResponsive();

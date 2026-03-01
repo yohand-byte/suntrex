@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
 /*
  * ═══════════════════════════════════════════════════════════════
- * SUNTREX — Sprint 1: Auth + KYC Simplifié + PriceGate
+ * SUNTREX — Auth + KYC Simplifié + PriceGate
  * ═══════════════════════════════════════════════════════════════
  *
  * Complete authentication system with:

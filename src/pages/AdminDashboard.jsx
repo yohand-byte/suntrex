@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 /* ═══════════════════════════════════════════════════════════════
-   SUNTREX — Sprint 6: Admin Dashboard
+   SUNTREX — Admin Dashboard
    
    Platform command center for the SUNTREX team.
    KPIs, transactions, sellers, commissions, disputes, KYC.
@@ -294,7 +294,7 @@ function PlaceholderSection({ title, icon }) {
   return <div style={{ textAlign: "center", padding: "60px 20px" }}>
     <div style={{ fontSize: 48, marginBottom: 16 }}>{icon}</div>
     <div style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 8 }}>{title}</div>
-    <div style={{ fontSize: 13, color: T.textSec }}>Cette section sera disponible dans le prochain sprint.</div>
+    <div style={{ fontSize: 13, color: T.textSec }}>Cette section sera disponible prochainement.</div>
   </div>;
 }
 
