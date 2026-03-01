@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import useResponsive from "../../hooks/useResponsive";
 
 /* ═══════════════════════════════════════════════════════════════════════
    SUNTREX — Centre d'aide / FAQ
@@ -145,7 +146,7 @@ const CONTACT_CHANNELS = [
 ];
 
 /* ── Accordion Item ── */
-function FAQItem({ faq, isOpen, onToggle, idx }) {
+function FAQItem({ faq, isOpen, onToggle, idx, isMobile }) {
   const contentRef = useRef(null);
   const [height, setHeight] = useState(0);
 
@@ -177,7 +178,7 @@ function FAQItem({ faq, isOpen, onToggle, idx }) {
       <button
         onClick={onToggle}
         style={{
-          width: "100%", padding: "18px 20px", border: "none", background: "transparent",
+          width: "100%", padding: isMobile ? "14px 14px" : "18px 20px", border: "none", background: "transparent",
           display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16,
           cursor: "pointer", textAlign: "left", fontFamily: "'DM Sans', sans-serif",
         }}
@@ -207,8 +208,8 @@ function FAQItem({ faq, isOpen, onToggle, idx }) {
         transition: "height 0.3s ease",
       }}>
         <div ref={contentRef} style={{
-          padding: "0 20px 18px 60px",
-          fontSize: 14, lineHeight: 1.75, color: B.muted,
+          padding: isMobile ? "0 14px 14px 14px" : "0 20px 18px 60px",
+          fontSize: isMobile ? 13 : 14, lineHeight: 1.75, color: B.muted,
         }}>
           {faq.a.split("\n").map((line, i) => (
             <p key={i} style={{ margin: "0 0 8px" }}>{renderText(line)}</p>
@@ -220,7 +221,7 @@ function FAQItem({ faq, isOpen, onToggle, idx }) {
 }
 
 /* ── Category Card ── */
-function CategoryCard({ cat, isActive, onClick, count }) {
+function CategoryCard({ cat, isActive, onClick, count, isMobile }) {
   const [hov, setHov] = useState(false);
   return (
     <button
@@ -228,7 +229,7 @@ function CategoryCard({ cat, isActive, onClick, count }) {
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        padding: "20px 18px", borderRadius: 14, border: `2px solid ${isActive ? cat.color : B.border}`,
+        padding: isMobile ? "14px 12px" : "20px 18px", borderRadius: isMobile ? 10 : 14, border: `2px solid ${isActive ? cat.color : B.border}`,
         background: isActive ? cat.bg : hov ? B.light : B.white,
         cursor: "pointer", textAlign: "left", fontFamily: "'DM Sans', sans-serif",
         transition: "all 0.2s ease",
@@ -238,15 +239,15 @@ function CategoryCard({ cat, isActive, onClick, count }) {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <span style={{ fontSize: 28 }}>{cat.icon}</span>
+        <span style={{ fontSize: isMobile ? 22 : 28 }}>{cat.icon}</span>
         <span style={{
           fontSize: 11, fontWeight: 600, padding: "3px 8px", borderRadius: 20,
           background: isActive ? cat.color + "20" : B.light,
           color: isActive ? cat.color : B.muted,
         }}>{count} questions</span>
       </div>
-      <div style={{ fontSize: 15, fontWeight: 700, color: B.text }}>{cat.label}</div>
-      <div style={{ fontSize: 12, color: B.muted, lineHeight: 1.5 }}>{cat.description}</div>
+      <div style={{ fontSize: isMobile ? 13 : 15, fontWeight: 700, color: B.text }}>{cat.label}</div>
+      {!isMobile && <div style={{ fontSize: 12, color: B.muted, lineHeight: 1.5 }}>{cat.description}</div>}
     </button>
   );
 }
@@ -260,6 +261,7 @@ export default function SuntrexHelpCenter() {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState(null);
   const [hovCTA, setHovCTA] = useState(false);
+  const { isMobile, isTablet } = useResponsive();
 
   // Search logic
   useEffect(() => {
@@ -286,7 +288,7 @@ export default function SuntrexHelpCenter() {
       {/* ═══ HERO ═══ */}
       <div style={{
         background: `linear-gradient(135deg, ${B.dark} 0%, #1a3550 50%, ${B.dark} 100%)`,
-        padding: "60px 24px 50px", textAlign: "center", position: "relative", overflow: "hidden",
+        padding: isMobile ? "40px 16px 36px" : "60px 24px 50px", textAlign: "center", position: "relative", overflow: "hidden",
       }}>
         {/* Decorative elements */}
         <div style={{ position: "absolute", top: -60, right: -60, width: 200, height: 200, borderRadius: "50%", background: B.orange + "10" }} />
@@ -309,7 +311,7 @@ export default function SuntrexHelpCenter() {
             Comment pouvons-nous{" "}
             <span style={{ color: B.orange }}>vous aider</span> ?
           </h1>
-          <p style={{ fontSize: 16, color: "rgba(255,255,255,0.65)", margin: "0 0 32px", lineHeight: 1.6 }}>
+          <p style={{ fontSize: isMobile ? 14 : 16, color: "rgba(255,255,255,0.65)", margin: isMobile ? "0 0 24px" : "0 0 32px", lineHeight: 1.6 }}>
             Retrouvez toutes les réponses sur la marketplace, les paiements, la livraison et les équipements PV.
           </p>
 
@@ -352,7 +354,7 @@ export default function SuntrexHelpCenter() {
       </div>
 
       {/* ═══ CONTENT ═══ */}
-      <div style={{ maxWidth: 960, margin: "0 auto", padding: "40px 20px 60px" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: isMobile ? "24px 16px 40px" : "40px 20px 60px" }}>
 
         {/* Search Results */}
         {isSearching ? (
@@ -406,6 +408,7 @@ export default function SuntrexHelpCenter() {
                       isOpen={openFAQ === `search-${i}`}
                       onToggle={() => setOpenFAQ(openFAQ === `search-${i}` ? null : `search-${i}`)}
                       idx={r.idx}
+                      isMobile={isMobile}
                     />
                   </div>
                 ))}
@@ -417,8 +420,8 @@ export default function SuntrexHelpCenter() {
             {/* Category Grid */}
             <div style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: 12, marginBottom: 36,
+              gridTemplateColumns: isMobile ? "1fr 1fr" : isTablet ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
+              gap: isMobile ? 8 : 12, marginBottom: isMobile ? 24 : 36,
             }}>
               {CATEGORIES.map(cat => (
                 <CategoryCard
@@ -427,6 +430,7 @@ export default function SuntrexHelpCenter() {
                   isActive={activeCat === cat.id}
                   onClick={() => { setActiveCat(cat.id); setOpenFAQ(null); }}
                   count={cat.faqs.length}
+                  isMobile={isMobile}
                 />
               ))}
             </div>
@@ -436,9 +440,9 @@ export default function SuntrexHelpCenter() {
               display: "flex", alignItems: "center", gap: 12, marginBottom: 20,
               paddingBottom: 16, borderBottom: `2px solid ${currentCat.color}20`,
             }}>
-              <span style={{ fontSize: 28 }}>{currentCat.icon}</span>
+              <span style={{ fontSize: isMobile ? 22 : 28 }}>{currentCat.icon}</span>
               <div>
-                <h2 style={{ fontSize: 22, fontWeight: 700, color: B.text, margin: 0 }}>
+                <h2 style={{ fontSize: isMobile ? 18 : 22, fontWeight: 700, color: B.text, margin: 0 }}>
                   {currentCat.label}
                 </h2>
                 <p style={{ fontSize: 13, color: B.muted, margin: "2px 0 0" }}>
@@ -456,6 +460,7 @@ export default function SuntrexHelpCenter() {
                   isOpen={openFAQ === `${activeCat}-${idx}`}
                   onToggle={() => setOpenFAQ(openFAQ === `${activeCat}-${idx}` ? null : `${activeCat}-${idx}`)}
                   idx={idx}
+                  isMobile={isMobile}
                 />
               ))}
             </div>
@@ -464,7 +469,7 @@ export default function SuntrexHelpCenter() {
 
         {/* ═══ CONTACT SECTION ═══ */}
         <div style={{
-          marginTop: 48, padding: "36px 28px", borderRadius: 20,
+          marginTop: isMobile ? 32 : 48, padding: isMobile ? "24px 16px" : "36px 28px", borderRadius: isMobile ? 14 : 20,
           background: `linear-gradient(135deg, ${B.dark} 0%, #1a3550 100%)`,
           position: "relative", overflow: "hidden",
         }}>
@@ -480,7 +485,7 @@ export default function SuntrexHelpCenter() {
 
             <div style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)",
               gap: 10,
             }}>
               {CONTACT_CHANNELS.map((ch, i) => (
@@ -505,7 +510,7 @@ export default function SuntrexHelpCenter() {
 
         {/* ═══ CTA ═══ */}
         <div style={{
-          marginTop: 32, textAlign: "center", padding: "40px 24px",
+          marginTop: isMobile ? 24 : 32, textAlign: "center", padding: isMobile ? "28px 16px" : "40px 24px",
           background: B.white, borderRadius: 20, border: `1px solid ${B.border}`,
         }}>
           <span style={{ fontSize: 40, display: "block", marginBottom: 12 }}>☀️</span>

@@ -66,11 +66,10 @@ const S = {
     display: "flex",
     maxWidth: 1280,
     margin: "0 auto",
-    padding: "24px 20px",
     gap: 24,
     fontFamily: "'DM Sans',sans-serif",
   },
-  sidebar: { width: 260, flexShrink: 0 },
+  sidebar: { flexShrink: 0 },
   main: { flex: 1, minWidth: 0 },
   badge: {
     display: "inline-flex",
@@ -463,7 +462,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
         </button>
       )}
       {/* ══════ SIDEBAR ══════ */}
-      <aside style={{...S.sidebar, display: isMobile ? (showMobileFilters ? "block" : "none") : "block", width: isMobile ? "100%" : 260}}>
+      <aside style={{...S.sidebar, display: isMobile ? (showMobileFilters ? "block" : "none") : "block", width: isMobile ? "100%" : 240}}>
         <h2
           style={{
             fontSize: 18,
