@@ -318,14 +318,16 @@ const AIGenerator = ({ onGenerated }) => {
   const generate = async () => {
     if (!topic.trim()) return; setGen(true); setProg("Génération via Claude...");
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000,
-          messages: [{ role: "user", content: `Rédacteur blog SUNTREX (marketplace PV B2B Europe, 638+ produits, marques Huawei/Deye/Jinko/Trina/LONGi). Sujet:"${topic}" Catégorie:${getCat(cat).label}. JSON UNIQUEMENT:\n{"title":"","slug":"","excerpt":"2 phrases 160 chars","content":"500-600 mots, sections **Titre**, données réelles marché PV Europe 2026, CTA SUNTREX","tags":["","","",""],"seo_title":"60chars | SUNTREX Blog","seo_description":"155chars","read_time":7}` }] }),
+      const res = await fetch("/api/blog-ai-generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic, category: cat }),
       });
-      const data = await res.json(); const text = data.content?.map(b => b.text || "").join("") || "";
-      const parsed = JSON.parse(text.replace(/```json|```/g, "").trim());
-      setResult({ ...parsed, category: cat, author_name: "SUNTREX AI", author_avatar: "🤖", featured: false, published: false, image: IMG.aiTech, overlay: "linear-gradient(135deg, rgba(26,26,24,0.85) 0%, rgba(232,112,10,0.8) 100%)" });
-      setProg("✓ Prêt !");
+      if (!res.ok) throw new Error(`API error ${res.status}`);
+      const data = await res.json();
+      const article = data.article;
+      setResult({ ...article, image: article.image || IMG.aiTech, overlay: "linear-gradient(135deg, rgba(26,26,24,0.85) 0%, rgba(232,112,10,0.8) 100%)" });
+      setProg(data.saved ? "✓ Sauvé en base !" : "✓ Prêt !");
     } catch {
       setProg("Fallback local...");
       setResult({ title: `${topic} : analyse 2026`, slug: topic.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 60), excerpt: `Analyse de ${topic} pour le marché PV européen.`, content: `**Introduction**\n\n${topic} est un sujet clé du PV européen 2026. Le marché avec 406 GW évolue.\n\n**Analyse**\n\nDonnées à compléter. SUNTREX facilite la transition.\n\n**Conclusion**\n\nComparez les offres sur SUNTREX.`, tags: [topic.split(" ")[0], "2026", "Europe"], seo_title: `${topic} | SUNTREX Blog`, seo_description: `Analyse ${topic} marché PV 2026.`, read_time: 5, category: cat, author_name: "SUNTREX AI", author_avatar: "🤖", featured: false, published: false, image: IMG.aiTech, overlay: "linear-gradient(135deg, rgba(26,26,24,0.85) 0%, rgba(232,112,10,0.8) 100%)" });
