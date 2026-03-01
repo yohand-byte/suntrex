@@ -14,6 +14,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import DeliveryTrackerPage from "./pages/DeliveryTrackerPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import BlogPage from "./pages/BlogPage";
+import MvpTracker from "./pages/MvpTracker";
 import { LoginModal, RegisterModal } from "./AuthSystem";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -108,6 +109,7 @@ export default function App() {
         }/>
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/tracker" element={<MvpTracker />} />
         <Route path="/dashboard" element={<DashboardLayout />} />
         <Route path="/dashboard/buy" element={<DashboardLayout initialTab="buy" />} />
         <Route path="/dashboard/sell" element={<DashboardLayout initialTab="sell" />} />
