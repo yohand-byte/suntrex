@@ -29,7 +29,7 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
       {/* TOP BAR */}
       <div style={{ background: "#1a1a1a", color: "#fff", fontSize: 12, padding: isMobile ? "6px 16px" : "6px 40px", display: "flex", justifyContent: "space-between" }}>
         <div style={{ display: "flex", gap: 20, opacity: .7 }}>
-          {isMobile ? null : [{key:"about",label:t("header.topLinks.about")},{key:"blog",label:t("header.topLinks.blog")},{key:"faq",label:t("header.topLinks.faq")}].map(l => <a key={l.key} href="#" style={{ color: "#fff", textDecoration: "none" }}>{l.label}</a>)}
+          {isMobile ? null : [{key:"about",label:t("header.topLinks.about"),path:null},{key:"blog",label:t("header.topLinks.blog"),path:"/blog"},{key:"faq",label:t("header.topLinks.faq"),path:null}].map(l => <a key={l.key} onClick={l.path ? (e) => { e.preventDefault(); navigate(l.path); } : undefined} href={l.path || "#"} style={{ color: "#fff", textDecoration: "none", cursor: "pointer" }}>{l.label}</a>)}
         </div>
         <span style={{ opacity: .7 }}>+33 1 XX XX XX XX</span>
       </div>
@@ -140,7 +140,7 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
 
             {/* Links */}
             <div style={{ marginTop: 20, display: "flex", flexDirection: "column", gap: 8, fontSize: 13, color: "#888" }}>
-              {[{key:"about",label:t("header.topLinks.about")},{key:"blog",label:t("header.topLinks.blog")},{key:"faq",label:t("header.topLinks.faq")}].map(l => <a key={l.key} href="#" style={{ color: "#888", textDecoration: "none" }}>{l.label}</a>)}
+              {[{key:"about",label:t("header.topLinks.about"),path:null},{key:"blog",label:t("header.topLinks.blog"),path:"/blog"},{key:"faq",label:t("header.topLinks.faq"),path:null}].map(l => <a key={l.key} onClick={l.path ? (e) => { e.preventDefault(); navigate(l.path); setMenuOpen(false); } : undefined} href={l.path || "#"} style={{ color: "#888", textDecoration: "none", cursor: "pointer" }}>{l.label}</a>)}
             </div>
           </div>
         </div>

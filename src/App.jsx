@@ -13,6 +13,7 @@ import DashboardLayout from "./components/dashboard/DashboardLayout";
 import CheckoutPage from "./pages/CheckoutPage";
 import DeliveryTrackerPage from "./pages/DeliveryTrackerPage";
 import AdminDashboard from "./pages/AdminDashboard";
+import BlogPage from "./pages/BlogPage";
 import { LoginModal, RegisterModal } from "./AuthSystem";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -105,6 +106,7 @@ export default function App() {
             currentUser={currentUser}
           />
         }/>
+        <Route path="/blog" element={<BlogPage />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/dashboard" element={<DashboardLayout />} />
         <Route path="/dashboard/buy" element={<DashboardLayout initialTab="buy" />} />
