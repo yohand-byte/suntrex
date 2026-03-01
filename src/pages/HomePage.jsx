@@ -201,7 +201,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       {/* BRANDS MARQUEE — uniform spacing, opacity 0.35 */}
       <section style={{padding:'16px 0',borderBottom:'1px solid #e4e5ec',overflow:'hidden',position:'relative'}}>
         <div style={{opacity:0.35}}>
-          <div className='marquee' style={{display:'flex',alignItems:'center',gap:24,width:'max-content',paddingRight:24}}>
+          <div className='marquee' style={{display:'flex',alignItems:'center',gap:48,width:'max-content',paddingRight:48}}>
             {[...BRANDS,...BRANDS].map((b,i)=>(
               <BrandLogo key={i} brand={b}/>
             ))}
