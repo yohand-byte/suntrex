@@ -13,14 +13,14 @@ const STATUS_CONFIG = {
   soldout: { label: "Sold out", labelFr: "Epuise",   color: T.redText,   bg: T.redBg },
 };
 
-export default function ManageOffers() {
+export default function ManageOffers({ sellerData } = {}) {
   const { isMobile } = useResponsive();
   const { lang } = useDashboard();
   const [searchQuery, setSearchQuery] = useState("");
   const [filter, setFilter] = useState("all");
   const [hoveredRow, setHoveredRow] = useState(null);
 
-  const listings = MOCK_SELLER.listings;
+  const listings = (sellerData && sellerData.listings) || MOCK_SELLER.listings;
 
   const filtered = useMemo(() => {
     let result = listings;

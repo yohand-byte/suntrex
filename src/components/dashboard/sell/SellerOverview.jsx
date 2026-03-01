@@ -107,7 +107,7 @@ function KycBanner({ status, data, error, actionError, busy, lang, onStart, onRe
 /* ═══════════════════════════════════════════════════════════
    SellerOverview
    ═══════════════════════════════════════════════════════════ */
-export default function SellerOverview() {
+export default function SellerOverview({ sellerData } = {}) {
   const { isMobile } = useResponsive();
   const {
     lang, setActiveSection,
@@ -115,8 +115,8 @@ export default function SellerOverview() {
     refreshKyc: refresh, startOnboarding, resumeOnboarding, navigateToTransaction,
   } = useDashboard();
 
-  const stats = MOCK_SELLER.stats;
-  const monthlyRevenue = MOCK_SELLER.monthlyRevenue;
+  const stats = (sellerData && sellerData.stats) || MOCK_SELLER.stats;
+  const monthlyRevenue = (sellerData && sellerData.monthlyRevenue) || MOCK_SELLER.monthlyRevenue;
   const maxRevenue = Math.max(...monthlyRevenue.map(m => m.value));
 
   const kycBlocked = status !== null && status !== "demo" && status !== "approved";

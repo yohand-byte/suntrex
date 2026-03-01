@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDashboardData } from "../../hooks/useDashboardData";
 import DashboardLayout from "./DashboardLayout";
 import { BRAND, fmt, ORDER_STATUS, MOCK_BUYER, useDashboardResponsive } from "./dashboardUtils";
 
@@ -304,7 +305,8 @@ function BuyerSaved({ data, isMobile }) {
 export default function BuyerDashboard() {
   const { isMobile } = useDashboardResponsive();
   const [tab, setTab] = useState("overview");
-  const data = MOCK_BUYER;
+  const { data: liveData, loading: dashLoading, usingMock } = useDashboardData("buyer");
+  const data = liveData || MOCK_BUYER;
 
   const tabs = BUYER_TABS(data);
 

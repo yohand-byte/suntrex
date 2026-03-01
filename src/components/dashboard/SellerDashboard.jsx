@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDashboardData } from "../../hooks/useDashboardData";
 import DashboardLayout from "./DashboardLayout";
 import { BRAND, fmt, ORDER_STATUS, STRIPE_STATUS, MOCK_SELLER, useDashboardResponsive } from "./dashboardUtils";
 
@@ -538,7 +539,8 @@ function SellerOrders({ data, isMobile }) {
 export default function SellerDashboard() {
   const { isMobile } = useDashboardResponsive();
   const [tab, setTab] = useState("overview");
-  const data = MOCK_SELLER;
+  const { data: liveData, loading: dashLoading, usingMock } = useDashboardData("seller");
+  const data = liveData || MOCK_SELLER;
   const tabs = SELLER_TABS(data);
 
   const renderContent = () => {

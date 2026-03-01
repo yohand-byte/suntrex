@@ -62,8 +62,9 @@ export default function DashboardLayout({ initialTab = "buy", user: propUser, co
   const [lang] = useState("fr");
 
   // Use prop user or demo user
-  const user = propUser || DEMO_USER;
-  const company = propCompany || DEMO_COMPANY;
+  const { data: dashData } = useDashboardData("buyer");
+  const user = propUser || (dashData ? dashData.user : DEMO_USER);
+  const company = propCompany || (dashData ? dashData.company : DEMO_COMPANY);
 
   // ── KYC state (single source of truth for topbar + SellerOverview) ──
   const [kycStatus, setKycStatus] = useState(null);
