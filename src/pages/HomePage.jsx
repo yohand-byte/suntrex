@@ -13,10 +13,10 @@ import useResponsive from "../hooks/useResponsive";
 const PRIORITY_BRANDS = /HUAWEI|DEYE|HOYMILES|Enphase|PYTES/i;
 const FEATURED_PRODUCTS = CATALOG
   .filter(p => PRIORITY_BRANDS.test(p.brand) && p.stock > 0 && p.price > 10)
-  .sort((a, b) => b.stock - a.stock)
+  .sort((a, b) => { const aH = /huawei/i.test(a.brand) ? 1 : 0; const bH = /huawei/i.test(b.brand) ? 1 : 0; if (bH !== aH) return bH - aH; return b.stock - a.stock; })
   .slice(0, 10)
   .map((p, i) => ({
-    id: `csv-${p.sku || i}`,
+    id: `csv-${(p.sku || String(i)).replace(/\//g, "-")}`,
     name: p.name,
     power: p.power,
     type: p.type || p.category,
@@ -28,11 +28,9 @@ const FEATURED_PRODUCTS = CATALOG
 const BRANDS = [
   { n:"Huawei", f:"huawei" },{ n:"Jinko Solar", f:"jinko" },
   { n:"Trina Solar", f:"trina" },{ n:"LONGi", f:"longi" },
-  { n:"SMA", f:"sma" },{ n:"Sungrow", f:"sungrow" },
-  { n:"SolarEdge", f:"solaredge" },
-  { n:"BYD", f:"byd" },
-  { n:"Enphase", f:"enphase" },{ n:"DualSun", f:"dualsun" },
-  { n:"Esdec", f:"esdec" },{ n:"K2 Systems", f:"k2systems" },
+  { n:"Sungrow", f:"sungrow" },{ n:"SolarEdge", f:"solaredge" },
+  { n:"BYD", f:"byd" },{ n:"Enphase", f:"enphase" },
+  { n:"DualSun", f:"dualsun" },
 ];
 
 const CAT_COLORS = { inverters:"#E8700A", batteries:"#4CAF50", optimizers:"#3b82f6", "ev-chargers":"#8b5cf6", accessories:"#64748b", panels:"#eab308" };
@@ -198,9 +196,9 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
         </div>
       </section>
 
-      {/* BRANDS MARQUEE — uniform spacing, opacity 0.35 */}
+      {/* BRANDS MARQUEE — colored logos */}
       <section style={{padding:'16px 0',borderBottom:'1px solid #e4e5ec',overflow:'hidden',position:'relative'}}>
-        <div style={{opacity:0.35}}>
+        <div>
           <div className='marquee' style={{display:'flex',alignItems:'center',gap:48,width:'max-content',paddingRight:48}}>
             {[...BRANDS,...BRANDS].map((b,i)=>(
               <BrandLogo key={i} brand={b}/>
