@@ -69,7 +69,7 @@ const MODULES = [
     { name: "MyPurchases.jsx (203 lignes)", done: true },
     { name: "BuyerRFQ.jsx (117 lignes)", done: true },
     { name: "DeliveryAddresses.jsx (92 lignes)", done: true },
-    { name: "Brancher sur donnees Supabase reelles", done: false },
+    { name: "Brancher sur donnees Supabase reelles (useDashboardData hook)", done: true },
   ]},
   { id: "dashboard-seller", phase: "mvp", part: "Dashboards", name: "Dashboard Vendeur", tasks: [
     { name: "SellerDashboard.jsx (593 lignes)", done: true },
@@ -79,7 +79,7 @@ const MODULES = [
     { name: "WarehouseManager.jsx (58 lignes)", done: true },
     { name: "Stripe Connect panel", done: true },
     { name: "Stripe onboarding banner + status KYC", done: true },
-    { name: "Brancher sur donnees Supabase reelles", done: false },
+    { name: "Brancher sur donnees Supabase reelles (useDashboardData hook)", done: true },
   ]},
   { id: "dashboard-shared", phase: "mvp", part: "Dashboards", name: "Dashboard Commun", tasks: [
     { name: "DashboardLayout.jsx (380 lignes)", done: true },
@@ -129,7 +129,7 @@ const MODULES = [
     { name: "KPIs : revenu, commissions, commandes", done: true },
     { name: "Liste transactions avec filtres", done: true },
     { name: "Suivi vendeurs + KYC status", done: true },
-    { name: "Brancher sur donnees reelles", done: false },
+    { name: "Brancher sur donnees reelles (useDashboardData hook)", done: true },
   ]},
   // PHASE 2
   { id: "delivery", phase: "trust", part: "Delivery", name: "Livraison & Tracking", tasks: [
