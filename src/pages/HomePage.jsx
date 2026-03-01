@@ -9,21 +9,41 @@ import AutoSlides from "../components/ui/AutoSlides";
 import CatCard from "../components/ui/CatCard";
 import useResponsive from "../hooks/useResponsive";
 
-// Featured products: top 10 from real product catalog (priority brands, in stock, sorted by stock desc)
-const PRIORITY_BRANDS = /HUAWEI|DEYE|HOYMILES|Enphase|PYTES/i;
-const FEATURED_PRODUCTS = REAL_PRODUCTS
-  .filter(p => PRIORITY_BRANDS.test(p.brand) && p.stock > 0 && p.price > 10)
-  .sort((a, b) => { const aH = /huawei/i.test(a.brand) ? 1 : 0; const bH = /huawei/i.test(b.brand) ? 1 : 0; if (bH !== aH) return bH - aH; return b.stock - a.stock; })
-  .slice(0, 10)
-  .map(p => ({
-    id: p.id,
-    name: p.name,
-    power: p.power,
-    type: p.type || p.category,
-    stock: p.stock,
-    price: p.price,
-    img: p.image || getProductImage(p),
-  }));
+// Featured: Huawei inverters & batteries first, then Deye, no duplicates
+const seen = new Set();
+const FEATURED_PRODUCTS = (() => {
+  const all = REAL_PRODUCTS.filter(p => p.stock > 0 && p.price > 50);
+
+  const huaweiInverters = all.filter(p => /huawei/i.test(p.brand) && p.category === "inverters");
+  const huaweiBatteries = all.filter(p => /huawei/i.test(p.brand) && p.category === "batteries");
+  const deye = all.filter(p => /deye/i.test(p.brand));
+  const rest = all.filter(p => !/huawei|deye/i.test(p.brand));
+
+  const result = [];
+  const addUnique = (items) => {
+    for (const p of items.sort((a, b) => b.stock - a.stock)) {
+      const key = p.sku ? p.sku.toUpperCase().replace(/^(HUA|DEY|HOY)\//,"") : p.name;
+      if (!seen.has(key) && result.length < 10) {
+        seen.add(key);
+        result.push({
+          id: p.id,
+          name: p.name,
+          power: p.power,
+          type: p.type || p.category,
+          stock: p.stock,
+          price: p.price,
+          img: p.image || getProductImage(p),
+        });
+      }
+    }
+  };
+
+  addUnique(huaweiInverters);
+  addUnique(huaweiBatteries);
+  addUnique(deye);
+  addUnique(rest);
+  return result;
+})();
 
 const BRANDS = [
   { n:"Huawei", f:"huawei" },{ n:"Jinko Solar", f:"jinko" },

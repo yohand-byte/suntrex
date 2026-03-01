@@ -795,10 +795,13 @@ const PRODUCTS = [
 // ─── Zoho enriched products (618 items) ──────────────────────────────────────
 import ZOHO_PRODUCTS from "./data/zoho-products.json";
 
-const ALL_PRODUCTS = [
-  ...PRODUCTS,
-  ...ZOHO_PRODUCTS,
-];
+// Deduplicate: hardcoded PRODUCTS take priority (they have richer data)
+const hardcodedSkus = new Set(PRODUCTS.map(p => p.sku.toUpperCase()));
+const uniqueZoho = ZOHO_PRODUCTS.filter(p => {
+  const zSku = (p.sku || "").toUpperCase().replace(/^(HUA|DEY|HOY|PYT|ESD|K2S|AP)\//i, "");
+  return !hardcodedSkus.has(zSku);
+});
+const ALL_PRODUCTS = [...PRODUCTS, ...uniqueZoho];
 
 // Category definitions for the catalog
 export const CATEGORIES = [
