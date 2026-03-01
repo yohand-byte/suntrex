@@ -14,6 +14,18 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
+# Blog RSS feed
+[[redirects]]
+  from = "/blog/rss.xml"
+  to = "/.netlify/functions/blog-rss"
+  status = 200
+
+# Blog sitemap
+[[redirects]]
+  from = "/blog/sitemap.xml"
+  to = "/.netlify/functions/blog-sitemap"
+  status = 200
+
 # SPA fallback
 [[redirects]]
   from = "/*"
