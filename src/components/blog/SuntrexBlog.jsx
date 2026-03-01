@@ -310,13 +310,13 @@ const Reactions = ({ article, onUpdate }) => {
   );
 };
 
-// ─── AI GENERATOR (uses Anthropic API — included in Claude Pro) ───
+// ─── AI GENERATOR (uses Mistral AI via Netlify Function) ───
 const AIGenerator = ({ onGenerated }) => {
   const [topic, setTopic] = useState(""); const [cat, setCat] = useState("market");
   const [gen, setGen] = useState(false); const [prog, setProg] = useState(""); const [result, setResult] = useState(null);
 
   const generate = async () => {
-    if (!topic.trim()) return; setGen(true); setProg("Génération via Claude...");
+    if (!topic.trim()) return; setGen(true); setProg("Génération via Mistral AI...");
     try {
       const res = await fetch("/api/blog-ai-generate", {
         method: "POST",
@@ -328,9 +328,9 @@ const AIGenerator = ({ onGenerated }) => {
       const article = data.article;
       setResult({ ...article, image: article.image || IMG.aiTech, overlay: "linear-gradient(135deg, rgba(26,26,24,0.85) 0%, rgba(232,112,10,0.8) 100%)" });
       setProg(data.saved ? "✓ Sauvé en base !" : "✓ Prêt !");
-    } catch {
-      setProg("Fallback local...");
-      setResult({ title: `${topic} : analyse 2026`, slug: topic.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 60), excerpt: `Analyse de ${topic} pour le marché PV européen.`, content: `**Introduction**\n\n${topic} est un sujet clé du PV européen 2026. Le marché avec 406 GW évolue.\n\n**Analyse**\n\nDonnées à compléter. SUNTREX facilite la transition.\n\n**Conclusion**\n\nComparez les offres sur SUNTREX.`, tags: [topic.split(" ")[0], "2026", "Europe"], seo_title: `${topic} | SUNTREX Blog`, seo_description: `Analyse ${topic} marché PV 2026.`, read_time: 5, category: cat, author_name: "SUNTREX AI", author_avatar: "🤖", featured: false, published: false, image: IMG.aiTech, overlay: "linear-gradient(135deg, rgba(26,26,24,0.85) 0%, rgba(232,112,10,0.8) 100%)" });
+    } catch (err) {
+      setProg(`❌ Erreur : ${err.message || "génération impossible"}`);
+      setResult(null);
     } finally { setGen(false); }
   };
 
@@ -340,7 +340,7 @@ const AIGenerator = ({ onGenerated }) => {
       <div style={{ position: "relative", zIndex: 1 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
           <span style={{ fontSize: 20 }}>🤖</span>
-          <div><div style={{ fontFamily: T.fontMono, fontSize: 10, color: T.orange, letterSpacing: 1 }}>AI CONTENT GENERATOR</div><div style={{ fontSize: 14, fontWeight: 600 }}>Générer un article avec Claude</div></div>
+          <div><div style={{ fontFamily: T.fontMono, fontSize: 10, color: T.orange, letterSpacing: 1 }}>AI CONTENT GENERATOR</div><div style={{ fontSize: 14, fontWeight: 600 }}>Générer un article avec Mistral AI</div></div>
         </div>
         <div style={{ display: "flex", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
           <input value={topic} onChange={e => setTopic(e.target.value)} placeholder="Sujet (ex: impact tarifs douaniers panneaux chinois)"
