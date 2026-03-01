@@ -1,22 +1,23 @@
 import { useState } from "react";
 
-// Best available logo file for each brand slug
+// Map brand slug → logo file (prefer SVG, fallback to PNG)
 const LOGO_FILES = {
   huawei: "huawei.svg",
   jinko: "jinko.svg",
-  trina: "trinasolar.png",
+  trina: "trina.svg",
   longi: "longi.svg",
   "ja-solar": "ja-solar.svg",
   "canadian-solar": "canadian-solar.svg",
   sma: "sma.svg",
-  sungrow: "sungrow.png",
+  sungrow: "sungrow.svg",
   solaredge: "solaredge.svg",
   goodwe: "goodwe.svg",
-  growatt: "growatt.png",
+  growatt: "growatt.svg",
   risen: "risen.svg",
   byd: "byd.svg",
-  deye: "deye.png",
+  deye: "deye.svg",
   enphase: "enphase.svg",
+  hoymiles: "hoymiles.svg",
 };
 
 export default function BrandLogo({ brand }) {
@@ -26,13 +27,14 @@ export default function BrandLogo({ brand }) {
   if (err || !file) {
     return (
       <span style={{
-        fontSize: brand.n.length > 12 ? 14 : 18,
+        fontSize: brand.n.length > 12 ? 13 : 16,
         fontWeight: 700,
         color: brand.c,
         whiteSpace: "nowrap",
-        minWidth: 100,
+        minWidth: 80,
         textAlign: "center",
-        fontFamily: "'Inter', 'DM Sans', sans-serif",
+        fontFamily: "'DM Sans', 'Inter', sans-serif",
+        letterSpacing: "0.5px",
       }}>
         {brand.n}
       </span>
@@ -43,10 +45,13 @@ export default function BrandLogo({ brand }) {
     <img
       src={`/logos/${file}`}
       alt={brand.n}
-      style={{ height: 24, objectFit: "contain", maxWidth: 120, minWidth: 60, opacity: 0.7, transition: "opacity 0.2s ease" }}
+      style={{
+        height: 28,
+        objectFit: "contain",
+        maxWidth: 140,
+        minWidth: 60,
+      }}
       onError={() => setErr(true)}
-      onMouseEnter={e => e.currentTarget.style.opacity = "1"}
-      onMouseLeave={e => e.currentTarget.style.opacity = "0.7"}
     />
   );
 }

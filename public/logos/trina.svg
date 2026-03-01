@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50"><text x="0" y="32" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="bold" fill="#cc0000">Trina</text><text x="80" y="32" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="bold" fill="#333">Solar</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 48">
+  <path d="M16 12 L24 24 L16 36 L8 24 Z" fill="#cc0000"/>
+  <text x="78" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#cc0000" letter-spacing="1">Trina</text>
+  <text x="148" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="500" fill="#555">Solar</text>
+</svg>

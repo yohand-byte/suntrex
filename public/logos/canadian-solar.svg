@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 50">
-  <defs><style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700');</style></defs>
-  <text x="140" y="35" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#003ca6">Canadian Solar</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 48">
+  <path d="M16 10 L20 20 L28 16 L24 24 L32 24 L24 28 L28 36 L20 30 L16 38 L12 30 L4 36 L8 28 L0 24 L8 24 L4 16 L12 20 Z" fill="#c00" opacity="0.8"/>
+  <text x="150" y="28" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#003ca6" letter-spacing="2">CANADIAN SOLAR</text>
+  <line x1="40" y1="38" x2="254" y2="38" stroke="#003ca6" stroke-width="0.8" opacity="0.3"/>
 </svg>

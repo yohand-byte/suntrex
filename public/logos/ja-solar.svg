@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
-  <defs><style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;800');</style></defs>
-  <text x="52" y="36" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#003da6">JA</text>
-  <text x="120" y="36" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="600" fill="#003da6">Solar</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 48">
+  <circle cx="22" cy="24" r="16" fill="#003da6"/>
+  <text x="22" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="800" fill="#fff">JA</text>
+  <text x="116" y="28" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#003da6" letter-spacing="4" text-transform="uppercase">S O L A R</text>
+  <line x1="50" y1="38" x2="182" y2="38" stroke="#003da6" stroke-width="1" opacity="0.4"/>
 </svg>
