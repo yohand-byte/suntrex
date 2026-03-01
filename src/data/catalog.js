@@ -682,9 +682,9 @@ const KEYWORD_IMAGE_RULES = [
   { keywords: ["hp3"], brand_hint: "DEYE", image: "/products/deye/deye-tri-hp3.webp" },
 
   // --- SPECIFIC BATTERY MODELS ---
-  { keywords: ["luna2000-5-e0", "luna2000-5kw", "luna2000-5-s0"], image: "/products/huawei/huawei-luna2000-module.webp" },
-  { keywords: ["dc-luna", "luna2000-c0"], image: "/products/huawei/huawei-luna2000-dc.webp" },
-  { keywords: ["luna2000", "luna"], image: "/products/huawei/huawei-luna2000-module.webp" },
+  { keywords: ["luna2000-5-e0", "luna2000-5kw", "luna2000-5-s0"], image: "/products/huawei/luna2000-5-e0.png" },
+  { keywords: ["dc-luna", "luna2000-c0", "luna2000-5kw-c0"], image: "/products/huawei/luna2000-c0.png" },
+  { keywords: ["luna2000", "luna"], image: "/products/huawei/luna2000-5-e0.png" },
   { keywords: ["back-up box", "backup box", "back up", "bat-back"], image: "/products/huawei/huawei-backup-box.webp" },
   { keywords: ["bos-gm", "bos gm"], brand_hint: "DEYE", image: "/products/deye/deye-battery-bos.webp" },
   { keywords: ["se-g5", "se g5"], brand_hint: "DEYE", image: "/products/deye/deye-battery-se-g5.webp" },

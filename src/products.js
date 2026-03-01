@@ -440,7 +440,7 @@ const PRODUCTS = [
     stock: 50,
     minOrder: 1,
     seller: "QUALIWATT",
-    image: "/products/huawei/luna2000-5-e0.jpg",
+    image: "/products/huawei/luna2000-c0.png",
     datasheet: "/datasheets/luna2000-s0.pdf",
   },
   {
@@ -466,7 +466,7 @@ const PRODUCTS = [
     stock: 80,
     minOrder: 1,
     seller: "QUALIWATT",
-    image: "/products/huawei/luna2000-5-e0.jpg",
+    image: "/products/huawei/luna2000-5-e0.png",
     datasheet: "/datasheets/luna2000-s0.pdf",
   },
 
@@ -492,7 +492,7 @@ const PRODUCTS = [
     stock: 100,
     minOrder: 10,
     seller: "QUALIWATT",
-    image: "/products/huawei/p1300.jpg",
+    image: "/products/huawei/p1300.png",
     datasheet: "/datasheets/merc-1300-p.pdf",
   },
 
@@ -796,10 +796,24 @@ const PRODUCTS = [
 import ZOHO_PRODUCTS from "./data/zoho-products.json";
 
 // Deduplicate: hardcoded PRODUCTS take priority (they have richer data)
-const hardcodedSkus = new Set(PRODUCTS.map(p => p.sku.toUpperCase()));
+// Normalize SKU: strip vendor prefix (HUA/, DEY/...) AND common prefixes (BAT-, BAT-DC-, SMART-)
+const normalizeSku = (sku) =>
+  (sku || "").toUpperCase()
+    .replace(/^(HUA|DEY|HOY|PYT|ESD|K2S|APS?)\//i, "")
+    .replace(/^(BAT-DC-|BAT-|SMART-)/i, "")
+    .replace(/-5KW-/, "-");  // LUNA2000-5KW-C0 → LUNA2000-C0 to match zoho variant
+const hardcodedSkus = new Set(PRODUCTS.map(p => normalizeSku(p.sku)));
+// Also build a set of model name keys for fuzzy matching (catches "KIT BATTERIE 10 KWH HUAWEI" etc.)
+const hardcodedModels = new Set(PRODUCTS.map(p => p.name.toUpperCase().replace(/[^A-Z0-9]/g, "")));
 const uniqueZoho = ZOHO_PRODUCTS.filter(p => {
-  const zSku = (p.sku || "").toUpperCase().replace(/^(HUA|DEY|HOY|PYT|ESD|K2S|AP)\//i, "");
-  return !hardcodedSkus.has(zSku);
+  const zSku = normalizeSku(p.sku);
+  if (zSku && hardcodedSkus.has(zSku)) return false;
+  // Fuzzy name check: if zoho name contains a hardcoded product's full model reference, skip it
+  const zNameKey = (p.name || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+  for (const hm of hardcodedModels) {
+    if (hm.length > 15 && zNameKey.includes(hm.substring(0, 20))) return false;
+  }
+  return true;
 });
 const ALL_PRODUCTS = [...PRODUCTS, ...uniqueZoho];
 
