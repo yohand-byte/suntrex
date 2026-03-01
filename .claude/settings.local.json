@@ -6,7 +6,9 @@
       "Bash(npx vite:*)",
       "Bash(git push:*)",
       "Bash(curl:*)",
-      "Bash(kill %1:*)"
+      "Bash(kill %1:*)",
+      "Bash(npx netlify:*)",
+      "Bash(npx vercel:*)"
     ]
   }
 }

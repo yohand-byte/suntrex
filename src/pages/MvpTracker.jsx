@@ -131,6 +131,22 @@ const MODULES = [
     { name: "Suivi vendeurs + KYC status", done: true },
     { name: "Brancher sur donnees reelles (useDashboardData hook)", done: true },
   ]},
+    { id: "blog", phase: "mvp", part: "Content", name: "Blog SUNTREX Insights", tasks: [
+    { name: "SuntrexBlog.jsx composant principal (688 lignes)", done: true },
+    { name: "BlogPage.jsx route /blog", done: true },
+    { name: "8 articles fondateurs", done: true },
+    { name: "Filtres par categorie (6 categories)", done: true },
+    { name: "Recherche articles", done: true },
+    { name: "Articles A la une hero 2 colonnes", done: true },
+    { name: "Sidebar newsletter + sujets populaires + stats + RSS", done: true },
+    { name: "Photos reelles par article", done: true },
+    { name: "Tags + temps de lecture + engagement metrics", done: true },
+    { name: "blogService.js service layer (243 lignes)", done: true },
+    { name: "blog-ai-generate.js Netlify Function Mistral (143 lignes)", done: true },
+    { name: "Supabase migrations blog system", done: true },
+    { name: "Brancher sur Supabase articles dynamiques", done: false },
+    { name: "Generateur IA articles admin", done: false },
+  ]},
   // PHASE 2
   { id: "delivery", phase: "trust", part: "Delivery", name: "Livraison & Tracking", tasks: [
     { name: "DeliveryTrackerPage.jsx (421 lignes)", done: true },
