@@ -18,6 +18,24 @@ const CATEGORIES = {
   suntrex: "SUNTREX News",
 };
 
+const CATEGORY_IMAGES = {
+  market: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=900&q=80",
+  tech: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=900&q=80",
+  guides: "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?w=900&q=80",
+  brand: "https://images.unsplash.com/photo-1592833159117-ac62bc51e9be?w=900&q=80",
+  regulation: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=900&q=80",
+  suntrex: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80",
+};
+
+const CATEGORY_OVERLAYS = {
+  market: "linear-gradient(135deg, rgba(26,58,92,0.82) 0%, rgba(232,145,10,0.65) 100%)",
+  tech: "linear-gradient(135deg, rgba(10,22,40,0.82) 0%, rgba(232,112,10,0.7) 100%)",
+  guides: "linear-gradient(135deg, rgba(26,90,166,0.82) 0%, rgba(197,135,15,0.7) 100%)",
+  brand: "linear-gradient(135deg, rgba(228,0,43,0.75) 0%, rgba(0,104,183,0.75) 100%)",
+  regulation: "linear-gradient(135deg, rgba(0,38,84,0.82) 0%, rgba(206,17,38,0.65) 100%)",
+  suntrex: "linear-gradient(135deg, rgba(232,112,10,0.8) 0%, rgba(45,143,62,0.75) 100%)",
+};
+
 export default async function handler(req, res) {
   // CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -76,6 +94,10 @@ export default async function handler(req, res) {
       contentStr = Object.values(contentStr).join("\n\n");
     }
 
+    // Assign category-based hero image and overlay
+    const image = CATEGORY_IMAGES[category] || CATEGORY_IMAGES.market;
+    const overlay = CATEGORY_OVERLAYS[category] || CATEGORY_OVERLAYS.market;
+
     // Build article object
     const article = {
       slug: parsed.slug || topic.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 80),
@@ -86,7 +108,9 @@ export default async function handler(req, res) {
       author_name: "SUNTREX AI",
       author_avatar: "🤖",
       tags: parsed.tags || [],
-      hero_gradient: "linear-gradient(135deg, #1a1a18 0%, #E8700A 100%)",
+      image,
+      overlay,
+      hero_gradient: overlay,
       featured: false,
       published: false,
       read_time: parsed.read_time || 5,
