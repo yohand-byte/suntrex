@@ -65,7 +65,7 @@ exports.handler = async (event) => {
           },
         ],
         temperature: 0.7,
-        max_tokens: 2000,
+        max_tokens: 3000,
         response_format: { type: "json_object" },
       }),
     });
@@ -83,12 +83,18 @@ exports.handler = async (event) => {
     const data = await response.json();
     const parsed = JSON.parse(data.choices[0].message.content);
 
+    // Mistral may return content as a structured object instead of a string
+    let contentStr = parsed.content;
+    if (typeof contentStr === "object" && contentStr !== null) {
+      contentStr = Object.values(contentStr).join("\n\n");
+    }
+
     // Build article object
     const article = {
       slug: parsed.slug || topic.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 80),
       title: parsed.title,
       excerpt: parsed.excerpt,
-      content: parsed.content,
+      content: contentStr,
       category,
       author_name: "SUNTREX AI",
       author_avatar: "🤖",
