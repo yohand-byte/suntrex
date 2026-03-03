@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>SUNTREX Blog</title>
+    <link>https://suntrex.vercel.app/blog</link>
+    <description>Actualités et guides B2B photovoltaïque</description>
+    <language>fr</language>
+    <item>
+      <title>SUNTREX Blog</title>
+      <link>https://suntrex.vercel.app/blog</link>
+      <guid>https://suntrex.vercel.app/blog</guid>
+      <description>Derniers contenus publiés sur le blog SUNTREX.</description>
+    </item>
+  </channel>
+</rss>
