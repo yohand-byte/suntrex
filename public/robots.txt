@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /auth
+Disallow: /dashboard
 
 Sitemap: https://suntrex.vercel.app/sitemap.xml

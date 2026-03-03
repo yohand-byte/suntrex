@@ -12,10 +12,4 @@
   <url>
     <loc>https://suntrex.vercel.app/faq</loc>
   </url>
-  <url>
-    <loc>https://suntrex.vercel.app/auth</loc>
-  </url>
-  <url>
-    <loc>https://suntrex.vercel.app/dashboard</loc>
-  </url>
 </urlset>
