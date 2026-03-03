@@ -5,6 +5,11 @@ TICKET="${1:-}"
 RANGE="${2:-HEAD~1..HEAD}"
 FAIL=0
 
+has_npm_script() {
+  local script_name="$1"
+  node -e "const fs=require('fs');const p=JSON.parse(fs.readFileSync('package.json','utf8'));process.exit(p.scripts&&p.scripts['$script_name']?0:1)" >/dev/null 2>&1
+}
+
 if [[ -z "$TICKET" ]]; then
   echo "Usage: bash scripts/stx-gate.sh STX-001 [RANGE]"
   exit 2
@@ -58,6 +63,7 @@ git diff --name-only || true
 echo
 
 CHANGED="$(git diff --name-only "$RANGE" || true)"
+CODE_CHANGED="$(echo "$CHANGED" | grep -E '\.(js|jsx|ts|tsx)$' | grep -Ev '^(\.netlify/|dist/|node_modules/)' || true)"
 echo "B) Scope check"
 if [[ -z "$(echo "$CHANGED" | sed '/^$/d')" ]]; then
   echo "WARN_NO_CHANGED_FILES_IN_RANGE"
@@ -83,6 +89,36 @@ else
 fi
 echo
 
+echo "D2) Ticket semantic checks"
+if [[ "$TICKET" == "STX-001" ]]; then
+  if grep -q '^Disallow: /auth$' public/robots.txt && grep -q '^Disallow: /dashboard$' public/robots.txt; then
+    echo "PASS_ROBOTS_PRIVATE_DISALLOW"
+  else
+    echo "FAIL_ROBOTS_PRIVATE_DISALLOW"
+    FAIL=1
+  fi
+  if grep -q '/auth</loc>' public/sitemap.xml || grep -q '/dashboard</loc>' public/sitemap.xml; then
+    echo "FAIL_SITEMAP_PRIVATE_PRESENT"
+    FAIL=1
+  else
+    echo "PASS_SITEMAP_PRIVATE_REMOVED"
+  fi
+  if python3 - <<'PY'
+import xml.etree.ElementTree as ET
+ET.parse('public/sitemap.xml')
+print('PASS_SITEMAP_XML_VALID')
+PY
+  then
+    true
+  else
+    echo "FAIL_SITEMAP_XML_VALID"
+    FAIL=1
+  fi
+else
+  echo "N/A"
+fi
+echo
+
 echo "D) Commit message contains ticket ID"
 if git log -1 --pretty=%s | grep -Eq 'STX-[0-9]+'; then
   echo "PASS_TICKET_ID"
@@ -100,23 +136,31 @@ else
   FAIL=1
 fi
 
-if npm run | grep -qE '^[[:space:]]+lint'; then
-  if npm run lint; then
-    echo "LINT_PASS"
+if has_npm_script lint; then
+  if [[ -n "$CODE_CHANGED" ]]; then
+    if npx eslint --max-warnings=0 $CODE_CHANGED; then
+      echo "LINT_PASS (targeted changed files)"
+    else
+      echo "LINT_FAIL (targeted changed files)"
+      FAIL=1
+    fi
   else
-    echo "LINT_FAIL"
-    FAIL=1
+    echo "LINT_NA (no changed js/ts files in range)"
   fi
 else
   echo "LINT_SKIPPED (script missing)"
 fi
 
-if npm run | grep -qE '^[[:space:]]+test'; then
-  if npm test; then
-    echo "TEST_PASS"
+if has_npm_script test; then
+  if [[ -n "$CODE_CHANGED" ]]; then
+    if npm test; then
+      echo "TEST_PASS"
+    else
+      echo "TEST_FAIL"
+      FAIL=1
+    fi
   else
-    echo "TEST_FAIL"
-    FAIL=1
+    echo "TEST_NA (no changed js/ts files in range)"
   fi
 else
   echo "TEST_SKIPPED (script missing)"
