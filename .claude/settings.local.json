@@ -10,7 +10,10 @@
       "Bash(npx netlify:*)",
       "Bash(npx vercel:*)",
       "Bash(npm run:*)",
-      "Bash(chmod +x:*)"
+      "Bash(chmod +x:*)",
+      "Bash(./push-multivendor.sh:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
