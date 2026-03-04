@@ -1,7 +1,8 @@
 {
-  "buildCommand": "npx vite build",
+  "buildCommand": "vite build",
   "outputDirectory": "dist",
   "framework": "vite",
+  "functions": {},
   "routes": [
     {
       "src": "^/(.*)$",
@@ -16,8 +17,6 @@
       "continue": true
     },
     { "handle": "filesystem" },
-    { "src": "^/api/messages/([^/]+)$", "methods": ["GET"], "dest": "/api/messages?transactionId=$1" },
-    { "src": "^/api/(.*)$", "dest": "/api/not-found" },
     { "src": "^/(.*)$", "dest": "/index.html" }
   ]
 }
