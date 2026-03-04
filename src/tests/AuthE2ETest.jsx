@@ -646,7 +646,7 @@ function defineTests(supabase, isLive = false) {
               consent_type: "cgv",
               granted: true,
               granted_at: now,
-            }, { onConflict: "user_id" }).select().single();
+            }, { onConflict: "user_id,consent_type" }).select().single();
             assert(error === null, `Consent loggé: ${error?.message || "OK"}`);
             assert(data.granted === true || data.granted_at, "CGV consent granted");
             return `Consent CGV horodaté @ ${now.slice(0, 19)}`;
