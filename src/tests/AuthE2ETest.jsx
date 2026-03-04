@@ -121,7 +121,7 @@ function createMockSupabase() {
         return { error: null };
       },
 
-      resetPasswordForEmail: async (email) => {
+      resetPasswordForEmail: async (email, options = {}) => {
         await delay(300);
         if (!users[email]) return { data: null, error: null }; // Don't leak user existence
         return { data: {}, error: null };
@@ -144,7 +144,7 @@ function createMockSupabase() {
         return { data: Array.isArray(data) ? data.map((d, i) => ({ ...d, id: i + 1 })) : { ...data, id: 1 }, error: null };
       },
       select: () => ({ eq: () => ({ single: async () => ({ data: null, error: null }) }) }),
-      upsert: async (data) => { await delay(150); return { data, error: null }; },
+      upsert: async (data, options = {}) => { await delay(150); const r = { data, error: null }; r.select = () => ({ single: async () => ({ data, error: null }) }); return r; },
     }),
 
     _confirmEmail: (email) => {
