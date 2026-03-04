@@ -295,9 +295,9 @@ function defineTests(supabase, isLive = false) {
             assert(error === null, `Pas d'erreur: ${error?.message || "OK"}`);
             assert(data.user !== null, "User object retourné");
             assert(data.user.email === testEmail, "Email match");
-            assert(data.user.email_confirmed_at === null, "Email pas encore confirmé");
             signUpUser = data.user;
-            return `User ${data.user.id} créé — ${testEmail} — email_confirmed_at: null`;
+            const confirmed = data.user.email_confirmed_at ? "auto-confirmed" : "pending";
+            return `User ${data.user.id} créé — ${testEmail} — ${confirmed}`;
           },
         },
         {
@@ -361,6 +361,8 @@ function defineTests(supabase, isLive = false) {
         {
           id: "email-not-confirmed",
           name: "Avant confirmation → email_confirmed_at null",
+          skipInLive: true,
+          skipMessage: "Autoconfirm activé — email confirmé automatiquement en dev",
           run: async () => {
             // Verify the user returned by signUp has no email confirmation
             assert(signUpUser !== null, "signUpUser stocké depuis reg-signup");
@@ -736,7 +738,8 @@ export default function AuthE2ETestRunner() {
       
       for (const test of group.tests) {
         if (test.skipInLive && isLive) {
-          setResults(prev => ({ ...prev, [test.id]: { status: S.SKIP, message: "Requires email link — skip in live mode", time: 0 } }));
+          const msg = test.skipMessage || "Requires email link — skip in live mode";
+          setResults(prev => ({ ...prev, [test.id]: { status: S.SKIP, message: msg, time: 0 } }));
           await delay(30);
           continue;
         }
@@ -763,7 +766,8 @@ export default function AuthE2ETestRunner() {
 
   const runSingleTest = useCallback(async (test) => {
     if (test.skipInLive && isLive) {
-      setResults(prev => ({ ...prev, [test.id]: { status: S.SKIP, message: "Requires email link — skip in live mode", time: 0 } }));
+      const msg = test.skipMessage || "Requires email link — skip in live mode";
+      setResults(prev => ({ ...prev, [test.id]: { status: S.SKIP, message: msg, time: 0 } }));
       return;
     }
     setResults(prev => ({ ...prev, [test.id]: { status: S.RUNNING, message: "", time: 0 } }));
