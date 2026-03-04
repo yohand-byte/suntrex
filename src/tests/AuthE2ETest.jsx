@@ -901,6 +901,12 @@ export default function AuthE2ETestRunner() {
             <span style={{ color: T.red, fontWeight: 700 }}>✗ {failed}</span>
             <span style={{ color: T.textDim }}>failed</span>
           </div>
+          {warns > 0 && (
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <span style={{ color: T.yellow, fontWeight: 700 }}>⚠ {warns}</span>
+              <span style={{ color: T.textDim }}>warn</span>
+            </div>
+          )}
           {skipped > 0 && (
             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
               <span style={{ color: T.yellow, fontWeight: 700 }}>⊘ {skipped}</span>
@@ -908,7 +914,7 @@ export default function AuthE2ETestRunner() {
             </div>
           )}
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ color: T.textDim, fontWeight: 700 }}>{totalTests - passed - failed - skipped}</span>
+            <span style={{ color: T.textDim, fontWeight: 700 }}>{totalTests - passed - failed - skipped - warns}</span>
             <span style={{ color: T.textDim }}>pending</span>
           </div>
 
@@ -916,7 +922,7 @@ export default function AuthE2ETestRunner() {
           <div style={{ flex: 1, height: 6, background: T.bg, borderRadius: 3, overflow: "hidden" }}>
             <div style={{
               height: "100%", borderRadius: 3, transition: "width .3s",
-              width: `${((passed + failed + skipped) / totalTests) * 100}%`,
+              width: `${((passed + failed + skipped + warns) / totalTests) * 100}%`,
               background: failed > 0
                 ? `linear-gradient(90deg, ${T.green} 0%, ${T.green} ${(passed/(passed+failed))*100}%, ${T.red} ${(passed/(passed+failed))*100}%, ${T.red} 100%)`
                 : T.green,
@@ -929,7 +935,7 @@ export default function AuthE2ETestRunner() {
             </span>
           )}
 
-          {endTime && failed === 0 && (passed + skipped) === totalTests && (
+          {endTime && failed === 0 && (passed + skipped + warns) === totalTests && (
             <span style={{
               background: T.greenLight, color: T.green, border: `1px solid ${T.greenBorder}`,
               padding: "3px 10px", borderRadius: 4, fontSize: 10, fontWeight: 700,
