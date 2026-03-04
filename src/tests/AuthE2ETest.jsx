@@ -523,18 +523,19 @@ function defineTests(supabase, isLive = false) {
           id: "forgot-send",
           name: "resetPasswordForEmail → email envoyé",
           run: async () => {
-            const { error } = await supabase.auth.resetPasswordForEmail(testEmail);
-            assert(error === null, "Pas d'erreur");
-            return `Email de reset envoyé à ${testEmail}`;
+            const redirectTo = `${window.location.origin}/reset-password`;
+            const { error } = await supabase.auth.resetPasswordForEmail(testEmail, { redirectTo });
+            assert(error === null, `Pas d'erreur (${error?.message ?? "ok"})`);
+            return `Reset email → ${testEmail} | redirect: ${redirectTo}`;
           },
         },
         {
           id: "forgot-unknown",
           name: "Email inconnu → pas de leak",
           run: async () => {
-            const { error } = await supabase.auth.resetPasswordForEmail("unknown@fake.com");
-            // Security: should NOT leak if user exists
-            assert(error === null, "Pas d'erreur (pas de leak)");
+            const redirectTo = `${window.location.origin}/reset-password`;
+            const { error } = await supabase.auth.resetPasswordForEmail("unknown@fake.com", { redirectTo });
+            assert(error === null, `Pas d'erreur (${error?.message ?? "ok"})`);
             return "Même réponse pour email connu/inconnu ✓";
           },
         },
