@@ -334,11 +334,13 @@ function defineTests(supabase, isLive = false) {
           id: "reg-profile-insert",
           name: "Profile créé via trigger",
           run: async () => {
-            const { data, error } = await supabase.from("profiles").select("*").eq("user_id", signUpUserId).single();
+            // profiles PK = id (same as auth.users.id), not user_id
+            const { data, error } = await supabase.from("profiles").select("*").eq("id", signUpUserId).single();
             assert(error === null, `Pas d'erreur: ${error?.message || "OK"}`);
             assert(data !== null, "Profile créé via trigger");
             assert(data.first_name === testUser.firstName, "first_name match");
-            return "Profile + company créés automatiquement via trigger";
+            assert(data.country_code === testUser.country, "country_code match");
+            return "Profile créé automatiquement via trigger";
           },
         },
       ],

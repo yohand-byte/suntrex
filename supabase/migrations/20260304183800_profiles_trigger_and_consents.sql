@@ -1,9 +1,14 @@
--- ═══ 1. Trigger: auto-create profile + company on signUp ═══
+-- ═══ 1. Trigger: auto-create profile on signUp ═══
+-- profiles: PK = id (not user_id), country_code (not country), role default 'buyer'
+-- Company: camelCase (Prisma), no FK to auth.users — skip auto-insert
+
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
+DROP FUNCTION IF EXISTS public.handle_new_user();
+
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS trigger AS $$
 BEGIN
-  -- Insert profile
-  INSERT INTO public.profiles (user_id, email, first_name, last_name, phone, preferred_language, preferred_currency, role, country)
+  INSERT INTO public.profiles (id, email, first_name, last_name, phone, preferred_language, preferred_currency, role, country_code, company_name, vat_number)
   VALUES (
     NEW.id,
     NEW.email,
@@ -12,27 +17,20 @@ BEGIN
     COALESCE(NEW.raw_user_meta_data->>'phone', ''),
     COALESCE(NEW.raw_user_meta_data->>'preferred_language', 'fr'),
     COALESCE(NEW.raw_user_meta_data->>'preferred_currency', 'EUR'),
-    COALESCE(NEW.raw_user_meta_data->>'role', 'installer'),
-    COALESCE(NEW.raw_user_meta_data->>'country', 'FR')
-  )
-  ON CONFLICT (user_id) DO NOTHING;
-
-  -- Insert company
-  INSERT INTO public.companies (user_id, name, vat_number, country)
-  VALUES (
-    NEW.id,
+    COALESCE(NEW.raw_user_meta_data->>'role', 'buyer'),
+    COALESCE(NEW.raw_user_meta_data->>'country', 'FR'),
     COALESCE(NEW.raw_user_meta_data->>'company_name', ''),
-    COALESCE(NEW.raw_user_meta_data->>'vat_number', ''),
-    COALESCE(NEW.raw_user_meta_data->>'country', 'FR')
+    COALESCE(NEW.raw_user_meta_data->>'vat_number', '')
   )
-  ON CONFLICT (user_id) DO NOTHING;
+  ON CONFLICT (id) DO NOTHING;
+
+  -- Company table uses camelCase (Prisma) and has no user_id FK
+  -- Sellers create their Company during seller onboarding flow
 
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
--- Drop if exists then create trigger
-DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();

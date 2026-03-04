@@ -16,7 +16,8 @@
       "Bash(git commit:*)",
       "Bash(supabase:*)",
       "Bash(source:*)",
-      "Bash(npx supabase:*)"
+      "Bash(npx supabase:*)",
+      "Bash(__NEW_LINE_cfeb506da2119f73__ echo:*)"
     ]
   }
 }
