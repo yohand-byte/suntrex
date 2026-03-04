@@ -189,6 +189,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
   const [sirenVerified, setSirenVerified] = useState(false);
   const [sirenError, setSirenError] = useState("");
   const [sirenData, setSirenData] = useState(null);
+  const [sirenSkipped, setSirenSkipped] = useState(false); // API down → allow manual entry
   const fileInputRef = { current: null };
 
   const update = (key, val) => { setForm(prev => ({...prev, [key]: val})); setError(""); };
@@ -223,11 +224,13 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
         city: siege?.libelle_commune || prev.city,
       }));
     } catch (err) {
-      setSirenError(
-        err.message === "not_found"
-          ? t("auth.register.validation.siretNotFound")
-          : t("auth.register.validation.siretApiError")
-      );
+      if (err.message === "not_found") {
+        setSirenError(t("auth.register.validation.siretNotFound"));
+      } else {
+        // API down or network error — allow manual entry
+        setSirenError("Vérification SIRET indisponible — vous pouvez continuer manuellement");
+        setSirenSkipped(true);
+      }
     }
     setSirenLoading(false);
   };
@@ -257,7 +260,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
       const phoneResult = validatePhone(t, form.phone, form.country);
       const vatResult = validateVat(t, form.vatNumber, form.country);
       const base = form.companyName.trim() && phoneResult.valid && vatResult.valid && form.country && form.address.trim() && form.postalCode.trim() && form.city.trim();
-      if (form.country === "FR") return base && form.siret.replace(/\s/g,"").length >= 9 && sirenVerified;
+      if (form.country === "FR") return base && form.siret.replace(/\s/g,"").length >= 9 && (sirenVerified || sirenSkipped);
       return base;
     }
     if (step === 2) return form.kycDocUploaded && form.kycFileName;
@@ -272,7 +275,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
       if (!form.consentCGV) { setError(t("auth.register.validation.consentRequired")); return; }
     }
     if (step === 1) {
-      if (form.country === "FR" && !sirenVerified) { setError(t("auth.register.validation.siretVerifyFirst")); return; }
+      if (form.country === "FR" && !sirenVerified && !sirenSkipped) { setError(t("auth.register.validation.siretVerifyFirst")); return; }
       if (!form.companyName.trim()) { setError(t("auth.register.validation.companyNameRequired")); return; }
       const vatResult = validateVat(t, form.vatNumber, form.country);
       if (!vatResult.valid) { setVatError(vatResult.error); setError(vatResult.error); return; }
@@ -556,7 +559,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                     update("phone", cfg.phonePrefix + " ");
                     update("vatNumber", "");
                     setPhoneError(""); setVatError("");
-                    setSirenVerified(false);setSirenError("");setSirenData(null);
+                    setSirenVerified(false);setSirenSkipped(false);setSirenError("");setSirenData(null);
                   }}
                     style={{...S.input,cursor:"pointer",appearance:"auto"}}>
                     {COUNTRIES.map(c => <option key={c.code} value={c.code}>{c.flag} {t("auth.countries." + c.code)}</option>)}
@@ -569,7 +572,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                     <label style={S.label}>{t("auth.register.step1.siretLabel")}</label>
                     <div style={{display:"flex",gap:8}}>
                       <input value={form.siret}
-                        onChange={e=>{update("siret",e.target.value);setSirenVerified(false);setSirenError("");setSirenData(null)}}
+                        onChange={e=>{update("siret",e.target.value);setSirenVerified(false);setSirenSkipped(false);setSirenError("");setSirenData(null)}}
                         onKeyDown={e=>{if(e.key==="Enter"){e.preventDefault();lookupSiret()}}}
                         placeholder="Ex: 853 655 363 00036"
                         style={{...S.input,flex:1,...(sirenVerified?{borderColor:"#4CAF50",background:"#f0fdf4"}:sirenError?{borderColor:"#dc2626",background:"#fef2f2"}:{})}}
