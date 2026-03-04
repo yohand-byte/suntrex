@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { createClient } from "@supabase/supabase-js";
 
 /* ═══════════════════════════════════════════════════════════════════
    SUNTREX — Auth E2E Test Runner
@@ -153,12 +154,24 @@ function createMockSupabase() {
   };
 }
 
+// ═══════════════════════════════════════════════════════════════
+// LIVE SUPABASE CLIENT (uses real env vars)
+// ═══════════════════════════════════════════════════════════════
+function createLiveSupabase() {
+  const url = import.meta.env.VITE_SUPABASE_URL;
+  const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
+  if (!url || !key) return null;
+  return createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+}
+
 function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 // ═══════════════════════════════════════════════════════════════
 // TEST DEFINITIONS
 // ═══════════════════════════════════════════════════════════════
-function defineTests(supabase) {
+function defineTests(supabase, isLive = false) {
   let testEmail = null;
   let signUpUser = null;
 
@@ -292,6 +305,7 @@ function defineTests(supabase) {
         {
           id: "reg-duplicate",
           name: "Inscription doublon → erreur",
+          skipInLive: true,
           run: async () => {
             const { error } = await supabase.auth.signUp({
               email: testEmail,
@@ -304,6 +318,7 @@ function defineTests(supabase) {
         {
           id: "reg-metadata",
           name: "Metadata utilisateur persistée",
+          skipInLive: true,
           run: async () => {
             const users = supabase._getUsers();
             const u = users[testEmail]?.user;
@@ -318,6 +333,7 @@ function defineTests(supabase) {
         {
           id: "reg-profile-insert",
           name: "Insert dans profiles + companies",
+          skipInLive: true,
           run: async () => {
             const { data: profile, error: pErr } = await supabase.from("profiles").insert({
               user_id: "usr_test",
@@ -359,6 +375,7 @@ function defineTests(supabase) {
         {
           id: "email-confirm",
           name: "Confirmation email (magic link sim.)",
+          skipInLive: true,
           run: async () => {
             supabase._confirmEmail(testEmail);
             const users = supabase._getUsers();
@@ -385,8 +402,8 @@ function defineTests(supabase) {
             });
             assert(error === null, `Pas d'erreur: ${error?.message || "OK"}`);
             assert(data.session !== null, "Session retournée");
-            assert(data.session.access_token.startsWith("at_"), "Access token valide");
-            assert(data.session.refresh_token.startsWith("rt_"), "Refresh token valide");
+            assert(data.session.access_token, "Access token présent");
+            assert(data.session.refresh_token, "Refresh token présent");
             assert(data.user.email === testEmail, "Email match");
             return `Token: ${data.session.access_token.slice(0,12)}... — expires_in: ${data.session.expires_in}s`;
           },
@@ -671,7 +688,6 @@ function assert(condition, message) {
 // TEST RUNNER UI
 // ═══════════════════════════════════════════════════════════════
 export default function AuthE2ETestRunner() {
-  const [supabase] = useState(() => createMockSupabase());
   const [testGroups, setTestGroups] = useState([]);
   const [results, setResults] = useState({});
   const [running, setRunning] = useState(false);
@@ -679,16 +695,37 @@ export default function AuthE2ETestRunner() {
   const [endTime, setEndTime] = useState(null);
   const [expandedGroups, setExpandedGroups] = useState({});
   const [mode, setMode] = useState("simulated"); // simulated | live
+  const [envError, setEnvError] = useState(null);
+  const supabaseRef = useRef(createMockSupabase());
   const logRef = useRef(null);
 
+  const isLive = mode === "live";
+
   useEffect(() => {
-    setTestGroups(defineTests(supabase));
-  }, [supabase]);
+    if (mode === "live") {
+      const client = createLiveSupabase();
+      if (!client) {
+        setEnvError("VITE_SUPABASE_URL ou VITE_SUPABASE_ANON_KEY manquant");
+        setMode("simulated");
+        return;
+      }
+      setEnvError(null);
+      supabaseRef.current = client;
+    } else {
+      setEnvError(null);
+      supabaseRef.current = createMockSupabase();
+    }
+    setTestGroups(defineTests(supabaseRef.current, mode === "live"));
+    setResults({});
+    setEndTime(null);
+    setStartTime(null);
+  }, [mode]);
 
   const allTests = testGroups.flatMap(g => g.tests);
   const totalTests = allTests.length;
   const passed = Object.values(results).filter(r => r.status === S.PASS).length;
   const failed = Object.values(results).filter(r => r.status === S.FAIL).length;
+  const skipped = Object.values(results).filter(r => r.status === S.SKIP).length;
   const warns = Object.values(results).filter(r => r.status === S.WARN).length;
 
   const runAllTests = useCallback(async () => {
@@ -702,8 +739,14 @@ export default function AuthE2ETestRunner() {
       setExpandedGroups(prev => ({ ...prev, [group.group]: true }));
       
       for (const test of group.tests) {
+        if (test.skipInLive && isLive) {
+          setResults(prev => ({ ...prev, [test.id]: { status: S.SKIP, message: "Ignoré en mode Live (mock-only)", time: 0 } }));
+          await delay(30);
+          continue;
+        }
+
         setResults(prev => ({ ...prev, [test.id]: { status: S.RUNNING, message: "", time: 0 } }));
-        
+
         const t0 = performance.now();
         try {
           const message = await test.run();
@@ -713,16 +756,20 @@ export default function AuthE2ETestRunner() {
           const time = Math.round(performance.now() - t0);
           setResults(prev => ({ ...prev, [test.id]: { status: S.FAIL, message: err.message, time } }));
         }
-        
+
         await delay(60); // Visual stagger
       }
     }
 
     setEndTime(Date.now());
     setRunning(false);
-  }, [testGroups]);
+  }, [testGroups, isLive]);
 
   const runSingleTest = useCallback(async (test) => {
+    if (test.skipInLive && isLive) {
+      setResults(prev => ({ ...prev, [test.id]: { status: S.SKIP, message: "Ignoré en mode Live (mock-only)", time: 0 } }));
+      return;
+    }
     setResults(prev => ({ ...prev, [test.id]: { status: S.RUNNING, message: "", time: 0 } }));
     const t0 = performance.now();
     try {
@@ -733,7 +780,7 @@ export default function AuthE2ETestRunner() {
       const time = Math.round(performance.now() - t0);
       setResults(prev => ({ ...prev, [test.id]: { status: S.FAIL, message: err.message, time } }));
     }
-  }, []);
+  }, [isLive]);
 
   const toggleGroup = (name) => setExpandedGroups(prev => ({ ...prev, [name]: !prev[name] }));
 
@@ -789,6 +836,15 @@ export default function AuthE2ETestRunner() {
             ))}
           </div>
 
+          {envError && (
+            <span style={{ fontSize: 10, color: T.red, fontWeight: 600 }}>⚠ {envError}</span>
+          )}
+          {isLive && !envError && (
+            <span style={{ fontSize: 9, color: T.orange, fontWeight: 600, background: T.orangeLight, padding: "3px 8px", borderRadius: 4 }}>
+              LIVE — Supabase réel
+            </span>
+          )}
+
           <button
             onClick={runAllTests}
             disabled={running}
@@ -826,8 +882,14 @@ export default function AuthE2ETestRunner() {
             <span style={{ color: T.red, fontWeight: 700 }}>✗ {failed}</span>
             <span style={{ color: T.textDim }}>failed</span>
           </div>
+          {skipped > 0 && (
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <span style={{ color: T.yellow, fontWeight: 700 }}>⊘ {skipped}</span>
+              <span style={{ color: T.textDim }}>skipped</span>
+            </div>
+          )}
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ color: T.textDim, fontWeight: 700 }}>{totalTests - passed - failed}</span>
+            <span style={{ color: T.textDim, fontWeight: 700 }}>{totalTests - passed - failed - skipped}</span>
             <span style={{ color: T.textDim }}>pending</span>
           </div>
 
@@ -835,7 +897,7 @@ export default function AuthE2ETestRunner() {
           <div style={{ flex: 1, height: 6, background: T.bg, borderRadius: 3, overflow: "hidden" }}>
             <div style={{
               height: "100%", borderRadius: 3, transition: "width .3s",
-              width: `${((passed + failed) / totalTests) * 100}%`,
+              width: `${((passed + failed + skipped) / totalTests) * 100}%`,
               background: failed > 0
                 ? `linear-gradient(90deg, ${T.green} 0%, ${T.green} ${(passed/(passed+failed))*100}%, ${T.red} ${(passed/(passed+failed))*100}%, ${T.red} 100%)`
                 : T.green,
@@ -848,7 +910,7 @@ export default function AuthE2ETestRunner() {
             </span>
           )}
 
-          {endTime && failed === 0 && passed === totalTests && (
+          {endTime && failed === 0 && (passed + skipped) === totalTests && (
             <span style={{
               background: T.greenLight, color: T.green, border: `1px solid ${T.greenBorder}`,
               padding: "3px 10px", borderRadius: 4, fontSize: 10, fontWeight: 700,
@@ -921,7 +983,7 @@ export default function AuthE2ETestRunner() {
                           display: "flex", alignItems: "center", gap: 10,
                           padding: "9px 14px",
                           borderBottom: ti < groupTests.length - 1 ? `1px solid ${T.border}` : "none",
-                          background: status === S.FAIL ? T.redLight : status === S.PASS ? T.greenLight : "transparent",
+                          background: status === S.FAIL ? T.redLight : status === S.PASS ? T.greenLight : status === S.SKIP ? T.yellowLight : "transparent",
                           cursor: "pointer",
                         }}
                         onClick={() => !running && runSingleTest(test)}
@@ -1004,14 +1066,24 @@ export default function AuthE2ETestRunner() {
               fontSize: 11, color: T.textSec, lineHeight: 1.6,
             }}>
               <div style={{ fontWeight: 700, color: T.text, marginBottom: 4 }}>
-                Prochaine étape : brancher sur Supabase réel
+                {isLive ? "Mode Live actif — Supabase réel" : "Mode Mock — basculer en Live pour tester le vrai Supabase"}
               </div>
               <code style={{ fontSize: 10, color: T.cyan }}>
-                1. Remplacer createMockSupabase() par import {"{"} supabase {"}"} from "../lib/supabaseClient"<br/>
-                2. Configurer VITE_SUPABASE_URL + VITE_SUPABASE_ANON_KEY<br/>
-                3. Passer mode → "live" pour tester contre la vraie DB<br/>
-                4. Vérifier les emails avec Supabase Mail (ou Resend)<br/>
-                5. Tester en incognito pour valider session persistence
+                {isLive ? (
+                  <>
+                    ● Connecté à {import.meta.env.VITE_SUPABASE_URL || "N/A"}<br/>
+                    ● Tests mock-only (metadata, email-confirm, profile-insert, duplicate) ignorés<br/>
+                    ● Chaque run crée un vrai user dans Supabase Auth<br/>
+                    ● Vérifier les emails avec Supabase Mail (ou Resend)
+                  </>
+                ) : (
+                  <>
+                    1. Configurer VITE_SUPABASE_URL + VITE_SUPABASE_ANON_KEY dans .env.local<br/>
+                    2. Basculer le toggle → "● Live" pour tester contre la vraie DB<br/>
+                    3. Les tests mock-only seront automatiquement ignorés<br/>
+                    4. Tester en incognito pour valider session persistence
+                  </>
+                )}
               </code>
             </div>
           </div>
