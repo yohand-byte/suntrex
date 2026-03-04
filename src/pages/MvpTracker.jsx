@@ -33,7 +33,7 @@ const MODULES = [
     { name: "Prix gated (blur + CTA)", done: true },
     { name: "Datasheets PDF (13 Huawei)", done: true },
     { name: "Routing correct", done: true },
-    { name: "Comparaison multi-vendeurs", done: false },
+    { name: "Comparaison multi-vendeurs", done: true },
     { name: "Enrichir images manquantes (75 produits)", done: false },
     { name: "Enrichir datasheets manquantes (185 produits)", done: false },
   ]},
