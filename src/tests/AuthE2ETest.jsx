@@ -618,7 +618,7 @@ function defineTests(supabase, isLive = false) {
               privacy_accepted_at: now,
               marketing_suntrex_at: null,
               marketing_partners_at: null,
-            }).select().single();
+            }, { onConflict: "user_id" }).select().single();
             assert(error === null, `Consent loggé: ${error?.message || "OK"}`);
             assert(data.cgv_accepted_at !== null, "CGV timestamped");
             return `Consentements horodatés : CGV + privacy @ ${now.slice(0, 19)}`;
