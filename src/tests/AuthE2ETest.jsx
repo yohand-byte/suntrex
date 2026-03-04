@@ -161,9 +161,7 @@ function createLiveSupabase() {
   const url = import.meta.env.VITE_SUPABASE_URL;
   const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
   if (!url || !key) return null;
-  return createClient(url, key, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
+  return createClient(url, key);
 }
 
 function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
@@ -305,7 +303,6 @@ function defineTests(supabase, isLive = false) {
         {
           id: "reg-duplicate",
           name: "Inscription doublon → erreur",
-          skipInLive: true,
           run: async () => {
             const { error } = await supabase.auth.signUp({
               email: testEmail,
@@ -333,7 +330,6 @@ function defineTests(supabase, isLive = false) {
         {
           id: "reg-profile-insert",
           name: "Insert dans profiles + companies",
-          skipInLive: true,
           run: async () => {
             const { data: profile, error: pErr } = await supabase.from("profiles").insert({
               user_id: "usr_test",
@@ -740,7 +736,7 @@ export default function AuthE2ETestRunner() {
       
       for (const test of group.tests) {
         if (test.skipInLive && isLive) {
-          setResults(prev => ({ ...prev, [test.id]: { status: S.SKIP, message: "Ignoré en mode Live (mock-only)", time: 0 } }));
+          setResults(prev => ({ ...prev, [test.id]: { status: S.SKIP, message: "Requires email link — skip in live mode", time: 0 } }));
           await delay(30);
           continue;
         }
@@ -767,7 +763,7 @@ export default function AuthE2ETestRunner() {
 
   const runSingleTest = useCallback(async (test) => {
     if (test.skipInLive && isLive) {
-      setResults(prev => ({ ...prev, [test.id]: { status: S.SKIP, message: "Ignoré en mode Live (mock-only)", time: 0 } }));
+      setResults(prev => ({ ...prev, [test.id]: { status: S.SKIP, message: "Requires email link — skip in live mode", time: 0 } }));
       return;
     }
     setResults(prev => ({ ...prev, [test.id]: { status: S.RUNNING, message: "", time: 0 } }));
