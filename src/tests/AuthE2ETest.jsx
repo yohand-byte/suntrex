@@ -213,7 +213,7 @@ function defineTests(supabase, isLive = false) {
           name: "Format email valide (regex)",
           run: async () => {
             const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const sampleEmail = `test.${Date.now()}@suntrex-e2e.com`;
+            const sampleEmail = `suntrex.test+${Date.now()}@gmail.com`;
             assert(regex.test(sampleEmail), "Email format valide");
             assert(!regex.test("not-an-email"), "Format invalide rejeté");
             assert(!regex.test("@domain.com"), "@ sans user rejeté");
@@ -276,7 +276,7 @@ function defineTests(supabase, isLive = false) {
           id: "reg-signup",
           name: "signUp → user créé (email non confirmé)",
           run: async () => {
-            testEmail = `test.${Date.now()}${Math.random().toString(36).slice(2,6)}@suntrex-e2e.com`;
+            testEmail = `suntrex.test+${Date.now()}${Math.random().toString(36).slice(2,6)}@gmail.com`;
             const { data, error } = await supabase.auth.signUp({
               email: testEmail,
               password: testUser.password,
