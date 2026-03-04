@@ -159,8 +159,10 @@ function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 // TEST DEFINITIONS
 // ═══════════════════════════════════════════════════════════════
 function defineTests(supabase) {
+  let testEmail = null;
+  let signUpUser = null;
+
   const testUser = {
-    email: `test.${Date.now()}@suntrex-e2e.com`,
     password: "SunTr3x!2026$ecure",
     firstName: "Pierre",
     lastName: "Durand",
@@ -200,7 +202,8 @@ function defineTests(supabase) {
           name: "Format email valide (regex)",
           run: async () => {
             const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            assert(regex.test(testUser.email), "Email format valide");
+            const sampleEmail = `test.${Date.now()}@suntrex-e2e.com`;
+            assert(regex.test(sampleEmail), "Email format valide");
             assert(!regex.test("not-an-email"), "Format invalide rejeté");
             assert(!regex.test("@domain.com"), "@ sans user rejeté");
             return "3/3 patterns validés";
@@ -262,8 +265,9 @@ function defineTests(supabase) {
           id: "reg-signup",
           name: "signUp → user créé (email non confirmé)",
           run: async () => {
+            testEmail = `test.${Date.now()}${Math.random().toString(36).slice(2,6)}@suntrex-e2e.com`;
             const { data, error } = await supabase.auth.signUp({
-              email: testUser.email,
+              email: testEmail,
               password: testUser.password,
               options: {
                 data: {
@@ -279,9 +283,10 @@ function defineTests(supabase) {
             });
             assert(error === null, `Pas d'erreur: ${error?.message || "OK"}`);
             assert(data.user !== null, "User object retourné");
-            assert(data.user.email === testUser.email, "Email match");
+            assert(data.user.email === testEmail, "Email match");
             assert(data.user.email_confirmed_at === null, "Email pas encore confirmé");
-            return `User ${data.user.id} créé — email_confirmed_at: null`;
+            signUpUser = data.user;
+            return `User ${data.user.id} créé — ${testEmail} — email_confirmed_at: null`;
           },
         },
         {
@@ -289,7 +294,7 @@ function defineTests(supabase) {
           name: "Inscription doublon → erreur",
           run: async () => {
             const { error } = await supabase.auth.signUp({
-              email: testUser.email,
+              email: testEmail,
               password: "AnotherPw123!",
             });
             assert(error !== null, "Devrait rejeter le doublon");
@@ -301,7 +306,7 @@ function defineTests(supabase) {
           name: "Metadata utilisateur persistée",
           run: async () => {
             const users = supabase._getUsers();
-            const u = users[testUser.email]?.user;
+            const u = users[testEmail]?.user;
             assert(u !== null, "User trouvé");
             assert(u.user_metadata.first_name === testUser.firstName, "first_name OK");
             assert(u.user_metadata.company_name === testUser.companyName, "company_name OK");
@@ -343,22 +348,21 @@ function defineTests(supabase) {
       tests: [
         {
           id: "email-not-confirmed",
-          name: "Avant confirmation → session null",
+          name: "Avant confirmation → email_confirmed_at null",
           run: async () => {
-            // In real Supabase, signUp with unconfirmed email returns session: null
-            const users = supabase._getUsers();
-            const u = users[testUser.email]?.user;
-            assert(u.email_confirmed_at === null, "Email pas confirmé");
-            return "email_confirmed_at === null → PriceGate reste actif";
+            // Verify the user returned by signUp has no email confirmation
+            assert(signUpUser !== null, "signUpUser stocké depuis reg-signup");
+            assert(signUpUser.email_confirmed_at === null, "email_confirmed_at === null");
+            return `User ${signUpUser.email} — email_confirmed_at: null → PriceGate reste actif`;
           },
         },
         {
           id: "email-confirm",
           name: "Confirmation email (magic link sim.)",
           run: async () => {
-            supabase._confirmEmail(testUser.email);
+            supabase._confirmEmail(testEmail);
             const users = supabase._getUsers();
-            const u = users[testUser.email]?.user;
+            const u = users[testEmail]?.user;
             assert(u.email_confirmed_at !== null, "Email confirmé");
             return `Confirmé à ${u.email_confirmed_at}`;
           },
@@ -376,14 +380,14 @@ function defineTests(supabase) {
           name: "signInWithPassword → session créée",
           run: async () => {
             const { data, error } = await supabase.auth.signInWithPassword({
-              email: testUser.email,
+              email: testEmail,
               password: testUser.password,
             });
             assert(error === null, `Pas d'erreur: ${error?.message || "OK"}`);
             assert(data.session !== null, "Session retournée");
             assert(data.session.access_token.startsWith("at_"), "Access token valide");
             assert(data.session.refresh_token.startsWith("rt_"), "Refresh token valide");
-            assert(data.user.email === testUser.email, "Email match");
+            assert(data.user.email === testEmail, "Email match");
             return `Token: ${data.session.access_token.slice(0,12)}... — expires_in: ${data.session.expires_in}s`;
           },
         },
@@ -392,7 +396,7 @@ function defineTests(supabase) {
           name: "Mauvais mot de passe → erreur",
           run: async () => {
             const { error } = await supabase.auth.signInWithPassword({
-              email: testUser.email,
+              email: testEmail,
               password: "wrong_password",
             });
             assert(error !== null, "Erreur retournée");
@@ -426,7 +430,7 @@ function defineTests(supabase) {
           run: async () => {
             const { data } = await supabase.auth.getSession();
             assert(data.session !== null, "Session active");
-            assert(data.session.user.email === testUser.email, "User email OK");
+            assert(data.session.user.email === testEmail, "User email OK");
             return `Session active — user: ${data.session.user.email}`;
           },
         },
@@ -452,7 +456,7 @@ function defineTests(supabase) {
             // Sign out then back in to trigger events
             await supabase.auth.signOut();
             await delay(50);
-            await supabase.auth.signInWithPassword({ email: testUser.email, password: testUser.password });
+            await supabase.auth.signInWithPassword({ email: testEmail, password: testUser.password });
             await delay(50);
             
             subscription.unsubscribe();
@@ -486,7 +490,7 @@ function defineTests(supabase) {
           name: "Re-login après signOut → OK",
           run: async () => {
             const { data, error } = await supabase.auth.signInWithPassword({
-              email: testUser.email,
+              email: testEmail,
               password: testUser.password,
             });
             assert(error === null, "Re-login OK");
@@ -506,9 +510,9 @@ function defineTests(supabase) {
           id: "forgot-send",
           name: "resetPasswordForEmail → email envoyé",
           run: async () => {
-            const { error } = await supabase.auth.resetPasswordForEmail(testUser.email);
+            const { error } = await supabase.auth.resetPasswordForEmail(testEmail);
             assert(error === null, "Pas d'erreur");
-            return `Email de reset envoyé à ${testUser.email}`;
+            return `Email de reset envoyé à ${testEmail}`;
           },
         },
         {
