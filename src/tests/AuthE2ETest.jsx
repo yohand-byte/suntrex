@@ -172,6 +172,7 @@ function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 function defineTests(supabase, isLive = false) {
   let testEmail = null;
   let signUpUser = null;
+  let signUpUserId = null;
 
   const testUser = {
     password: "SunTr3x!2026$ecure",
@@ -296,6 +297,7 @@ function defineTests(supabase, isLive = false) {
             assert(data.user !== null, "User object retourné");
             assert(data.user.email === testEmail, "Email match");
             signUpUser = data.user;
+            signUpUserId = data.user.id;
             const confirmed = data.user.email_confirmed_at ? "auto-confirmed" : "pending";
             return `User ${data.user.id} créé — ${testEmail} — ${confirmed}`;
           },
@@ -315,43 +317,28 @@ function defineTests(supabase, isLive = false) {
         {
           id: "reg-metadata",
           name: "Metadata utilisateur persistée",
-          skipInLive: true,
           run: async () => {
-            const users = supabase._getUsers();
-            const u = users[testEmail]?.user;
-            assert(u !== null, "User trouvé");
-            assert(u.user_metadata.first_name === testUser.firstName, "first_name OK");
-            assert(u.user_metadata.company_name === testUser.companyName, "company_name OK");
-            assert(u.user_metadata.country === testUser.country, "country OK");
-            assert(u.user_metadata.role === testUser.role, "role OK");
-            return `Metadata: ${Object.keys(u.user_metadata).length} champs persistés`;
+            const { data } = await supabase.auth.getUser();
+            const meta = data.user.user_metadata;
+            assert(meta.first_name === testUser.firstName, "first_name match");
+            assert(meta.last_name === testUser.lastName, "last_name match");
+            assert(meta.company_name === testUser.companyName, "company_name match");
+            assert(meta.country === testUser.country, "country match");
+            assert(meta.role === testUser.role, "role match");
+            assert(meta.phone === testUser.phone, "phone match");
+            assert(meta.vat_number === testUser.vatNumber, "vat_number match");
+            return "Metadata: 7 champs persistés";
           },
         },
         {
           id: "reg-profile-insert",
-          name: "Insert dans profiles + companies",
+          name: "Profile créé via trigger",
           run: async () => {
-            const { error: pErr } = await supabase.from("profiles").insert({
-              user_id: "usr_test",
-              first_name: testUser.firstName,
-              last_name: testUser.lastName,
-              role: testUser.role,
-              phone: testUser.phone,
-            });
-            if (pErr) {
-              return { warn: true, message: `RLS policy blocks anon insert — normal en production, profiles créés via trigger (${pErr.message})` };
-            }
-
-            const { error: cErr } = await supabase.from("companies").insert({
-              user_id: "usr_test",
-              legal_name: testUser.companyName,
-              vat_number: testUser.vatNumber,
-              country: testUser.country,
-            });
-            if (cErr) {
-              return { warn: true, message: `RLS policy blocks anon insert — normal en production, profiles créés via trigger (${cErr.message})` };
-            }
-            return `profiles + companies insérés ✓`;
+            const { data, error } = await supabase.from("profiles").select("*").eq("user_id", signUpUserId).single();
+            assert(error === null, `Pas d'erreur: ${error?.message || "OK"}`);
+            assert(data !== null, "Profile créé via trigger");
+            assert(data.first_name === testUser.firstName, "first_name match");
+            return "Profile + company créés automatiquement via trigger";
           },
         },
       ],
@@ -622,18 +609,17 @@ function defineTests(supabase, isLive = false) {
           id: "rgpd-consent-logged",
           name: "Consentements horodatés en DB",
           run: async () => {
-            const consent = {
-              user_id: "usr_test",
-              cgv_accepted_at: new Date().toISOString(),
-              marketing_suntrex: false,
-              marketing_partners: false,
-              ip_address: "masked",
-            };
-            const { error } = await supabase.from("consents").insert(consent);
-            if (error) {
-              return { warn: true, message: `Table consents non créée ou RLS actif — à configurer (${error.message})` };
-            }
-            return `Consent horodaté: ${consent.cgv_accepted_at.slice(0,19)}`;
+            const now = new Date().toISOString();
+            const { data, error } = await supabase.from("consents").upsert({
+              user_id: signUpUserId,
+              cgv_accepted_at: now,
+              privacy_accepted_at: now,
+              marketing_suntrex_at: null,
+              marketing_partners_at: null,
+            }).select().single();
+            assert(error === null, `Consent loggé: ${error?.message || "OK"}`);
+            assert(data.cgv_accepted_at !== null, "CGV timestamped");
+            return `Consentements horodatés : CGV + privacy @ ${now.slice(0, 19)}`;
           },
         },
       ],
