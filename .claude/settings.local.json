@@ -13,7 +13,10 @@
       "Bash(chmod +x:*)",
       "Bash(./push-multivendor.sh:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(supabase:*)",
+      "Bash(source:*)",
+      "Bash(npx supabase:*)"
     ]
   }
 }
