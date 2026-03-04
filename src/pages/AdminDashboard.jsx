@@ -1,13 +1,17 @@
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAdminData } from "../hooks/useAdminData";
+import { supabase } from "../lib/supabase";
 
 /* ═══════════════════════════════════════════════════════════════
    SUNTREX — Admin Dashboard
-   
+
    Platform command center for the SUNTREX team.
    KPIs, transactions, sellers, commissions, disputes, KYC.
-   
+
    Route: /admin
+   Data: useAdminData() → Netlify Function (service_role) → Supabase
+   Fallback: mock data when function unavailable
    ═══════════════════════════════════════════════════════════════ */
 
 var T = {
@@ -27,40 +31,14 @@ var T = {
   shadow: "0 1px 3px rgba(0,0,0,0.06)", shadowMd: "0 4px 12px rgba(0,0,0,0.08)",
 };
 
-// ── Mock data ──
-var MOCK_KPI = {
-  revenue: 247850, commission: 12392.50, orders: 156, avgOrder: 1589,
-  activeUsers: 342, sellers: 28, pendingKyc: 4, disputes: 2,
-  deliveries: { total: 134, inTransit: 18, delivered: 112, issue: 4 },
-  growth: { revenue: 23, orders: 18, users: 31, sellers: 12 },
-};
-
-var MOCK_TRANSACTIONS = [
-  { id: "ST-2847", buyer: "SolarPro France", seller: "QUALIWATT", product: "Huawei SUN2000-10KTL-M2", qty: 10, total: 18500, commission: 925, status: "shipped", date: "2026-02-27", flag: "🇫🇷" },
-  { id: "ST-2846", buyer: "GreenTech Berlin", seller: "SolarMax DE", product: "Deye SUN-12K-SG04LP3", qty: 5, total: 9750, commission: 487.50, status: "paid", date: "2026-02-27", flag: "🇩🇪" },
-  { id: "ST-2845", buyer: "Volta Instaladores", seller: "QUALIWATT", product: "Huawei LUNA2000-10-S0", qty: 8, total: 32000, commission: 1600, status: "delivered", date: "2026-02-26", flag: "🇪🇸" },
-  { id: "ST-2844", buyer: "NL Solar BV", seller: "EnergyParts NL", product: "Hoymiles HMS-2000-4T", qty: 50, total: 15000, commission: 750, status: "in_transit", date: "2026-02-26", flag: "🇳🇱" },
-  { id: "ST-2843", buyer: "Italia Solar Srl", seller: "PV Direct IT", product: "Jinko Tiger Neo 580W", qty: 100, total: 23000, commission: 1150, status: "disputed", date: "2026-02-25", flag: "🇮🇹" },
-  { id: "ST-2842", buyer: "BelSol SPRL", seller: "QUALIWATT", product: "Huawei SUN2000-5KTL-M1", qty: 20, total: 14000, commission: 700, status: "delivered", date: "2026-02-25", flag: "🇧🇪" },
-  { id: "ST-2841", buyer: "SunCraft GmbH", seller: "SolarMax DE", product: "Deye SUN-8K-SG04LP3", qty: 15, total: 19500, commission: 975, status: "delivered", date: "2026-02-24", flag: "🇩🇪" },
-  { id: "ST-2840", buyer: "Eco Watt France", seller: "PV Express FR", product: "Trina Vertex S+ 445W", qty: 200, total: 42000, commission: 2100, status: "confirmed", date: "2026-02-24", flag: "🇫🇷" },
-];
-
-var MOCK_SELLERS = [
-  { id: 1, name: "QUALIWATT", country: "FR", flag: "🇫🇷", products: 124, revenue: 89500, commission: 4475, kyc: "verified", tier: "platinum", rating: 4.9, joined: "2026-01-15" },
-  { id: 2, name: "SolarMax DE", country: "DE", flag: "🇩🇪", products: 87, revenue: 62300, commission: 3115, kyc: "verified", tier: "gold", rating: 4.7, joined: "2026-01-20" },
-  { id: 3, name: "EnergyParts NL", country: "NL", flag: "🇳🇱", products: 56, revenue: 34200, commission: 1710, kyc: "verified", tier: "silver", rating: 4.5, joined: "2026-02-01" },
-  { id: 4, name: "PV Direct IT", country: "IT", flag: "🇮🇹", products: 42, revenue: 28100, commission: 1405, kyc: "verified", tier: "silver", rating: 4.3, joined: "2026-02-05" },
-  { id: 5, name: "PV Express FR", country: "FR", flag: "🇫🇷", products: 31, revenue: 42000, commission: 2100, kyc: "pending", tier: "bronze", rating: 0, joined: "2026-02-20" },
-  { id: 6, name: "SunPower ES", country: "ES", flag: "🇪🇸", products: 0, revenue: 0, commission: 0, kyc: "pending", tier: "none", rating: 0, joined: "2026-02-27" },
-];
-
 var STATUS_MAP = {
+  negotiation: { label: "Négociation", color: T.yellow, bg: T.yellowBg },
   confirmed: { label: "Confirmée", color: T.blue, bg: T.blueBg },
   paid: { label: "Payée", color: T.green, bg: T.greenBg },
   shipped: { label: "Expédiée", color: T.accent, bg: T.accentLight },
   in_transit: { label: "En transit", color: T.accent, bg: T.accentLight },
   delivered: { label: "Livrée", color: T.green, bg: T.greenBg },
+  completed: { label: "Terminée", color: T.teal, bg: T.tealBg },
   disputed: { label: "Litige", color: T.red, bg: T.redBg },
   cancelled: { label: "Annulée", color: T.textMuted, bg: "#f1f5f9" },
 };
@@ -68,6 +46,7 @@ var STATUS_MAP = {
 var KYC_MAP = {
   verified: { label: "Vérifié", color: T.green, bg: T.greenBg, icon: "✓" },
   pending: { label: "En attente", color: T.yellow, bg: T.yellowBg, icon: "⏳" },
+  pending_review: { label: "En attente", color: T.yellow, bg: T.yellowBg, icon: "⏳" },
   rejected: { label: "Refusé", color: T.red, bg: T.redBg, icon: "✕" },
 };
 
@@ -81,6 +60,13 @@ var TIER_MAP = {
 
 function fmt(n) { return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(n); }
 function fmtDec(n) { return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(n); }
+
+// Admin email check (client-side guard)
+var ADMIN_EMAILS = (import.meta.env.VITE_ADMIN_EMAILS || "").split(",").map(function(e) { return e.trim().toLowerCase(); }).filter(Boolean);
+function isAdminEmail(email) {
+  if (ADMIN_EMAILS.length === 0) return true; // dev mode — no restriction
+  return ADMIN_EMAILS.includes((email || "").toLowerCase());
+}
 
 // ── Sidebar ──
 var NAV_ITEMS = [
@@ -115,7 +101,7 @@ function MiniBar({ data, height }) {
   return <div style={{ display: "flex", alignItems: "flex-end", gap: 3, height: height }}>
     {data.map(function(d, i) {
       var h = max > 0 ? (d.value / max) * height : 2;
-      return <div key={i} style={{ flex: 1, height: Math.max(2, h), borderRadius: 3, background: d.color || T.accent + "60", transition: "height .3s" }} title={d.label + ": " + d.value} />;
+      return <div key={i} style={{ flex: 1, height: Math.max(2, h), borderRadius: 3, background: d.color || T.accent + "60", transition: "height .3s" }} title={d.label + ": " + fmt(d.value)} />;
     })}
   </div>;
 }
@@ -124,40 +110,53 @@ function Badge({ label, color, bg }) {
   return <span style={{ display: "inline-block", fontSize: 10, fontWeight: 700, padding: "3px 10px", borderRadius: 6, color: color, background: bg }}>{label}</span>;
 }
 
+function LoadingSpinner() {
+  return <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "80px 20px" }}>
+    <div style={{ width: 40, height: 40, border: "3px solid " + T.borderLight, borderTopColor: T.accent, borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+    <div style={{ marginTop: 16, fontSize: 14, color: T.textSec }}>Chargement des données...</div>
+  </div>;
+}
+
 // ── Section: Overview ──
-function OverviewSection() {
-  var k = MOCK_KPI;
-  var chartData = [
-    { label: "Lun", value: 12400, color: T.accent },
-    { label: "Mar", value: 18300, color: T.accent },
-    { label: "Mer", value: 9800, color: T.accent + "80" },
-    { label: "Jeu", value: 22100, color: T.accent },
-    { label: "Ven", value: 31500, color: T.green },
-    { label: "Sam", value: 15200, color: T.accent + "80" },
-    { label: "Dim", value: 8700, color: T.accent + "40" },
-  ];
+function OverviewSection({ kpi, transactions, monthlyRevenue }) {
+  var k = kpi;
+  var chartData = (monthlyRevenue || []).map(function(m) {
+    return { label: m.label.split(" ")[0], value: m.value, color: T.accent };
+  });
+  // Fallback to weekly view if no monthly data
+  if (chartData.length === 0) {
+    chartData = [
+      { label: "Lun", value: 0, color: T.accent },
+      { label: "Mar", value: 0, color: T.accent },
+      { label: "Mer", value: 0, color: T.accent + "80" },
+      { label: "Jeu", value: 0, color: T.accent },
+      { label: "Ven", value: 0, color: T.green },
+      { label: "Sam", value: 0, color: T.accent + "80" },
+      { label: "Dim", value: 0, color: T.accent + "40" },
+    ];
+  }
 
   return <div>
     {/* KPI Grid */}
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, marginBottom: 24 }}>
-      <StatCard icon="💶" label="Revenu total (GMV)" value={fmt(k.revenue)} growth={k.growth.revenue} color={T.green} />
-      <StatCard icon="💰" label="Commissions SUNTREX (5%)" value={fmtDec(k.commission)} sub={"sur " + k.orders + " commandes"} color={T.accent} />
-      <StatCard icon="📦" label="Commandes" value={k.orders} growth={k.growth.orders} color={T.blue} />
+      <StatCard icon="💶" label="Revenu total (GMV)" value={fmt(k.revenue)} color={T.green} />
+      <StatCard icon="💰" label="Commissions SUNTREX (4.75%)" value={fmtDec(k.commission)} sub={"sur " + k.orders + " commandes"} color={T.accent} />
+      <StatCard icon="📦" label="Commandes" value={k.orders} color={T.blue} />
       <StatCard icon="🧾" label="Panier moyen" value={fmt(k.avgOrder)} color={T.purple} />
     </div>
 
     {/* Second row */}
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, marginBottom: 24 }}>
-      <StatCard icon="👥" label="Utilisateurs actifs" value={k.activeUsers} growth={k.growth.users} color={T.blue} />
-      <StatCard icon="🏢" label="Vendeurs" value={k.sellers} growth={k.growth.sellers} sub={k.pendingKyc + " KYC en attente"} color={T.teal} />
-      <StatCard icon="🚚" label="Livraisons en cours" value={k.deliveries.inTransit} sub={k.deliveries.delivered + " livrées / " + k.deliveries.issue + " problèmes"} color={T.accent} />
+      <StatCard icon="👥" label="Utilisateurs actifs" value={k.activeUsers} color={T.blue} />
+      <StatCard icon="🏢" label="Vendeurs" value={k.sellers} sub={k.pendingKyc + " KYC en attente"} color={T.teal} />
+      <StatCard icon="🚚" label="Livraisons en cours" value={k.deliveries?.inTransit || 0} sub={(k.deliveries?.delivered || 0) + " livrées / " + (k.deliveries?.issue || 0) + " problèmes"} color={T.accent} />
       <StatCard icon="⚠️" label="Litiges ouverts" value={k.disputes} color={T.red} />
     </div>
 
-    {/* Revenue chart (simplified bar) */}
+    {/* Revenue chart */}
     <div style={{ background: T.card, borderRadius: T.radiusLg, padding: 20, border: "1px solid " + T.borderLight, marginBottom: 24, boxShadow: T.shadow }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-        <div style={{ fontSize: 14, fontWeight: 700, color: T.text }}>📈 Revenu cette semaine</div>
+        <div style={{ fontSize: 14, fontWeight: 700, color: T.text }}>📈 Revenu mensuel</div>
         <span style={{ fontSize: 12, color: T.textMuted }}>Total: {fmt(chartData.reduce(function(a, d) { return a + d.value; }, 0))}</span>
       </div>
       <MiniBar data={chartData} height={80} />
@@ -171,7 +170,7 @@ function OverviewSection() {
     {/* Recent transactions */}
     <div style={{ background: T.card, borderRadius: T.radiusLg, padding: 20, border: "1px solid " + T.borderLight, boxShadow: T.shadow }}>
       <div style={{ fontSize: 14, fontWeight: 700, color: T.text, marginBottom: 16 }}>🕐 Dernières transactions</div>
-      {MOCK_TRANSACTIONS.slice(0, 5).map(function(tx) {
+      {(transactions || []).slice(0, 5).map(function(tx) {
         var s = STATUS_MAP[tx.status] || {};
         return <div key={tx.id} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 0", borderBottom: "1px solid " + T.borderLight, fontSize: 12 }}>
           <span style={{ fontWeight: 700, color: T.accent, width: 70 }}>{tx.id}</span>
@@ -181,14 +180,16 @@ function OverviewSection() {
           <Badge label={s.label || tx.status} color={s.color} bg={s.bg} />
         </div>;
       })}
+      {(!transactions || transactions.length === 0) && <div style={{ textAlign: "center", padding: 20, color: T.textMuted, fontSize: 13 }}>Aucune transaction</div>}
     </div>
   </div>;
 }
 
 // ── Section: Transactions ──
-function TransactionsSection() {
+function TransactionsSection({ transactions }) {
   var _f = useState("all"), filter = _f[0], setFilter = _f[1];
-  var filtered = filter === "all" ? MOCK_TRANSACTIONS : MOCK_TRANSACTIONS.filter(function(tx) { return tx.status === filter; });
+  var allTx = transactions || [];
+  var filtered = filter === "all" ? allTx : allTx.filter(function(tx) { return tx.status === filter; });
 
   return <div>
     <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
@@ -210,31 +211,33 @@ function TransactionsSection() {
           <span style={{ fontWeight: 700, color: T.accent }}>{tx.id}</span>
           <span style={{ color: T.text, fontWeight: 500 }}>{tx.flag} {tx.buyer}</span>
           <span style={{ color: T.textSec }}>{tx.seller}</span>
-          <span style={{ color: T.textSec }}>{tx.product.length > 28 ? tx.product.slice(0, 28) + "…" : tx.product}</span>
+          <span style={{ color: T.textSec }}>{(tx.product || "").length > 28 ? tx.product.slice(0, 28) + "…" : tx.product}</span>
           <span style={{ textAlign: "right", fontWeight: 700, color: T.text }}>{fmt(tx.total)}</span>
           <span style={{ textAlign: "right", fontWeight: 600, color: T.green }}>{fmtDec(tx.commission)}</span>
           <Badge label={s.label || tx.status} color={s.color} bg={s.bg} />
         </div>;
       })}
+      {filtered.length === 0 && <div style={{ textAlign: "center", padding: 20, color: T.textMuted, fontSize: 13 }}>Aucune transaction</div>}
     </div>
   </div>;
 }
 
 // ── Section: Sellers ──
-function SellersSection() {
+function SellersSection({ sellers }) {
+  var allSellers = sellers || [];
   return <div>
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12, marginBottom: 20 }}>
-      <StatCard icon="🏢" label="Total vendeurs" value={MOCK_SELLERS.length} color={T.teal} />
-      <StatCard icon="✓" label="KYC vérifiés" value={MOCK_SELLERS.filter(function(s) { return s.kyc === "verified"; }).length} color={T.green} />
-      <StatCard icon="⏳" label="KYC en attente" value={MOCK_SELLERS.filter(function(s) { return s.kyc === "pending"; }).length} color={T.yellow} />
+      <StatCard icon="🏢" label="Total vendeurs" value={allSellers.length} color={T.teal} />
+      <StatCard icon="✓" label="KYC vérifiés" value={allSellers.filter(function(s) { return s.kyc === "verified"; }).length} color={T.green} />
+      <StatCard icon="⏳" label="KYC en attente" value={allSellers.filter(function(s) { return s.kyc === "pending" || s.kyc === "pending_review"; }).length} color={T.yellow} />
     </div>
 
     <div style={{ background: T.card, borderRadius: T.radiusLg, border: "1px solid " + T.borderLight, overflow: "hidden", boxShadow: T.shadow }}>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 80px 60px 90px 90px 80px 80px", gap: 8, padding: "12px 16px", background: T.bg, borderBottom: "1px solid " + T.borderLight, fontSize: 10, fontWeight: 700, color: T.textMuted, textTransform: "uppercase", letterSpacing: "0.05em" }}>
         <span>Vendeur</span><span>Pays</span><span>Produits</span><span style={{ textAlign: "right" }}>CA généré</span><span style={{ textAlign: "right" }}>Commission</span><span>KYC</span><span>Tier</span>
       </div>
-      {MOCK_SELLERS.map(function(seller) {
-        var kyc = KYC_MAP[seller.kyc] || {};
+      {allSellers.map(function(seller) {
+        var kyc = KYC_MAP[seller.kyc] || KYC_MAP.pending;
         var tier = TIER_MAP[seller.tier] || TIER_MAP.none;
         return <div key={seller.id} style={{ display: "grid", gridTemplateColumns: "1fr 80px 60px 90px 90px 80px 80px", gap: 8, padding: "12px 16px", borderBottom: "1px solid " + T.borderLight, fontSize: 12, alignItems: "center" }}>
           <div>
@@ -249,25 +252,27 @@ function SellersSection() {
           <span style={{ fontSize: 10, fontWeight: 700, padding: "3px 8px", borderRadius: 6, background: tier.gradient, color: seller.tier === "platinum" || seller.tier === "silver" ? "#333" : "#fff", textAlign: "center" }}>{tier.label}</span>
         </div>;
       })}
+      {allSellers.length === 0 && <div style={{ textAlign: "center", padding: 20, color: T.textMuted, fontSize: 13 }}>Aucun vendeur</div>}
     </div>
   </div>;
 }
 
 // ── Section: Commissions ──
-function CommissionsSection() {
-  var totalCommission = MOCK_TRANSACTIONS.reduce(function(a, tx) { return a + tx.commission; }, 0);
+function CommissionsSection({ transactions }) {
+  var allTx = transactions || [];
+  var totalCommission = allTx.reduce(function(a, tx) { return a + (tx.commission || 0); }, 0);
   var bySellerMap = {};
-  MOCK_TRANSACTIONS.forEach(function(tx) {
+  allTx.forEach(function(tx) {
     if (!bySellerMap[tx.seller]) bySellerMap[tx.seller] = { name: tx.seller, total: 0, count: 0 };
-    bySellerMap[tx.seller].total += tx.commission;
+    bySellerMap[tx.seller].total += tx.commission || 0;
     bySellerMap[tx.seller].count++;
   });
   var bySeller = Object.values(bySellerMap).sort(function(a, b) { return b.total - a.total; });
 
   return <div>
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, marginBottom: 24 }}>
-      <StatCard icon="💰" label="Commissions totales" value={fmtDec(totalCommission)} sub="5% sur chaque transaction" color={T.green} />
-      <StatCard icon="📊" label="Commission moyenne" value={fmtDec(totalCommission / MOCK_TRANSACTIONS.length)} sub={"sur " + MOCK_TRANSACTIONS.length + " transactions"} color={T.accent} />
+      <StatCard icon="💰" label="Commissions totales" value={fmtDec(totalCommission)} sub="4.75% sur chaque transaction" color={T.green} />
+      <StatCard icon="📊" label="Commission moyenne" value={fmtDec(allTx.length > 0 ? totalCommission / allTx.length : 0)} sub={"sur " + allTx.length + " transactions"} color={T.accent} />
       <StatCard icon="🏆" label="Top vendeur" value={bySeller[0]?.name || "—"} sub={fmtDec(bySeller[0]?.total || 0) + " de commissions"} color={T.purple} />
     </div>
 
@@ -285,6 +290,7 @@ function CommissionsSection() {
           </div>
         </div>;
       })}
+      {bySeller.length === 0 && <div style={{ textAlign: "center", padding: 20, color: T.textMuted, fontSize: 13 }}>Aucune commission</div>}
     </div>
   </div>;
 }
@@ -305,18 +311,49 @@ export default function AdminDashboard() {
   var navigate = useNavigate();
   var _s = useState("overview"), section = _s[0], setSection = _s[1];
   var _m = useState(false), mobileNav = _m[0], setMobileNav = _m[1];
+  var { data, loading, error, usingMock, refresh } = useAdminData();
+
+  // Admin guard — check auth + admin email
+  var _a = useState(null), authState = _a[0], setAuthState = _a[1]; // null = checking, true = admin, false = not admin
+  useEffect(function() {
+    if (!supabase) { setAuthState(true); return; } // No supabase = dev mode, allow
+    supabase.auth.getUser().then(function(res) {
+      var user = res.data?.user;
+      if (!user) { setAuthState(false); return; }
+      if (isAdminEmail(user.email)) { setAuthState(true); }
+      else { setAuthState(false); }
+    }).catch(function() { setAuthState(true); }); // Error = dev mode, allow
+  }, []);
+
+  // Redirect non-admins
+  useEffect(function() {
+    if (authState === false) navigate("/");
+  }, [authState, navigate]);
+
+  // Show nothing while checking auth
+  if (authState === null) {
+    return <div style={{ fontFamily: T.font, background: T.bg, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <LoadingSpinner />
+    </div>;
+  }
+
+  var kpi = data?.kpi || {};
+  var transactions = data?.transactions || [];
+  var sellers = data?.sellers || [];
+  var monthlyRevenue = data?.monthlyRevenue || [];
 
   function renderSection() {
+    if (loading) return <LoadingSpinner />;
     switch (section) {
-      case "overview": return <OverviewSection />;
-      case "transactions": return <TransactionsSection />;
-      case "sellers": return <SellersSection />;
-      case "commissions": return <CommissionsSection />;
+      case "overview": return <OverviewSection kpi={kpi} transactions={transactions} monthlyRevenue={monthlyRevenue} />;
+      case "transactions": return <TransactionsSection transactions={transactions} />;
+      case "sellers": return <SellersSection sellers={sellers} />;
+      case "commissions": return <CommissionsSection transactions={transactions} />;
       case "delivery": return <PlaceholderSection title="Gestion des livraisons" icon="🚚" />;
       case "disputes": return <PlaceholderSection title="Gestion des litiges" icon="⚠️" />;
       case "users": return <PlaceholderSection title="Gestion des utilisateurs" icon="👥" />;
       case "settings": return <PlaceholderSection title="Paramètres plateforme" icon="⚙️" />;
-      default: return <OverviewSection />;
+      default: return <OverviewSection kpi={kpi} transactions={transactions} monthlyRevenue={monthlyRevenue} />;
     }
   }
 
@@ -350,7 +387,7 @@ export default function AdminDashboard() {
       <div style={{ position: "absolute", bottom: 20, left: 0, right: 0, padding: "0 20px" }}>
         <div style={{ padding: 12, background: T.sidebarHover, borderRadius: 8, fontSize: 11, color: "rgba(255,255,255,0.4)" }}>
           <div style={{ fontWeight: 600, color: "rgba(255,255,255,0.7)", marginBottom: 4 }}>SUNTREX v1.0</div>
-          Commission: 5% • EUR
+          Commission: 4.75% • EUR
         </div>
       </div>
     </div>
@@ -367,13 +404,28 @@ export default function AdminDashboard() {
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 12px", background: T.greenBg, borderRadius: 8, fontSize: 11, fontWeight: 600, color: T.greenText }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: T.green, display: "inline-block" }} />
-            Live
-          </div>
+          {/* Data source badge */}
+          {usingMock ? (
+            <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 12px", background: T.yellowBg, borderRadius: 8, fontSize: 11, fontWeight: 600, color: T.yellowText }}>
+              <span style={{ width: 6, height: 6, borderRadius: "50%", background: T.yellow, display: "inline-block" }} />
+              MOCK
+            </div>
+          ) : (
+            <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 12px", background: T.greenBg, borderRadius: 8, fontSize: 11, fontWeight: 600, color: T.greenText }}>
+              <span style={{ width: 6, height: 6, borderRadius: "50%", background: T.green, display: "inline-block" }} />
+              LIVE
+            </div>
+          )}
+          {/* Refresh button */}
+          <button onClick={refresh} style={{ background: "none", border: "1px solid " + T.border, borderRadius: 8, padding: "6px 10px", cursor: "pointer", fontSize: 14, color: T.textSec }} title="Rafraîchir">↻</button>
           <div style={{ width: 32, height: 32, borderRadius: "50%", background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 12, fontWeight: 700 }}>YA</div>
         </div>
       </div>
+
+      {/* Error banner */}
+      {error && !loading && <div style={{ margin: "12px 24px 0", padding: "10px 16px", background: T.yellowBg, border: "1px solid " + T.yellow + "40", borderRadius: 8, fontSize: 12, color: T.yellowText }}>
+        Données mock affichées — {error}
+      </div>}
 
       {/* Content */}
       <div style={{ padding: 24, maxWidth: 1200 }}>

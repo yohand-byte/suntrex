@@ -174,7 +174,7 @@ const MODULES = [
       { name: "KPIs : revenu, commissions, commandes, utilisateurs", done: true },
       { name: "Liste transactions avec filtres", done: true },
       { name: "Suivi vendeurs + KYC status", done: true },
-      { name: "Brancher sur données réelles (actuellement mock)", done: false },
+      { name: "Brancher sur données réelles (actuellement mock)", done: true },
     ],
   },
   // ═══ PHASE 2 — TRUST & DELIVERY ═══
