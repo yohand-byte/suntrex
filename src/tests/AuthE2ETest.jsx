@@ -647,17 +647,17 @@ function defineTests(supabase, isLive = false) {
           id: "rgpd-consent-logged",
           name: "Consentements horodatés en DB",
           run: async () => {
-            // Real schema: consent_type (text), granted (bool), granted_at (timestamptz)
+            // CHECK constraint allows: cgv_privacy, marketing_suntrex, marketing_partners
             const now = new Date().toISOString();
             const { data, error } = await supabase.from("consents").upsert({
               user_id: signUpUserId,
-              consent_type: "cgv",
+              consent_type: "cgv_privacy",
               granted: true,
               granted_at: now,
             }, { onConflict: "user_id,consent_type" }).select().single();
             assert(error === null, `Consent loggé: ${error?.message || "OK"}`);
             assert(data.granted === true || data.granted_at, "CGV consent granted");
-            return `Consent CGV horodaté @ ${now.slice(0, 19)}`;
+            return `Consent cgv_privacy horodaté @ ${now.slice(0, 19)}`;
           },
         },
       ],
