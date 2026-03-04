@@ -17,7 +17,9 @@
       "Bash(supabase:*)",
       "Bash(source:*)",
       "Bash(npx supabase:*)",
-      "Bash(__NEW_LINE_cfeb506da2119f73__ echo:*)"
+      "Bash(__NEW_LINE_cfeb506da2119f73__ echo:*)",
+      "Bash(echo $result:*)",
+      "Bash(# Get OpenAPI spec for consents table  \ncurl -s 'https://uigoadkslyztxgzahmwv.supabase.co/rest/v1/?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpZ29hZGtzbHl6dHhnemFobXd2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MTcxMjAwNywiZXhwIjoyMDg3Mjg4MDA3fQ.hUcGaZ2SgacDDX-K8MVy7iJqJqAFGUlqmSjtWJ5U-vE' 2>&1 | python3 -c \"\nimport sys, json\nspec = json.load\\(sys.stdin\\)\ndefs = spec.get\\('definitions', {}\\)\nif 'consents' in defs:\n    props = defs['consents'].get\\('properties', {}\\)\n    for col, info in props.items\\(\\):\n        print\\(f'  {col}: {info.get\\(\\\\\"type\\\\\",\\\\\"?\\\\\"\\)} / {info.get\\(\\\\\"format\\\\\",\\\\\"\\\\\"\\)}'\\)\nelse:\n    print\\('consents not in definitions'\\)\n    for k in defs:\n        if 'consent' in k.lower\\(\\):\n            print\\(f'  found: {k}'\\)\n\" 2>&1)"
     ]
   }
 }
