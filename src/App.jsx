@@ -16,6 +16,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import BlogPage from "./pages/BlogPage";
 import SuntrexHelpCenter from "./components/faq/SuntrexFAQ";
 import MvpTracker from "./pages/MvpTracker";
+import SellerProfile from "./pages/seller/SellerProfile";
 import { LoginModal, RegisterModal } from "./AuthSystem";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -116,7 +117,7 @@ export default function App() {
         <Route path="/dashboard/buy" element={<DashboardLayout initialTab="buy" />} />
         <Route path="/dashboard/sell" element={<DashboardLayout initialTab="sell" />} />
         <Route path="/dashboard/buyer" element={<BuyerDashboard />} />
-        <Route path="/dashboard/seller" element={<SellerDashboard />} />
+        <Route path="/dashboard/seller" element={<SellerProfile />} />
       </Routes>
 
       {!isDashboard && <Footer />}
