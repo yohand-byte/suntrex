@@ -2,7 +2,6 @@
   "buildCommand": "vite build",
   "outputDirectory": "dist",
   "framework": "vite",
-  "functions": {},
   "routes": [
     {
       "src": "^/(.*)$",
