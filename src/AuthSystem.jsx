@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import useResponsive from "./hooks/useResponsive";
+import { supabase } from "./lib/supabase";
 
 /* ═══════════════════════════════════════════════════════════
    SUNTREX — Auth System v2
@@ -99,10 +100,35 @@ export function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
   const { isMobile } = useResponsive();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [loginLoading, setLoginLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onLogin({ email, name: email.split("@")[0], company: "Demo Co", role: "buyer", kycStatus: "verified", country: "FR" });
+    setLoginError("");
+    setLoginLoading(true);
+    try {
+      if (!supabase) throw new Error("Service indisponible");
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      const user = data.user;
+      onLogin({
+        id: user.id,
+        email: user.email,
+        name: user.user_metadata?.company_name || user.user_metadata?.first_name || user.email.split("@")[0],
+        company: user.user_metadata?.company_name || "",
+        role: user.user_metadata?.role || "buyer",
+        kycStatus: user.user_metadata?.kyc_status || "pending_review",
+        country: user.user_metadata?.country || "FR",
+      });
+    } catch (err) {
+      const msg = err.message || "Erreur de connexion";
+      if (msg.includes("Invalid login")) setLoginError("Email ou mot de passe incorrect");
+      else if (msg.includes("Email not confirmed")) setLoginError("Veuillez confirmer votre email");
+      else setLoginError(msg);
+    } finally {
+      setLoginLoading(false);
+    }
   };
 
   return (
@@ -130,7 +156,8 @@ export function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
             <div style={{textAlign:"right"}}>
               <a href="#" style={{...S.link,fontSize:13}}>{t("auth.login.forgotPassword")}</a>
             </div>
-            <button type="submit" style={S.btn}>{t("auth.login.submit")}</button>
+            {loginError && <div style={{padding:"10px 12px",background:"#fef2f2",border:"1px solid #fecaca",borderRadius:8,fontSize:13,color:"#dc2626"}}>{loginError}</div>}
+            <button type="submit" style={{...S.btn,opacity:loginLoading?0.7:1,pointerEvents:loginLoading?"none":"auto"}} disabled={loginLoading}>{loginLoading ? "Connexion..." : t("auth.login.submit")}</button>
           </form>
           <p style={{fontSize:13,color:"#888",textAlign:"center",marginTop:14}}>
             {t("auth.login.noAccount")} <span onClick={onSwitchToRegister} style={S.link}>{t("auth.login.signUp")}</span>
@@ -261,12 +288,56 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
     if (step < 3) setStep(step + 1);
   };
 
-  const handleFinish = () => {
-    onRegister({
-      email: form.email, name: form.companyName, company: form.companyName,
-      role: "buyer", kycStatus: "pending_review",
-      country: form.country, vatNumber: form.vatNumber, siret: form.siret, sirenVerified,
-    });
+  const [registerLoading, setRegisterLoading] = useState(false);
+
+  const handleFinish = async () => {
+    setError("");
+    setRegisterLoading(true);
+    try {
+      if (!supabase) throw new Error("Service indisponible");
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email: form.email,
+        password: form.password,
+        options: {
+          data: {
+            first_name: form.companyName.split(" ")[0] || "",
+            last_name: "",
+            company_name: form.companyName,
+            role: "buyer",
+            country: form.country,
+            phone: form.phone,
+            vat_number: form.vatNumber,
+          },
+        },
+      });
+      if (signUpError) throw signUpError;
+
+      // Record RGPD consents
+      const userId = data.user?.id;
+      if (userId && supabase) {
+        const now = new Date().toISOString();
+        const consents = [
+          { user_id: userId, consent_type: "cgv_privacy", granted: true, granted_at: now },
+        ];
+        if (form.consentMarketing) consents.push({ user_id: userId, consent_type: "marketing_suntrex", granted: true, granted_at: now });
+        if (form.consentPartners) consents.push({ user_id: userId, consent_type: "marketing_partners", granted: true, granted_at: now });
+        await supabase.from("consents").upsert(consents, { onConflict: "user_id,consent_type" }).select();
+      }
+
+      const user = data.user;
+      onRegister({
+        id: user?.id,
+        email: form.email, name: form.companyName, company: form.companyName,
+        role: "buyer", kycStatus: "pending_review",
+        country: form.country, vatNumber: form.vatNumber, siret: form.siret, sirenVerified,
+      });
+    } catch (err) {
+      const msg = err.message || "Erreur d'inscription";
+      if (msg.includes("already registered")) setError("Cet email est déjà utilisé");
+      else if (msg.includes("password")) setError("Le mot de passe ne respecte pas les critères");
+      else setError(msg);
+      setRegisterLoading(false);
+    }
   };
 
   const handleFileSelect = (e) => {
@@ -685,7 +756,8 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                   </div>
                 </div>
 
-                <button onClick={handleFinish} style={S.btn}>{t("auth.register.step3.exploreCatalogBtn")}</button>
+                {error && <div style={{padding:"10px 12px",background:"#fef2f2",border:"1px solid #fecaca",borderRadius:8,fontSize:13,color:"#dc2626",marginBottom:8}}>{error}</div>}
+                <button onClick={handleFinish} style={{...S.btn,opacity:registerLoading?0.7:1,pointerEvents:registerLoading?"none":"auto"}} disabled={registerLoading}>{registerLoading ? "Création du compte..." : t("auth.register.step3.exploreCatalogBtn")}</button>
               </div>
             )}
           </div>

@@ -19,10 +19,26 @@ import MvpTracker from "./pages/MvpTracker";
 import SellerProfile from "./pages/seller/SellerProfile";
 import AuthE2ETest from "./tests/AuthE2ETest";
 import { LoginModal, RegisterModal } from "./AuthSystem";
+import { supabase } from "./lib/supabase";
 
 /* ═══════════════════════════════════════════════════════════════
    SUNTREX — App Shell (Router + Layout)
    ═══════════════════════════════════════════════════════════════ */
+
+// Build a user object from Supabase session user
+function buildUserFromSession(user) {
+  if (!user) return null;
+  const meta = user.user_metadata || {};
+  return {
+    id: user.id,
+    email: user.email,
+    name: meta.company_name || meta.first_name || user.email?.split("@")[0] || "",
+    company: meta.company_name || "",
+    role: meta.role || "buyer",
+    kycStatus: meta.kyc_status || "pending_review",
+    country: meta.country || "FR",
+  };
+}
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,7 +54,40 @@ export default function App() {
 
   useEffect(() => { window.scrollTo(0, 0); }, [location.pathname]);
 
-  const handleLogout = () => { setIsLoggedIn(false); setCurrentUser(null); navigate("/"); };
+  // Restore session on mount + listen for auth changes
+  useEffect(() => {
+    if (!supabase) return;
+
+    // Check existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        setCurrentUser(buildUserFromSession(session.user));
+        setIsLoggedIn(true);
+      }
+    });
+
+    // Listen for login/logout events
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN" && session?.user) {
+        setCurrentUser(buildUserFromSession(session.user));
+        setIsLoggedIn(true);
+      } else if (event === "SIGNED_OUT") {
+        setCurrentUser(null);
+        setIsLoggedIn(false);
+      }
+    });
+
+    return () => { subscription?.unsubscribe(); };
+  }, []);
+
+  const handleLogout = async () => {
+    if (supabase) {
+      await supabase.auth.signOut();
+    }
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    navigate("/");
+  };
 
   return (
     <div style={{fontFamily:"'DM Sans',sans-serif",background:"#fff",color:"#262627",minHeight:"100vh"}}>
@@ -123,7 +172,7 @@ export default function App() {
       </Routes>
 
       {!isDashboard && <Footer />}
-      {!isDashboard && <SuntrexSupportChat userId={isLoggedIn ? "current-user-id" : null} />}
+      {!isDashboard && <SuntrexSupportChat userId={isLoggedIn ? currentUser?.id || null : null} />}
 
       {showLogin && (
         <LoginModal
