@@ -17,6 +17,7 @@ import BlogPage from "./pages/BlogPage";
 import SuntrexHelpCenter from "./components/faq/SuntrexFAQ";
 import MvpTracker from "./pages/MvpTracker";
 import SellerProfile from "./pages/seller/SellerProfile";
+import AuthE2ETest from "./tests/AuthE2ETest";
 import { LoginModal, RegisterModal } from "./AuthSystem";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -113,6 +114,7 @@ export default function App() {
         <Route path="/faq" element={<SuntrexHelpCenter />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/tracker" element={<MvpTracker />} />
+        <Route path="/admin/auth-test" element={<AuthE2ETest />} />
         <Route path="/dashboard" element={<DashboardLayout />} />
         <Route path="/dashboard/buy" element={<DashboardLayout initialTab="buy" />} />
         <Route path="/dashboard/sell" element={<DashboardLayout initialTab="sell" />} />
