@@ -314,26 +314,77 @@ export default function AdminDashboard() {
   var { data, loading, error, usingMock, refresh } = useAdminData();
 
   // Admin guard — check auth + admin email
-  var _a = useState(null), authState = _a[0], setAuthState = _a[1]; // null = checking, true = admin, false = not admin
+  // Checks getUser(), getSession(), and listens to onAuthStateChange
+  var _a = useState("checking"), authState = _a[0], setAuthState = _a[1]; // "checking" | "admin" | "no_session" | "not_admin"
+
   useEffect(function() {
-    if (!supabase) { setAuthState(true); return; } // No supabase = dev mode, allow
-    supabase.auth.getUser().then(function(res) {
-      var user = res.data?.user;
-      if (!user) { setAuthState(false); return; }
-      if (isAdminEmail(user.email)) { setAuthState(true); }
-      else { setAuthState(false); }
-    }).catch(function() { setAuthState(true); }); // Error = dev mode, allow
+    if (!supabase) { setAuthState("admin"); return; } // No supabase = dev mode, allow
+
+    function checkUser(user) {
+      if (!user) return false;
+      if (isAdminEmail(user.email)) { setAuthState("admin"); return true; }
+      setAuthState("not_admin");
+      return true;
+    }
+
+    // Try getUser first, then getSession as fallback
+    async function checkAuth() {
+      try {
+        var userRes = await supabase.auth.getUser();
+        if (checkUser(userRes.data?.user)) return;
+      } catch (_e) { /* ignore */ }
+
+      try {
+        var sessionRes = await supabase.auth.getSession();
+        if (checkUser(sessionRes.data?.session?.user)) return;
+      } catch (_e) { /* ignore */ }
+
+      // No session found
+      setAuthState("no_session");
+    }
+
+    checkAuth();
+
+    // Listen for auth changes (user logs in after page load)
+    var sub = supabase.auth.onAuthStateChange(function(_event, session) {
+      if (session?.user) {
+        checkUser(session.user);
+      } else {
+        setAuthState("no_session");
+      }
+    });
+
+    return function() { sub.data?.subscription?.unsubscribe(); };
   }, []);
 
-  // Redirect non-admins
-  useEffect(function() {
-    if (authState === false) navigate("/");
-  }, [authState, navigate]);
-
-  // Show nothing while checking auth
-  if (authState === null) {
+  // Show loading spinner while checking
+  if (authState === "checking") {
     return <div style={{ fontFamily: T.font, background: T.bg, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
       <LoadingSpinner />
+    </div>;
+  }
+
+  // No session — show login prompt (not a silent redirect)
+  if (authState === "no_session") {
+    return <div style={{ fontFamily: T.font, background: T.bg, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ textAlign: "center", padding: 40, background: T.card, borderRadius: T.radiusLg, border: "1px solid " + T.borderLight, boxShadow: T.shadowMd, maxWidth: 400 }}>
+        <div style={{ fontSize: 48, marginBottom: 16 }}>🔒</div>
+        <div style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 8 }}>Admin Dashboard</div>
+        <div style={{ fontSize: 14, color: T.textSec, marginBottom: 24 }}>Connectez-vous avec un compte admin pour accéder au tableau de bord.</div>
+        <button onClick={function() { navigate("/"); }} style={{ padding: "10px 24px", borderRadius: 8, border: "none", background: T.accent, color: "#fff", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: T.font }}>Retour à l'accueil</button>
+      </div>
+    </div>;
+  }
+
+  // Not admin — show access denied
+  if (authState === "not_admin") {
+    return <div style={{ fontFamily: T.font, background: T.bg, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ textAlign: "center", padding: 40, background: T.card, borderRadius: T.radiusLg, border: "1px solid " + T.borderLight, boxShadow: T.shadowMd, maxWidth: 400 }}>
+        <div style={{ fontSize: 48, marginBottom: 16 }}>⛔</div>
+        <div style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 8 }}>Accès refusé</div>
+        <div style={{ fontSize: 14, color: T.textSec, marginBottom: 24 }}>Votre compte n'a pas les droits administrateur.</div>
+        <button onClick={function() { navigate("/"); }} style={{ padding: "10px 24px", borderRadius: 8, border: "none", background: T.accent, color: "#fff", fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: T.font }}>Retour à l'accueil</button>
+      </div>
     </div>;
   }
 
