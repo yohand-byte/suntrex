@@ -7,7 +7,7 @@ const PHASES = [
   { id: "expand", label: "Phase 4 — Expansion", color: "#06b6d4", target: "Continu" },
 ];
 
-// LAST UPDATED: 2026-03-04
+// LAST UPDATED: 2026-03-05
 const MODULES = [
   // ═══ PHASE 1 — MVP ═══
   {
@@ -87,7 +87,7 @@ const MODULES = [
       { name: "MyPurchases.jsx — Historique achats (203 lignes)", done: true },
       { name: "BuyerRFQ.jsx — Demandes de devis (117 lignes)", done: true },
       { name: "DeliveryAddresses.jsx — Adresses livraison (92 lignes)", done: true },
-      { name: "Brancher sur données Supabase réelles (remplacer mock)", done: false },
+      { name: "Brancher sur données Supabase réelles (remplacer mock)", done: true },
     ],
   },
   {
@@ -100,7 +100,7 @@ const MODULES = [
       { name: "WarehouseManager.jsx — Entrepôts (58 lignes)", done: true },
       { name: "Stripe Connect panel dans dashboard", done: true },
       { name: "Stripe onboarding banner + status KYC", done: true },
-      { name: "Brancher sur données Supabase réelles (remplacer mock)", done: false },
+      { name: "Brancher sur données Supabase réelles (remplacer mock)", done: true },
     ],
   },
   {
@@ -126,7 +126,7 @@ const MODULES = [
       { name: "TransactionChat.jsx — Composant chat (404 lignes)", done: true },
       { name: "MessagingInbox.jsx — Boîte de réception (374 lignes)", done: true },
       { name: "useChat.js — Hook Supabase Realtime (212 lignes)", done: true },
-      { name: "Modération basique (filtre mots clés)", done: false },
+      { name: "Modération basique (filtre mots clés)", done: true },
     ],
   },
   {
@@ -251,9 +251,9 @@ const MODULES = [
     id: "seo-perf", phase: "ai", part: "Infrastructure", name: "SEO & Performance",
     tasks: [
       { name: "SSR ou prerender pour le catalogue", done: false },
-      { name: "Sitemap.xml dynamique", done: false },
+      { name: "Sitemap.xml dynamique", done: true },
       { name: "Lighthouse > 90 sur toutes les pages", done: false },
-      { name: "Lazy loading images + code splitting", done: false },
+      { name: "Lazy loading images + code splitting", done: true },
     ],
   },
   // ═══ PHASE 4 — EXPANSION ═══
@@ -402,7 +402,7 @@ export default function SuntrexTracker() {
           <span style={{ fontSize: 22, fontWeight: 800, color: "#1e293b" }}>SUNTREX</span>
           <span style={{ fontSize: 10, fontWeight: 700, color: "#E8700A", background: "#fff7ed", padding: "2px 8px", borderRadius: 4, letterSpacing: "0.05em" }}>MVP TRACKER</span>
         </div>
-        <p style={{ fontSize: 12, color: "#94a3b8", margin: 0 }}>Dernière mise à jour : 1 mars 2026 — {globalStats.done}/{globalStats.total} tâches complétées</p>
+        <p style={{ fontSize: 12, color: "#94a3b8", margin: 0 }}>Dernière mise à jour : 5 mars 2026 — {globalStats.done}/{globalStats.total} tâches complétées</p>
       </div>
 
       {/* Global Progress */}
