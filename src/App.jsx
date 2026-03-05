@@ -2,6 +2,7 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
+import PageMeta from "./components/seo/PageMeta";
 import { LoginModal, RegisterModal } from "./AuthSystem";
 import { supabase } from "./lib/supabase";
 
@@ -128,6 +129,8 @@ export default function App() {
           .hide-tablet{display:none!important}
         }
       `}</style>
+
+      <PageMeta path={location.pathname} />
 
       {!isDashboard && (
         <Header
