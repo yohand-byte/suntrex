@@ -23,6 +23,7 @@ const SuntrexHelpCenter = lazy(() => import("./components/faq/SuntrexFAQ"));
 const MvpTracker = lazy(() => import("./pages/MvpTracker"));
 const SellerProfile = lazy(() => import("./pages/seller/SellerProfile"));
 const AuthE2ETest = lazy(() => import("./tests/AuthE2ETest"));
+const StripeE2ETest = lazy(() => import("./tests/StripeE2ETest"));
 
 // Loading spinner for Suspense fallback
 function LoadingSpinner() {
@@ -182,6 +183,7 @@ export default function App() {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/tracker" element={<MvpTracker />} />
           <Route path="/admin/auth-test" element={<AuthE2ETest />} />
+          <Route path="/admin/stripe-test" element={<StripeE2ETest />} />
           <Route path="/dashboard" element={<DashboardLayout />} />
           <Route path="/dashboard/buy" element={<DashboardLayout initialTab="buy" />} />
           <Route path="/dashboard/sell" element={<DashboardLayout initialTab="sell" />} />

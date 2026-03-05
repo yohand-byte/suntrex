@@ -59,7 +59,7 @@ const MODULES = [
       { name: "RGPD checkboxes (CGV obligatoire, marketing optionnel)", done: true },
       { name: "Sélecteur pays (FR, DE, BE, NL, IT, ES)", done: true },
       { name: "Rôles buyer/seller dans Supabase", done: true },
-      { name: "Test e2e inscription → vérification → session persistée", done: false },
+      { name: "Test e2e inscription → vérification → session persistée", done: true },
     ],
   },
   {
@@ -75,7 +75,7 @@ const MODULES = [
       { name: "CheckoutPage.jsx — Elements + CardElement (595 lignes)", done: true },
       { name: "Vérif charges_enabled + payouts_enabled avant listing", done: true },
       { name: "Env vars Stripe configurées (Vercel + Netlify)", done: true },
-      { name: "Test mode complet sk_test → paiement → webhook → transfer", done: false },
+      { name: "Test mode complet sk_test → paiement → webhook → transfer", done: true },
       { name: "Passage en mode live (sk_live_)", done: false },
     ],
   },
