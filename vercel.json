@@ -29,12 +29,12 @@
       },
       "continue": true
     },
-    { "handle": "filesystem" },
     { "src": "^/api/stripe-webhook$", "methods": ["POST", "OPTIONS"], "dest": "/api/stripe-webhook" },
     { "src": "^/api/stripe-connect$", "methods": ["POST", "OPTIONS"], "dest": "/api/stripe-connect" },
     { "src": "^/api/stripe-checkout$", "methods": ["POST", "OPTIONS"], "dest": "/api/stripe-checkout" },
     { "src": "^/api/messages/([^/]+)$", "methods": ["GET"], "dest": "/api/messages?transactionId=$1" },
     { "src": "^/api/(.*)$", "dest": "/api/not-found" },
+    { "handle": "filesystem" },
     { "src": "^/(.*)$", "dest": "/index.html" }
   ]
 }
