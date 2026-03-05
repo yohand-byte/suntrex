@@ -3,4 +3,6 @@ Allow: /
 Disallow: /auth
 Disallow: /dashboard
 
-Sitemap: https://suntrex.vercel.app/sitemap.xml
+Disallow: /admin
+
+Sitemap: https://suntrex.eu/sitemap.xml

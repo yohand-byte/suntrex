@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/generate-sitemap.js && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "review:export": "bash ./scripts/review_oneclick_export.sh --base HEAD~1 --max-lines 500 --open reuse",
