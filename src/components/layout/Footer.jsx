@@ -32,24 +32,15 @@ function FooterHeading({ children }) {
 
 
 
-// Real payment brand SVG logos
-function VisaLogo() {
-  return <svg viewBox="0 0 780 500" width="52" height="34" style={{ borderRadius: 4 }}><rect fill="#1A1F71" width="780" height="500" rx="40"/><path d="M293.2 348.7l33.4-195.8h53.4l-33.4 195.8zM541.8 156.3c-10.6-4-27.2-8.3-47.9-8.3-52.8 0-90 26.5-90.2 64.5-.3 28.1 26.5 43.7 46.8 53.1 20.8 9.6 27.8 15.7 27.7 24.3-.1 13.1-16.6 19.1-32 19.1-21.4 0-32.7-3-50.3-10.2l-6.9-3.1-7.5 43.8c12.5 5.5 35.6 10.2 59.6 10.5 56.2 0 92.6-26.2 93-67.2.2-22.4-14.1-39.4-45.2-53.4-18.8-9.1-30.4-15.2-30.3-24.4 0-8.2 9.8-16.9 30.9-16.9 17.6-.3 30.4 3.6 40.4 7.6l4.8 2.3 7.3-42.7zM676.8 152.9h-41.3c-12.8 0-22.4 3.5-28 16.3l-79.4 179.5h56.2s9.2-24.1 11.3-29.4c6.1 0 60.8.1 68.6.1 1.6 6.9 6.5 29.3 6.5 29.3h49.7l-43.6-195.8zm-65.8 126.5c4.4-11.3 21.4-54.8 21.4-54.8-.3.5 4.4-11.4 7.1-18.8l3.6 17s10.3 47 12.5 56.8h-44.6zM232.8 152.9l-52.4 133.5-5.6-27.1c-9.7-31.2-40-65-73.9-81.9l47.9 171.1 56.6-.1 84.2-195.5h-56.8z" fill="#fff"/><path d="M131.9 152.9H46.5l-.7 4c67.2 16.2 111.7 55.5 130.1 102.6l-18.8-90.2c-3.2-12.4-12.8-16-25.2-16.4z" fill="#F2AE14"/></svg>;
+// Payment brand SVG logos
+function StripeLogo() {
+  return <svg viewBox="0 0 120 50" width="80" height="34" style={{ borderRadius: 6 }}><rect fill="#635BFF" width="120" height="50" rx="8"/><path d="M55.2 20.2c0-2.8 2.3-3.9 6.1-3.9 5.5 0 12.4 1.7 17.9 4.6V9.6C73.5 7.4 67.8 6 62.1 6 49.5 6 41 12.2 41 22c0 15.2 20.9 12.8 20.9 19.4 0 3.3-2.9 4.4-6.9 4.4-6 0-13.7-2.5-19.8-5.8v11.6c6.7 2.9 13.5 4.1 19.8 4.1 12.9 0 21.8-5.7 21.8-15.6C76.8 24 55.2 26.9 55.2 20.2z" fill="#fff"/></svg>;
 }
-function MastercardLogo() {
-  return <svg viewBox="0 0 780 500" width="52" height="34" style={{ borderRadius: 4 }}><rect fill="#000" width="780" height="500" rx="40"/><circle cx="310" cy="250" r="150" fill="#EB001B"/><circle cx="470" cy="250" r="150" fill="#F79E1B"/><path d="M390 130.7c-38.1 30-62.5 76.3-62.5 128.3s24.4 98.3 62.5 128.3c38.1-30 62.5-76.3 62.5-128.3s-24.4-98.3-62.5-128.3z" fill="#FF5F00"/></svg>;
-}
-function SepaLogo() {
-  return <svg viewBox="0 0 780 500" width="52" height="34" style={{ borderRadius: 4 }}><rect fill="#2B4D9B" width="780" height="500" rx="40"/><text x="390" y="280" fill="#fff" fontSize="160" fontFamily="Arial,sans-serif" fontWeight="700" textAnchor="middle">SEPA</text></svg>;
+function PayPalLogo() {
+  return <svg viewBox="0 0 120 50" width="80" height="34" style={{ borderRadius: 6 }}><rect fill="#003087" width="120" height="50" rx="8"/><text x="60" y="32" fill="#fff" fontSize="18" fontFamily="Arial,sans-serif" fontWeight="700" textAnchor="middle">PayPal</text></svg>;
 }
 function ApplePayLogo() {
-  return <svg viewBox="0 0 780 500" width="52" height="34" style={{ borderRadius: 4 }}><rect fill="#000" width="780" height="500" rx="40"/><text x="390" y="290" fill="#fff" fontSize="140" fontFamily="SF Pro,-apple-system,sans-serif" fontWeight="600" textAnchor="middle">Pay</text></svg>;
-}
-function GooglePayLogo() {
-  return <svg viewBox="0 0 780 500" width="52" height="34" style={{ borderRadius: 4 }}><rect fill="#fff" stroke="#dadce0" width="780" height="500" rx="40"/><text x="390" y="290" fill="#3C4043" fontSize="150" fontFamily="Google Sans,Arial,sans-serif" fontWeight="500" textAnchor="middle">GPay</text></svg>;
-}
-function StripeLogo() {
-  return <svg viewBox="0 0 780 500" width="52" height="34" style={{ borderRadius: 4 }}><rect fill="#635BFF" width="780" height="500" rx="40"/><text x="390" y="290" fill="#fff" fontSize="155" fontFamily="Arial,sans-serif" fontWeight="700" textAnchor="middle">stripe</text></svg>;
+  return <svg viewBox="0 0 120 50" width="80" height="34" style={{ borderRadius: 6 }}><rect fill="#000" width="120" height="50" rx="8"/><text x="60" y="33" fill="#fff" fontSize="18" fontFamily="-apple-system,SF Pro,sans-serif" fontWeight="600" textAnchor="middle">Apple Pay</text></svg>;
 }
 
 // Trust badge component
@@ -126,14 +117,11 @@ export default function Footer() {
 
       {/* ── Payment Logos ── */}
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 24, marginBottom: 20 }}>
-        <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: isMobile ? 12 : 16, justifyContent: isMobile ? "center" : "flex-start" }}>
+        <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 12, justifyContent: isMobile ? "center" : "flex-start" }}>
           <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", marginRight: 4 }}>Paiements acceptés</span>
           <StripeLogo />
-          <VisaLogo />
-          <MastercardLogo />
-          <SepaLogo />
+          <PayPalLogo />
           <ApplePayLogo />
-          <GooglePayLogo />
         </div>
       </div>
 
