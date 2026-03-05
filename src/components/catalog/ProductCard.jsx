@@ -85,7 +85,7 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
   const brandColor = BRAND_COLORS[product.brand] || "#64748b";
   const brandLogo = BRAND_LOGOS[product.brand];
 
-  const imgSize = isMobile ? 90 : 130;
+  const imgSize = isMobile ? 140 : 130;
 
   const handleCardClick = (e) => {
     // Don't trigger modal for buttons, links, or expand area
@@ -100,11 +100,11 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
       onMouseLeave={() => setHovered(false)}
       onClick={handleCardClick}
     >
-      <div style={{ display: "flex", alignItems: isMobile ? "flex-start" : "center", padding: isMobile ? "12px 14px" : "16px 20px", gap: isMobile ? 12 : 20 }}>
+      <div style={{ display: "flex", alignItems: isMobile ? "flex-start" : "center", padding: isMobile ? "10px" : "16px 20px", gap: isMobile ? 10 : 20, flexDirection: isMobile ? "column" : "row" }}>
         {/* ── Image zone ── */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 6, width: imgSize, flexShrink: 0, alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 6, width: isMobile ? "100%" : imgSize, flexShrink: 0, alignItems: "center" }}>
           <div style={{
-            width: imgSize, height: imgSize, background: "#fafafa", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", padding: 6,
+            width: isMobile ? "100%" : imgSize, height: imgSize, background: "#fafafa", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", padding: 6,
             border: "1px solid #f0f0f0", position: "relative",
           }}>
             {/* Brand logo overlay */}
@@ -120,7 +120,7 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
               src={imgError ? (CATEGORY_FALLBACK_IMAGES[product.category] || DEFAULT_FALLBACK) : (product.image || CATEGORY_FALLBACK_IMAGES[product.category] || DEFAULT_FALLBACK)}
               alt={product.name}
               loading="lazy"
-              style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", mixBlendMode: "multiply" }}
+              style={{ width: "100%", maxHeight: "100%", objectFit: "contain", mixBlendMode: "multiply" }}
               onError={(e) => { if (!imgError) { setImgError(true); } else { e.target.onerror = null; e.target.src = DEFAULT_FALLBACK; } }}
             />
           </div>
@@ -132,7 +132,7 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
         {/* ── Product info ── */}
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 6, alignItems: "center" }}>
-            <SellerBadge offer={bestOffer} />
+            <SellerBadge offer={bestOffer} compactMobile={isMobile} showRating={false} />
             {/* Brand color indicator */}
             <span style={{
               display: "inline-flex", alignItems: "center", gap: 4, padding: "2px 8px",
@@ -145,40 +145,47 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
 
           <h3
             onClick={(e) => { e.stopPropagation(); navigate(`/product/${product.id}`); }}
-            style={{ fontSize: isMobile ? 13 : 15, fontWeight: 600, color: "#222", margin: "4px 0", cursor: "pointer", lineHeight: 1.3 }}
+            style={{ fontSize: isMobile ? 14 : 15, fontWeight: 600, color: "#222", margin: "4px 0", cursor: "pointer", lineHeight: 1.3 }}
           >
             {product.name}
           </h3>
 
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 6, gap: 8 }}>
+            <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600 }}>⭐ {bestOffer.rating} ({bestOffer.reviews})</span>
+            <span style={{ fontSize: 11, color: totalStock > 0 ? "#4CAF50" : "#ef4444", fontWeight: 600 }}>
+              {totalStock > 0 ? `${totalStock.toLocaleString()} ${t("common.pcs")}` : t("catalog.outOfStock", "Rupture")}
+            </span>
+          </div>
+
           {/* ── Specs badges ── */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginTop: 6 }}>
             {product.power > 0 && (
-              <span style={{ ...S.specBadge, background: "#eff6ff", color: "#1d4ed8" }}>
+              <span style={{ ...S.specBadge, fontSize: isMobile ? 10 : 11, background: "#eff6ff", color: "#1d4ed8" }}>
                 ⚡ {product.power >= 1 ? product.power + " kW" : (product.power * 1000) + " W"}
               </span>
             )}
             {product.type && (
-              <span style={S.specBadge}>
+              <span style={{ ...S.specBadge, fontSize: isMobile ? 10 : 11 }}>
                 {product.type}
               </span>
             )}
             {product.phases > 0 && (
-              <span style={{ ...S.specBadge, background: "#f0fdf4", color: "#166534" }}>
+              <span style={{ ...S.specBadge, fontSize: isMobile ? 10 : 11, background: "#f0fdf4", color: "#166534" }}>
                 {product.phases === 1 ? "1Ph" : "3Ph"}
               </span>
             )}
             {product.mppt > 0 && (
-              <span style={{ ...S.specBadge, background: "#fef3c7", color: "#92400e" }}>
+              <span style={{ ...S.specBadge, fontSize: isMobile ? 10 : 11, background: "#fef3c7", color: "#92400e" }}>
                 {product.mppt} MPPT
               </span>
             )}
             {product.efficiency && (
-              <span style={{ ...S.specBadge, background: "#ecfdf5", color: "#065f46" }}>
+              <span style={{ ...S.specBadge, fontSize: isMobile ? 10 : 11, background: "#ecfdf5", color: "#065f46" }}>
                 {product.efficiency}
               </span>
             )}
             {product.protection && (
-              <span style={{ ...S.specBadge, background: "#f5f3ff", color: "#5b21b6" }}>
+              <span style={{ ...S.specBadge, fontSize: isMobile ? 10 : 11, background: "#f5f3ff", color: "#5b21b6" }}>
                 {product.protection}
               </span>
             )}
@@ -188,7 +195,7 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
                 href={product.datasheet}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={S.datasheetBadge}
+                style={{ ...S.datasheetBadge, fontSize: isMobile ? 10 : 11 }}
                 onClick={(e) => e.stopPropagation()}
               >
                 <PdfIcon /> PDF
@@ -198,23 +205,17 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
         </div>
 
         {/* ── Price & CTA ── */}
-        <div style={{ textAlign: "right", flexShrink: 0, minWidth: isMobile ? 100 : 140 }}>
-          <div style={{ fontSize: 12, color: totalStock > 0 ? "#4CAF50" : "#ef4444", fontWeight: 500, marginBottom: 4 }}>
-            <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", background: totalStock > 0 ? "#4CAF50" : "#ef4444", marginRight: 4 }} />
-            {totalStock > 0 ? `${totalStock.toLocaleString()} ${t("common.pcs")}` : t("catalog.outOfStock", "Rupture")}
-          </div>
-          <div style={{ marginBottom: 8 }}>
-            {isLoggedIn ? (
-              <span style={{ fontSize: 11, color: "#888" }}>{t("catalog.from")} </span>
-            ) : null}
-            <PriceGate price={bestOffer.price} isLoggedIn={isLoggedIn} onLogin={onLogin} />
-          </div>
-          {!isMobile && (
-            <button style={S.greenBtn} onClick={(e) => { e.stopPropagation(); navigate(`/product/${product.id}`); }}>
+        <div style={{ textAlign: isMobile ? "left" : "right", flexShrink: 0, minWidth: isMobile ? "100%" : 140, marginTop: isMobile ? 4 : 0 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
+            <div>
+              {isLoggedIn ? <span style={{ fontSize: 11, color: "#888" }}>{t("catalog.from")} </span> : null}
+              <PriceGate price={bestOffer.price} isLoggedIn={isLoggedIn} onLogin={onLogin} />
+            </div>
+            <button style={{ ...S.greenBtn, padding: isMobile ? "7px 12px" : "8px 16px", fontSize: isMobile ? 11 : 13 }} onClick={(e) => { e.stopPropagation(); navigate(`/product/${product.id}`); }}>
               <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 12H3m9-9l9 9-9 9" /></svg>
               {t("catalog.offerDetails")}
             </button>
-          )}
+          </div>
         </div>
       </div>
 
@@ -224,7 +225,7 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
           <div
             data-expand="true"
             onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
-            style={{ background: expanded ? "#f0f7f0" : "#e8f5e9", padding: "8px 20px", cursor: "pointer", display: "flex", justifyContent: "center", alignItems: "center", gap: 6, fontSize: 13, color: "#2e7d32", fontWeight: 500, transition: "background .15s" }}
+            style={{ background: expanded ? "#f0f7f0" : "#e8f5e9", padding: isMobile ? "8px 12px" : "8px 20px", cursor: "pointer", display: "flex", justifyContent: "center", alignItems: "center", gap: 6, fontSize: 13, color: "#2e7d32", fontWeight: 500, transition: "background .15s" }}
           >
             {expanded ? t("catalog.hideOffers") : t("catalog.viewOffers")} {t("catalog.theOffers")} ({offerCount})
             <Chev open={expanded} />
