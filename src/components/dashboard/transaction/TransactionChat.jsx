@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { T } from "../tokens";
 import { useResponsive } from "../shared/useResponsive";
+import { filterMessage } from "../../../utils/chatModeration";
 
 const formatDate = (d) =>
   new Intl.DateTimeFormat("fr-FR", {
@@ -41,6 +42,7 @@ export default function TransactionChat({ messages: propMessages, role, transact
   const { isMobile } = useResponsive();
   const [messages, setMessages] = useState(propMessages || MOCK_MESSAGES);
   const [draft, setDraft] = useState("");
+  const [moderationWarning, setModerationWarning] = useState(null);
   const [showTranslation, setShowTranslation] = useState({});
   const [autoTranslate, setAutoTranslate] = useState(true);
   const messagesEndRef = useRef(null);
@@ -53,6 +55,16 @@ export default function TransactionChat({ messages: propMessages, role, transact
 
   const handleSend = () => {
     if (!draft.trim()) return;
+
+    // Client-side moderation filter
+    const modCheck = filterMessage(draft);
+    if (modCheck.blocked) {
+      setModerationWarning(modCheck.reason);
+      setTimeout(() => setModerationWarning(null), 6000);
+      return;
+    }
+    setModerationWarning(null);
+
     const newMsg = {
       id: `msg-${Date.now()}`,
       senderRole: role,
@@ -196,6 +208,20 @@ export default function TransactionChat({ messages: propMessages, role, transact
             {"\uD83D\uDD04"} Auto-translate {lang === "fr" ? "FR" : "EN"}
           </button>
         </div>
+
+        {/* Moderation warning */}
+        {moderationWarning && (
+          <div style={{
+            background: "#fef2f2", border: "1px solid #fecaca",
+            borderRadius: 8, padding: "10px 14px", marginBottom: 8,
+            display: "flex", alignItems: "flex-start", gap: 8,
+          }}>
+            <span style={{ fontSize: 16, flexShrink: 0 }}>{"\u26A0\uFE0F"}</span>
+            <div style={{ fontSize: 12, color: "#991b1b", lineHeight: 1.4 }}>
+              {moderationWarning}
+            </div>
+          </div>
+        )}
 
         {/* Text input + send */}
         <div style={{

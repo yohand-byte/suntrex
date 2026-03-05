@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import { useChat } from "../hooks/useChat";
 import { useTransaction } from "../hooks/useTransaction";
+import { filterMessage } from "../utils/chatModeration";
 
 /* ═══════════════════════════════════════════════════════════════
    SUNTREX — Transaction & Chat Page
@@ -401,6 +402,7 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
   // ── Demo mode state ──────────────────────────────────────
   const [demoMessages, setDemoMessages] = useState(MOCK_MESSAGES);
   const [inputText, setInputText] = useState("");
+  const [moderationWarning, setModerationWarning] = useState(null);
   const [autoTranslate, setAutoTranslate] = useState(true);
   const [showModerationPanel, setShowModerationPanel] = useState(false);
   const chatEndRef = useRef(null);
@@ -422,6 +424,15 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
   // ── Send handler ─────────────────────────────────────────
   const handleSend = () => {
     if (!inputText.trim()) return;
+
+    // Client-side moderation filter
+    const modCheck = filterMessage(inputText);
+    if (modCheck.blocked) {
+      setModerationWarning(modCheck.reason);
+      setTimeout(() => setModerationWarning(null), 6000);
+      return;
+    }
+    setModerationWarning(null);
 
     if (isDemoMode) {
       const newMsg = {
@@ -708,6 +719,19 @@ export default function TransactionChatPage({ isLoggedIn, currentUser: appUser }
             </div>
 
             <div style={{ borderTop: "1px solid #e5e7eb", padding: "12px 18px" }}>
+              {moderationWarning && (
+                <div style={{
+                  background: "#fef2f2", border: "1px solid #fecaca",
+                  borderRadius: 8, padding: "10px 14px", marginBottom: 10,
+                  display: "flex", alignItems: "flex-start", gap: 8,
+                  animation: "fadeIn 0.2s ease-out",
+                }}>
+                  <span style={{ fontSize: 16, flexShrink: 0 }}>{"⚠️"}</span>
+                  <div style={{ fontSize: 12, color: "#991b1b", lineHeight: 1.4 }}>
+                    {moderationWarning}
+                  </div>
+                </div>
+              )}
               <textarea
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
