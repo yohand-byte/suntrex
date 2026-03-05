@@ -365,6 +365,26 @@ export default function BuyerDashboard() {
       tabs={tabs}
       role="buyer"
     >
+      {/* LIVE / MOCK badge */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+        <span style={{
+          display: "inline-flex", alignItems: "center", gap: 6,
+          padding: "4px 12px", borderRadius: 20,
+          background: usingMock ? "#fef3c7" : "#d1fae5",
+          color: usingMock ? "#92400e" : "#065f46",
+          fontSize: 11, fontWeight: 700, letterSpacing: 0.3,
+        }}>
+          <span style={{
+            width: 7, height: 7, borderRadius: "50%",
+            background: usingMock ? "#f59e0b" : "#10b981",
+            display: "inline-block",
+          }} />
+          {usingMock ? "MOCK DATA" : "LIVE — Supabase"}
+        </span>
+        {dashLoading && (
+          <span style={{ fontSize: 11, color: BRAND.gray }}>Chargement…</span>
+        )}
+      </div>
       {renderContent()}
     </DashboardLayout>
   );
