@@ -74,7 +74,7 @@ export default function Footer() {
           <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", lineHeight: 1.6, marginBottom: 16 }}>
             Marketplace B2B photovoltaïque.<br/>Panneaux, onduleurs, batteries &amp; plus pour les professionnels européens du solaire.
           </p>
-          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", marginBottom: 6 }}>contact@suntrex.eu</p>
+          <a href="mailto:contact@suntrex.eu" style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", marginBottom: 6, display: "block", textDecoration: "none" }}>contact@suntrex.eu</a>
           <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>Tél / WhatsApp : +33 7 00 00 00 00</p>
         </div>
 
@@ -84,9 +84,9 @@ export default function Footer() {
           <FooterLink label="Centre d'aide" onClick={function() { navigate("/faq"); }} />
           <FooterLink label="Blog" onClick={function() { navigate("/blog"); }} />
           <FooterLink label="Vendre sur SUNTREX" onClick={function() { navigate("/dashboard/sell"); }} />
-          <FooterLink label="À propos" onClick={function() {}} />
-          <FooterLink label="Conditions Générales" onClick={function() {}} />
-          <FooterLink label="Politique de confidentialité" onClick={function() {}} />
+          <FooterLink label="À propos" onClick={function() { navigate("/about"); }} />
+          <FooterLink label="Conditions Générales" onClick={function() { navigate("/cgv"); }} />
+          <FooterLink label="Politique de confidentialité" onClick={function() { navigate("/privacy"); }} />
         </div>
 
         {/* Col 3 — Categories */}
@@ -137,8 +137,12 @@ export default function Footer() {
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 16, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
         <span style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>© 2026 SUNTREX — Tous droits réservés</span>
         <div style={{ display: "flex", gap: 16 }}>
-          {["CGV", "Confidentialité", "Mentions légales"].map(function(l) {
-            return <a key={l} href="#" onClick={function(e) { e.preventDefault(); }} style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", textDecoration: "none", transition: "color .15s" }} onMouseEnter={function(e) { e.target.style.color = "rgba(255,255,255,0.7)"; }} onMouseLeave={function(e) { e.target.style.color = "rgba(255,255,255,0.35)"; }}>{l}</a>;
+          {[
+            { label: "CGV", path: "/cgv" },
+            { label: "Confidentialité", path: "/privacy" },
+            { label: "Mentions légales", path: "/about" },
+          ].map(function(l) {
+            return <a key={l.label} href={l.path} onClick={function(e) { e.preventDefault(); navigate(l.path); }} style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", textDecoration: "none", transition: "color .15s" }} onMouseEnter={function(e) { e.target.style.color = "rgba(255,255,255,0.7)"; }} onMouseLeave={function(e) { e.target.style.color = "rgba(255,255,255,0.35)"; }}>{l.label}</a>;
           })}
         </div>
       </div>

@@ -33,6 +33,7 @@ const AI_FALLBACK = {
   billing: "Pour toute question de facturation :\n\u2022 Vos factures sont dans **Mon compte** > **Facturation**\n\u2022 Le paiement est s\u00e9curis\u00e9 via **Stripe** (3D Secure)\n\u2022 Commission SUNTREX : **5% en dessous** des concurrents\n\nQuelle est votre question pr\u00e9cise ?",
   other: "Je suis l\u2019assistant IA SUNTREX. Je peux vous aider sur :\n\u2022 Suivi de commandes\n\u2022 Informations produits (panneaux, onduleurs, batteries)\n\u2022 Proc\u00e9dures de retour/SAV\n\u2022 Facturation et paiements\n\nPosez-moi votre question !",
   default: "Merci pour votre message. Laissez-moi v\u00e9rifier cela pour vous...",
+  unavailable: "Service IA temporairement indisponible. Contactez-nous par email \u00e0 contact@suntrex.eu ou par WhatsApp au +33 7 00 00 00 00.",
 };
 
 // Safe text rendering: parses **bold** and bullet points without innerHTML
@@ -327,7 +328,7 @@ export default function SuntrexSupportChat({ userId = null }) {
     width: fabSize, height: fabSize,
     borderRadius: "50%", border: "none", background: "#E8700A", color: "#fff",
     cursor: "pointer", boxShadow: "0 4px 20px rgba(232,112,10,0.4)",
-    display: "flex", alignItems: "center", justifyContent: "center", zIndex: 50,
+    display: "flex", alignItems: "center", justifyContent: "center", zIndex: 9999,
     transition: "transform .2s, box-shadow .2s",
   };
 

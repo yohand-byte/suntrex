@@ -137,7 +137,7 @@ const MODULES = [
       { name: "TransactionProducts.jsx — Produits commandés (240 lignes)", done: true },
       { name: "TransactionTimeline.jsx — Timeline statuts (136 lignes)", done: true },
       { name: "useTransaction.js — Hook gestion état (67 lignes)", done: true },
-      { name: "Brancher sur Stripe webhooks réels", done: false },
+      { name: "Brancher sur Stripe webhooks réels", done: true },
     ],
   },
   {

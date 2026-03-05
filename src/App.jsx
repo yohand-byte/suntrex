@@ -21,6 +21,9 @@ const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const SuntrexHelpCenter = lazy(() => import("./components/faq/SuntrexFAQ"));
 const MvpTracker = lazy(() => import("./pages/MvpTracker"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const CgvPage = lazy(() => import("./pages/CgvPage"));
+const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const SellerProfile = lazy(() => import("./pages/seller/SellerProfile"));
 const AuthE2ETest = lazy(() => import("./tests/AuthE2ETest"));
 const StripeE2ETest = lazy(() => import("./tests/StripeE2ETest"));
@@ -180,6 +183,9 @@ export default function App() {
           }/>
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/faq" element={<SuntrexHelpCenter />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/cgv" element={<CgvPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/tracker" element={<MvpTracker />} />
           <Route path="/admin/auth-test" element={<AuthE2ETest />} />
@@ -193,7 +199,9 @@ export default function App() {
       </Suspense>
 
       {!isDashboard && <Footer />}
-      {!isDashboard && <SuntrexSupportChat userId={isLoggedIn ? currentUser?.id || null : null} />}
+      <Suspense fallback={null}>
+        {!isDashboard && <SuntrexSupportChat userId={isLoggedIn ? currentUser?.id || null : null} />}
+      </Suspense>
 
       {showLogin && (
         <LoginModal
