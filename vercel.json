@@ -31,7 +31,16 @@
     }
   ],
   "rewrites": [
-    { "source": "/api/messages/:transactionId", "destination": "/api/messages?transactionId=:transactionId" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/catalog/:path*", "destination": "/index.html" },
+    { "source": "/product/:path*", "destination": "/index.html" },
+    { "source": "/checkout/:path*", "destination": "/index.html" },
+    { "source": "/delivery/:path*", "destination": "/index.html" },
+    { "source": "/transaction/:path*", "destination": "/index.html" },
+    { "source": "/blog", "destination": "/index.html" },
+    { "source": "/faq", "destination": "/index.html" },
+    { "source": "/offers", "destination": "/index.html" },
+    { "source": "/auth", "destination": "/index.html" },
+    { "source": "/admin/:path*", "destination": "/index.html" },
+    { "source": "/dashboard/:path*", "destination": "/index.html" }
   ]
 }
