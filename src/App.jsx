@@ -203,7 +203,7 @@ export default function App() {
 
       {!isDashboard && <Footer />}
       <Suspense fallback={null}>
-        {!isDashboard && <MultiChannelSupport onOpenChat={null} />}
+        {!isDashboard && <MultiChannelSupport userId={isLoggedIn ? currentUser?.id : null} />}
       </Suspense>
 
       {showLogin && (

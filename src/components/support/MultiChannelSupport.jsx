@@ -1,7 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, lazy, Suspense } from "react";
 import useResponsive from "../../hooks/useResponsive";
 
-const WHATSAPP_NUMBER = "+33600000000"; // Replace with real number
+const SuntrexSupportChat = lazy(() => import("../chat/SuntrexSupportChat"));
+
+const WHATSAPP_NUMBER = "+33700000000";
 const SUPPORT_EMAIL = "contact@suntrex.eu";
 
 const CHANNELS = [
@@ -31,8 +33,9 @@ const CHANNELS = [
   },
 ];
 
-export default function MultiChannelSupport({ onOpenChat }) {
+export default function MultiChannelSupport({ onOpenChat, userId }) {
   const [open, setOpen] = useState(false);
+  const [showChat, setShowChat] = useState(false);
   const { isMobile } = useResponsive();
   const ref = useRef(null);
 
@@ -51,6 +54,7 @@ export default function MultiChannelSupport({ onOpenChat }) {
     switch (channelId) {
       case "chat":
         if (onOpenChat) onOpenChat();
+        else setShowChat(true);
         break;
       case "whatsapp": {
         const msg = encodeURIComponent("Bonjour, j'ai une question sur SUNTREX.");
@@ -64,6 +68,14 @@ export default function MultiChannelSupport({ onOpenChat }) {
   };
 
   return (
+    <>
+    {/* Inline support chat */}
+    {showChat && (
+      <Suspense fallback={null}>
+        <SuntrexSupportChat userId={userId || null} onClose={() => setShowChat(false)} />
+      </Suspense>
+    )}
+
     <div ref={ref} style={{ position: "fixed", bottom: isMobile ? 16 : 24, right: isMobile ? 16 : 24, zIndex: 9998 }}>
       {/* Channel Menu */}
       {open && (
@@ -121,5 +133,6 @@ export default function MultiChannelSupport({ onOpenChat }) {
         {open ? "+" : "💬"}
       </button>
     </div>
+    </>
   );
 }
