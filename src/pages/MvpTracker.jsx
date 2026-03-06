@@ -7,7 +7,7 @@ const PHASES = [
   { id: "expand", label: "Phase 4 — Expansion", color: "#06b6d4", target: "Continu" },
 ];
 
-// LAST UPDATED: 2026-03-05
+// LAST UPDATED: 2026-03-06
 const MODULES = [
   // ═══ PHASE 1 — MVP ═══
   {
@@ -55,7 +55,7 @@ const MODULES = [
       { name: "useAuth hook — Supabase Auth complet (343 lignes)", done: true },
       { name: "signUp / signIn / signOut / getSession", done: true },
       { name: "onAuthStateChange listener", done: true },
-      { name: "Vérification TVA auto via API VIES (Netlify Function)", done: true },
+      { name: "Vérification TVA auto via API VIES (Cloud Run)", done: true },
       { name: "RGPD checkboxes (CGV obligatoire, marketing optionnel)", done: true },
       { name: "Sélecteur pays (FR, DE, BE, NL, IT, ES)", done: true },
       { name: "Rôles buyer/seller dans Supabase", done: true },
@@ -159,10 +159,10 @@ const MODULES = [
     tasks: [
       { name: "Vite + React (build < 5s)", done: true },
       { name: "Vercel — Frontend déployé (suntrex.vercel.app)", done: true },
-      { name: "Netlify Functions — 5 serverless (stripe×3, vat, chat-ai)", done: true },
+      { name: "Cloud Run Fastify API — 9 routes (stripe×3, vat, chat-ai, blog×3, admin)", done: true },
       { name: "Supabase — Auth + DB + Realtime + RLS", done: true },
       { name: "GitHub repo (yohand-byte/suntrex.git)", done: true },
-      { name: "Env vars configurées (Vercel + Netlify)", done: true },
+      { name: "Env vars configurées (Vercel + Cloud Run)", done: true },
       { name: "SEO meta tags + hreflang 7 langues", done: true },
       { name: "Favicon + Apple touch icon", done: true },
     ],
@@ -402,7 +402,7 @@ export default function SuntrexTracker() {
           <span style={{ fontSize: 22, fontWeight: 800, color: "#1e293b" }}>SUNTREX</span>
           <span style={{ fontSize: 10, fontWeight: 700, color: "#E8700A", background: "#fff7ed", padding: "2px 8px", borderRadius: 4, letterSpacing: "0.05em" }}>MVP TRACKER</span>
         </div>
-        <p style={{ fontSize: 12, color: "#94a3b8", margin: 0 }}>Dernière mise à jour : 5 mars 2026 — {globalStats.done}/{globalStats.total} tâches complétées</p>
+        <p style={{ fontSize: 12, color: "#94a3b8", margin: 0 }}>Dernière mise à jour : 6 mars 2026 — {globalStats.done}/{globalStats.total} tâches complétées</p>
       </div>
 
       {/* Global Progress */}
@@ -416,7 +416,7 @@ export default function SuntrexTracker() {
           {[
             { label: "Fichiers", value: "~45", icon: "📄" },
             { label: "Lignes code", value: "~13K", icon: "💻" },
-            { label: "Netlify Fn", value: "5", icon: "⚡" },
+            { label: "Cloud Run", value: "9 routes", icon: "⚡" },
             { label: "Langues", value: "7", icon: "🌍" },
           ].map((s, i) => (
             <div key={i} style={{ textAlign: "center", padding: "10px 4px", background: "#f8fafc", borderRadius: 8 }}>
