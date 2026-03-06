@@ -74,8 +74,9 @@ const MODULES = [
       { name: "apiVersion épinglée (2024-06-20)", done: true },
       { name: "CheckoutPage.jsx — Elements + CardElement (595 lignes)", done: true },
       { name: "Vérif charges_enabled + payouts_enabled avant listing", done: true },
-      { name: "Env vars Stripe configurées (Vercel + Netlify)", done: true },
+      { name: "Env vars Stripe configurées (Vercel + Cloud Run)", done: true },
       { name: "Test mode complet sk_test → paiement → webhook → transfer", done: true },
+      { name: "Cloud Run migration (9 endpoints Fastify)", done: true },
       { name: "Passage en mode live (sk_live_)", done: false },
     ],
   },
@@ -165,6 +166,7 @@ const MODULES = [
       { name: "Env vars configurées (Vercel + Cloud Run)", done: true },
       { name: "SEO meta tags + hreflang 7 langues", done: true },
       { name: "Favicon + Apple touch icon", done: true },
+      { name: "Backend Cloud Run europe-west1 (Fastify API)", done: true },
     ],
   },
   {
