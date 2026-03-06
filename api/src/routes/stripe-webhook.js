@@ -128,13 +128,15 @@ async function handlePaymentSucceeded(supabase, paymentIntent) {
   const { error: orderErr } = await supabase
     .from("Order")
     .update({
-      status: "paid",
+      status: "PAID",
       payment_intent_id: paymentIntent.id,
       charge_id: paymentIntent.latest_charge,
       amount: paymentIntent.amount,
       fee: paymentIntent.application_fee_amount,
       currency: paymentIntent.currency,
       paid_at: new Date().toISOString(),
+      escrowStatus: "held",
+      escrowHeldAt: new Date().toISOString(),
     })
     .eq("id", orderId);
 

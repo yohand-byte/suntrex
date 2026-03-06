@@ -16,6 +16,7 @@ fastify.register(require('./routes/admin-stats'), { prefix: '/api' });
 fastify.register(require('./routes/blog-ai-generate'), { prefix: '/api' });
 fastify.register(require('./routes/blog-rss'), { prefix: '/api' });
 fastify.register(require('./routes/blog-sitemap'), { prefix: '/api' });
+fastify.register(require('./routes/escrow'), { prefix: '/api' });
 
 // Health check (Cloud Run)
 fastify.get('/health', async () => ({ status: 'ok', version: '1.0.0' }));
