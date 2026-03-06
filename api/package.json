@@ -1,0 +1,20 @@
+{
+  "name": "suntrex-api",
+  "version": "1.0.0",
+  "description": "SUNTREX Fastify API for Cloud Run",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "fastify": "^5.3.3",
+    "@fastify/cors": "^11.0.1",
+    "stripe": "^17.7.0",
+    "@supabase/supabase-js": "^2.49.4",
+    "node-fetch": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
