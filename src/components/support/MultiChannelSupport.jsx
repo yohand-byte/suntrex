@@ -1,0 +1,125 @@
+import { useState, useRef, useEffect } from "react";
+import useResponsive from "../../hooks/useResponsive";
+
+const WHATSAPP_NUMBER = "+33600000000"; // Replace with real number
+const SUPPORT_EMAIL = "contact@suntrex.eu";
+
+const CHANNELS = [
+  {
+    id: "chat",
+    label: "Chat en direct",
+    labelEn: "Live Chat",
+    icon: "💬",
+    color: "#E8700A",
+    desc: "Reponse instantanee par IA",
+  },
+  {
+    id: "whatsapp",
+    label: "WhatsApp",
+    labelEn: "WhatsApp",
+    icon: "📱",
+    color: "#25D366",
+    desc: "Reponse sous 30 min",
+  },
+  {
+    id: "email",
+    label: "Email",
+    labelEn: "Email",
+    icon: "✉️",
+    color: "#3b82f6",
+    desc: "Reponse sous 24h",
+  },
+];
+
+export default function MultiChannelSupport({ onOpenChat }) {
+  const [open, setOpen] = useState(false);
+  const { isMobile } = useResponsive();
+  const ref = useRef(null);
+
+  // Close on outside click
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  const handleChannel = (channelId) => {
+    setOpen(false);
+    switch (channelId) {
+      case "chat":
+        if (onOpenChat) onOpenChat();
+        break;
+      case "whatsapp": {
+        const msg = encodeURIComponent("Bonjour, j'ai une question sur SUNTREX.");
+        window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/[^0-9]/g, "")}?text=${msg}`, "_blank");
+        break;
+      }
+      case "email":
+        window.location.href = `mailto:${SUPPORT_EMAIL}?subject=Support%20SUNTREX`;
+        break;
+    }
+  };
+
+  return (
+    <div ref={ref} style={{ position: "fixed", bottom: isMobile ? 16 : 24, right: isMobile ? 16 : 24, zIndex: 9998 }}>
+      {/* Channel Menu */}
+      {open && (
+        <div style={{
+          position: "absolute", bottom: 64, right: 0,
+          background: "#fff", borderRadius: 14, boxShadow: "0 12px 40px rgba(0,0,0,0.15)",
+          border: "1px solid #e2e8f0", overflow: "hidden", width: isMobile ? 260 : 280,
+          animation: "slideUp 0.2s ease-out",
+        }}>
+          <div style={{ padding: "14px 16px", borderBottom: "1px solid #f1f5f9" }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: "#1e293b" }}>Besoin d'aide ?</div>
+            <div style={{ fontSize: 11, color: "#64748b", marginTop: 2 }}>Choisissez votre canal</div>
+          </div>
+          {CHANNELS.map((ch) => (
+            <button
+              key={ch.id}
+              onClick={() => handleChannel(ch.id)}
+              style={{
+                display: "flex", alignItems: "center", gap: 12, width: "100%", padding: "12px 16px",
+                border: "none", background: "transparent", cursor: "pointer", textAlign: "left",
+                borderBottom: "1px solid #f8fafc", transition: "background 0.15s",
+                fontFamily: "'DM Sans', sans-serif",
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = "#f8fafc"}
+              onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
+            >
+              <div style={{
+                width: 38, height: 38, borderRadius: 10, background: `${ch.color}12`,
+                display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0,
+              }}>
+                {ch.icon}
+              </div>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: "#1e293b" }}>{ch.label}</div>
+                <div style={{ fontSize: 11, color: "#94a3b8" }}>{ch.desc}</div>
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* FAB Button */}
+      <button
+        onClick={() => setOpen(!open)}
+        style={{
+          width: 52, height: 52, borderRadius: "50%", border: "none",
+          background: open ? "#64748b" : "#E8700A", color: "#fff",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          cursor: "pointer", boxShadow: "0 4px 16px rgba(232,112,10,0.3)",
+          transition: "all 0.2s", fontSize: 22,
+          transform: open ? "rotate(45deg)" : "none",
+        }}
+        aria-label="Support"
+      >
+        {open ? "+" : "💬"}
+      </button>
+    </div>
+  );
+}
