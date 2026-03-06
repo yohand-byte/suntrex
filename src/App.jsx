@@ -25,6 +25,7 @@ const AboutPage = lazy(() => import("./pages/AboutPage"));
 const CgvPage = lazy(() => import("./pages/CgvPage"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const SellerProfile = lazy(() => import("./pages/seller/SellerProfile"));
+const BulkImport = lazy(() => import("./pages/seller/BulkImport"));
 const AuthE2ETest = lazy(() => import("./tests/AuthE2ETest"));
 const StripeE2ETest = lazy(() => import("./tests/StripeE2ETest"));
 
@@ -195,6 +196,7 @@ export default function App() {
           <Route path="/dashboard/sell" element={<DashboardLayout initialTab="sell" />} />
           <Route path="/dashboard/buyer" element={<BuyerDashboard />} />
           <Route path="/dashboard/seller" element={<SellerProfile />} />
+          <Route path="/dashboard/seller/import" element={<BulkImport />} />
         </Routes>
       </Suspense>
 
