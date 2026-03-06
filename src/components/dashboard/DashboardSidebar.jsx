@@ -35,6 +35,7 @@ const SIDEBAR_SELL = {
         { id: "sales",        icon: "\uD83D\uDCB0", label: "My sales",       labelFr: "Mes ventes" },
         { id: "messages",     icon: "\uD83D\uDCAC", label: "Messages",       labelFr: "Messagerie", badge: "3" },
         { id: "warehouses",   icon: "\uD83C\uDFED", label: "Warehouses",     labelFr: "Entrepôts" },
+        { id: "import",       icon: "\uD83D\uDCE5", label: "Bulk import",    labelFr: "Import en masse", badge: "NEW" },
       ],
     },
     {

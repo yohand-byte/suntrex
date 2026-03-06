@@ -1,6 +1,5 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import useResponsive from "../hooks/useResponsive";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -268,7 +267,6 @@ function DeliveryProgress({ events }) {
 export default function DeliveryTrackerPage() {
   var _p = useParams(), orderId = _p.orderId;
   var navigate = useNavigate();
-  var _t = useTranslation(), t = _t.t;
   var _r = useResponsive(), isMobile = _r.isMobile;
 
   // Lookup delivery (mock — in production: fetch from Supabase)

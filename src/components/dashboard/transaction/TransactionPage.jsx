@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { T } from "../tokens";
 import { useResponsive } from "../shared/useResponsive";
 import { useDashboard } from "../DashboardLayout";
 import TransactionProducts from "./TransactionProducts";
 import TransactionChat from "./TransactionChat";
 import TransactionDetails from "./TransactionDetails";
+
+const EscrowStatus = lazy(() => import("../../escrow/EscrowStatus"));
+const DeliveryVerification = lazy(() => import("../../delivery/DeliveryVerification"));
 
 // ── Mock transaction data ──────────────────────────────────────────
 const MOCK_TX = {
@@ -256,6 +259,44 @@ export default function TransactionPage({ transactionId: propTxId }) {
           </span>
           <span style={{ fontSize: 12, color: T.textMuted }}>{"\u25BC"}</span>
         </div>
+      )}
+
+      {/* Escrow Status */}
+      {(tx.status === "paid" || tx.status === "shipped" || tx.status === "delivered") && (
+        <Suspense fallback={null}>
+          <div style={{ marginBottom: 20 }}>
+            <EscrowStatus
+              order={{
+                id: tx.id,
+                status: tx.status?.toUpperCase(),
+                escrowStatus: tx.status === "delivered" ? "pending_release" : "held",
+                escrowHeldAt: tx.paidAt,
+                buyerId: tx.buyer?.id,
+                sellerId: tx.seller?.id,
+                paidAt: tx.paidAt,
+                shippedAt: tx.shippedAt,
+                deliveredAt: tx.deliveredAt,
+              }}
+              currentUser={user}
+            />
+          </div>
+        </Suspense>
+      )}
+
+      {/* SUNTREX Delivery Tracking */}
+      {(tx.status === "shipped" || tx.status === "delivered") && (
+        <Suspense fallback={null}>
+          <div style={{ marginBottom: 20 }}>
+            <DeliveryVerification
+              order={{
+                id: tx.id,
+                sellerId: tx.seller?.id,
+                buyerId: tx.buyer?.id,
+              }}
+              currentUser={user}
+            />
+          </div>
+        </Suspense>
       )}
 
       {/* Chat */}

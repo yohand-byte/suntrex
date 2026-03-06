@@ -8,6 +8,7 @@ import { supabase } from "./lib/supabase";
 
 // Lazy-loaded pages and heavy components (code splitting)
 const SuntrexSupportChat = lazy(() => import("./components/chat/SuntrexSupportChat"));
+const MultiChannelSupport = lazy(() => import("./components/support/MultiChannelSupport"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const CatalogPage = lazy(() => import("./pages/CatalogPage"));
 const ProductDetailPage = lazy(() => import("./pages/ProductDetailPage"));
@@ -202,7 +203,7 @@ export default function App() {
 
       {!isDashboard && <Footer />}
       <Suspense fallback={null}>
-        {!isDashboard && <SuntrexSupportChat userId={isLoggedIn ? currentUser?.id || null : null} />}
+        {!isDashboard && <MultiChannelSupport onOpenChat={null} />}
       </Suspense>
 
       {showLogin && (

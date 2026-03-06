@@ -13,6 +13,7 @@ const ManageOffers = lazy(() => import("./sell/ManageOffers"));
 const MySales = lazy(() => import("./sell/MySales"));
 const SellerOverview = lazy(() => import("./sell/SellerOverview"));
 const WarehouseManager = lazy(() => import("./sell/WarehouseManager"));
+const BulkImport = lazy(() => import("../../pages/seller/BulkImport"));
 
 // Messaging
 const MessagingInbox = lazy(() => import("./messaging/MessagingInbox"));
@@ -66,6 +67,7 @@ const SECTION_MAP = {
   "offers": ManageOffers,
   "sales": MySales,
   "warehouses": WarehouseManager,
+  "import": BulkImport,
 
   // Transaction (special — receives transactionId)
   "transaction": TransactionPage,
