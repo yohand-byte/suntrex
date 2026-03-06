@@ -185,27 +185,27 @@ const MODULES = [
     id: "delivery", phase: "trust", part: "SUNTREX DELIVERY", name: "Livraison & Tracking",
     tasks: [
       { name: "DeliveryTrackerPage.jsx — Suivi colis (421 lignes)", done: true },
-      { name: "Vérification colis QR + photos (workflow 4 étapes)", done: false },
+      { name: "Vérification colis QR + photos (workflow 4 étapes)", done: true },
       { name: "Intégration API transporteurs (DPD, GLS, DB Schenker)", done: false },
-      { name: "Branding SUNTREX DELIVERY sur colis", done: false },
-      { name: "GPS timestamping + preuve de livraison", done: false },
+      { name: "Branding SUNTREX DELIVERY sur colis", done: true },
+      { name: "GPS timestamping + preuve de livraison", done: true },
       { name: "E-signature à la réception", done: false },
     ],
   },
   {
     id: "escrow", phase: "trust", part: "Paiements", name: "Escrow Avancé",
     tasks: [
-      { name: "Fonds bloqués jusqu'à confirmation livraison", done: false },
-      { name: "Auto-release après 7 jours sans dispute", done: false },
+      { name: "Fonds bloqués jusqu'à confirmation livraison", done: true },
+      { name: "Auto-release après 7 jours sans dispute", done: true },
       { name: "Dashboard admin réconciliation", done: false },
       { name: "Alertes écarts montants", done: false },
-      { name: "Gestion disputes + remboursements", done: false },
+      { name: "Gestion disputes + remboursements", done: true },
     ],
   },
   {
     id: "trust-badges", phase: "trust", part: "Auth & Sécurité", name: "Trust & Badges",
     tasks: [
-      { name: "Badges vendeur auto-calculés (Bronze/Silver/Gold/Platine)", done: false },
+      { name: "Badges vendeur auto-calculés (Bronze/Silver/Gold/Platine)", done: true },
       { name: "Notation 1-5 étoiles acheteur → vendeur", done: false },
       { name: "Profil vendeur public", done: false },
       { name: "Temps de réponse moyen affiché", done: false },
@@ -215,18 +215,18 @@ const MODULES = [
     id: "support-multi", phase: "trust", part: "Communication", name: "Support Multi-Canal",
     tasks: [
       { name: "Chat in-app (déjà fait)", done: true },
-      { name: "Intégration WhatsApp Business API", done: false },
+      { name: "Intégration WhatsApp Business API", done: true },
       { name: "Téléphone — numéro dédié", done: false },
-      { name: "Email support avec SLA", done: false },
+      { name: "Email support avec SLA", done: true },
     ],
   },
   {
     id: "bulk-import", phase: "trust", part: "Dashboards", name: "Import Offres en Masse",
     tasks: [
-      { name: "Template XLSX téléchargeable", done: false },
-      { name: "Upload + parsing XLSX", done: false },
-      { name: "Validation + preview avant import", done: false },
-      { name: "Mapping produits existants", done: false },
+      { name: "Template XLSX téléchargeable", done: true },
+      { name: "Upload + parsing XLSX", done: true },
+      { name: "Validation + preview avant import", done: true },
+      { name: "Mapping produits existants", done: true },
     ],
   },
   // ═══ PHASE 3 — IA & SCALE ═══
@@ -417,9 +417,9 @@ export default function SuntrexTracker() {
         <ProgressBar done={globalStats.done} total={globalStats.total} height={10} />
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, marginTop: 16 }}>
           {[
-            { label: "Fichiers", value: "~45", icon: "📄" },
+            { label: "Fichiers", value: "~55", icon: "📄" },
             { label: "Lignes code", value: "~13K", icon: "💻" },
-            { label: "Cloud Run", value: "9 routes", icon: "⚡" },
+            { label: "Cloud Run", value: "12 routes", icon: "⚡" },
             { label: "Langues", value: "7", icon: "🌍" },
           ].map((s, i) => (
             <div key={i} style={{ textAlign: "center", padding: "10px 4px", background: "#f8fafc", borderRadius: 8 }}>
