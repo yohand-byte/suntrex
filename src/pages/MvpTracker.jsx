@@ -166,7 +166,7 @@ const MODULES = [
       { name: "Supabase — Auth + DB + Realtime + RLS", done: true },
       { name: "GitHub repo (yohand-byte/suntrex.git)", done: true },
       { name: "Env vars configurées (Vercel + Cloud Run)", done: true },
-      { name: "SEO meta tags + hreflang 7 langues", done: true },
+      { name: "SEO meta tags + hreflang 7 langues + 11 routes", done: true },
       { name: "Favicon + Apple touch icon", done: true },
     ],
   },
@@ -206,9 +206,9 @@ const MODULES = [
     id: "trust-badges", phase: "trust", part: "Auth & Sécurité", name: "Trust & Badges",
     tasks: [
       { name: "Badges vendeur auto-calculés (Bronze/Silver/Gold/Platine)", done: true },
-      { name: "Notation 1-5 étoiles acheteur → vendeur", done: false },
-      { name: "Profil vendeur public", done: false },
-      { name: "Temps de réponse moyen affiché", done: false },
+      { name: "Notation 1-5 étoiles acheteur → vendeur", done: true },
+      { name: "Profil vendeur public", done: true },
+      { name: "Temps de réponse moyen affiché", done: true },
     ],
   },
   {
@@ -216,7 +216,7 @@ const MODULES = [
     tasks: [
       { name: "Chat in-app (déjà fait)", done: true },
       { name: "Intégration WhatsApp Business API", done: true },
-      { name: "Téléphone — numéro dédié", done: false },
+      { name: "Téléphone — numéro dédié", done: true },
       { name: "Email support avec SLA", done: true },
     ],
   },
@@ -234,17 +234,17 @@ const MODULES = [
     id: "ai-advisor", phase: "ai", part: "IA", name: "SUNTREX AI Advisor",
     tasks: [
       { name: "Chat IA support catalogue (Mistral) — déjà fait", done: true },
-      { name: "Recommandation produits personnalisée", done: false },
+      { name: "Recommandation produits personnalisée", done: true },
       { name: "Comparateur intelligent multi-vendeurs (UI: ✓ / IA: à venir)", done: false },
       { name: "Dimensionnement installation solaire", done: false },
-      { name: "Pricing intelligent pour vendeurs", done: false },
+      { name: "Pricing intelligent pour vendeurs", done: true },
     ],
   },
   {
     id: "ai-moderation", phase: "ai", part: "IA", name: "Modération IA",
     tasks: [
-      { name: "Filtre IA messages chat (anti-spam, anti-fraude)", done: false },
-      { name: "Détection paiement hors-plateforme", done: false },
+      { name: "Filtre IA messages chat (anti-spam, anti-fraude)", done: true },
+      { name: "Détection paiement hors-plateforme", done: true },
       { name: "Détection multi-comptes", done: false },
       { name: "Détection prix anormaux", done: false },
       { name: "Dashboard modérateurs", done: false },
@@ -391,7 +391,7 @@ export default function SuntrexTracker() {
 
   const codeStats = useMemo(() => {
     // Approximate from file analysis
-    return { files: 45, lines: 12847, functions: 5, hooks: 4 };
+    return { files: 60, lines: 15200, functions: 5, hooks: 4 };
   }, []);
 
   return (
@@ -417,8 +417,8 @@ export default function SuntrexTracker() {
         <ProgressBar done={globalStats.done} total={globalStats.total} height={10} />
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, marginTop: 16 }}>
           {[
-            { label: "Fichiers", value: "~55", icon: "📄" },
-            { label: "Lignes code", value: "~13K", icon: "💻" },
+            { label: "Fichiers", value: "~60", icon: "📄" },
+            { label: "Lignes code", value: "~15K", icon: "💻" },
             { label: "Cloud Run", value: "12 routes", icon: "⚡" },
             { label: "Langues", value: "7", icon: "🌍" },
           ].map((s, i) => (
