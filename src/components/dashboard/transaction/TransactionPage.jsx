@@ -8,6 +8,7 @@ import TransactionDetails from "./TransactionDetails";
 
 const EscrowStatus = lazy(() => import("../../escrow/EscrowStatus"));
 const DeliveryVerification = lazy(() => import("../../delivery/DeliveryVerification"));
+const ReviewForm = lazy(() => import("../../reviews/ReviewForm"));
 
 // ── Mock transaction data ──────────────────────────────────────────
 const MOCK_TX = {
@@ -307,6 +308,19 @@ export default function TransactionPage({ transactionId: propTxId }) {
           lang={lang}
         />
       </div>
+
+      {/* Review form (buyer, after delivery) */}
+      {role === "buyer" && tx.status === "delivered" && (
+        <Suspense fallback={null}>
+          <div style={{ marginBottom: 20 }}>
+            <ReviewForm
+              orderId={tx.id}
+              sellerId={tx.seller?.id}
+              sellerName={tx.seller?.companyName || tx.seller?.name}
+            />
+          </div>
+        </Suspense>
+      )}
 
       {/* Attachments section */}
       <div style={{

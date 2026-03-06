@@ -1,4 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, lazy, Suspense } from "react";
+
+const SellerBadge = lazy(() => import("../../components/seller/SellerBadge"));
 
 /* ═══════════════════════════════════════════════════════════════════════════
    SUNTREX — Seller Profile v3
@@ -403,7 +405,10 @@ function AccountTab({ seller, upd }) {
   return (
     <div style={{ maxWidth: 660 }}>
       {b && <div style={{ marginBottom: 14 }}><Badge color={b.color} bg={b.bg} border={b.border} dot={b.dot}>{b.label}</Badge></div>}
-      <h2 style={{ fontSize: 22, fontWeight: 800, color: T.text, margin: "0 0 16px" }}>My profile</h2>
+      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+        <h2 style={{ fontSize: 22, fontWeight: 800, color: T.text, margin: 0 }}>My profile</h2>
+        <Suspense fallback={null}><SellerBadge sellerId={null} size="md" /></Suspense>
+      </div>
       <Badge color={T.green} bg={T.greenSolid} border={T.greenBorder} style={{ marginBottom: 28 }}>
         Your account status: Approved to sell
       </Badge>

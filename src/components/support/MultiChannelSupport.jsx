@@ -16,6 +16,14 @@ const CHANNELS = [
     desc: "Reponse instantanee par IA",
   },
   {
+    id: "phone",
+    label: "Telephone",
+    labelEn: "Phone",
+    icon: "📞",
+    color: "#10b981",
+    desc: "+33 1 86 76 00 00 — Lun-Ven 9h-18h",
+  },
+  {
     id: "whatsapp",
     label: "WhatsApp",
     labelEn: "WhatsApp",
@@ -29,7 +37,7 @@ const CHANNELS = [
     labelEn: "Email",
     icon: "✉️",
     color: "#3b82f6",
-    desc: "Reponse sous 24h",
+    desc: "SLA : reponse sous 24h",
   },
 ];
 
@@ -55,6 +63,9 @@ export default function MultiChannelSupport({ onOpenChat, userId }) {
       case "chat":
         if (onOpenChat) onOpenChat();
         else setShowChat(true);
+        break;
+      case "phone":
+        window.location.href = "tel:+33186760000";
         break;
       case "whatsapp": {
         const msg = encodeURIComponent("Bonjour, j'ai une question sur SUNTREX.");
