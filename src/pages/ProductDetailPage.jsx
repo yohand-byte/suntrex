@@ -7,6 +7,7 @@ import useResponsive from "../hooks/useResponsive";
 import { generateOffers, getSimilarProducts, TIERS } from "../lib/multiVendorOffers";
 import { TierBadge, VerifiedBadge, EscrowBadge, ColisVerifBadge, DeliveryBadge, ResponseBadge } from "../components/product/TrustBadges";
 import ComparisonDrawer from "../components/product/ComparisonDrawer";
+import ProductRecommendation from "../components/ai/ProductRecommendation";
 
 /* ── Fallback images ── */
 const CAT_IMG = {
@@ -604,6 +605,11 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
           </div>
         </div>
       )}
+
+      {/* Recommendations */}
+      <div style={{ padding: isMobile ? "0" : "0 20px", maxWidth: 1200, margin: "0 auto" }}>
+        <ProductRecommendation currentProduct={product} lang={lang} />
+      </div>
 
       {/* Comparison Drawer */}
       {showCompare && (

@@ -8,6 +8,7 @@ import BrandLogo from "../components/ui/BrandLogo";
 import AutoSlides from "../components/ui/AutoSlides";
 import CatCard from "../components/ui/CatCard";
 import useResponsive from "../hooks/useResponsive";
+import ProductRecommendation from "../components/ai/ProductRecommendation";
 
 // Featured: Huawei inverters & batteries first, then Deye, no duplicates
 const seen = new Set();
@@ -285,6 +286,15 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
           </div>
         )}
       </section>
+
+      {/* RECOMMENDATIONS */}
+      <div style={{ padding: isMobile ? "0 16px" : `0 ${px}` }}>
+        <ProductRecommendation
+          currentProduct={null}
+          title={t("home.products.recommended", "Recommandes pour vous")}
+          lang={i18n.language}
+        />
+      </div>
 
       {/* WHY SUNTREX */}
       <section style={{background:"#fafafa",padding:isMobile?"40px 16px":"64px 40px",borderTop:"1px solid #e4e5ec"}}>

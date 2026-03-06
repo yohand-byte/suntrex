@@ -28,6 +28,26 @@ var ROUTES = {
     title: "Mon Dashboard | SUNTREX",
     description: "Gérez vos achats, ventes, offres et commandes depuis votre tableau de bord SUNTREX.",
   },
+  "/about": {
+    title: "À propos de SUNTREX — Marketplace B2B photovoltaïque",
+    description: "Découvrez SUNTREX, la marketplace B2B européenne pour les équipements solaires. Commission 4.75%, livraison vérifiée, support multi-canal.",
+  },
+  "/cgv": {
+    title: "Conditions Générales de Vente | SUNTREX",
+    description: "Consultez les conditions générales de vente et d'utilisation de la plateforme SUNTREX.",
+  },
+  "/privacy": {
+    title: "Politique de Confidentialité | SUNTREX",
+    description: "Notre politique de confidentialité détaille comment SUNTREX protège vos données personnelles conformément au RGPD.",
+  },
+  "/product": {
+    title: "Fiche produit — Équipement photovoltaïque | SUNTREX",
+    description: "Consultez les spécifications techniques, prix et offres de vendeurs pour cet équipement photovoltaïque sur SUNTREX.",
+  },
+  "/delivery": {
+    title: "Suivi de livraison SUNTREX DELIVERY",
+    description: "Suivez votre colis en temps réel avec SUNTREX DELIVERY : vérification QR, photos, GPS et preuve de livraison.",
+  },
 };
 
 export default function PageMeta({ path }) {

@@ -1,9 +1,11 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, lazy, Suspense } from "react";
 import { T } from "../tokens";
 import { useResponsive } from "../shared/useResponsive";
 import EmptyState from "../shared/EmptyState";
 import { useDashboard } from "../DashboardLayout";
 import { MOCK_SELLER } from "../dashboardUtils";
+
+const PricingAdvisor = lazy(() => import("../../seller/PricingAdvisor"));
 
 const formatPrice = (n) => new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(n);
 
@@ -73,6 +75,21 @@ export default function ManageOffers({ sellerData } = {}) {
           ))}
         </div>
       </div>
+
+      {/* Pricing Advisor for first active listing */}
+      {filtered.length > 0 && filtered[0].status === "active" && (
+        <Suspense fallback={null}>
+          <div style={{ marginBottom: 16 }}>
+            <PricingAdvisor
+              productName={filtered[0].name}
+              brand={filtered[0].brand || "Huawei"}
+              category={filtered[0].category || "inverters"}
+              sellerPrice={filtered[0].price}
+              lang={lang}
+            />
+          </div>
+        </Suspense>
+      )}
 
       {filtered.length === 0 ? (
         <EmptyState icon={"\uD83D\uDCCB"} title={lang === "fr" ? "Aucune offre" : "No offers"} description={lang === "fr" ? "Creez votre premiere annonce." : "Create your first listing."} />
