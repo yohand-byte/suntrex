@@ -208,7 +208,7 @@ export async function subscribeNewsletter(email, name, consentMarketing = false,
  * Generate an article via AI (admin only)
  */
 export async function generateArticle(topic, category) {
-  const response = await fetch("/api/blog-ai-generate", {
+  const response = await fetch((import.meta.env.VITE_API_URL || '') + "/api/blog-ai-generate", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ topic, category }),

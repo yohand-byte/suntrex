@@ -51,7 +51,7 @@ const SELLER_TIERS = {
   bronze:   { label: "Bronze",  icon: "○", color: "#9a3412", bg: "linear-gradient(135deg, #fed7aa, #fdba74, #fed7aa)", border: "#f97316" },
 };
 
-var CHECKOUT_API = "/api/stripe-checkout";
+var CHECKOUT_API = (import.meta.env.VITE_API_URL || '') + "/api/stripe-checkout";
 
 // ── Step indicator ──
 function StepBar({ step }) {

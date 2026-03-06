@@ -107,7 +107,7 @@ const COMMISSION_RATE = 0.05; // server-side rate (stripe-checkout.js)
 // ═══════════════════════════════════════════════════════════════
 
 function defineTests(isLive) {
-  const CHECKOUT_API = "/.netlify/functions/stripe-checkout";
+  const CHECKOUT_API = (import.meta.env.VITE_API_URL || '') + "/api/stripe-checkout";
 
   async function mockFetch(url, opts) {
     await delay(200 + Math.random() * 300);
@@ -162,7 +162,7 @@ function defineTests(isLive) {
   }
 
   async function simulateWebhook(eventType, payload, signature) {
-    const url = "/.netlify/functions/stripe-webhook";
+    const url = (import.meta.env.VITE_API_URL || '') + "/api/stripe-webhook";
     const body = { type: eventType, data: { object: payload } };
     if (!isLive) {
       return mockFetch(url, {

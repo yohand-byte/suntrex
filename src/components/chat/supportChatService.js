@@ -133,7 +133,7 @@ export async function uploadAttachment(conversationId, file) {
 // ─── Request AI response via serverless function ───
 export async function requestAIResponse(conversationId, userMessage, context = {}) {
   try {
-    const res = await fetch(import.meta.env.VITE_SUPPORT_AI_ENDPOINT || '/api/support-chat-ai', {
+    const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/support-chat-ai', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

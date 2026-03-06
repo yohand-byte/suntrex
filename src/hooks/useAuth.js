@@ -302,7 +302,7 @@ export function useAuth() {
 
 export async function verifyVAT(vatNumber, countryCode) {
   try {
-    const response = await fetch('/.netlify/functions/verify-vat', {
+    const response = await fetch((import.meta.env.VITE_API_URL || '') + '/api/verify-vat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ vatNumber, countryCode }),

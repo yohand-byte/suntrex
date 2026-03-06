@@ -318,7 +318,7 @@ const AIGenerator = ({ onGenerated }) => {
   const generate = async () => {
     if (!topic.trim()) return; setGen(true); setProg("Génération via Mistral AI...");
     try {
-      const res = await fetch("/api/blog-ai-generate", {
+      const res = await fetch((import.meta.env.VITE_API_URL || '') + "/api/blog-ai-generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ topic, category: cat }),

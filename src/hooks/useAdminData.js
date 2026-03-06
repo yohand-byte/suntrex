@@ -128,8 +128,8 @@ const MOCK_DATA = {
 
 // ── API call helper ─────────────────────────────────────────────
 async function fetchAdminStats(token) {
-  const baseUrl = import.meta.env.VITE_API_BASE || "";
-  const url = baseUrl ? `${baseUrl}/.netlify/functions/admin-stats` : "/.netlify/functions/admin-stats";
+  const apiUrl = import.meta.env.VITE_API_URL || "";
+  const url = `${apiUrl}/api/admin-stats`;
 
   const res = await fetch(url, {
     method: "POST",
