@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUNTREX — Pitch Deck 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#fff;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:#111827}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid #e5e7eb}
+.nav-logo{font-weight:900;font-size:18px;letter-spacing:-1px;color:#1a1a2e}
+.nav-logo b{color:#E8700A}
+.nav-info{font-size:11px;color:#9ca3af;letter-spacing:2px;font-family:monospace}
+.nav-dots{display:flex;gap:5px}
+.nav-dots span{width:8px;height:8px;border-radius:50%;background:#e5e7eb;cursor:pointer;transition:.3s}
+.nav-dots span.on{background:#E8700A}
+.progress{position:fixed;bottom:0;left:0;height:3px;background:linear-gradient(90deg,#E8700A,#3B82F6);z-index:100;transition:.4s}
+.ctrl{position:fixed;bottom:20px;right:24px;z-index:100;display:flex;gap:6px}
+.ctrl button{width:38px;height:38px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;cursor:pointer;font-size:14px;color:#6b7280;display:flex;align-items:center;justify-content:center;transition:.2s}
+.ctrl button:hover{border-color:#E8700A;color:#E8700A}
+.ctrl .play{background:#E8700A;color:#fff;border-color:#E8700A;font-size:12px}
+.ctrl .play:hover{background:#d4630a}
+.ctrl .play.on{background:#ef4444;border-color:#ef4444}
+.slide{position:fixed;inset:0;padding:70px 50px 50px;display:flex;opacity:0;pointer-events:none;transition:opacity .5s,transform .5s;transform:translateX(30px)}
+.slide.active{opacity:1;pointer-events:auto;transform:translateX(0)}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;text-align:center}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:40px;width:100%;height:100%;align-items:center}
+.tag{display:inline-block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#E8700A;font-weight:700;margin-bottom:14px;font-family:monospace}
+.h1{font-size:clamp(28px,5vw,54px);font-weight:800;line-height:1.08;letter-spacing:-2px;max-width:620px}
+.h1 em{font-style:normal;color:#E8700A}
+.h1 .bl{color:#3B82F6}
+.h1 .gr{color:#16a34a}
+.p{font-size:clamp(13px,1.5vw,17px);color:#6b7280;line-height:1.7;max-width:460px;margin-top:14px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;font-size:12px;background:#f8f9fb;border:1px solid #e5e7eb}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+.st{text-align:center;padding:16px 10px}.st-n{font-size:clamp(22px,3vw,38px);font-weight:800;letter-spacing:-1px}.st-l{font-size:9px;color:#9ca3af;margin-top:3px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.ft{padding:18px 14px}.ft-i{font-size:22px;margin-bottom:6px}.ft-t{font-weight:700;font-size:13px;margin-bottom:4px}.ft-d{font-size:11px;color:#6b7280;line-height:1.5}
+.mk{border-radius:10px;overflow:hidden;border:1px solid #e5e7eb;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.05)}
+.mk-b{height:24px;background:#f3f4f6;display:flex;align-items:center;gap:5px;padding:0 10px;border-bottom:1px solid #e5e7eb}
+.mk-d{width:7px;height:7px;border-radius:50%}
+.mk-u{font-size:8px;color:#9ca3af;margin-left:8px;font-family:monospace}
+.tb{width:100%;border-collapse:collapse;font-size:11px;margin-top:10px}
+.tb th{text-align:left;padding:5px 7px;border-bottom:1px solid #e5e7eb;font-size:8px;color:#9ca3af;text-transform:uppercase;letter-spacing:1px}
+.tb td{padding:6px 7px;border-bottom:1px solid #f3f4f6}
+.bd{display:inline-block;padding:2px 5px;border-radius:3px;font-size:7px;font-weight:700;text-transform:uppercase}
+.bd-p{background:#f1f5f9;color:#64748b;border:1px solid #cbd5e1}
+.bd-g{background:#fef9c3;color:#a16207;border:1px solid #fde68a}
+.cm{max-width:75%;padding:7px 10px;border-radius:8px;margin-bottom:5px;font-size:10px;line-height:1.4}
+.cm-b{background:#E8700A;color:#fff;margin-left:auto;border-bottom-right-radius:2px}
+.cm-s{background:#f3f4f6;border:1px solid #e5e7eb;border-bottom-left-radius:2px}
+.cm-w{font-size:7px;color:#9ca3af;text-transform:uppercase;letter-spacing:1px;margin-bottom:1px}
+.fl{display:flex;align-items:center;gap:5px;margin-top:14px;flex-wrap:wrap}
+.fl-s{padding:6px 12px;border-radius:6px;font-size:10px;font-weight:600}
+.fl-ok{background:#ecfdf5;border:1px solid #a7f3d0;color:#16a34a}
+.fl-now{background:#fff7ed;border:1px solid rgba(232,112,10,.3);color:#E8700A}
+.fl-w{background:#f3f4f6;border:1px solid #e5e7eb;color:#9ca3af}
+.fl-a{color:#d1d5db;font-size:12px}
+.tl-r{display:flex;gap:10px;padding:6px 0}
+.tl-d{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0}
+.tl-ok{background:#ecfdf5;color:#16a34a;border:1px solid #a7f3d0}
+.tl-go{background:#fff7ed;color:#E8700A;border:1px solid rgba(232,112,10,.3)}
+.tl-wt{background:#f3f4f6;color:#9ca3af;border:1px solid #e5e7eb}
+.tl-t{font-size:11px;font-weight:600}.tl-m{font-size:8px;color:#9ca3af;margin-top:1px}
+.tl-ln{width:2px;height:8px;background:#e5e7eb;margin-left:9px}
+.cp{width:100%;border-collapse:collapse;margin-top:18px;font-size:11px}
+.cp th{padding:6px;text-align:center;font-size:9px;color:#9ca3af;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #e5e7eb}
+.cp th:first-child{text-align:left}
+.cp td{padding:6px;text-align:center;border-bottom:1px solid #f3f4f6}
+.cp td:first-child{text-align:left;font-weight:500}
+.cp .us{background:rgba(232,112,10,.03)}
+.cp .ok{color:#16a34a;font-weight:700}
+.cp .no{color:#d1d5db}
+.br{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;justify-content:center}
+.br span{padding:6px 12px;border-radius:6px;font-weight:700;font-size:11px;background:rgba(232,112,10,.06);border:1px solid rgba(232,112,10,.15);color:#E8700A}
+.cta{display:inline-block;margin-top:22px;padding:14px 34px;border-radius:12px;background:#E8700A;font-weight:700;font-size:16px;color:#fff;cursor:pointer;box-shadow:0 4px 16px rgba(232,112,10,.2)}
+.url{margin-top:8px;font-size:18px;color:#E8700A;letter-spacing:3px;font-family:monospace;font-weight:700}
+.pn{display:flex;flex-direction:column;gap:7px}
+.pn-r{display:flex;align-items:center;gap:7px;font-size:11px;padding:7px 10px;background:#fef2f2;border:1px solid #fecaca;border-radius:6px}
+.pn-n{color:#ef4444;font-weight:700;width:16px}
+@media(max-width:768px){.split{grid-template-columns:1fr;gap:16px}.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}.slide{padding:60px 16px 36px}}
+</style>
+</head>
+<body>
+<div class="nav"><div class="nav-logo"><b>SUN</b>TREX</div><div class="nav-info" id="info">01 / 13</div><div class="nav-dots" id="dots"></div></div>
+<div class="progress" id="bar" style="width:0"></div>
+
+<div class="slide active" id="s0"><div class="center">
+  <div style="font-size:clamp(48px,9vw,100px);font-weight:900;letter-spacing:-4px;line-height:1"><span style="color:#E8700A">SUN</span><span style="color:#1a1a2e">TREX</span></div>
+  <div style="font-size:clamp(13px,2vw,20px);font-weight:300;color:#9ca3af;margin-top:10px;letter-spacing:2px">MARKETPLACE B2B PHOTOVOLTAÏQUE EUROPÉENNE</div>
+  <div style="display:flex;gap:10px;margin-top:32px;flex-wrap:wrap;justify-content:center"><div class="pill"><span style="color:#16a34a">●</span> 638 produits</div><div class="pill"><span style="color:#3B82F6">●</span> 8 marques majeures</div><div class="pill"><span style="color:#E8700A">●</span> Commission 4,75%</div></div>
+  <div style="margin-top:32px;font-size:12px;color:#9ca3af">SUNTREX — Mars 2026</div>
+</div></div>
+
+<div class="slide" id="s1"><div class="split"><div>
+  <div class="tag">01 — LE CONSTAT</div>
+  <div class="h1">Le marché solaire B2B est <em>fragmenté</em> et opaque.</div>
+  <div class="p">Les professionnels du solaire passent des heures à comparer les prix et vérifier les stocks auprès de dizaines de distributeurs.</div>
+  <div style="display:flex;gap:6px;margin-top:14px;flex-wrap:wrap"><div class="pill">⏱️ 4h/sem perdues</div><div class="pill">📞 10+ appels</div><div class="pill">🔍 0 transparence</div></div>
+</div><div>
+  <div class="card"><div style="font-size:12px;font-weight:600;color:#E8700A;margin-bottom:10px">Processus actuel d'un professionnel</div>
+    <div class="pn"><div class="pn-r"><span class="pn-n">1.</span>Appeler 5 distributeurs pour comparer</div><div class="pn-r"><span class="pn-n">2.</span>Attendre les devis par email (24-72h)</div><div class="pn-r"><span class="pn-n">3.</span>Négocier au téléphone, sans visibilité</div><div class="pn-r"><span class="pn-n">4.</span>Payer par virement, sans protection</div><div class="pn-r"><span class="pn-n">5.</span>Recevoir sans vérification de colis</div></div>
+  </div>
+</div></div></div>
+
+<div class="slide" id="s2"><div class="split"><div>
+  <div class="tag">02 — LA SOLUTION</div>
+  <div class="h1"><em>SUNTREX</em> réunit tout sur une seule plateforme.</div>
+  <div class="p">Comparez les prix de vendeurs vérifiés, commandez en toute sécurité, recevez avec un suivi complet.</div>
+  <div class="fl"><div class="fl-s fl-ok">🔍 Comparer</div><div class="fl-a">→</div><div class="fl-s fl-ok">💬 Négocier</div><div class="fl-a">→</div><div class="fl-s fl-now">💳 Payer</div><div class="fl-a">→</div><div class="fl-s fl-w">🚛 Livrer</div></div>
+</div><div>
+  <div class="mk" style="max-width:380px"><div class="mk-b"><div class="mk-d" style="background:#ff5f57"></div><div class="mk-d" style="background:#ffbd2e"></div><div class="mk-d" style="background:#28ca42"></div><div class="mk-u">suntrex.vercel.app</div></div>
+  <div style="padding:12px"><div style="display:flex;align-items:center;justify-content:space-between;padding:5px 8px;background:#f8f9fb;border-radius:5px;margin-bottom:8px"><div style="font-weight:800;font-size:12px"><span style="color:#E8700A">sun</span>trex</div><div style="font-size:8px;color:#9ca3af">€ EUR · 🇫🇷 FR</div></div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+    <div style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:5px;padding:7px;text-align:center"><div style="font-size:8px;font-weight:600">SUN2000-10KTL</div><div style="font-size:7px;color:#9ca3af">Huawei</div><div style="font-size:10px;font-weight:700;color:#E8700A;margin-top:3px">1 120 €</div></div>
+    <div style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:5px;padding:7px;text-align:center"><div style="font-size:8px;font-weight:600">SUN-12K-SG04</div><div style="font-size:7px;color:#9ca3af">Deye</div><div style="font-size:10px;font-weight:700;color:#E8700A;margin-top:3px">890 €</div></div>
+    <div style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:5px;padding:7px;text-align:center"><div style="font-size:8px;font-weight:600">LUNA2000-10</div><div style="font-size:7px;color:#9ca3af">Huawei</div><div style="font-size:10px;font-weight:700;color:#E8700A;margin-top:3px">2 450 €</div></div>
+  </div></div></div>
+</div></div></div>
+
+<div class="slide" id="s3"><div class="split"><div>
+  <div class="tag">03 — MULTI-VENDEURS</div>
+  <div class="h1">Un produit, <span class="bl">plusieurs vendeurs</span>, le meilleur prix.</div>
+  <div class="p">Pour chaque produit, les acheteurs voient toutes les offres — triées par prix, stock et confiance.</div>
+</div><div>
+  <div class="mk" style="max-width:420px"><div class="mk-b"><div class="mk-d" style="background:#ff5f57"></div><div class="mk-d" style="background:#ffbd2e"></div><div class="mk-d" style="background:#28ca42"></div><div class="mk-u">product/sun2000-10ktl</div></div>
+  <div style="padding:12px"><div style="font-weight:700;font-size:12px">Huawei SUN2000-10KTL-M2</div><div style="font-size:9px;color:#9ca3af;margin-bottom:8px">Onduleur hybride 10kW · 3 offres</div>
+  <table class="tb"><thead><tr><th>Vendeur</th><th>Prix HT</th><th>Stock</th><th>Délai</th><th>Tier</th></tr></thead><tbody>
+    <tr><td>🇫🇷 QUALIWATT</td><td style="font-weight:700;color:#16a34a">1 120 €</td><td>45</td><td>3j</td><td><span class="bd bd-p">Platine</span></td></tr>
+    <tr><td>🇩🇪 SolarPro GmbH</td><td style="font-weight:700">1 185 €</td><td>120</td><td>5j</td><td><span class="bd bd-g">Gold</span></td></tr>
+    <tr><td>🇳🇱 EnergieDirect</td><td style="font-weight:700">1 210 €</td><td>30</td><td>4j</td><td><span class="bd bd-g">Gold</span></td></tr>
+  </tbody></table></div></div>
+</div></div></div>
+
+<div class="slide" id="s4"><div class="split"><div>
+  <div class="tag">04 — NÉGOCIATION DIRECTE</div>
+  <div class="h1">Chat intégré avec <em>modération IA</em>.</div>
+  <div class="p">Négociation directe acheteur-vendeur. Modération anti-fraude + traduction temps réel.</div>
+  <div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap"><div class="pill">🤖 Modération IA</div><div class="pill">🌍 7 langues</div><div class="pill">🔒 Anti-fraude</div></div>
+</div><div>
+  <div class="mk" style="max-width:340px"><div class="mk-b"><div class="mk-d" style="background:#ff5f57"></div><div class="mk-d" style="background:#ffbd2e"></div><div class="mk-d" style="background:#28ca42"></div><div class="mk-u">Chat — QUALIWATT</div></div>
+  <div style="padding:10px">
+    <div><div class="cm-w">Acheteur — Lyon</div><div class="cm cm-b">Bonjour, quel prix pour 200x SUN2000-10KTL-M2 ?</div></div>
+    <div><div class="cm-w">QUALIWATT</div><div class="cm cm-s">Bonjour ! Pour 200 unités : <b>1 080 €/pce HT</b>, franco France. Livraison 5 jours.</div></div>
+    <div><div class="cm-w">Acheteur</div><div class="cm cm-b">Parfait, je passe commande.</div></div>
+    <div style="text-align:center;padding:5px;font-size:8px;color:#16a34a;background:#ecfdf5;border-radius:5px;margin-top:6px">🔒 Transaction sécurisée SUNTREX — escrow activé</div>
+  </div></div>
+</div></div></div>
+
+<div class="slide" id="s5"><div class="split"><div>
+  <div class="tag">05 — PAIEMENT SÉCURISÉ</div>
+  <div class="h1">Escrow <span class="gr">Stripe Connect</span>. Zéro risque.</div>
+  <div class="p">Fonds bloqués jusqu'à réception confirmée. Vendeur payé uniquement après validation acheteur.</div>
+  <div class="fl"><div class="fl-s fl-ok">✓ Payé</div><div class="fl-a">→</div><div class="fl-s fl-ok">✓ Expédié</div><div class="fl-a">→</div><div class="fl-s fl-now">📦 Transit</div><div class="fl-a">→</div><div class="fl-s fl-w">💰 Libéré</div></div>
+</div><div>
+  <div class="card" style="max-width:340px"><div style="font-weight:700;font-size:13px;margin-bottom:12px">Commande #ST-2847</div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #e5e7eb;font-size:11px"><span>200× Huawei SUN2000-10KTL-M2</span></div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #e5e7eb;font-size:11px"><span>Total HT</span><b>216 000 €</b></div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #e5e7eb;font-size:11px"><span>Commission (4,75%)</span><span style="color:#E8700A">10 260 €</span></div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:11px"><span>Vendeur reçoit</span><b style="color:#16a34a">205 740 €</b></div>
+    <div style="display:flex;gap:6px;margin-top:10px;font-size:9px;color:#16a34a">✓ 3D Secure · ✓ SCA Europe · ✓ Escrow</div>
+  </div>
+</div></div></div>
+
+<div class="slide" id="s6"><div class="split"><div>
+  <div class="tag">06 — SUNTREX DELIVERY</div>
+  <div class="h1">Chaque colis <em>tracé</em>, vérifié, photographié.</div>
+  <div class="p">QR code unique, photos à chaque étape, GPS, e-signature. Plus de litiges livraison.</div>
+</div><div>
+  <div style="margin-top:10px">
+    <div class="tl-r"><div class="tl-d tl-ok">✓</div><div><div class="tl-t">Expédié par le vendeur</div><div class="tl-m">5 mars — QUALIWATT · 📸 12 photos · QR #4F82K</div></div></div><div class="tl-ln"></div>
+    <div class="tl-r"><div class="tl-d tl-ok">✓</div><div><div class="tl-t">Pris en charge SUNTREX DELIVERY</div><div class="tl-m">6 mars — QR scanné, inspection OK · GPS 48.79°N</div></div></div><div class="tl-ln"></div>
+    <div class="tl-r"><div class="tl-d tl-go">↻</div><div><div class="tl-t">En transit — SUNTREX DELIVERY</div><div class="tl-m">N° ST-4F82K91 · IDF → Lyon · Arrivée 8 mars</div></div></div><div class="tl-ln"></div>
+    <div class="tl-r"><div class="tl-d tl-wt">…</div><div><div class="tl-t">Livraison + e-signature</div><div class="tl-m">Lyon 3e · Photo + signature acheteur</div></div></div>
+  </div>
+</div></div></div>
+
+<div class="slide" id="s7"><div class="center">
+  <div class="tag">07 — L'ÉCOSYSTÈME</div>
+  <div class="h1" style="text-align:center">Toutes les <em>grandes marques</em> du solaire.</div>
+  <div class="p" style="text-align:center">638 produits : onduleurs, batteries, optimiseurs, panneaux, montage.</div>
+  <div class="br"><span>Huawei</span><span>Jinko</span><span>Trina</span><span>BYD</span><span>LONGi</span><span>Deye</span><span>SMA</span><span>Enphase</span><span>Canadian Solar</span><span>Sungrow</span></div>
+  <div class="g4" style="max-width:560px"><div class="card st"><div class="st-n" style="color:#E8700A">638</div><div class="st-l">Produits</div></div><div class="card st"><div class="st-n" style="color:#3B82F6">11</div><div class="st-l">Pays EU</div></div><div class="card st"><div class="st-n" style="color:#16a34a">4,75%</div><div class="st-l">Commission</div></div><div class="card st"><div class="st-n" style="color:#7c3aed">7</div><div class="st-l">Langues</div></div></div>
+</div></div>
+
+<div class="slide" id="s8"><div class="center">
+  <div class="tag">08 — AVANTAGE CONCURRENTIEL</div>
+  <div class="h1" style="text-align:center">Ce que <em>SUNTREX</em> fait de plus.</div>
+  <table class="cp" style="max-width:600px;margin-top:20px"><thead><tr><th></th><th>Plateformes existantes</th><th class="us" style="color:#E8700A;font-weight:700">SUNTREX</th></tr></thead><tbody>
+    <tr><td>Onboarding vérifié</td><td class="ok">✓</td><td class="us ok">✓</td></tr>
+    <tr><td>Chat buyer-seller</td><td class="no">Limité</td><td class="us ok">✓ + IA</td></tr>
+    <tr><td>Livraison propre</td><td class="no">✗</td><td class="us ok">✓ DELIVERY</td></tr>
+    <tr><td>Vérification colis</td><td class="no">✗</td><td class="us ok">✓ QR+Photos</td></tr>
+    <tr><td>Escrow sécurisé</td><td class="no">Basique</td><td class="us ok">✓ 7j auto</td></tr>
+    <tr><td>Outils IA</td><td class="no">✗</td><td class="us ok">✓</td></tr>
+    <tr><td>Multi-canal</td><td class="no">Email</td><td class="us ok">Chat+WA+Tél</td></tr>
+    <tr><td>Commission</td><td>Marché</td><td class="us" style="color:#E8700A;font-weight:700">−5%</td></tr>
+  </tbody></table>
+</div></div>
+
+<div class="slide" id="s9"><div class="center">
+  <div class="tag">09 — FONCTIONNALITÉS</div>
+  <div class="h1" style="text-align:center">Tout pour <span class="bl">vendre</span> et <span class="gr">acheter</span>.</div>
+  <div class="g3" style="max-width:660px">
+    <div class="card ft"><div class="ft-i">💰</div><div class="ft-t">Prix transparents</div><div class="ft-d">Comparez les offres de vendeurs vérifiés en temps réel.</div></div>
+    <div class="card ft"><div class="ft-i">🛡️</div><div class="ft-t">Escrow Stripe</div><div class="ft-d">Fonds bloqués. 3D Secure. SCA Europe.</div></div>
+    <div class="card ft"><div class="ft-i">🚛</div><div class="ft-t">SUNTREX DELIVERY</div><div class="ft-d">QR, photos, GPS, e-signature.</div></div>
+    <div class="card ft"><div class="ft-i">🤖</div><div class="ft-t">IA intégrée</div><div class="ft-d">Chat IA, pricing, recommandations.</div></div>
+    <div class="card ft"><div class="ft-i">📊</div><div class="ft-t">Dashboards pro</div><div class="ft-d">Acheteur, vendeur, admin.</div></div>
+    <div class="card ft"><div class="ft-i">🌍</div><div class="ft-t">7 langues · 11 pays</div><div class="ft-d">Marché européen couvert.</div></div>
+  </div>
+</div></div>
+
+<div class="slide" id="s10"><div class="split"><div>
+  <div class="tag">10 — MODÈLE ÉCONOMIQUE</div>
+  <div class="h1">Un modèle <em>simple</em> et scalable.</div>
+  <div class="p">4,75% par transaction. Pas d'abonnement. Pas de frais cachés.</div>
+  <div style="display:flex;gap:6px;margin-top:14px;flex-wrap:wrap"><div class="pill"><b style="color:#E8700A">4,75%</b>&nbsp;/transaction</div><div class="pill">0€ abonnement</div><div class="pill">0€ inscription</div></div>
+</div><div>
+  <div class="card" style="max-width:340px"><div style="font-weight:700;font-size:13px;margin-bottom:12px">Exemple — commande type</div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #e5e7eb;font-size:11px"><span>Commande</span><b>10 000 €</b></div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #e5e7eb;font-size:11px"><span>Commission</span><b style="color:#E8700A">475 €</b></div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:11px"><span>Vendeur reçoit</span><b style="color:#16a34a">9 525 €</b></div>
+    <div style="margin-top:10px;padding:8px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:5px;font-size:9px;color:#16a34a;text-align:center">Versé après confirmation de livraison</div>
+  </div>
+</div></div></div>
+
+<div class="slide" id="s11"><div class="center">
+  <div class="tag">11 — LE MARCHÉ</div>
+  <div class="h1" style="text-align:center">Un marché de <span class="gr">95 milliards €</span> en Europe.</div>
+  <div class="p" style="text-align:center">+18%/an. La distribution B2B en ligne ne fait que 5%. L'opportunité est massive.</div>
+  <div class="g4" style="max-width:600px;margin-top:28px"><div class="card st"><div class="st-n" style="color:#16a34a">€95B</div><div class="st-l">TAM Europe</div></div><div class="card st"><div class="st-n" style="color:#3B82F6">€12.4B</div><div class="st-l">SAM B2B</div></div><div class="card st"><div class="st-n" style="color:#E8700A">€2.8M</div><div class="st-l">Target Y1</div></div><div class="card st"><div class="st-n" style="color:#7c3aed">+18%</div><div class="st-l">Croissance/an</div></div></div>
+  <div style="display:flex;gap:5px;margin-top:16px;flex-wrap:wrap;justify-content:center"><div class="pill" style="padding:3px 8px;font-size:10px">🇫🇷</div><div class="pill" style="padding:3px 8px;font-size:10px">🇩🇪</div><div class="pill" style="padding:3px 8px;font-size:10px">🇧🇪</div><div class="pill" style="padding:3px 8px;font-size:10px">🇳🇱</div><div class="pill" style="padding:3px 8px;font-size:10px">🇮🇹</div><div class="pill" style="padding:3px 8px;font-size:10px">🇪🇸</div><div class="pill" style="padding:3px 8px;font-size:10px">🇵🇱</div><div class="pill" style="padding:3px 8px;font-size:10px">🇬🇷</div></div>
+</div></div>
+
+<div class="slide" id="s12"><div class="center">
+  <div style="font-size:clamp(42px,8vw,88px);font-weight:900;letter-spacing:-3px;line-height:1"><span style="color:#E8700A">SUN</span><span style="color:#1a1a2e">TREX</span></div>
+  <div class="h1" style="font-size:clamp(16px,2.8vw,28px);margin-top:10px;text-align:center">Le solaire B2B, <em>simplifié</em>.</div>
+  <div class="p" style="text-align:center">Rejoignez les professionnels qui font confiance à SUNTREX.</div>
+  <div class="cta">Créer mon compte gratuitement</div>
+  <div class="url">suntrex.eu</div>
+  <div style="display:flex;gap:14px;margin-top:24px;font-size:11px;color:#9ca3af"><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="debdb1b0aabfbdaa9eadabb0aaacbba6f0bbab">[email&#160;protected]</a></span><span>·</span><span>WhatsApp</span></div>
+</div></div>
+
+<div class="ctrl"><button class="play" id="pb" onclick="tp()">▶</button><button onclick="g(c-1)">←</button><button onclick="g(c+1)">→</button></div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const N=13;let c=0,ti=null;
+const ds=document.getElementById('dots');
+for(let i=0;i<N;i++){const s=document.createElement('span');if(!i)s.className='on';s.onclick=()=>g(i);ds.appendChild(s)}
+function g(n){if(n<0||n>=N)return;document.getElementById('s'+c).classList.remove('active');document.getElementById('s'+n).classList.add('active');c=n;document.getElementById('info').textContent=String(n+1).padStart(2,'0')+' / '+N;document.getElementById('bar').style.width=((n+1)/N*100)+'%';ds.querySelectorAll('span').forEach((d,i)=>d.className=i===n?'on':'')}
+function tp(){if(ti){clearInterval(ti);ti=null;document.getElementById('pb').textContent='▶';document.getElementById('pb').classList.remove('on')}else{document.getElementById('pb').textContent='⏸';document.getElementById('pb').classList.add('on');ti=setInterval(()=>{if(c<N-1)g(c+1);else{clearInterval(ti);ti=null;document.getElementById('pb').textContent='▶';document.getElementById('pb').classList.remove('on')}},5000)}}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')g(c+1);if(e.key==='ArrowLeft')g(c-1);if(e.key===' '){e.preventDefault();t
