@@ -180,6 +180,19 @@ const MODULES = [
       { name: "Brancher sur données réelles (actuellement mock)", done: true },
     ],
   },
+  {
+    id: "audit-remediation-2026-03-07", phase: "mvp", part: "Audit", name: "Audit Remediation — 2026-03-07",
+    tasks: [
+      { name: "Dashboard buyer crash → fixed", done: true },
+      { name: "Auth guards sur routes admin/seller → done", done: true },
+      { name: "Pages légales (about, cgv, privacy) → fixed", done: true },
+      { name: "PriceGate sécurisé (plus de fuite prix) → done", done: true },
+      { name: "Inscription buyer/seller role selector → done", done: true },
+      { name: "Filtres catalogue ?category= ?brand= → done", done: true },
+      { name: "SEO meta cohérent → done", done: true },
+      { name: "Routes fraud Cloud Run → fixed", done: true },
+    ],
+  },
   // ═══ PHASE 2 — TRUST & DELIVERY ═══
   {
     id: "delivery", phase: "trust", part: "SUNTREX DELIVERY", name: "Livraison & Tracking",

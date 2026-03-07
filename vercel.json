@@ -41,6 +41,7 @@
     { "source": "/offers", "destination": "/index.html" },
     { "source": "/auth", "destination": "/index.html" },
     { "source": "/admin/:path*", "destination": "/index.html" },
-    { "source": "/dashboard/:path*", "destination": "/index.html" }
+    { "source": "/dashboard/:path*", "destination": "/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

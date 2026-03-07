@@ -1,5 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation, Navigate } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import PageMeta from "./components/seo/PageMeta";
@@ -41,6 +41,59 @@ function LoadingSpinner() {
   );
 }
 
+const ADMIN_EMAILS = (import.meta.env.VITE_ADMIN_EMAILS || "")
+  .split(",")
+  .map((email) => email.trim().toLowerCase())
+  .filter(Boolean);
+
+function isAdminEmail(email) {
+  if (ADMIN_EMAILS.length === 0) return true;
+  return ADMIN_EMAILS.includes((email || "").toLowerCase());
+}
+
+function AccessDenied({ title, message }) {
+  return (
+    <div style={{ maxWidth: 720, margin: "80px auto", padding: "0 20px" }}>
+      <div style={{ border: "1px solid #e4e5ec", borderRadius: 16, padding: 24, background: "#fff7ed" }}>
+        <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 8 }}>{title}</div>
+        <div style={{ fontSize: 14, color: "#6b7280" }}>{message}</div>
+      </div>
+    </div>
+  );
+}
+
+function AdminRoute({ authReady, currentUser, children }) {
+  if (!authReady) return <LoadingSpinner />;
+  if (!currentUser) return <Navigate to="/" replace />;
+  if (!isAdminEmail(currentUser.email)) {
+    return (
+      <AccessDenied
+        title="Accès refusé"
+        message="Cette zone est réservée aux administrateurs SUNTREX."
+      />
+    );
+  }
+  return children;
+}
+
+function isSellerRole(role) {
+  return ["seller", "both", "distributor", "wholesaler"].includes(role || "");
+}
+
+function SellerRoute({ authReady, currentUser, children }) {
+  if (!authReady) return <LoadingSpinner />;
+  if (!currentUser) return <Navigate to="/" replace />;
+  if (!isSellerRole(currentUser.role)) {
+    return (
+      <AccessDenied
+        title="Accès réservé aux vendeurs"
+        message="Cette zone est réservée aux comptes distributeur ou grossiste."
+      />
+    );
+  }
+  return children;
+}
+
 /* ═══════════════════════════════════════════════════════════════
    SUNTREX — App Shell (Router + Layout)
    ═══════════════════════════════════════════════════════════════ */
@@ -65,6 +118,7 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+  const [authReady, setAuthReady] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -76,7 +130,10 @@ export default function App() {
 
   // Restore session on mount + listen for auth changes
   useEffect(() => {
-    if (!supabase) return;
+    if (!supabase) {
+      setAuthReady(true);
+      return;
+    }
 
     // Check existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -84,6 +141,7 @@ export default function App() {
         setCurrentUser(buildUserFromSession(session.user));
         setIsLoggedIn(true);
       }
+      setAuthReady(true);
     });
 
     // Listen for login/logout events
@@ -95,6 +153,7 @@ export default function App() {
         setCurrentUser(null);
         setIsLoggedIn(false);
       }
+      setAuthReady(true);
     });
 
     return () => { subscription?.unsubscribe(); };
@@ -190,14 +249,30 @@ export default function App() {
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/tracker" element={<MvpTracker />} />
-          <Route path="/admin/auth-test" element={<AuthE2ETest />} />
-          <Route path="/admin/stripe-test" element={<StripeE2ETest />} />
+          <Route path="/admin/auth-test" element={
+            <AdminRoute authReady={authReady} currentUser={currentUser}>
+              <AuthE2ETest />
+            </AdminRoute>
+          } />
+          <Route path="/admin/stripe-test" element={
+            <AdminRoute authReady={authReady} currentUser={currentUser}>
+              <StripeE2ETest />
+            </AdminRoute>
+          } />
           <Route path="/dashboard" element={<DashboardLayout />} />
           <Route path="/dashboard/buy" element={<DashboardLayout initialTab="buy" />} />
           <Route path="/dashboard/sell" element={<DashboardLayout initialTab="sell" />} />
           <Route path="/dashboard/buyer" element={<BuyerDashboard />} />
-          <Route path="/dashboard/seller" element={<SellerProfile />} />
-          <Route path="/dashboard/seller/import" element={<BulkImport />} />
+          <Route path="/dashboard/seller" element={
+            <SellerRoute authReady={authReady} currentUser={currentUser}>
+              <SellerDashboard />
+            </SellerRoute>
+          } />
+          <Route path="/dashboard/seller/import" element={
+            <SellerRoute authReady={authReady} currentUser={currentUser}>
+              <BulkImport />
+            </SellerRoute>
+          } />
         </Routes>
       </Suspense>
 

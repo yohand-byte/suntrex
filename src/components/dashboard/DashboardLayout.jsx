@@ -5,6 +5,7 @@ import DashboardTopbar from "./DashboardTopbar";
 import DashboardSidebar from "./DashboardSidebar";
 import DashboardRouter, { DEFAULT_SECTIONS } from "./DashboardRouter";
 import { MOCK_BUYER, MOCK_SELLER } from "./dashboardUtils";
+import { useDashboardData } from "../../hooks/useDashboardData";
 import { apiFetch } from "../../lib/supabase";
 
 // ── Dashboard Context ──────────────────────────────────────────────

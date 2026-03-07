@@ -270,7 +270,24 @@ export default function DeliveryTrackerPage() {
   var _r = useResponsive(), isMobile = _r.isMobile;
 
   // Lookup delivery (mock — in production: fetch from Supabase)
-  var delivery = MOCK_DELIVERIES[orderId] || MOCK_DELIVERIES["ST-2847"];
+  var delivery = MOCK_DELIVERIES[orderId];
+  if (!delivery) {
+    return <div style={{ fontFamily: C.font, background: C.surface, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
+      <div style={{ maxWidth: 520, width: "100%", background: "#fff", border: "1px solid " + C.border, borderRadius: C.radiusLg, boxShadow: C.shadow, padding: 24, textAlign: "center" }}>
+        <div style={{ fontSize: 40, marginBottom: 12 }}>📦</div>
+        <div style={{ fontSize: 22, fontWeight: 800, color: C.text, marginBottom: 8 }}>Livraison non trouvée</div>
+        <div style={{ fontSize: 14, color: C.textSec, lineHeight: 1.6, marginBottom: 20 }}>
+          Aucune livraison SUNTREX ne correspond a la reference <b>{orderId}</b>.
+        </div>
+        <button
+          onClick={function() { navigate("/"); }}
+          style={{ padding: "12px 18px", borderRadius: 10, border: "none", background: C.orange, color: "#fff", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: C.font }}
+        >
+          Retour a l'accueil
+        </button>
+      </div>
+    </div>;
+  }
   var currentEvent = delivery.events.find(function(e) { return e.active; }) || delivery.events[delivery.events.length - 1];
   var _s = useState(false), showReport = _s[0], setShowReport = _s[1];
 

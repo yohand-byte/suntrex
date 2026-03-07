@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 
-var BASE_URL = "https://suntrex.eu";
+var BASE_URL = (import.meta.env.VITE_SITE_URL || "https://suntrex.vercel.app").replace(/\/$/, "");
 var DEFAULT_IMAGE = BASE_URL + "/suntrex-og.png";
 
 var ROUTES = {
@@ -19,6 +19,10 @@ var ROUTES = {
   "/faq": {
     title: "FAQ — Questions fréquentes | SUNTREX",
     description: "Trouvez les réponses à vos questions sur SUNTREX : inscription, achat, vente, livraison, paiements, KYC et support technique.",
+  },
+  "/offers": {
+    title: "Offres B2B photovoltaïque — vendeurs vérifiés | SUNTREX",
+    description: "Consultez les offres SUNTREX pour panneaux, onduleurs, batteries et accessoires photovoltaïques proposées par des vendeurs professionnels vérifiés.",
   },
   "/admin": {
     title: "Admin Dashboard | SUNTREX",

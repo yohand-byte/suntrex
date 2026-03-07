@@ -2,13 +2,13 @@ import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "../CurrencyContext";
-import ALL_PRODUCTS from "../products";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
 /* ── Stripe initialization (publishable key from env) ── */
 var stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || "pk_test_placeholder");
 import useResponsive from "../hooks/useResponsive";
+import useProductsCatalog from "../hooks/useProductsCatalog";
 
 /* ═══════════════════════════════════════════════════════════════
    SUNTREX — Checkout Page
@@ -374,11 +374,12 @@ export default function CheckoutPage({ isLoggedIn, onLogin }) {
   var _useTrans = useTranslation(), t = _useTrans.t, i18n = _useTrans.i18n;
   var _useCurr = useCurrency(), formatMoney = _useCurr.formatMoney;
   var _useResp = useResponsive(), isMobile = _useResp.isMobile;
+  var _useProducts = useProductsCatalog(), products = _useProducts.products, productsLoading = _useProducts.loading;
   var language = i18n.language;
 
   // Get offer data from location state (passed from ProductDetailV2)
   var offerData = (location.state && location.state.offer) || null;
-  var product = useMemo(function() { return ALL_PRODUCTS.find(function(p) { return p.id === productId; }); }, [productId]);
+  var product = useMemo(function() { return products.find(function(p) { return p.id === productId; }); }, [products, productId]);
 
   var [step, setStep] = useState(0); // 0=summary, 1=delivery, 2=payment, 3=confirmation
   var [quantity, setQuantity] = useState((offerData && offerData.quantity) || 1);
@@ -404,6 +405,13 @@ export default function CheckoutPage({ isLoggedIn, onLogin }) {
       navigate("/product/" + productId);
     }
   }, [isLoggedIn]);
+
+  if (productsLoading) {
+    return <div style={{ maxWidth: 600, margin: "80px auto", textAlign: "center", fontFamily: C.font }}>
+      <div style={{ fontSize: 48, opacity: 0.15, marginBottom: 16 }}>⏳</div>
+      <h2 style={{ fontSize: 20, fontWeight: 700, color: C.text }}>Chargement du produit...</h2>
+    </div>;
+  }
 
   if (!product || !offer) {
     return <div style={{ maxWidth: 600, margin: "80px auto", textAlign: "center", fontFamily: C.font }}>

@@ -2,49 +2,13 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "../CurrencyContext";
-import REAL_PRODUCTS from "../products";
 import CATALOG, { getProductImage } from "../data/catalog";
 import BrandLogo from "../components/ui/BrandLogo";
 import AutoSlides from "../components/ui/AutoSlides";
 import CatCard from "../components/ui/CatCard";
 import useResponsive from "../hooks/useResponsive";
+import useProductsCatalog from "../hooks/useProductsCatalog";
 import ProductRecommendation from "../components/ai/ProductRecommendation";
-
-// Featured: Huawei inverters & batteries first, then Deye, no duplicates
-const seen = new Set();
-const FEATURED_PRODUCTS = (() => {
-  const all = REAL_PRODUCTS.filter(p => p.stock > 0 && p.price > 50);
-
-  const huaweiInverters = all.filter(p => /huawei/i.test(p.brand) && p.category === "inverters");
-  const huaweiBatteries = all.filter(p => /huawei/i.test(p.brand) && p.category === "batteries");
-  const deye = all.filter(p => /deye/i.test(p.brand));
-  const rest = all.filter(p => !/huawei|deye/i.test(p.brand));
-
-  const result = [];
-  const addUnique = (items) => {
-    for (const p of items.sort((a, b) => b.stock - a.stock)) {
-      const key = p.sku ? p.sku.toUpperCase().replace(/^(HUA|DEY|HOY)\//,"") : p.name;
-      if (!seen.has(key) && result.length < 10) {
-        seen.add(key);
-        result.push({
-          id: p.id,
-          name: p.name,
-          power: p.power,
-          type: p.type || p.category,
-          stock: p.stock,
-          price: p.price,
-          img: p.image || getProductImage(p),
-        });
-      }
-    }
-  };
-
-  addUnique(huaweiInverters);
-  addUnique(huaweiBatteries);
-  addUnique(deye);
-  addUnique(rest);
-  return result;
-})();
 
 const BRANDS = [
   { n:"Huawei", f:"huawei" },{ n:"Jinko Solar", f:"jinko" },
@@ -60,6 +24,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
   const { t, i18n } = useTranslation();
   const { formatMoney } = useCurrency();
   const { isMobile, isTablet } = useResponsive();
+  const { products } = useProductsCatalog();
 
   const [bs, setBs] = useState(0);
   const [ss, setSs] = useState(0);
@@ -97,6 +62,40 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
     panels: t("home.catLabels.panels"),
   }), [t]);
 
+  const FEATURED_PRODUCTS = useMemo(() => {
+    const seen = new Set();
+    const all = products.filter((p) => p.stock > 0 && p.price > 50);
+    const huaweiInverters = all.filter((p) => /huawei/i.test(p.brand) && p.category === "inverters");
+    const huaweiBatteries = all.filter((p) => /huawei/i.test(p.brand) && p.category === "batteries");
+    const deye = all.filter((p) => /deye/i.test(p.brand));
+    const rest = all.filter((p) => !/huawei|deye/i.test(p.brand));
+    const result = [];
+
+    const addUnique = (items) => {
+      for (const p of items.sort((a, b) => b.stock - a.stock)) {
+        const key = p.sku ? p.sku.toUpperCase().replace(/^(HUA|DEY|HOY)\//, "") : p.name;
+        if (!seen.has(key) && result.length < 10) {
+          seen.add(key);
+          result.push({
+            id: p.id,
+            name: p.name,
+            power: p.power,
+            type: p.type || p.category,
+            stock: p.stock,
+            price: p.price,
+            img: p.image || getProductImage(p),
+          });
+        }
+      }
+    };
+
+    addUnique(huaweiInverters);
+    addUnique(huaweiBatteries);
+    addUnique(deye);
+    addUnique(rest);
+    return result;
+  }, [products]);
+
   // Close dropdown on outside click
   useEffect(() => {
     const handler = (e) => {
@@ -111,7 +110,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
     const q = sq.trim().toLowerCase();
     if (q.length < 2) return [];
     const terms = q.split(/\s+/);
-    return REAL_PRODUCTS
+    return products
       .map(p => {
         const haystack = `${p.name} ${p.sku} ${p.brand} ${p.type || ""} ${p.category} ${p.power || ""} ${p.capacity || ""}`.toLowerCase();
         let score = 0;
@@ -125,7 +124,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       .filter(p => p.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 6);
-  }, [sq]);
+  }, [products, sq]);
 
   const goSearch = () => {
     if (sq.trim()) { navigate(`/catalog?q=${encodeURIComponent(sq.trim())}`); setShowDrop(false); }
@@ -231,7 +230,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       {/* PRODUCTS */}
       <section style={{padding:isMobile?"32px 16px":"48px 40px"}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",marginBottom:isMobile?16:24}}>
-          <div><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,marginBottom:12}}/><h2 style={{fontSize:isMobile?20:26,fontWeight:700}}>{t("home.products.title")}</h2><p style={{fontSize:13,color:"#7b7b7b",marginTop:4}}>{CATALOG.length} {t("home.products.available", "produits disponibles")}</p></div>
+          <div><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,marginBottom:12}}/><h2 style={{fontSize:isMobile?20:26,fontWeight:700}}>{t("home.products.title")}</h2><p style={{fontSize:13,color:"#7b7b7b",marginTop:4}}>{products.length || CATALOG.length} {t("home.products.available", "produits disponibles")}</p></div>
           <Link to="/catalog" style={{fontSize:13,color:"#7b7b7b",textDecoration:"underline"}}>{t("home.products.viewAll")}</Link>
         </div>
         <div style={{display:"grid",gridTemplateColumns:productGridCols,gap:isMobile?10:16}}>
@@ -252,7 +251,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
                   <div><div style={{fontSize:11,color:"#7b7b7b"}}>{t("home.products.from")}</div><div style={{fontSize:isMobile?15:18,fontWeight:700,color:"#E8700A"}}>{formatMoney(p.price, i18n.language)}<span style={{fontSize:11,fontWeight:400,color:"#7b7b7b"}}> {t("home.products.perPiece")}</span></div></div>
                 ):(
                   <div onClick={(e)=>{e.stopPropagation();onShowRegister()}} style={{position:"relative",cursor:"pointer",borderRadius:6,overflow:"hidden"}}>
-                    <div style={{fontSize:isMobile?15:18,fontWeight:700,color:"#E8700A",filter:"blur(6px)",userSelect:"none",pointerEvents:"none",padding:"4px 0"}}>{formatMoney((p.price||999)*0.97, i18n.language)}<span style={{fontSize:11,fontWeight:400,color:"#7b7b7b"}}> {t("home.products.perPiece")}</span></div>
+                    <div style={{fontSize:isMobile?15:18,fontWeight:700,color:"#E8700A",filter:"blur(6px)",userSelect:"none",pointerEvents:"none",padding:"4px 0"}}>---,-- €<span style={{fontSize:11,fontWeight:400,color:"#7b7b7b"}}> {t("home.products.perPiece")}</span></div>
                     <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(255,255,255,0.55)",backdropFilter:"blur(2px)"}}>
                       <span style={{fontSize:isMobile?10:11,fontWeight:600,color:"#E8700A",background:"rgba(232,112,10,0.1)",padding:"4px 12px",borderRadius:4,border:"1px solid rgba(232,112,10,0.2)"}}>{isLoggedIn?t("home.products.verificationPending"):t("home.products.seePrice")}</span>
                     </div>

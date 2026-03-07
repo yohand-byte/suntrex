@@ -2,8 +2,8 @@ import { useState, useMemo, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "../CurrencyContext";
-import REAL_PRODUCTS from "../products";
 import useResponsive from "../hooks/useResponsive";
+import useProductsCatalog from "../hooks/useProductsCatalog";
 import { generateOffers, getSimilarProducts, TIERS } from "../lib/multiVendorOffers";
 import { TierBadge, VerifiedBadge, EscrowBadge, ColisVerifBadge, DeliveryBadge, ResponseBadge } from "../components/product/TrustBadges";
 import ComparisonDrawer from "../components/product/ComparisonDrawer";
@@ -155,7 +155,7 @@ function OfferCard({ offer, isLoggedIn, onLogin, t, formatMoney, lang, isBest, o
             </div>
           ) : (
             <span style={{ filter: "blur(8px)", userSelect: "none", fontSize: 22, fontWeight: 700, color: "#222" }}>
-              {formatMoney(o.price * 0.9 + Math.random() * 30, lang)}
+              ---,-- €
             </span>
           )}
 
@@ -220,7 +220,7 @@ function SimilarCard({ p, navigate, formatMoney, lang, isLoggedIn }) {
         {isLoggedIn ? (
           <>{formatMoney(p.price, lang)} <span style={{ fontSize: 11, fontWeight: 400, color: "#888" }}>/pcs</span></>
         ) : (
-          <span style={{ filter: "blur(6px)", userSelect: "none" }}>{formatMoney(p.price * 1.1, lang)}</span>
+          <span style={{ filter: "blur(6px)", userSelect: "none" }}>---,-- €</span>
         )}
       </div>
       {p.stock > 0 && <div style={{ fontSize: 11, color: "#059669", marginTop: 4 }}>● {p.stock.toLocaleString()} pcs</div>}
@@ -237,6 +237,7 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
   const { t, i18n } = useTranslation();
   const { formatMoney } = useCurrency();
   const { isMobile } = useResponsive();
+  const { products, loading: productsLoading } = useProductsCatalog();
   const lang = i18n.language;
 
   const CATS = {
@@ -249,7 +250,16 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
     mounting: "Structures de montage",
   };
 
-  const product = REAL_PRODUCTS.find(p => p.id === id);
+  const product = useMemo(() => products.find((p) => p.id === id), [products, id]);
+
+  if (productsLoading) {
+    return (
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "80px 24px", textAlign: "center", fontFamily: "'DM Sans',sans-serif" }}>
+        <div style={{ fontSize: 48, opacity: 0.15, marginBottom: 16 }}>⏳</div>
+        <h1 style={{ fontSize: 22, fontWeight: 700, color: "#222", marginBottom: 8 }}>Chargement du produit...</h1>
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -266,7 +276,7 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
 
   // Generate offers & similar
   const offers = useMemo(() => generateOffers(product), [product]);
-  const similar = getSimilarProducts(product, REAL_PRODUCTS, 4);
+  const similar = getSimilarProducts(product, products, 4);
   const brandColor = BC[product.brand] || "#555";
 
   // Build specs

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { supabase } from "../../lib/supabase";
 
 // ═══════════════════════════════════════════════════════════════════
 // SUNTREX BLOG v3 — REAL PHOTOS + SUPABASE + AI + SEO + RSS
@@ -197,6 +198,12 @@ const createDB = () => {
   };
 };
 const db = createDB();
+const ADMIN_EMAILS = (import.meta.env.VITE_ADMIN_EMAILS || "").split(",").map((e) => e.trim().toLowerCase()).filter(Boolean);
+
+function isAdminEmail(email) {
+  if (ADMIN_EMAILS.length === 0) return false;
+  return ADMIN_EMAILS.includes((email || "").toLowerCase());
+}
 
 // ─── REUSABLE UI ──────────────────────────────────────────────────
 const Badge = ({ children, color = T.orange, bg = T.orangeLight, style = {} }) => (
@@ -505,8 +512,37 @@ export default function SuntrexBlog() {
   const [activeCat, setActiveCat] = useState("all");
   const [search, setSearch] = useState("");
   const [loaded, setLoaded] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => { db.getAllArticles().then(setArticles); setTimeout(() => setLoaded(true), 100); }, []);
+
+  useEffect(() => {
+    if (!supabase) {
+      setIsAdmin(false);
+      return;
+    }
+
+    let active = true;
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (active) setIsAdmin(isAdminEmail(user?.email));
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!active) return;
+      setIsAdmin(isAdminEmail(session?.user?.email));
+    });
+
+    return () => {
+      active = false;
+      subscription?.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isAdmin && view === "admin") {
+      setView("list");
+    }
+  }, [isAdmin, view]);
 
   const refresh = async () => { const a = await db.getAllArticles(); setArticles(a); };
   const filtered = articles.filter(a => {
@@ -534,10 +570,12 @@ export default function SuntrexBlog() {
             <span style={{ fontSize: 12, color: T.textDim }}>/ Blog</span>
           </div>
           <div style={{ flex: 1 }} />
-          <button onClick={() => setView(view === "admin" ? "list" : "admin")}
-            style={{ padding: "6px 12px", borderRadius: T.radius, border: `1px solid ${view === "admin" ? T.orange : T.border}`, background: view === "admin" ? T.orangeLight : "transparent", color: view === "admin" ? T.orange : T.textMuted, fontSize: 11, fontFamily: T.fontMono, cursor: "pointer" }}>
-            {view === "admin" ? "✕ Admin" : "⚙ Admin"}
-          </button>
+          {isAdmin && (
+            <button onClick={() => setView(view === "admin" ? "list" : "admin")}
+              style={{ padding: "6px 12px", borderRadius: T.radius, border: `1px solid ${view === "admin" ? T.orange : T.border}`, background: view === "admin" ? T.orangeLight : "transparent", color: view === "admin" ? T.orange : T.textMuted, fontSize: 11, fontFamily: T.fontMono, cursor: "pointer" }}>
+              {view === "admin" ? "✕ Admin" : "⚙ Admin"}
+            </button>
+          )}
           <Btn style={{ padding: "7px 16px", fontSize: 13 }}>Catalogue</Btn>
         </div>
       </header>

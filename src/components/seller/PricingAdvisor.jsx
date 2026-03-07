@@ -1,10 +1,10 @@
 import { useState, useMemo } from "react";
 import useResponsive from "../../hooks/useResponsive";
-import PRODUCTS from "../../products";
+import useProductsCatalog from "../../hooks/useProductsCatalog";
 
-function getMarketData(productName, brand, category) {
+function getMarketData(products, productName, brand, category) {
   // Find similar products by category + brand
-  const similar = PRODUCTS.filter(p =>
+  const similar = products.filter(p =>
     p.category === category || p.brand === brand
   ).filter(p => p.price > 0);
 
@@ -70,11 +70,12 @@ function getAdvice(sellerPrice, market, lang = "fr") {
 
 export default function PricingAdvisor({ productName, brand, category, sellerPrice, lang = "fr" }) {
   const { isMobile } = useResponsive();
+  const { products } = useProductsCatalog();
   const [expanded, setExpanded] = useState(false);
 
   const market = useMemo(
-    () => getMarketData(productName, brand, category),
-    [productName, brand, category]
+    () => getMarketData(products, productName, brand, category),
+    [products, productName, brand, category]
   );
 
   const advice = useMemo(

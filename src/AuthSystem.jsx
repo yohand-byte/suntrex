@@ -6,7 +6,7 @@ import { supabase } from "./lib/supabase";
 /* ═══════════════════════════════════════════════════════════
    SUNTREX — Auth System v2
    - Login modal
-   - Registration 3 steps (all users register as BUYER):
+   - Registration 3 steps (buyer or seller):
      Step 0: Account (email, password) + RGPD consent + Google
      Step 1: Company info with SIRET/SIREN auto-fill via API
      Step 2: KYC document upload (mandatory)
@@ -177,6 +177,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({
     email: "", password: "", passwordConfirm: "",
+    role: "buyer",
     siret: "", companyName: "", vatNumber: "",
     country: "FR", address: "", city: "", postalCode: "", phone: "",
     kycDocUploaded: false, kycFileName: "",
@@ -306,7 +307,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
             first_name: form.companyName.split(" ")[0] || "",
             last_name: "",
             company_name: form.companyName,
-            role: "buyer",
+            role: form.role,
             country: form.country,
             phone: form.phone,
             vat_number: form.vatNumber,
@@ -331,7 +332,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
       onRegister({
         id: user?.id,
         email: form.email, name: form.companyName, company: form.companyName,
-        role: "buyer", kycStatus: "pending_review",
+        role: form.role, kycStatus: "pending_review",
         country: form.country, vatNumber: form.vatNumber, siret: form.siret, sirenVerified,
       });
     } catch (err) {
@@ -463,6 +464,38 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
             {step === 0 && (
               <div style={{display:"flex",flexDirection:"column",gap:12}}>
                 <div>
+                  <label style={S.label}>Type de compte</label>
+                  <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:10}}>
+                    {[
+                      { value: "buyer", label: "Installateur / Intégrateur", help: "Compte acheteur" },
+                      { value: "seller", label: "Distributeur / Grossiste", help: "Compte vendeur" },
+                    ].map((option) => (
+                      <label key={option.value} style={{
+                        border: form.role === option.value ? "2px solid #E8700A" : "1px solid #d3d4db",
+                        borderRadius: 12,
+                        padding: "12px 14px",
+                        cursor: "pointer",
+                        background: form.role === option.value ? "#fff7ed" : "#fff",
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: 10,
+                      }}>
+                        <input
+                          type="radio"
+                          name="register-role"
+                          checked={form.role === option.value}
+                          onChange={() => update("role", option.value)}
+                          style={{ marginTop: 2, accentColor: "#E8700A" }}
+                        />
+                        <span>
+                          <span style={{display:"block",fontSize:13,fontWeight:600,color:"#262627"}}>{option.label}</span>
+                          <span style={{display:"block",fontSize:11,color:"#6b7280",marginTop:2}}>{option.help}</span>
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div>
                   <label style={S.label}>{t("auth.register.step0.professionalEmail")}</label>
                   <input type="email" value={form.email} onChange={e=>update("email",e.target.value)}
                     placeholder={t("auth.register.step0.emailPlaceholder")} style={S.input}/>
@@ -518,7 +551,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                     <input type="checkbox" checked={form.consentCGV} onChange={e=>update("consentCGV",e.target.checked)}
                       style={{marginTop:2,accentColor:"#4CAF50",width:15,height:15,flexShrink:0}}/>
                     <span style={{fontSize:11,color:"#444",lineHeight:1.5}}>
-                      J'accepte les <a href="#" style={{color:"#E8700A"}}>{t("auth.register.consent.termsLink")}</a> et la <a href="#" style={{color:"#E8700A"}}>{t("auth.register.consent.privacyLink")}</a>. <span style={{color:"#dc2626"}}>*</span>
+                      J'accepte les <a href="/cgv" target="_blank" rel="noreferrer" style={{color:"#E8700A"}}>{t("auth.register.consent.termsLink")}</a> et la <a href="/privacy" target="_blank" rel="noreferrer" style={{color:"#E8700A"}}>{t("auth.register.consent.privacyLink")}</a>. <span style={{color:"#dc2626"}}>*</span>
                     </span>
                   </label>
                   <label style={{display:"flex",gap:8,cursor:"pointer",alignItems:"flex-start"}}>

@@ -2,55 +2,15 @@ import { useState, useMemo, useEffect, useCallback, useRef, lazy, Suspense } fro
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "../CurrencyContext";
-import REAL_PRODUCTS from "../products";
 import ProductCard from "../components/catalog/ProductCard";
 import ProductModal from "../components/catalog/ProductModal";
 import { FilterSection, CheckFilter } from "../components/catalog/FilterSidebar";
 import RangeFilter from "../components/catalog/RangeFilter";
 import useResponsive from "../hooks/useResponsive";
 import useSmartSearch from "../hooks/useSmartSearch";
+import useProductsCatalog from "../hooks/useProductsCatalog";
 
 var SmartComparator = lazy(function () { return import("../components/ai/SmartComparator"); });
-
-/* ── Build catalog from real products ── */
-const CATALOG = REAL_PRODUCTS.map((p) => ({
-  id: p.id,
-  name: p.name,
-  brand: p.brand,
-  category: p.category,
-  power: p.powerKw || (p.capacityKwh ? p.capacityKwh : 0),
-  type: p.type,
-  phases: p.phases || 0,
-  mppt: p.mppt || 0,
-  image: p.image,
-  sku: p.sku,
-  // Enriched fields for ProductCard + ProductModal
-  efficiency: p.efficiency || null,
-  protection: p.protection || null,
-  weight: p.weight || null,
-  warranty: p.warranty || null,
-  dimensions: p.dimensions || null,
-  capacityKwh: p.capacityKwh || null,
-  certifications: p.certifications || [],
-  features: p.features || [],
-  datasheet: p.datasheet || null,
-  description: p.description || null,
-  offers: [
-    {
-      sellerId: "S01",
-      sellerName: p.seller || "QUALIWATT",
-      country: "FR",
-      flag: "\u{1F1EB}\u{1F1F7}",
-      rating: 4.8,
-      reviews: 8,
-      stock: p.stock,
-      price: p.price,
-      badge: "trusted",
-      bankTransfer: true,
-      delivery: "suntrex",
-    },
-  ],
-}));
 
 const ITEMS_PER_PAGE = 24;
 
@@ -114,92 +74,135 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
   const navigate = useNavigate();
   const topRef = useRef(null);
   const { isMobile } = useResponsive();
+  const { products, loading: productsLoading } = useProductsCatalog();
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   const PHASE_LABELS = { "1": t("catalog.monophase"), "3": t("catalog.triphase") };
+  const catalogItems = useMemo(() => products.map((p) => ({
+    id: p.id,
+    name: p.name,
+    brand: p.brand,
+    category: p.category,
+    power: p.powerKw || (p.capacityKwh ? p.capacityKwh : 0),
+    type: p.type,
+    phases: p.phases || 0,
+    mppt: p.mppt || 0,
+    image: p.image,
+    sku: p.sku,
+    efficiency: p.efficiency || null,
+    protection: p.protection || null,
+    weight: p.weight || null,
+    warranty: p.warranty || null,
+    dimensions: p.dimensions || null,
+    capacityKwh: p.capacityKwh || null,
+    certifications: p.certifications || [],
+    features: p.features || [],
+    datasheet: p.datasheet || null,
+    description: p.description || null,
+    offers: [
+      {
+        sellerId: "S01",
+        sellerName: p.seller || "QUALIWATT",
+        country: "FR",
+        flag: "\u{1F1EB}\u{1F1F7}",
+        rating: 4.8,
+        reviews: 8,
+        stock: p.stock,
+        price: p.price,
+        badge: "trusted",
+        bankTransfer: true,
+        delivery: "suntrex",
+      },
+    ],
+  })), [products]);
 
   /* ── Derive filter options from data ── */
   const filterOptions = useMemo(() => {
-    const brands = [...new Set(CATALOG.map((p) => p.brand))].sort();
-    const types = [...new Set(CATALOG.map((p) => p.type))].sort();
+    const brands = [...new Set(catalogItems.map((p) => p.brand))].sort();
+    const types = [...new Set(catalogItems.map((p) => p.type))].sort();
     const phases = [
       ...new Set(
-        CATALOG.filter((p) => p.phases > 0).map((p) => String(p.phases))
+        catalogItems.filter((p) => p.phases > 0).map((p) => String(p.phases))
       ),
     ].sort();
     const mppts = [
       ...new Set(
-        CATALOG.filter((p) => p.mppt > 0).map((p) => String(p.mppt))
+        catalogItems.filter((p) => p.mppt > 0).map((p) => String(p.mppt))
       ),
     ].sort((a, b) => Number(a) - Number(b));
-    const powers = CATALOG.map((p) => p.power).filter((p) => p > 0);
-    const prices = CATALOG.flatMap((p) => p.offers.map((o) => o.price));
+    const powers = catalogItems.map((p) => p.power).filter((p) => p > 0);
+    const prices = catalogItems.flatMap((p) => p.offers.map((o) => o.price));
     return {
       brands,
       types,
       phases,
       mppts,
-      powerMin: Math.floor(Math.min(...powers)),
-      powerMax: Math.ceil(Math.max(...powers)),
-      priceMin: Math.floor(Math.min(...prices)),
-      priceMax: Math.ceil(Math.max(...prices)),
+      powerMin: powers.length ? Math.floor(Math.min(...powers)) : 0,
+      powerMax: powers.length ? Math.ceil(Math.max(...powers)) : 0,
+      priceMin: prices.length ? Math.floor(Math.min(...prices)) : 0,
+      priceMax: prices.length ? Math.ceil(Math.max(...prices)) : 0,
     };
-  }, []);
+  }, [catalogItems]);
 
   const CATEGORIES = useMemo(
     () => [
-      { id: "all", label: t("catalog.allProducts"), count: CATALOG.length },
+      { id: "all", label: t("catalog.allProducts"), count: catalogItems.length },
       {
         id: "panels",
         label: t("catalog.solarPanels", "Panneaux solaires"),
-        count: CATALOG.filter((p) => p.category === "panels").length,
+        count: catalogItems.filter((p) => p.category === "panels").length,
       },
       {
         id: "inverters",
         label: t("catalog.inverters"),
-        count: CATALOG.filter((p) => p.category === "inverters").length,
+        count: catalogItems.filter((p) => p.category === "inverters").length,
       },
       {
         id: "batteries",
         label: t("catalog.batteriesStorage"),
-        count: CATALOG.filter((p) => p.category === "batteries").length,
+        count: catalogItems.filter((p) => p.category === "batteries").length,
       },
       {
         id: "cables",
         label: t("catalog.cables", "Câbles"),
-        count: CATALOG.filter((p) => p.category === "cables").length,
+        count: catalogItems.filter((p) => p.category === "cables").length,
       },
       {
         id: "mounting",
         label: t("catalog.mounting", "Systèmes de montage"),
-        count: CATALOG.filter((p) => p.category === "mounting").length,
+        count: catalogItems.filter((p) => p.category === "mounting").length,
       },
       {
         id: "optimizers",
         label: t("catalog.optimizers"),
-        count: CATALOG.filter((p) => p.category === "optimizers").length,
+        count: catalogItems.filter((p) => p.category === "optimizers").length,
       },
       {
         id: "ev-chargers",
         label: t("catalog.chargingStations"),
-        count: CATALOG.filter((p) => p.category === "ev-chargers").length,
+        count: catalogItems.filter((p) => p.category === "ev-chargers").length,
       },
       {
         id: "accessories",
         label: t("catalog.accessories"),
-        count: CATALOG.filter((p) => p.category === "accessories").length,
+        count: catalogItems.filter((p) => p.category === "accessories").length,
       },
     ],
-    [t]
+    [catalogItems, t]
   );
 
   /* ── States ── */
-  const [activeCategory, setActiveCategory] = useState(urlCategory || "all");
-  useEffect(() => {
-    setActiveCategory(urlCategory || "all");
-  }, [urlCategory]);
+  const [searchParams] = useSearchParams();
+  const queryCategory = searchParams.get("category");
+  const queryBrand = searchParams.get("brand");
+  const querySearch = searchParams.get("q") || "";
 
-  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [activeCategory, setActiveCategory] = useState(urlCategory || queryCategory || "all");
+  useEffect(() => {
+    setActiveCategory(urlCategory || queryCategory || "all");
+  }, [urlCategory, queryCategory]);
+
+  const [selectedBrands, setSelectedBrands] = useState(queryBrand ? [queryBrand] : []);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedPhases, setSelectedPhases] = useState([]);
   const [selectedMppts, setSelectedMppts] = useState([]);
@@ -210,10 +213,9 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
   const [inStockOnly, setInStockOnly] = useState(false);
   const [grouped, setGrouped] = useState(true);
   const [sortBy, setSortBy] = useState("relevance");
-  const [searchParams] = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
+  const [searchQuery, setSearchQuery] = useState(querySearch);
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
-  const smartSearch = useSmartSearch(REAL_PRODUCTS, { maxResults: 6 });
+  const smartSearch = useSmartSearch(products, { maxResults: 6 });
   const [quickFilters, setQuickFilters] = useState({
     bankTransfer: false,
     suntrexDelivery: false,
@@ -224,6 +226,14 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
   const [compareIds, setCompareIds] = useState([]);
   const [showComparator, setShowComparator] = useState(false);
 
+  useEffect(() => {
+    setSelectedBrands(queryBrand ? [queryBrand] : []);
+  }, [queryBrand]);
+
+  useEffect(() => {
+    setSearchQuery(querySearch);
+  }, [querySearch]);
+
   const toggleCompare = useCallback(function (productId) {
     setCompareIds(function (prev) {
       if (prev.includes(productId)) return prev.filter(function (id) { return id !== productId; });
@@ -233,11 +243,11 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
   }, []);
 
   const compareProducts = useMemo(function () {
-    return compareIds.map(function (id) { return CATALOG.find(function (p) { return p.id === id; }); }).filter(Boolean).map(function (p) {
-      var src = REAL_PRODUCTS.find(function (rp) { return rp.id === p.id; });
+    return compareIds.map(function (id) { return catalogItems.find(function (p) { return p.id === id; }); }).filter(Boolean).map(function (p) {
+      var src = products.find(function (rp) { return rp.id === p.id; });
       return Object.assign({}, p, src || {});
     });
-  }, [compareIds]);
+  }, [catalogItems, compareIds, products]);
 
   /* ── Toggle helpers ── */
   const toggle = (setter) => (val) =>
@@ -272,7 +282,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
 
   /* ── Filtering pipeline ── */
   const filtered = useMemo(() => {
-    let items = [...CATALOG];
+    let items = [...catalogItems];
 
     // 1. Category
     if (activeCategory !== "all")
@@ -366,6 +376,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
     return items;
   }, [
     activeCategory,
+    catalogItems,
     selectedBrands,
     selectedTypes,
     selectedPhases,
@@ -379,6 +390,13 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
     priceMax,
     sortBy,
   ]);
+
+  if (productsLoading) {
+    return <div style={{ maxWidth: 1280, margin: "0 auto", padding: "48px 24px", fontFamily: "'DM Sans',sans-serif" }}>
+      <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>Chargement du catalogue...</div>
+      <div style={{ fontSize: 14, color: "#6b7280" }}>Les produits SUNTREX sont en cours de chargement.</div>
+    </div>;
+  }
 
   /* ── Pagination ── */
   const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));

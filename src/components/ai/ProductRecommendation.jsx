@@ -1,10 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import useResponsive from "../../hooks/useResponsive";
-import PRODUCTS from "../../products";
+import useProductsCatalog from "../../hooks/useProductsCatalog";
 
-function getRecommendations(currentProduct, viewedCategories, maxItems = 6) {
-  let candidates = PRODUCTS.filter(p => p.id !== currentProduct?.id);
+function getRecommendations(products, currentProduct, viewedCategories, maxItems = 6) {
+  let candidates = products.filter(p => p.id !== currentProduct?.id);
 
   if (currentProduct) {
     // Score based on similarity
@@ -46,7 +46,7 @@ function getRecommendations(currentProduct, viewedCategories, maxItems = 6) {
         return true;
       });
     // Fill remaining with top stock items
-    const extras = PRODUCTS
+    const extras = products
       .filter(p => p.id !== currentProduct?.id && !candidates.find(c => c.id === p.id))
       .sort((a, b) => (b.stock || 0) - (a.stock || 0));
     candidates = [...candidates, ...extras];
@@ -58,10 +58,11 @@ function getRecommendations(currentProduct, viewedCategories, maxItems = 6) {
 export default function ProductRecommendation({ currentProduct, title, lang = "fr" }) {
   const { isMobile, isTablet } = useResponsive();
   const navigate = useNavigate();
+  const { products } = useProductsCatalog();
 
   const recommendations = useMemo(
-    () => getRecommendations(currentProduct, null, 6),
-    [currentProduct?.id]
+    () => getRecommendations(products, currentProduct, null, 6),
+    [currentProduct, products]
   );
 
   if (recommendations.length === 0) return null;

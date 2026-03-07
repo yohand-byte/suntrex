@@ -20,8 +20,8 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
     { label: t("header.nav.inverters"), path: "/catalog/inverters" },
     { label: t("header.nav.energyStorage"), path: "/catalog/batteries" },
     { label: t("header.nav.optimizers"), path: "/catalog/optimizers" },
-    { label: t("header.nav.electrical"), path: null },
-    { label: t("header.nav.eMobility"), path: null },
+    { label: t("header.nav.electrical"), path: "/catalog?category=electrical" },
+    { label: t("header.nav.eMobility"), path: "/catalog?category=emobility" },
   ];
 
   return (
@@ -29,7 +29,7 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
       {/* TOP BAR */}
       <div style={{ background: "#1a1a1a", color: "#fff", fontSize: 12, padding: isMobile ? "6px 16px" : "6px 40px", display: "flex", justifyContent: "space-between" }}>
         <div style={{ display: "flex", gap: 20, opacity: .7 }}>
-          {isMobile ? null : [{key:"about",label:t("header.topLinks.about"),path:null},{key:"blog",label:t("header.topLinks.blog"),path:"/blog"},{key:"faq",label:t("header.topLinks.faq"),path:"/faq"}].map(l => <a key={l.key} onClick={l.path ? (e) => { e.preventDefault(); navigate(l.path); } : undefined} href={l.path || "#"} style={{ color: "#fff", textDecoration: "none", cursor: "pointer" }}>{l.label}</a>)}
+          {isMobile ? null : [{key:"about",label:t("header.topLinks.about"),path:"/about"},{key:"blog",label:t("header.topLinks.blog"),path:"/blog"},{key:"faq",label:t("header.topLinks.faq"),path:"/faq"}].map(l => <a key={l.key} onClick={l.path ? (e) => { e.preventDefault(); navigate(l.path); } : undefined} href={l.path || "#"} style={{ color: "#fff", textDecoration: "none", cursor: "pointer" }}>{l.label}</a>)}
         </div>
         <span style={{ opacity: .7 }}>+33 1 XX XX XX XX</span>
       </div>
