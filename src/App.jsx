@@ -83,7 +83,7 @@ function isSellerRole(role) {
 function SellerRoute({ authReady, currentUser, children }) {
   if (!authReady) return <LoadingSpinner />;
   if (!currentUser) return <Navigate to="/" replace />;
-  if (!isSellerRole(currentUser.role)) {
+  if (!isSellerRole(currentUser.role) && !isAdminEmail(currentUser.email)) {
     return (
       <AccessDenied
         title="Accès réservé aux vendeurs"
