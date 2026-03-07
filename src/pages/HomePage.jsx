@@ -159,7 +159,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       {/* HERO */}
       <section style={{position:"relative",height:isMobile?320:480,background:"#0a1628"}}>
         <div style={{position:"absolute",inset:0,overflow:"hidden"}}>
-          <video autoPlay muted loop playsInline poster="/hero-solar.jpg" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.35)",zIndex:1}}><source src="/hero-video.mp4" type="video/mp4"/></video>
+          <video autoPlay muted loop playsInline poster="/hero-solar.jpg" width="1440" height="480" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.35)",zIndex:1}}><source src="/hero-video.mp4" type="video/mp4"/></video>
           <img src="/hero-solar.jpg" alt="Solar panels installation — SUNTREX B2B marketplace" fetchPriority="high" width="1440" height="480" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.35)",zIndex:0}}/>
           <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(10,22,40,0.3) 0%,rgba(10,22,40,0.7) 100%)",zIndex:2}}/>
         </div>
@@ -189,7 +189,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
                     style={{display:"flex",alignItems:"center",gap:12,padding:"10px 16px",cursor:"pointer",background:hlIdx===i?"#f8f8f8":"#fff",borderTop:i>0?"1px solid #f0f0f0":"none",transition:"background .1s"}}
                   >
                     <div style={{width:48,height:48,borderRadius:6,background:"#fff",border:"1px solid #f0f0f0",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,overflow:"hidden",padding:4}}>
-                      {p.image ? <img src={p.image} alt={p.name} style={{maxWidth:"100%",maxHeight:"100%",objectFit:"contain",mixBlendMode:"multiply"}}/> : <span style={{fontSize:9,color:"#bbb"}}>{p.brand}</span>}
+                      {p.image ? <img src={p.image} alt={p.name} width="40" height="40" style={{maxWidth:"100%",maxHeight:"100%",objectFit:"contain",mixBlendMode:"multiply"}}/> : <span style={{fontSize:9,color:"#bbb"}}>{p.brand}</span>}
                     </div>
                     <div style={{flex:1,minWidth:0}}>
                       <div style={{fontSize:13,fontWeight:600,color:"#222",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{p.name}</div>
@@ -228,7 +228,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       </section>
 
       {/* BRANDS MARQUEE — colored logos */}
-      <section style={{padding:'16px 0',borderBottom:'1px solid #e4e5ec',overflow:'hidden',position:'relative'}}>
+      <section style={{padding:'16px 0',borderBottom:'1px solid #e4e5ec',overflow:'hidden',position:'relative',minHeight:58}}>
         <div>
           <div className='marquee' style={{display:'flex',alignItems:'center',gap:48,width:'max-content',paddingRight:48}}>
             {[...BRANDS,...BRANDS].map((b,i)=>(
@@ -239,7 +239,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       </section>
 
       {/* PRODUCTS */}
-      <section style={{padding:isMobile?"32px 16px":"48px 40px"}}>
+      <section style={{padding:isMobile?"32px 16px":"48px 40px",minHeight:isMobile?420:520}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",marginBottom:isMobile?16:24}}>
           <div><div style={{width:32,height:3,background:"#4CAF50",borderRadius:2,marginBottom:12}}/><h2 style={{fontSize:isMobile?20:26,fontWeight:700}}>{thome("products.title")}</h2><p style={{fontSize:13,color:"#7b7b7b",marginTop:4}}>{products.length || CATALOG.length} {thome("products.available")}</p></div>
           <Link to="/catalog" style={{fontSize:13,color:"#7b7b7b",textDecoration:"underline"}}>{thome("products.viewAll")}</Link>
@@ -307,7 +307,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       </div>
 
       {/* WHY SUNTREX */}
-      <section style={{background:"#fafafa",padding:isMobile?"40px 16px":"64px 40px",borderTop:"1px solid #e4e5ec"}}>
+      <section style={{background:"#fafafa",padding:isMobile?"40px 16px":"64px 40px",borderTop:"1px solid #e4e5ec",minHeight:isMobile?400:500}}>
         <div style={{maxWidth:1100,margin:"0 auto"}}>
           <h2 style={{fontSize:isMobile?24:32,fontWeight:700,marginBottom:4}}>{thome("whySuntrex.title")}</h2>
           <p style={{fontSize:isMobile?13:15,color:"#7b7b7b",marginBottom:isMobile?20:28}}>{thome("whySuntrex.subtitle")}</p>

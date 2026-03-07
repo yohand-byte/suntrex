@@ -114,6 +114,8 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
               <img
                 src={brandLogo}
                 alt={product.brand}
+                width="48"
+                height="16"
                 style={{ position: "absolute", top: 4, left: 4, height: 16, opacity: 0.7, objectFit: "contain" }}
                 onError={(e) => { e.target.style.display = "none"; }}
               />
@@ -122,6 +124,8 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
               src={imgError ? (CATEGORY_FALLBACK_IMAGES[product.category] || DEFAULT_FALLBACK) : (product.image || CATEGORY_FALLBACK_IMAGES[product.category] || DEFAULT_FALLBACK)}
               alt={product.name}
               loading="lazy"
+              width="120"
+              height="120"
               style={{ width: "100%", maxHeight: "100%", objectFit: "contain", mixBlendMode: "multiply" }}
               onError={(e) => { if (!imgError) { setImgError(true); } else { e.target.onerror = null; e.target.src = DEFAULT_FALLBACK; } }}
             />

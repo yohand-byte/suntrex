@@ -211,6 +211,7 @@ function SimilarCard({ p, navigate, formatMoney, lang, isLoggedIn }) {
     onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "none"; }}>
       <div style={{ height: 100, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 8 }}>
         <img src={p.image || CAT_IMG[p.category] || "/categories/panels.jpg"} alt={p.name}
+          width="160" height="90" loading="lazy"
           style={{ maxHeight: 90, maxWidth: "100%", objectFit: "contain", mixBlendMode: "multiply" }}
           onError={e => { e.target.onerror = null; e.target.src = CAT_IMG[p.category] || "/categories/panels.jpg"; }} />
       </div>
@@ -376,6 +377,7 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
           <div style={{ border: "1px solid #e8e8e8", borderRadius: 12, padding: isMobile ? 16 : 24, background: "#fff", marginBottom: 24 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20, padding: 16 }}>
               <img src={product.image || CAT_IMG[product.category] || "/categories/panels.jpg"} alt={product.name}
+                width="400" height="260"
                 style={{ maxHeight: 260, maxWidth: "100%", objectFit: "contain", mixBlendMode: "multiply" }}
                 onError={e => { e.target.onerror = null; e.target.src = CAT_IMG[product.category] || "/categories/panels.jpg"; }} />
             </div>
