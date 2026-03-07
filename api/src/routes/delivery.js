@@ -211,6 +211,50 @@ async function routes(fastify) {
     return reply.send({ success: true, verificationStatus });
   });
 
+  // --- E-SIGNATURE at delivery ---
+  fastify.post("/delivery/sign", async (request, reply) => {
+    const supabase = getSupabaseAdmin();
+    const user = await getAuthUser(request, supabase);
+    if (!user) return reply.code(401).send({ success: false, error: "Unauthorized" });
+
+    const { orderId, signature, timestamp } = request.body || {};
+    if (!orderId || !signature) {
+      return reply.code(400).send({ success: false, error: "orderId and signature required" });
+    }
+
+    // Verify buyer owns this order
+    const { data: order } = await supabase
+      .from("Order")
+      .select("id, buyerId")
+      .eq("id", orderId)
+      .single();
+
+    if (!order) return reply.code(404).send({ success: false, error: "Order not found" });
+    if (order.buyerId !== user.id) {
+      return reply.code(403).send({ success: false, error: "Only the buyer can sign for delivery" });
+    }
+
+    const now = timestamp || new Date().toISOString();
+
+    // Store signature reference on order
+    await supabase.from("Order").update({
+      signature_data: signature.slice(0, 100) + "...", // Store truncated reference
+      signature_at: now,
+      deliveredAt: now,
+      updatedAt: now,
+    }).eq("id", orderId).catch(() => {});
+
+    // Also update delivery tracking
+    await supabase.from(DELIVERY_TABLE).update({
+      signature_at: now,
+      status: "delivered",
+      updated_at: now,
+    }).eq("order_id", orderId).catch(() => {});
+
+    console.log(`[delivery] E-signature received for order ${orderId}`);
+    return reply.send({ success: true, orderId, signedAt: now });
+  });
+
   // --- GET delivery status ---
   fastify.get("/delivery/:orderId", async (request, reply) => {
     const supabase = getSupabaseAdmin();
