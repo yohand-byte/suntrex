@@ -1,0 +1,113 @@
+{
+  "header": {
+    "topLinks": {
+      "about": "Chi siamo",
+      "blog": "Blog",
+      "faq": "FAQ"
+    },
+    "search": "Cerca un prodotto o produttore...",
+    "login": "Accedi",
+    "register": "Registrati",
+    "sellOnSuntrex": "Vendi su suntrex",
+    "verificationBanner": {
+      "title": "Verifica in corso",
+      "message": "Il tuo account è in attesa di convalida. I prezzi e gli ordini saranno sbloccati dopo la verifica della documentazione (entro 24 ore lavorative).",
+      "button": "Visualizza il mio stato"
+    },
+    "nav": {
+      "allProducts": "Tutti i prodotti",
+      "solarPanels": "Pannelli solari",
+      "inverters": "Inverter",
+      "energyStorage": "Accumulo di energia",
+      "optimizers": "Ottimizzatori",
+      "electrical": "Elettrotecnica",
+      "eMobility": "E-mobilità"
+    }
+  },
+  "footer": {
+    "contact": "Contatti",
+    "help": "Aiuto",
+    "sell": "Vendere",
+    "about": "Chi siamo",
+    "blog": "Blog",
+    "categories": "Categorie",
+    "panels": "Pannelli",
+    "inverters": "Inverter",
+    "storage": "Accumulo",
+    "mounting": "Montaggio",
+    "brands": "Marchi",
+    "legal": "Note legali",
+    "telWhatsappEmail": "Tel. - WhatsApp - Email"
+  },
+  "common": {
+    "pcs": "pz.",
+    "currency": "EUR",
+    "trustedSeller": "Venditore affidabile",
+    "secureTransfer": "Bonifico sicuro",
+    "suntrexDelivery": "SUNTREX Delivery",
+    "pdf": "PDF"
+  },
+  "mockups": {
+    "catalog": {
+      "title": "SUNTREX — Ricerca intelligente",
+      "offersFromSellers": "offerte da {sellerCount} venditori",
+      "inStock": "Disponibile",
+      "viewAllOffers": "Vedi tutte le offerte"
+    },
+    "chat": {
+      "title": "CHAT — Traduzione IA in tempo reale",
+      "agreementFound": "Accordo raggiunto — Pagamento sicuro..."
+    },
+    "payment": {
+      "title": "STRIPE CONNECT — Deposito a garanzia sicuro",
+      "deliverySuntrex": "Consegna SUNTREX",
+      "commission": "Commissione (2%)",
+      "total": "Totale",
+      "escrowActivated": "Deposito attivato — Fondi protetti",
+      "paymentConfirmed": "Pagamento confermato"
+    },
+    "delivery": {
+      "title": "SUNTREX DELIVERY — Tracciamento in tempo reale",
+      "orderConfirmed": "Ordine confermato",
+      "shippedBySeller": "Spedito dal venditore",
+      "pickedUpSuntrex": "Preso in carico da SUNTREX",
+      "qualityControl": "Controllo qualità",
+      "inTransit": "In transito",
+      "deliveredPhotoConfirmed": "Consegnato — Foto confermata"
+    },
+    "europe": {
+      "title": "I TUOI MERCATI — 25+ Paesi"
+    },
+    "createOffer": {
+      "title": "CREAZIONE RAPIDA OFFERTA",
+      "product": "Prodotto",
+      "unitPrice": "Prezzo unitario",
+      "stock": "Disponibilità",
+      "businessDays": "giorni lavorativi",
+      "aiSuggestion": "IA: Prezzo medio di mercato 1.220 € — sei a -3,3%, molto competitivo",
+      "offerPublished": "Offerta pubblicata"
+    },
+    "stockMgmt": {
+      "title": "GESTIONE MAGAZZINO",
+      "product": "Prodotto",
+      "stock": "Disponibilità",
+      "price": "Prezzo",
+      "status": "Stato",
+      "inStock": "Disponibile",
+      "lowStock": "Scorte basse",
+      "outOfStock": "Esaurito",
+      "aiAlert": "IA: SUN2000-5KTL scorte critiche. +3% prezzo raccomandato."
+    },
+    "dashboard": {
+      "title": "DASHBOARD VENDITORE",
+      "offers": "Offerte",
+      "sales": "Vendite",
+      "orders": "Ordini",
+      "rating": "Valutazione",
+      "latestOrders": "Ultimi ordini",
+      "inTransit": "In transito",
+      "delivered": "Consegnato",
+      "paid": "Pagato"
+    }
+  }
+}

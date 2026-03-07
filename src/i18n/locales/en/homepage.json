@@ -1,0 +1,238 @@
+{
+  "hero": {
+    "title": "Find, compare and buy your photovoltaic equipment at the best price",
+    "subtitle": "One platform, thousands of offers from verified suppliers across Europe",
+    "searchPlaceholder": "Search for a product or manufacturer...",
+    "viewAllResults": "View all results for",
+    "noResults": "No results for",
+    "noResultsHint": "Try \"Huawei\", \"LUNA2000\", \"inverter\"...",
+    "loginToSee": "Log in"
+  },
+  "products": {
+    "title": "Best products",
+    "viewAll": "View all offers",
+    "power": "Power",
+    "type": "Type",
+    "from": "From",
+    "perPiece": "/pc",
+    "verificationPending": "Verification pending",
+    "seePrice": "See price"
+  },
+  "categories": {
+    "title": "Get the best prices by comparing multiple offers",
+    "solarPanels": "Solar panels",
+    "inverters": "Inverters",
+    "energyStorage": "Energy storage",
+    "cablesAccessories": "Cables & accessories",
+    "explore": "Explore",
+    "panelsOffers": "1,300+ offers",
+    "invertersOffers": "4,400+ offers",
+    "storageOffers": "750+ offers",
+    "accessoriesOffers": "250+ offers",
+    "panelsSub": "Jinko, LONGi, Trina, Canadian Solar...",
+    "invertersSub": "Huawei, SMA, Growatt, Deye..."
+  },
+  "catLabels": {
+    "inverters": "Inverter",
+    "batteries": "Battery",
+    "optimizers": "Optimizer",
+    "evChargers": "EV charger",
+    "accessories": "Accessory",
+    "panels": "Panel"
+  },
+  "whySuntrex": {
+    "title": "Why SUNTREX?",
+    "subtitle": "A transparent, reliable marketplace designed for solar professionals",
+    "forBuyer": "For buyers",
+    "forSeller": "For sellers",
+    "forBuyers": "For buyers",
+    "forSellers": "For sellers",
+    "steps": {
+      "buyer": [
+        {
+          "label": "Compare offers",
+          "description": "Dozens of verified sellers for every product. Find the best price in one click.",
+          "demo": {
+            "type": "comparison",
+            "rows": [
+              {
+                "seller": "QUALIWATT",
+                "flag": "🇫🇷",
+                "product": "SUN2000-10KTL-M2",
+                "price": "1 120 €/unit",
+                "stock": 45,
+                "tier": "Platinum ◆"
+              },
+              {
+                "seller": "SolarPro GmbH",
+                "flag": "🇩🇪",
+                "product": "SUN2000-10KTL-M2",
+                "price": "1 185 €/unit",
+                "stock": 120,
+                "tier": "Gold ◆"
+              },
+              {
+                "seller": "EnergieDirect",
+                "flag": "🇳🇱",
+                "product": "SUN2000-10KTL-M2",
+                "price": "1 210 €/unit",
+                "stock": 30,
+                "tier": "Silver ◆"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Negotiate directly",
+          "description": "Built-in chat with automatic translation to negotiate pricing, quantities and commercial terms.",
+          "demo": {
+            "type": "chat",
+            "messages": [
+              {
+                "from": "buyer",
+                "text": "Hello, what price can you offer for 200x SUN2000-10KTL-M2?"
+              },
+              {
+                "from": "seller",
+                "text": "Hello. For 200 units: 1 080 €/unit ex VAT, delivered mainland UK. Delivery within 5 days."
+              },
+              {
+                "from": "buyer",
+                "text": "OK, let's proceed on that basis. I'm placing the order."
+              }
+            ]
+          }
+        },
+        {
+          "label": "Secure Stripe payment",
+          "description": "Funds remain locked until receipt is confirmed. Only a 4.75% commission.",
+          "demo": {
+            "type": "receipt",
+            "lines": [
+              "200x Huawei SUN2000-10KTL-M2",
+              "Total excl. VAT: 216 000 €",
+              "SUNTREX commission (4.75%): 10 260 €",
+              "3D Secure payment confirmed ✓",
+              "Funds held in escrow until delivery ✓"
+            ]
+          }
+        },
+        {
+          "label": "SUNTREX-verified delivery",
+          "description": "QR code, photos, GPS and signature. Every parcel is tracked end to end.",
+          "demo": {
+            "type": "timeline",
+            "steps": [
+              {
+                "icon": "✅",
+                "text": "Shipped — 5 March, QUALIWATT warehouse, Gretz-Armainvilliers"
+              },
+              {
+                "icon": "✅",
+                "text": "Handled by SUNTREX — 6 March, QR scanned, photos verified"
+              },
+              {
+                "icon": "🔄",
+                "text": "In transit — GLS, ref. 4F82K91"
+              },
+              {
+                "icon": "⏳",
+                "text": "Expected delivery — 8 March, site in London"
+              }
+            ]
+          }
+        }
+      ],
+      "seller": [
+        {
+          "label": "List your products",
+          "description": "Bulk XLSX import or manual entry. Put your catalogue online in 5 minutes."
+        },
+        {
+          "label": "Receive enquiries",
+          "description": "Buyers contact you directly. Real-time notifications included."
+        },
+        {
+          "label": "Guaranteed payment",
+          "description": "Funds are secured through escrow. You are paid as soon as delivery is confirmed."
+        },
+        {
+          "label": "Ship with confidence",
+          "description": "SUNTREX DELIVERY handles transport and verification."
+        }
+      ]
+    }
+  },
+  "buyerSlides": {
+    "compareOffers": {
+      "label": "Compare offers",
+      "desc": "Find the best price in one click. Compare offers from verified sellers across Europe."
+    },
+    "negotiateDirect": {
+      "label": "Negotiate directly",
+      "desc": "Built-in chat with automatic translation to negotiate prices, quantities and delivery terms."
+    },
+    "securePayment": {
+      "label": "Secure Stripe payment",
+      "desc": "Funds held in escrow until delivery is confirmed. 3D Secure & SCA compliant."
+    },
+    "tracking": {
+      "label": "SUNTREX DELIVERY tracking",
+      "desc": "Real-time tracking with photo verification at every step. Your parcel, our responsibility."
+    }
+  },
+  "sellerSlides": {
+    "newMarkets": {
+      "label": "New European markets",
+      "desc": "Reach professional buyers in 25+ countries from a single dashboard."
+    },
+    "createOffers": {
+      "label": "Create offers quickly",
+      "desc": "Excel import or quick creation. Set your prices and stock in just a few clicks."
+    },
+    "realTimeStock": {
+      "label": "Real-time stock",
+      "desc": "Automatic alerts when stock runs low, with AI pricing suggestions."
+    },
+    "dashboard": {
+      "label": "All-in-one dashboard",
+      "desc": "Orders, invoices, shipments, payments: everything centralised in one place."
+    }
+  },
+  "stats": {
+    "activeOffers": "Active offers",
+    "countriesCovered": "Countries covered",
+    "verifiedSellers": "Verified sellers",
+    "platformFee": "Platform fee"
+  },
+  "differentiators": {
+    "title": "What sets us apart",
+    "securePayment": {
+      "title": "Secure payment",
+      "desc": "Escrow via Stripe Connect. Your funds are protected until confirmed receipt."
+    },
+    "delivery": {
+      "title": "SUNTREX Delivery",
+      "desc": "Our own logistics service with photo verification at every step."
+    },
+    "lowFees": {
+      "title": "Low fees",
+      "desc": "Among the lowest fees on the market to maximise your margins."
+    },
+    "aiTools": {
+      "title": "Built-in AI tools",
+      "desc": "Price suggestions, market analysis and intelligent matching."
+    }
+  },
+  "cta": {
+    "title": "Ready to get started?",
+    "subtitle": "Join thousands of solar professionals",
+    "createAccount": "Create an account",
+    "startSelling": "Start selling"
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "placeholder": "Your email",
+    "subscribe": "Subscribe"
+  }
+}

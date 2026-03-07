@@ -29,7 +29,7 @@ export default function AutoSlides({ slides, cur, set, isMobile }) {
       <div key={cur} className="fade-in" style={{background:"#fff",borderRadius:"0 0 12px 12px",border:"1px solid #e4e5ec",borderTop:"none",padding:isMobile?16:32,minHeight:isMobile?280:360}}>
         <div style={isMobile?{display:"flex",flexDirection:"column",gap:16}:{display:"grid",gridTemplateColumns:"1fr 1.5fr",gap:32,alignItems:"center"}}>
           <div><h3 style={{fontSize:isMobile?16:20,fontWeight:700,marginBottom:isMobile?8:12}}>{slides[cur].label}</h3><p style={{fontSize:isMobile?13:14,color:"#7b7b7b",lineHeight:1.6}}>{slides[cur].desc}</p></div>
-          <AM type={slides[cur].m}/>
+          <AM type={slides[cur].m} demoData={slides[cur].demo} title={slides[cur].label}/>
         </div>
       </div>
     </div>

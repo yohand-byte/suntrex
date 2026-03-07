@@ -1,0 +1,238 @@
+{
+  "hero": {
+    "title": "Encuentre, compare y compre sus equipos fotovoltaicos al mejor precio",
+    "subtitle": "Una plataforma, miles de ofertas de proveedores verificados en Europa",
+    "searchPlaceholder": "Buscar un producto o fabricante...",
+    "viewAllResults": "Ver todos los resultados para",
+    "noResults": "Sin resultados para",
+    "noResultsHint": "Pruebe \"Huawei\", \"LUNA2000\", \"inversor\"...",
+    "loginToSee": "Inicie sesión"
+  },
+  "products": {
+    "title": "Mejores productos",
+    "viewAll": "Ver todas las ofertas",
+    "power": "Potencia",
+    "type": "Tipo",
+    "from": "Desde",
+    "perPiece": "/ud.",
+    "verificationPending": "Verificación en curso",
+    "seePrice": "Ver precio"
+  },
+  "categories": {
+    "title": "Obtenga los mejores precios comparando múltiples ofertas",
+    "solarPanels": "Paneles solares",
+    "inverters": "Inversores",
+    "energyStorage": "Almacenamiento de energía",
+    "cablesAccessories": "Cables y accesorios",
+    "explore": "Explorar",
+    "panelsOffers": "1.300+ ofertas",
+    "invertersOffers": "4.400+ ofertas",
+    "storageOffers": "750+ ofertas",
+    "accessoriesOffers": "250+ ofertas",
+    "panelsSub": "Jinko, LONGi, Trina, Canadian Solar...",
+    "invertersSub": "Huawei, SMA, Growatt, Deye..."
+  },
+  "catLabels": {
+    "inverters": "Inversor",
+    "batteries": "Batería",
+    "optimizers": "Optimizador",
+    "evChargers": "Cargador EV",
+    "accessories": "Accesorio",
+    "panels": "Panel"
+  },
+  "whySuntrex": {
+    "title": "¿Por qué SUNTREX?",
+    "subtitle": "Un marketplace transparente y fiable pensado para los profesionales solares",
+    "forBuyer": "Para compradores",
+    "forSeller": "Para vendedores",
+    "forBuyers": "Para compradores",
+    "forSellers": "Para vendedores",
+    "steps": {
+      "buyer": [
+        {
+          "label": "Compare ofertas",
+          "description": "Decenas de vendedores verificados para cada producto. Encuentre el mejor precio en un clic.",
+          "demo": {
+            "type": "comparison",
+            "rows": [
+              {
+                "seller": "QUALIWATT",
+                "flag": "🇫🇷",
+                "product": "SUN2000-10KTL-M2",
+                "price": "1 120 €/ud.",
+                "stock": 45,
+                "tier": "Platino ◆"
+              },
+              {
+                "seller": "SolarPro GmbH",
+                "flag": "🇩🇪",
+                "product": "SUN2000-10KTL-M2",
+                "price": "1 185 €/ud.",
+                "stock": 120,
+                "tier": "Gold ◆"
+              },
+              {
+                "seller": "EnergieDirect",
+                "flag": "🇳🇱",
+                "product": "SUN2000-10KTL-M2",
+                "price": "1 210 €/ud.",
+                "stock": 30,
+                "tier": "Silver ◆"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Negocie directamente",
+          "description": "Chat integrado con traducción automática para negociar precios, cantidades y condiciones.",
+          "demo": {
+            "type": "chat",
+            "messages": [
+              {
+                "from": "buyer",
+                "text": "Hola, ¿qué precio ofrecen por 200x SUN2000-10KTL-M2?"
+              },
+              {
+                "from": "seller",
+                "text": "Hola. Para 200 unidades: 1 080 €/ud. sin IVA, entrega incluida en España peninsular. Entrega en 5 días."
+              },
+              {
+                "from": "buyer",
+                "text": "Perfecto, seguimos así. Voy a confirmar el pedido."
+              }
+            ]
+          }
+        },
+        {
+          "label": "Pago seguro con Stripe",
+          "description": "Los fondos quedan bloqueados hasta la confirmación de recepción. Solo 4,75 % de comisión.",
+          "demo": {
+            "type": "receipt",
+            "lines": [
+              "200x Huawei SUN2000-10KTL-M2",
+              "Total sin IVA: 216 000 €",
+              "Comisión SUNTREX (4,75 %): 10 260 €",
+              "Pago 3D Secure confirmado ✓",
+              "Fondos en escrow hasta la entrega ✓"
+            ]
+          }
+        },
+        {
+          "label": "Entrega verificada por SUNTREX",
+          "description": "Código QR, fotos, GPS y firma. Cada paquete se rastrea de extremo a extremo.",
+          "demo": {
+            "type": "timeline",
+            "steps": [
+              {
+                "icon": "✅",
+                "text": "Enviado — 5 de marzo, almacén de QUALIWATT, Gretz-Armainvilliers"
+              },
+              {
+                "icon": "✅",
+                "text": "Gestionado por SUNTREX — 6 de marzo, QR escaneado, fotos verificadas"
+              },
+              {
+                "icon": "🔄",
+                "text": "En tránsito — GLS, n.º 4F82K91"
+              },
+              {
+                "icon": "⏳",
+                "text": "Entrega prevista — 8 de marzo, obra en Madrid"
+              }
+            ]
+          }
+        }
+      ],
+      "seller": [
+        {
+          "label": "Publique sus productos",
+          "description": "Importación masiva por XLSX o alta manual. Su catálogo online en 5 minutos."
+        },
+        {
+          "label": "Reciba solicitudes",
+          "description": "Los compradores contactan con usted directamente. Notificaciones en tiempo real."
+        },
+        {
+          "label": "Pago garantizado",
+          "description": "Los fondos están asegurados mediante escrow. Cobra en cuanto se confirma la entrega."
+        },
+        {
+          "label": "Envíe con tranquilidad",
+          "description": "SUNTREX DELIVERY se encarga del transporte y de la verificación."
+        }
+      ]
+    }
+  },
+  "buyerSlides": {
+    "compareOffers": {
+      "label": "Compare ofertas",
+      "desc": "Encuentre el mejor precio con un clic. Compare ofertas de vendedores verificados en toda Europa."
+    },
+    "negotiateDirect": {
+      "label": "Negocie directamente",
+      "desc": "Chat integrado con traducción automática para negociar precios, cantidades y condiciones de entrega."
+    },
+    "securePayment": {
+      "label": "Pago seguro con Stripe",
+      "desc": "Fondos protegidos en custodia hasta la confirmación de entrega. Cumple con 3D Secure y SCA."
+    },
+    "tracking": {
+      "label": "Seguimiento SUNTREX DELIVERY",
+      "desc": "Seguimiento en tiempo real con verificación fotográfica en cada etapa. Su paquete, nuestra responsabilidad."
+    }
+  },
+  "sellerSlides": {
+    "newMarkets": {
+      "label": "Nuevos mercados europeos",
+      "desc": "Alcance compradores profesionales en más de 25 países desde un solo panel de control."
+    },
+    "createOffers": {
+      "label": "Cree ofertas rápidamente",
+      "desc": "Importación Excel o creación rápida. Defina sus precios y existencias en pocos clics."
+    },
+    "realTimeStock": {
+      "label": "Stock en tiempo real",
+      "desc": "Alertas automáticas cuando el stock baja, con sugerencias de precios por IA."
+    },
+    "dashboard": {
+      "label": "Panel de control todo en uno",
+      "desc": "Pedidos, facturas, envíos, pagos: todo centralizado en un solo lugar."
+    }
+  },
+  "stats": {
+    "activeOffers": "Ofertas activas",
+    "countriesCovered": "Países cubiertos",
+    "verifiedSellers": "Vendedores verificados",
+    "platformFee": "Comisión de la plataforma"
+  },
+  "differentiators": {
+    "title": "Lo que nos diferencia",
+    "securePayment": {
+      "title": "Pago seguro",
+      "desc": "Custodia a través de Stripe Connect. Sus fondos están protegidos hasta la recepción confirmada."
+    },
+    "delivery": {
+      "title": "SUNTREX Delivery",
+      "desc": "Nuestro propio servicio logístico con verificación fotográfica en cada etapa."
+    },
+    "lowFees": {
+      "title": "Comisiones bajas",
+      "desc": "De las comisiones más bajas del mercado para maximizar sus márgenes."
+    },
+    "aiTools": {
+      "title": "Herramientas IA integradas",
+      "desc": "Sugerencias de precios, análisis de mercado y emparejamiento inteligente."
+    }
+  },
+  "cta": {
+    "title": "¿Listo para empezar?",
+    "subtitle": "Únase a miles de profesionales del sector solar",
+    "createAccount": "Crear una cuenta",
+    "startSelling": "Empezar a vender"
+  },
+  "newsletter": {
+    "title": "Boletín informativo",
+    "placeholder": "Su email",
+    "subscribe": "Suscribirse"
+  }
+}

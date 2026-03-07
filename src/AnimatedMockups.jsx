@@ -4,11 +4,85 @@ import useResponsive from "./hooks/useResponsive";
 
 const B = {background:"#f8f8f8",borderRadius:12,border:"1px solid #e4e5ec",padding:20,minHeight:300,overflow:"hidden"};
 
-export default function AM({type}) {
+function ComparisonDemo({ data, step, title }) {
+  return (
+    <div style={B}>
+      <div style={{ fontSize: 11, color: "#999", marginBottom: 12, fontWeight: 600 }}>{title}</div>
+      <div style={{ background: "#fff", border: "1px solid #eee", borderRadius: 10, overflow: "hidden" }}>
+        {data.rows.slice(0, step).map((row, index) => (
+          <div key={`${row.seller}-${index}`} className="ar" style={{ display: "grid", gridTemplateColumns: "2fr 2fr 1.1fr 0.9fr 1.2fr", gap: 8, padding: "12px 14px", borderTop: "1px solid #f0f0f0", alignItems: "center" }}>
+            <span style={{ fontSize: 12, fontWeight: 600 }}>{row.flag} {row.seller}</span>
+            <span style={{ fontSize: 12, color: "#444" }}>{row.product}</span>
+            <span style={{ fontSize: 12, fontWeight: 700, color: "#E8700A" }}>{row.price}</span>
+            <span style={{ fontSize: 12 }}>{row.stock}</span>
+            <span style={{ fontSize: 11, color: "#4CAF50", fontWeight: 600 }}>{row.tier}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ChatDemo({ data, step, title }) {
+  return (
+    <div style={B}>
+      <div style={{ fontSize: 11, color: "#999", marginBottom: 12, fontWeight: 600 }}>{title}</div>
+      <div style={{ background: "#fff", borderRadius: 10, border: "1px solid #eee", padding: 14, minHeight: 220 }}>
+        {data.messages.slice(0, step).map((message, index) => (
+          <div key={`${message.from}-${index}`} className="ar" style={{ display: "flex", justifyContent: message.from === "buyer" ? "flex-end" : "flex-start", marginBottom: 8 }}>
+            <div style={{ maxWidth: "82%", padding: "8px 12px", borderRadius: 12, background: message.from === "buyer" ? "#E8700A" : "#f5f5f5", color: message.from === "buyer" ? "#fff" : "#333", fontSize: 12, lineHeight: 1.4 }}>
+              {message.text}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ReceiptDemo({ data, step, title }) {
+  return (
+    <div style={B}>
+      <div style={{ fontSize: 11, color: "#999", marginBottom: 16, fontWeight: 600 }}>{title}</div>
+      <div style={{ background: "#fff", border: "1px solid #eee", borderRadius: 10, padding: 16 }}>
+        {data.lines.slice(0, step).map((line, index) => (
+          <div key={`${line}-${index}`} className="ar" style={{ display: "flex", justifyContent: "space-between", marginBottom: 10, fontSize: 13, gap: 16 }}>
+            <span style={{ color: line.includes("✓") ? "#2e7d32" : "#444", fontWeight: index === 0 ? 600 : 400 }}>{line}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TimelineDemo({ data, step, title }) {
+  return (
+    <div style={B}>
+      <div style={{ fontSize: 11, color: "#999", marginBottom: 16, fontWeight: 600 }}>{title}</div>
+      <div style={{ background: "#fff", border: "1px solid #eee", borderRadius: 10, padding: 16 }}>
+        {data.steps.slice(0, step).map((item, index) => (
+          <div key={`${item.text}-${index}`} className="ar" style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 12 }}>
+            <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <span style={{ fontSize: 14 }}>{item.icon}</span>
+            </div>
+            <div style={{ fontSize: 13, lineHeight: 1.5, color: "#333", fontWeight: index === step - 1 ? 600 : 400 }}>{item.text}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function AM({type, demoData, title}) {
   const { t } = useTranslation();
   const { isMobile } = useResponsive();
   const [s, setS] = useState(0);
   useEffect(() => {setS(0); const t = setInterval(() => setS(v => v + 1), 600); return () => clearInterval(t);}, [type]);
+
+  if (demoData?.type === "comparison") return <ComparisonDemo data={demoData} step={Math.max(1, Math.min(demoData.rows.length, s))} title={title} />;
+  if (demoData?.type === "chat") return <ChatDemo data={demoData} step={Math.max(1, Math.min(demoData.messages.length, Math.ceil(s / 2)))} title={title} />;
+  if (demoData?.type === "receipt") return <ReceiptDemo data={demoData} step={Math.max(1, Math.min(demoData.lines.length, s))} title={title} />;
+  if (demoData?.type === "timeline") return <TimelineDemo data={demoData} step={Math.max(1, Math.min(demoData.steps.length, s))} title={title} />;
 
   if (type === "catalog") return (<div style={B}>
     <div style={{fontSize:11,color:"#999",marginBottom:8,fontWeight:600}}>{t("mockups.catalog.title")}</div>

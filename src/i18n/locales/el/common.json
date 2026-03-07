@@ -1,0 +1,113 @@
+{
+  "header": {
+    "topLinks": {
+      "about": "Σχετικά",
+      "blog": "Blog",
+      "faq": "Συχνές ερωτήσεις"
+    },
+    "search": "Αναζήτηση προϊόντος ή κατασκευαστή...",
+    "login": "Σύνδεση",
+    "register": "Εγγραφή",
+    "sellOnSuntrex": "Πωλήστε στο suntrex",
+    "verificationBanner": {
+      "title": "Επαλήθευση σε εξέλιξη",
+      "message": "Ο λογαριασμός σας εκκρεμεί προς επικύρωση. Οι τιμές και οι παραγγελίες θα ξεκλειδωθούν μετά την επαλήθευση των εγγράφων σας (εντός 24 εργάσιμων ωρών).",
+      "button": "Δείτε την κατάστασή μου"
+    },
+    "nav": {
+      "allProducts": "Όλα τα προϊόντα",
+      "solarPanels": "Φωτοβολταϊκά πάνελ",
+      "inverters": "Αντιστροφείς",
+      "energyStorage": "Αποθήκευση ενέργειας",
+      "optimizers": "Βελτιστοποιητές",
+      "electrical": "Ηλεκτροτεχνία",
+      "eMobility": "Ηλεκτροκίνηση"
+    }
+  },
+  "footer": {
+    "contact": "Επικοινωνία",
+    "help": "Βοήθεια",
+    "sell": "Πώληση",
+    "about": "Σχετικά",
+    "blog": "Blog",
+    "categories": "Κατηγορίες",
+    "panels": "Πάνελ",
+    "inverters": "Αντιστροφείς",
+    "storage": "Αποθήκευση",
+    "mounting": "Στήριξη",
+    "brands": "Μάρκες",
+    "legal": "Νομικά",
+    "telWhatsappEmail": "Τηλ. - WhatsApp - Email"
+  },
+  "common": {
+    "pcs": "τεμ.",
+    "currency": "EUR",
+    "trustedSeller": "Αξιόπιστος πωλητής",
+    "secureTransfer": "Ασφαλής μεταφορά",
+    "suntrexDelivery": "SUNTREX Delivery",
+    "pdf": "PDF"
+  },
+  "mockups": {
+    "catalog": {
+      "title": "SUNTREX — Ευφυής αναζήτηση",
+      "offersFromSellers": "προσφορές από {sellerCount} πωλητές",
+      "inStock": "Διαθέσιμο",
+      "viewAllOffers": "Δείτε όλες τις προσφορές"
+    },
+    "chat": {
+      "title": "CHAT — Μετάφραση AI σε πραγματικό χρόνο",
+      "agreementFound": "Συμφωνία επιτεύχθηκε — Ασφαλής πληρωμή..."
+    },
+    "payment": {
+      "title": "STRIPE CONNECT — Ασφαλής μεσεγγύηση",
+      "deliverySuntrex": "Παράδοση SUNTREX",
+      "commission": "Προμήθεια (2%)",
+      "total": "Σύνολο",
+      "escrowActivated": "Μεσεγγύηση ενεργοποιήθηκε — Κεφάλαια ασφαλή",
+      "paymentConfirmed": "Πληρωμή επιβεβαιώθηκε"
+    },
+    "delivery": {
+      "title": "SUNTREX DELIVERY — Παρακολούθηση σε πραγματικό χρόνο",
+      "orderConfirmed": "Παραγγελία επιβεβαιώθηκε",
+      "shippedBySeller": "Αποστολή από πωλητή",
+      "pickedUpSuntrex": "Παραλαβή από SUNTREX",
+      "qualityControl": "Έλεγχος ποιότητας",
+      "inTransit": "Σε μεταφορά",
+      "deliveredPhotoConfirmed": "Παραδόθηκε — Φωτογραφία επιβεβαιώθηκε"
+    },
+    "europe": {
+      "title": "ΟΙ ΑΓΟΡΕΣ ΣΑΣ — 25+ χώρες"
+    },
+    "createOffer": {
+      "title": "ΓΡΗΓΟΡΗ ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΣΦΟΡΑΣ",
+      "product": "Προϊόν",
+      "unitPrice": "Τιμή μονάδας",
+      "stock": "Απόθεμα",
+      "businessDays": "εργάσιμες ημέρες",
+      "aiSuggestion": "AI: Μέση τιμή αγοράς 1.220 € — είστε -3,3%, πολύ ανταγωνιστικοί",
+      "offerPublished": "Η προσφορά δημοσιεύτηκε"
+    },
+    "stockMgmt": {
+      "title": "ΔΙΑΧΕΙΡΙΣΗ ΑΠΟΘΕΜΑΤΟΣ",
+      "product": "Προϊόν",
+      "stock": "Απόθεμα",
+      "price": "Τιμή",
+      "status": "Κατάσταση",
+      "inStock": "Διαθέσιμο",
+      "lowStock": "Χαμηλό απόθεμα",
+      "outOfStock": "Εξαντλήθηκε",
+      "aiAlert": "AI: SUN2000-5KTL κρίσιμο απόθεμα. Συνιστώμενη αύξηση τιμής +3%."
+    },
+    "dashboard": {
+      "title": "ΠΙΝΑΚΑΣ ΕΛΕΓΧΟΥ ΠΩΛΗΤΗ",
+      "offers": "Προσφορές",
+      "sales": "Πωλήσεις",
+      "orders": "Παραγγελίες",
+      "rating": "Βαθμολογία",
+      "latestOrders": "Τελευταίες παραγγελίες",
+      "inTransit": "Σε μεταφορά",
+      "delivered": "Παραδόθηκε",
+      "paid": "Πληρώθηκε"
+    }
+  }
+}

@@ -21,7 +21,7 @@ const BRANDS = [
 const CAT_COLORS = { inverters:"#E8700A", batteries:"#4CAF50", optimizers:"#3b82f6", "ev-chargers":"#8b5cf6", accessories:"#64748b", panels:"#eab308" };
 
 export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navigate }) {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation(["translation", "homepage"]);
   const { formatMoney } = useCurrency();
   const { isMobile, isTablet } = useResponsive();
   const { products } = useProductsCatalog();
@@ -37,20 +37,29 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
 
   const px = isMobile ? "16px" : "40px";
 
-  /* ── Translated slide data ── */
-  const BSLIDES = useMemo(() => [
-    { label: t("home.buyerSlides.compareOffers.label"), desc: t("home.buyerSlides.compareOffers.desc"), m: "catalog" },
-    { label: t("home.buyerSlides.negotiateDirect.label"), desc: t("home.buyerSlides.negotiateDirect.desc"), m: "chat" },
-    { label: t("home.buyerSlides.securePayment.label"), desc: t("home.buyerSlides.securePayment.desc"), m: "payment" },
-    { label: t("home.buyerSlides.tracking.label"), desc: t("home.buyerSlides.tracking.desc"), m: "delivery" },
-  ], [t]);
+  const WHY_BUYER_STEPS = t("homepage:whySuntrex.steps.buyer", { returnObjects: true });
+  const WHY_SELLER_STEPS = t("homepage:whySuntrex.steps.seller", { returnObjects: true });
 
-  const SSLIDES = useMemo(() => [
-    { label: t("home.sellerSlides.newMarkets.label"), desc: t("home.sellerSlides.newMarkets.desc"), m: "europe" },
-    { label: t("home.sellerSlides.createOffers.label"), desc: t("home.sellerSlides.createOffers.desc"), m: "createoffer" },
-    { label: t("home.sellerSlides.realTimeStock.label"), desc: t("home.sellerSlides.realTimeStock.desc"), m: "stockmgmt" },
-    { label: t("home.sellerSlides.dashboard.label"), desc: t("home.sellerSlides.dashboard.desc"), m: "dashboard" },
-  ], [t]);
+  const BSLIDES = useMemo(
+    () => (Array.isArray(WHY_BUYER_STEPS) ? WHY_BUYER_STEPS : []).map((step) => ({
+      label: step.label,
+      desc: step.description,
+      m: step.demo?.type,
+      demo: step.demo,
+    })),
+    [WHY_BUYER_STEPS],
+  );
+
+  const SELLER_MOCKUPS = ["europe", "createoffer", "stockmgmt", "dashboard"];
+  const SSLIDES = useMemo(
+    () => (Array.isArray(WHY_SELLER_STEPS) ? WHY_SELLER_STEPS : []).map((step, index) => ({
+      label: step.label,
+      desc: step.description,
+      m: SELLER_MOCKUPS[index] || "dashboard",
+      demo: step.demo,
+    })),
+    [WHY_SELLER_STEPS],
+  );
 
   /* ── Category labels for search results ── */
   const CAT_LABELS = useMemo(() => ({
@@ -149,7 +158,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       <section style={{position:"relative",height:isMobile?320:480,background:"#0a1628"}}>
         <div style={{position:"absolute",inset:0,overflow:"hidden"}}>
           <video autoPlay muted loop playsInline poster="/hero-solar.jpg" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.35)",zIndex:1}}><source src="/hero-video.mp4" type="video/mp4"/></video>
-          <img src="/hero-solar.jpg" alt="" fetchpriority="high" width="1440" height="480" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.35)",zIndex:0}}/>
+          <img src="/hero-solar.jpg" alt="" fetchPriority="high" width="1440" height="480" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.35)",zIndex:0}}/>
           <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(10,22,40,0.3) 0%,rgba(10,22,40,0.7) 100%)",zIndex:2}}/>
         </div>
         <div style={{position:"relative",zIndex:10,height:"100%",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",textAlign:"center",padding:isMobile?"0 16px":"0 24px"}}>
@@ -298,10 +307,10 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       {/* WHY SUNTREX */}
       <section style={{background:"#fafafa",padding:isMobile?"40px 16px":"64px 40px",borderTop:"1px solid #e4e5ec"}}>
         <div style={{maxWidth:1100,margin:"0 auto"}}>
-          <h2 style={{fontSize:isMobile?24:32,fontWeight:700,marginBottom:4}}>{t("home.whySuntrex.title")}</h2>
-          <p style={{fontSize:isMobile?13:15,color:"#7b7b7b",marginBottom:isMobile?20:28}}>{t("home.whySuntrex.subtitle")}</p>
+          <h2 style={{fontSize:isMobile?24:32,fontWeight:700,marginBottom:4}}>{t("homepage:whySuntrex.title")}</h2>
+          <p style={{fontSize:isMobile?13:15,color:"#7b7b7b",marginBottom:isMobile?20:28}}>{t("homepage:whySuntrex.subtitle")}</p>
           <div style={{display:"flex",gap:8,marginBottom:isMobile?24:36}}>
-            {[["buyer",t("home.whySuntrex.forBuyer")],["seller",t("home.whySuntrex.forSeller")]].map(([k,l])=>(
+            {[["buyer",t("homepage:whySuntrex.forBuyers")],["seller",t("homepage:whySuntrex.forSellers")]].map(([k,l])=>(
               <button key={k} onClick={()=>{setTab(k);k==="buyer"?setBs(0):setSs(0)}} style={{padding:isMobile?"8px 20px":"10px 28px",fontSize:isMobile?13:14,fontWeight:600,cursor:"pointer",border:"none",borderRadius:24,background:tab===k?"#4CAF50":"#fff",color:tab===k?"#fff":"#7b7b7b",fontFamily:"inherit",boxShadow:tab===k?"0 2px 8px rgba(76,175,80,0.3)":"0 1px 3px rgba(0,0,0,0.06)",transition:"all .2s"}}>{l}</button>
             ))}
           </div>
