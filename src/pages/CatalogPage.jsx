@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useCallback, useRef } from "react";
+import { useState, useMemo, useEffect, useCallback, useRef, lazy, Suspense } from "react";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "../CurrencyContext";
@@ -8,6 +8,8 @@ import ProductModal from "../components/catalog/ProductModal";
 import { FilterSection, CheckFilter } from "../components/catalog/FilterSidebar";
 import RangeFilter from "../components/catalog/RangeFilter";
 import useResponsive from "../hooks/useResponsive";
+
+var SmartComparator = lazy(function () { return import("../components/ai/SmartComparator"); });
 
 /* ── Build catalog from real products ── */
 const CATALOG = REAL_PRODUCTS.map((p) => ({
@@ -216,6 +218,23 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [modalProduct, setModalProduct] = useState(null);
+  const [compareIds, setCompareIds] = useState([]);
+  const [showComparator, setShowComparator] = useState(false);
+
+  const toggleCompare = useCallback(function (productId) {
+    setCompareIds(function (prev) {
+      if (prev.includes(productId)) return prev.filter(function (id) { return id !== productId; });
+      if (prev.length >= 4) return prev;
+      return prev.concat(productId);
+    });
+  }, []);
+
+  const compareProducts = useMemo(function () {
+    return compareIds.map(function (id) { return CATALOG.find(function (p) { return p.id === id; }); }).filter(Boolean).map(function (p) {
+      var src = REAL_PRODUCTS.find(function (rp) { return rp.id === p.id; });
+      return Object.assign({}, p, src || {});
+    });
+  }, [compareIds]);
 
   /* ── Toggle helpers ── */
   const toggle = (setter) => (val) =>
@@ -797,14 +816,31 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
             </div>
           ) : (
             paginatedItems.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                isLoggedIn={isLoggedIn}
-                onLogin={onLogin}
-                grouped={grouped}
-                onOpenModal={setModalProduct}
-              />
+              <div key={product.id} style={{ position: "relative" }}>
+                <ProductCard
+                  product={product}
+                  isLoggedIn={isLoggedIn}
+                  onLogin={onLogin}
+                  grouped={grouped}
+                  onOpenModal={setModalProduct}
+                />
+                <button
+                  onClick={function (e) { e.stopPropagation(); toggleCompare(product.id); }}
+                  aria-label={compareIds.includes(product.id) ? "Remove from comparison" : "Add to comparison"}
+                  style={{
+                    position: "absolute", top: 8, right: 8, zIndex: 5,
+                    width: 28, height: 28, borderRadius: 6,
+                    border: compareIds.includes(product.id) ? "2px solid #E8700A" : "1px solid #d1d5db",
+                    background: compareIds.includes(product.id) ? "#fff7ed" : "#fff",
+                    cursor: compareIds.length >= 4 && !compareIds.includes(product.id) ? "not-allowed" : "pointer",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 14, color: compareIds.includes(product.id) ? "#E8700A" : "#94a3b8",
+                    opacity: compareIds.length >= 4 && !compareIds.includes(product.id) ? 0.4 : 1,
+                  }}
+                >
+                  {compareIds.includes(product.id) ? "\u2713" : "\u2696"}
+                </button>
+              </div>
             ))
           )}
         </div>
@@ -859,6 +895,46 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
           onLogin={onLogin}
           onClose={() => setModalProduct(null)}
         />
+      )}
+
+      {/* ── Smart Comparator Panel ── */}
+      {showComparator && compareProducts.length >= 2 && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 1000, background: "rgba(0,0,0,0.5)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
+          <div style={{ background: "#fff", borderRadius: 16, maxWidth: 900, width: "100%", maxHeight: "90vh", overflow: "auto", position: "relative" }}>
+            <button onClick={function () { setShowComparator(false); }} aria-label="Close comparator" style={{ position: "absolute", top: 12, right: 12, width: 32, height: 32, borderRadius: 16, border: "none", background: "#f1f5f9", cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
+              &times;
+            </button>
+            <Suspense fallback={null}>
+              <SmartComparator
+                products={compareProducts}
+                onRemove={function (id) { toggleCompare(id); }}
+                lang={t("lang") === "lang" ? "fr" : t("lang")}
+              />
+            </Suspense>
+          </div>
+        </div>
+      )}
+
+      {/* ── Floating Compare Bar ── */}
+      {compareIds.length > 0 && (
+        <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 900, background: "#1e293b", padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 16, boxShadow: "0 -4px 20px rgba(0,0,0,0.2)" }}>
+          <span style={{ fontSize: 13, color: "#fff", fontWeight: 500 }}>
+            {compareIds.length}/4 {t("catalog.selected", "selectionnes")}
+          </span>
+          <button
+            onClick={function () { setShowComparator(true); }}
+            disabled={compareIds.length < 2}
+            style={{ padding: "8px 20px", borderRadius: 8, border: "none", background: compareIds.length >= 2 ? "#E8700A" : "#475569", color: "#fff", fontSize: 13, fontWeight: 600, cursor: compareIds.length >= 2 ? "pointer" : "not-allowed", fontFamily: "inherit" }}
+          >
+            {t("catalog.compare", "Comparer")}
+          </button>
+          <button
+            onClick={function () { setCompareIds([]); }}
+            style={{ padding: "8px 16px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.2)", background: "transparent", color: "rgba(255,255,255,0.7)", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}
+          >
+            {t("catalog.clearAll", "Effacer")}
+          </button>
+        </div>
       )}
     </div>
   );
