@@ -354,7 +354,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
         <p style={{fontSize:isMobile?13:15,color:"rgba(255,255,255,0.6)",marginBottom:isMobile?20:28}}>{thome("cta.subtitle")}</p>
         <div style={{display:"flex",flexDirection:isMobile?"column":"row",gap:12,justifyContent:"center",alignItems:"center"}}>
           <button onClick={onShowRegister} style={{padding:"14px 32px",borderRadius:24,border:"none",background:"#E8700A",color:"#fff",fontSize:14,fontWeight:600,cursor:"pointer",fontFamily:"inherit",width:isMobile?"100%":"auto"}}>{thome("cta.createAccount")}</button>
-          <button style={{padding:"14px 32px",borderRadius:24,border:"1px solid rgba(255,255,255,0.3)",background:"transparent",color:"#fff",fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"inherit",width:isMobile?"100%":"auto"}}>{thome("cta.startSelling")}</button>
+          <button onClick={function(){navigate("/dashboard/seller")}} style={{padding:"14px 32px",borderRadius:24,border:"1px solid rgba(255,255,255,0.3)",background:"transparent",color:"#fff",fontSize:14,fontWeight:500,cursor:"pointer",fontFamily:"inherit",width:isMobile?"100%":"auto"}}>{thome("cta.startSelling")}</button>
         </div>
       </section>
 

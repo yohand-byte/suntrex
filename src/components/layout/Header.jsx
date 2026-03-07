@@ -97,7 +97,7 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
             </button>
           );
         })}
-        {!isMobile && <Link to="/catalog" style={{ marginLeft: "auto", fontSize: 13, color: "#E8700A", textDecoration: "none", fontWeight: 500, whiteSpace: "nowrap", flexShrink: 0 }}>{tc("header.sellOnSuntrex")}</Link>}
+        {!isMobile && <Link to="/dashboard/seller" style={{ marginLeft: "auto", fontSize: 13, color: "#E8700A", textDecoration: "none", fontWeight: 500, whiteSpace: "nowrap", flexShrink: 0 }}>{tc("header.sellOnSuntrex")}</Link>}
       </nav>
 
       {/* Mobile slide-out menu */}
