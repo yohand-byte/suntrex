@@ -43,5 +43,28 @@
       "unavailable": "Der KI-Service ist vorübergehend nicht verfügbar. Kontaktieren Sie uns per E-Mail unter contact@suntrex.eu oder per WhatsApp unter +33 7 00 00 00 00.",
       "agent": "Ich verbinde Sie mit einem Mitarbeiter. Bitte warten Sie..."
     }
+  },
+  "multiChannelSupport": {
+    "title": "Benötigen Sie Hilfe?",
+    "subtitle": "Wählen Sie Ihren Kanal",
+    "whatsappGreeting": "Guten Tag, ich habe eine Frage zu SUNTREX.",
+    "channels": {
+      "chat": {
+        "label": "Live-Chat",
+        "desc": "Sofortige Antwort durch KI"
+      },
+      "phone": {
+        "label": "Telefon",
+        "desc": "+33 1 86 76 00 00 — Mo-Fr 9:00-18:00"
+      },
+      "whatsapp": {
+        "label": "WhatsApp",
+        "desc": "Antwort innerhalb von 30 Min."
+      },
+      "email": {
+        "label": "E-Mail",
+        "desc": "SLA: Antwort innerhalb von 24 Std."
+      }
+    }
   }
 }

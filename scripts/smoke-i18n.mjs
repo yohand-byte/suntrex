@@ -20,6 +20,7 @@ const requiredKeys = [
   ["delivery", "escrowStatus.title"],
   ["chat", "supportChat.homeTitle"],
   ["chat", "supportChat.responses.tracking"],
+  ["chat", "multiChannelSupport.title"],
 ];
 
 const codeChecks = [
@@ -34,6 +35,10 @@ const codeChecks = [
   {
     file: "src/components/chat/SuntrexSupportChat.jsx",
     patterns: [/\bt\("supportChat\./, /useTranslation\(\["translation"/],
+  },
+  {
+    file: "src/components/support/MultiChannelSupport.jsx",
+    patterns: [/useTranslation\(\["translation"/],
   },
   {
     file: "src/components/dashboard/DashboardLayout.jsx",

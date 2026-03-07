@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, lazy, Suspense } from "react";
+import { useTranslation } from "react-i18next";
 import useResponsive from "../../hooks/useResponsive";
 
 const SuntrexSupportChat = lazy(() => import("../chat/SuntrexSupportChat"));
@@ -6,46 +7,43 @@ const SuntrexSupportChat = lazy(() => import("../chat/SuntrexSupportChat"));
 const WHATSAPP_NUMBER = "+33700000000";
 const SUPPORT_EMAIL = "contact@suntrex.eu";
 
-const CHANNELS = [
-  {
-    id: "chat",
-    label: "Chat en direct",
-    labelEn: "Live Chat",
-    icon: "💬",
-    color: "#E8700A",
-    desc: "Reponse instantanee par IA",
-  },
-  {
-    id: "phone",
-    label: "Telephone",
-    labelEn: "Phone",
-    icon: "📞",
-    color: "#10b981",
-    desc: "+33 1 86 76 00 00 — Lun-Ven 9h-18h",
-  },
-  {
-    id: "whatsapp",
-    label: "WhatsApp",
-    labelEn: "WhatsApp",
-    icon: "📱",
-    color: "#25D366",
-    desc: "Reponse sous 30 min",
-  },
-  {
-    id: "email",
-    label: "Email",
-    labelEn: "Email",
-    icon: "✉️",
-    color: "#3b82f6",
-    desc: "SLA : reponse sous 24h",
-  },
-];
-
 export default function MultiChannelSupport({ onOpenChat, userId }) {
+  const { t } = useTranslation(["chat"]);
+  const tchat = (key, options) => t(`chat:${key}`, options);
   const [open, setOpen] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const { isMobile } = useResponsive();
   const ref = useRef(null);
+  const channels = [
+    {
+      id: "chat",
+      icon: "💬",
+      color: "#E8700A",
+      label: tchat("multiChannelSupport.channels.chat.label"),
+      desc: tchat("multiChannelSupport.channels.chat.desc"),
+    },
+    {
+      id: "phone",
+      icon: "📞",
+      color: "#10b981",
+      label: tchat("multiChannelSupport.channels.phone.label"),
+      desc: tchat("multiChannelSupport.channels.phone.desc"),
+    },
+    {
+      id: "whatsapp",
+      icon: "📱",
+      color: "#25D366",
+      label: tchat("multiChannelSupport.channels.whatsapp.label"),
+      desc: tchat("multiChannelSupport.channels.whatsapp.desc"),
+    },
+    {
+      id: "email",
+      icon: "✉️",
+      color: "#3b82f6",
+      label: tchat("multiChannelSupport.channels.email.label"),
+      desc: tchat("multiChannelSupport.channels.email.desc"),
+    },
+  ];
 
   // Close on outside click
   useEffect(() => {
@@ -68,7 +66,7 @@ export default function MultiChannelSupport({ onOpenChat, userId }) {
         window.location.href = "tel:+33186760000";
         break;
       case "whatsapp": {
-        const msg = encodeURIComponent("Bonjour, j'ai une question sur SUNTREX.");
+        const msg = encodeURIComponent(tchat("multiChannelSupport.whatsappGreeting"));
         window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/[^0-9]/g, "")}?text=${msg}`, "_blank");
         break;
       }
@@ -97,10 +95,10 @@ export default function MultiChannelSupport({ onOpenChat, userId }) {
           animation: "slideUp 0.2s ease-out",
         }}>
           <div style={{ padding: "14px 16px", borderBottom: "1px solid #f1f5f9" }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: "#1e293b" }}>Besoin d'aide ?</div>
-            <div style={{ fontSize: 11, color: "#64748b", marginTop: 2 }}>Choisissez votre canal</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: "#1e293b" }}>{tchat("multiChannelSupport.title")}</div>
+            <div style={{ fontSize: 11, color: "#64748b", marginTop: 2 }}>{tchat("multiChannelSupport.subtitle")}</div>
           </div>
-          {CHANNELS.map((ch) => (
+          {channels.map((ch) => (
             <button
               key={ch.id}
               onClick={() => handleChannel(ch.id)}
