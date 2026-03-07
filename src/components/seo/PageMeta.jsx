@@ -6,11 +6,11 @@ var DEFAULT_IMAGE = BASE_URL + "/suntrex-og.png";
 var ROUTES = {
   "/": {
     title: "SUNTREX — Marketplace B2B équipements photovoltaïques Europe",
-    description: "Achetez et vendez des panneaux solaires, onduleurs, batteries et accessoires PV entre professionnels européens. Commissions 5% inférieures, livraison vérifiée, support réactif.",
+    description: "Marketplace B2B photovoltaïque européenne. Comparez les prix de vendeurs vérifiés. Commission -5%, livraison vérifiée, 638 produits.",
   },
   "/catalog": {
     title: "Catalogue — Panneaux solaires, onduleurs, batteries | SUNTREX",
-    description: "Parcourez notre catalogue de 600+ équipements photovoltaïques : panneaux solaires, onduleurs, batteries, systèmes de montage. Prix réservés aux professionnels vérifiés.",
+    description: "Catalogue de 600+ équipements PV : panneaux, onduleurs, batteries, montage. Prix réservés aux pros vérifiés.",
   },
   "/blog": {
     title: "Blog — Actualités solaire et photovoltaïque | SUNTREX",
@@ -54,6 +54,25 @@ var ROUTES = {
   },
 };
 
+var ORG_JSONLD = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "SUNTREX",
+  "url": "https://suntrex.vercel.app",
+  "logo": "https://suntrex.vercel.app/suntrex-logo.png",
+  "description": "Marketplace B2B photovoltaïque européenne",
+  "contactPoint": { "@type": "ContactPoint", "email": "contact@suntrex.eu", "contactType": "customer service" },
+  "sameAs": []
+});
+
+var WEBSITE_JSONLD = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "SUNTREX",
+  "url": "https://suntrex.vercel.app",
+  "potentialAction": { "@type": "SearchAction", "target": "https://suntrex.vercel.app/catalog?q={search_term_string}", "query-input": "required name=search_term_string" }
+});
+
 export default function PageMeta({ path }) {
   // Normalize path: strip trailing slash, match /catalog/* to /catalog
   var normalized = (path || "/").replace(/\/$/, "") || "/";
@@ -61,6 +80,7 @@ export default function PageMeta({ path }) {
 
   var meta = ROUTES[normalized] || ROUTES[base] || ROUTES["/"];
   var canonical = BASE_URL + (normalized === "/" ? "" : normalized);
+  var isHome = normalized === "/";
 
   return (
     <Helmet>
@@ -88,6 +108,10 @@ export default function PageMeta({ path }) {
       <link rel="alternate" hrefLang="en" href={canonical + "?lang=en"} />
       <link rel="alternate" hrefLang="de" href={canonical + "?lang=de"} />
       <link rel="alternate" hrefLang="x-default" href={canonical} />
+
+      {/* JSON-LD structured data — homepage only */}
+      {isHome && <script type="application/ld+json">{ORG_JSONLD}</script>}
+      {isHome && <script type="application/ld+json">{WEBSITE_JSONLD}</script>}
     </Helmet>
   );
 }

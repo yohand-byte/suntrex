@@ -556,7 +556,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
                     onMouseLeave={function (e) { e.currentTarget.style.background = "#fff"; }}
                   >
                     <div style={{ width: 32, height: 32, borderRadius: 4, background: "#f8fafc", border: "1px solid #f0f0f0", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, overflow: "hidden" }}>
-                      {p.image ? <img src={p.image} alt="" loading="lazy" width="28" height="28" style={{ maxWidth: 28, maxHeight: 28, objectFit: "contain" }} /> : <span style={{ fontSize: 8, color: "#bbb" }}>{p.brand}</span>}
+                      {p.image ? <img src={p.image} alt={p.name} loading="lazy" width="28" height="28" style={{ maxWidth: 28, maxHeight: 28, objectFit: "contain" }} /> : <span style={{ fontSize: 8, color: "#bbb" }}>{p.brand}</span>}
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontWeight: 600, color: "#1e293b", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.name}</div>

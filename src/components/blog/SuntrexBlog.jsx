@@ -606,7 +606,7 @@ export default function SuntrexBlog() {
               {articles.map(a => (
                 <div key={a.id} style={{ padding: "12px 18px", borderBottom: `1px solid ${T.borderLight}`, display: "flex", alignItems: "center", gap: 12, fontSize: 13 }}>
                   {/* Thumbnail */}
-                  <img src={a.image || IMG.solarFarm} alt="" style={{ width: 48, height: 34, borderRadius: 6, objectFit: "cover", flexShrink: 0 }} />
+                  <img src={a.image || IMG.solarFarm} alt={a.title} style={{ width: 48, height: 34, borderRadius: 6, objectFit: "cover", flexShrink: 0 }} />
                   <div style={{ width: 8, height: 8, borderRadius: "50%", background: a.published ? T.green : T.amber, flexShrink: 0 }} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.title}</div>

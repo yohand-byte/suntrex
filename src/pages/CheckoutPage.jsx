@@ -579,7 +579,7 @@ export default function CheckoutPage({ isLoggedIn, onLogin }) {
               <div style={{ fontSize: 12, fontWeight: 700, color: C.text, marginBottom: 12 }}>Votre commande</div>
               <div style={{ display: "flex", gap: 10, marginBottom: 12 }}>
                 <div style={{ width: 48, height: 48, borderRadius: 8, background: C.surface, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  {product.image ? <img src={product.image} alt="" style={{ maxWidth: "80%", maxHeight: "80%", objectFit: "contain" }} /> : <span style={{ opacity: 0.15 }}>☀</span>}
+                  {product.image ? <img src={product.image} alt={product.name} style={{ maxWidth: "80%", maxHeight: "80%", objectFit: "contain" }} /> : <span style={{ opacity: 0.15 }}>☀</span>}
                 </div>
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 600, color: C.text, lineHeight: 1.3 }}>{product.name}</div>

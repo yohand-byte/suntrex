@@ -338,7 +338,7 @@ export default function DeliveryTrackerPage() {
             <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
               <div style={{ width: 56, height: 56, borderRadius: 10, background: C.surface, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, overflow: "hidden" }}>
                 {delivery.product.image
-                  ? <img src={delivery.product.image} alt="" style={{ maxWidth: "80%", maxHeight: "80%", objectFit: "contain" }} />
+                  ? <img src={delivery.product.image} alt={delivery.product.name || "Product"} style={{ maxWidth: "80%", maxHeight: "80%", objectFit: "contain" }} />
                   : <span style={{ opacity: 0.15, fontSize: 24 }}>☀</span>
                 }
               </div>

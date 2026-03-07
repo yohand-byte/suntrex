@@ -1,5 +1,6 @@
 import { useState, useMemo, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "../CurrencyContext";
 import useResponsive from "../hooks/useResponsive";
@@ -341,8 +342,21 @@ export default function ProductDetailPage({ isLoggedIn, onLogin }) {
   const aggStock = offers.reduce((s, o) => s + o.stock, 0);
   const bestPrice = offers.length > 0 ? Math.min(...offers.map(o => o.price)) : 0;
 
+  var productJsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "brand": { "@type": "Brand", "name": product.brand },
+    "category": product.category,
+    "image": product.image || "",
+    "offers": { "@type": "AggregateOffer", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" }
+  });
+
   return (
     <div style={{ maxWidth: 1200, margin: "0 auto", padding: isMobile ? "16px 16px 40px" : "20px 32px 60px", fontFamily: "'DM Sans',sans-serif" }}>
+      <Helmet>
+        <script type="application/ld+json">{productJsonLd}</script>
+      </Helmet>
       <style>{`@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}`}</style>
 
       {/* Breadcrumb */}

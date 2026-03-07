@@ -160,7 +160,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       <section style={{position:"relative",height:isMobile?320:480,background:"#0a1628"}}>
         <div style={{position:"absolute",inset:0,overflow:"hidden"}}>
           <video autoPlay muted loop playsInline poster="/hero-solar.jpg" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.35)",zIndex:1}}><source src="/hero-video.mp4" type="video/mp4"/></video>
-          <img src="/hero-solar.jpg" alt="" fetchPriority="high" width="1440" height="480" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.35)",zIndex:0}}/>
+          <img src="/hero-solar.jpg" alt="Solar panels installation — SUNTREX B2B marketplace" fetchPriority="high" width="1440" height="480" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.35)",zIndex:0}}/>
           <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(10,22,40,0.3) 0%,rgba(10,22,40,0.7) 100%)",zIndex:2}}/>
         </div>
         <div style={{position:"relative",zIndex:10,height:"100%",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",textAlign:"center",padding:isMobile?"0 16px":"0 24px"}}>
@@ -189,7 +189,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
                     style={{display:"flex",alignItems:"center",gap:12,padding:"10px 16px",cursor:"pointer",background:hlIdx===i?"#f8f8f8":"#fff",borderTop:i>0?"1px solid #f0f0f0":"none",transition:"background .1s"}}
                   >
                     <div style={{width:48,height:48,borderRadius:6,background:"#fff",border:"1px solid #f0f0f0",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,overflow:"hidden",padding:4}}>
-                      {p.image ? <img src={p.image} alt="" style={{maxWidth:"100%",maxHeight:"100%",objectFit:"contain",mixBlendMode:"multiply"}}/> : <span style={{fontSize:9,color:"#bbb"}}>{p.brand}</span>}
+                      {p.image ? <img src={p.image} alt={p.name} style={{maxWidth:"100%",maxHeight:"100%",objectFit:"contain",mixBlendMode:"multiply"}}/> : <span style={{fontSize:9,color:"#bbb"}}>{p.brand}</span>}
                     </div>
                     <div style={{flex:1,minWidth:0}}>
                       <div style={{fontSize:13,fontWeight:600,color:"#222",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{p.name}</div>
