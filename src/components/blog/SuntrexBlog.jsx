@@ -34,12 +34,12 @@ const IMG = {
   solarFarm: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=900&q=80",
   solarRoof: "https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=900&q=80",
   solarClose: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=900&q=80",
-  inverter: "https://images.unsplash.com/photo-1592833159117-ac62bc51e9be?w=900&q=80",
+  inverter: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=900&q=80",
   battery: "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?w=900&q=80",
   europe: "https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=900&q=80",
   tradeshow: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&q=80",
   techPanel: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=900&q=80",
-  installer: "https://images.unsplash.com/photo-1611365892117-bede7a956b3a?w=900&q=80",
+  installer: "https://images.unsplash.com/photo-1624397640148-949b1732bb0a?w=900&q=80",
   regulation: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=900&q=80",
   team: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80",
   aiTech: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=900&q=80",
@@ -205,9 +205,11 @@ const createDB = () => {
       const { data } = await supabase.from("blog_articles").select("*").eq("published", true);
       if (data && data.length > 0) {
         const seedSlugs = new Set(articles.map(a => a.slug));
+        const CAT_FALLBACK_IMG = { market: IMG.solarFarm, tech: IMG.inverter, guides: IMG.techPanel, brand: IMG.battery, regulation: IMG.regulation, suntrex: IMG.team };
         const mapped = data.filter(a => !seedSlugs.has(a.slug)).map(a => ({
           ...a, date: a.published_at ? a.published_at.split("T")[0] : a.created_at?.split("T")[0],
           reactions: a.reactions || {}, comments_count: a.comments_count || 0,
+          image: a.image || CAT_FALLBACK_IMG[a.category] || IMG.solarFarm,
           overlay: a.hero_gradient || "linear-gradient(135deg, rgba(15,25,35,0.82) 0%, rgba(232,112,10,0.7) 100%)",
         }));
         articles = [...articles, ...mapped];
@@ -269,10 +271,11 @@ const ArticleCard = ({ article, featured, onClick }) => {
       }}>
 
       {/* PHOTO */}
-      <div style={{ position: "relative", minHeight: isFeat ? "100%" : 190, width: isFeat ? "48%" : "100%", flexShrink: 0, overflow: "hidden" }}>
+      <div style={{ position: "relative", minHeight: isFeat ? "100%" : 190, width: isFeat ? "48%" : "100%", flexShrink: 0, overflow: "hidden", background: "#1e293b" }}>
         <img src={article.image || IMG.solarFarm} alt={article.title} loading="lazy"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover",
-            transition: "transform 0.5s", transform: hov ? "scale(1.06)" : "scale(1)" }} />
+            transition: "transform 0.5s", transform: hov ? "scale(1.06)" : "scale(1)" }}
+          onError={(e) => { e.target.style.display = "none"; }} />
         <div style={{ position: "absolute", inset: 0, background: article.overlay, opacity: 0.55 }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(0deg, rgba(0,0,0,0.45) 0%, transparent 55%)" }} />
         <div style={{ position: "absolute", bottom: 12, left: 12, zIndex: 2, display: "flex", gap: 6 }}>
@@ -515,9 +518,10 @@ const ArticleDetail = ({ article, onBack }) => {
       <Btn variant="ghost" onClick={onBack} style={{ marginBottom: 16, padding: "8px 16px" }}>← Retour au blog</Btn>
 
       {/* HERO WITH REAL PHOTO */}
-      <div style={{ position: "relative", minHeight: isMobile ? 220 : 340, borderRadius: T.radiusXl, overflow: "hidden", display: "flex", alignItems: "flex-end", marginBottom: 28 }}>
+      <div style={{ position: "relative", minHeight: isMobile ? 220 : 340, borderRadius: T.radiusXl, overflow: "hidden", display: "flex", alignItems: "flex-end", marginBottom: 28, background: "#1e293b" }}>
         <img src={article.image || IMG.solarFarm} alt={article.title} loading="lazy"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+          onError={(e) => { e.target.style.display = "none"; }} />
         <div style={{ position: "absolute", inset: 0, background: article.overlay }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(0deg, rgba(0,0,0,0.5) 0%, transparent 50%)" }} />
         <div style={{ position: "relative", zIndex: 1, padding: isMobile ? "24px 18px" : "36px 40px", maxWidth: 700 }}>
@@ -681,7 +685,8 @@ export default function SuntrexBlog() {
               {articles.map(a => (
                 <div key={a.id} style={{ padding: "12px 18px", borderBottom: `1px solid ${T.borderLight}`, display: "flex", alignItems: "center", gap: 12, fontSize: 13 }}>
                   {/* Thumbnail */}
-                  <img src={a.image || IMG.solarFarm} alt={a.title} style={{ width: 48, height: 34, borderRadius: 6, objectFit: "cover", flexShrink: 0 }} />
+                  <img src={a.image || IMG.solarFarm} alt={a.title} style={{ width: 48, height: 34, borderRadius: 6, objectFit: "cover", flexShrink: 0, background: "#1e293b" }}
+                    onError={(e) => { e.target.style.display = "none"; }} />
                   <div style={{ width: 8, height: 8, borderRadius: "50%", background: a.published ? T.green : T.amber, flexShrink: 0 }} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.title}</div>
