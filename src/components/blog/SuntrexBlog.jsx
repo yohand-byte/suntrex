@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { supabase } from "../../lib/supabase";
 
 // ═══════════════════════════════════════════════════════════════════
@@ -45,17 +46,15 @@ const IMG = {
   heroMain: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1400&q=85",
 };
 
-const CATEGORIES = [
-  { id: "all", label: "Tout", icon: "◉" },
-  { id: "market", label: "Marché", icon: "📊" },
-  { id: "tech", label: "Technologie", icon: "⚡" },
-  { id: "guides", label: "Guides", icon: "📖" },
-  { id: "brand", label: "Produits", icon: "🏷️" },
-  { id: "regulation", label: "Réglementation", icon: "⚖️" },
-  { id: "suntrex", label: "SUNTREX", icon: "☀️" },
-];
-const getCat = (id) => CATEGORIES.find(c => c.id === id) || CATEGORIES[0];
-const formatDate = (d) => new Date(d).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+const CATEGORY_IDS = ["all", "market", "tech", "guides", "brand", "regulation", "suntrex"];
+const CATEGORY_ICONS = { all: "◉", market: "📊", tech: "⚡", guides: "📖", brand: "🏷️", regulation: "⚖️", suntrex: "☀️" };
+function buildCategories(t) {
+  return CATEGORY_IDS.map(function (id) { return { id: id, label: t("blog.categories." + id), icon: CATEGORY_ICONS[id] }; });
+}
+function getCatFromList(cats, id) { return cats.find(function (c) { return c.id === id; }) || cats[0]; }
+import i18n from "../../i18n/index";
+const LANG_LOCALE = { fr: "fr-FR", en: "en-GB", de: "de-DE", es: "es-ES", it: "it-IT", pl: "pl-PL", el: "el-GR" };
+const formatDate = (d) => new Date(d).toLocaleDateString(LANG_LOCALE[i18n.language] || "fr-FR", { day: "numeric", month: "long", year: "numeric" });
 
 // ─── ARTICLES WITH REAL PHOTOS ────────────────────────────────────
 const SEED_ARTICLES = [
@@ -505,6 +504,9 @@ const ArticleDetail = ({ article, onBack }) => {
 // MAIN BLOG APP
 // ═══════════════════════════════════════════════════════════════════
 export default function SuntrexBlog() {
+  const { t, i18n } = useTranslation("pages");
+  const CATEGORIES = buildCategories(t);
+  const getCat = (id) => getCatFromList(CATEGORIES, id);
   const { isMobile, isTablet, isDesktop } = useResponsive();
   const [view, setView] = useState("list");
   const [articles, setArticles] = useState([]);
@@ -670,7 +672,7 @@ export default function SuntrexBlog() {
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
                   <div style={{ width: 4, height: 20, borderRadius: 2, background: T.amber }} />
                   <h2 style={{ fontFamily: T.fontDisplay, fontSize: 19, fontWeight: 400 }}>
-                    {activeCat === "all" ? "Derniers articles" : getCat(activeCat).label}
+                    {activeCat === "all" ? t("blog.latestArticles") : getCat(activeCat).label}
                   </h2>
                   <span style={{ fontSize: 11, color: T.textDim, fontFamily: T.fontMono }}>{filtered.length}</span>
                 </div>

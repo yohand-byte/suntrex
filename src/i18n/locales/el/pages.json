@@ -1,0 +1,134 @@
+{
+  "faq": {
+    "title": "Pos mporoume na sas voithisoume?",
+    "titleHighlight": "sas voithisoume",
+    "badge": "KENTRO VOITHEIAS SUNTREX",
+    "subtitle": "Vreite oles tis apantiseis gia tin agora, tis pliromes, tin paradosi kai ton exoplismo PV.",
+    "searchPlaceholder": "Anazitisi erotisis...",
+    "clear": "Katharismos",
+    "resultsFor": "Apotelesmata gia",
+    "resultsCount": "Vrethikan {count} apotelesma(ta)",
+    "noResults": "Den vrethikan apotelesmata",
+    "noResultsHint": "Dokimaste allous orous i periigithite stis katigories parakatho.",
+    "viewAllCategories": "Emfanisi olon ton katigorion",
+    "frequentQuestions": "{count} sychnes erotiseis",
+    "questions": "erotiseis",
+    "contactTitle": "Den vrikate tin apantisi sas?",
+    "contactSubtitle": "I omada ypostirixis mas apanta se ligotero apo 2 lepta. Pollaploi diaytoi, antidrastiki, epaggelmatiki.",
+    "ctaTitle": "Etoimoi na sygkrinete tis kalyteres times PV?",
+    "ctaSubtitle": "Eggrafi dorean kai prosvasi se times B2B apo chiliades epiviomenos polites stin Eyropi.",
+    "ctaButton": "Dimiourgia dorean logariasmou",
+    "categories": {
+      "orders": {
+        "label": "Paraggelies kai Pliromes",
+        "description": "Paraggelia, tropoi pliromi, timologia, promithies"
+      },
+      "delivery": {
+        "label": "Paradosi kai SUNTREX DELIVERY",
+        "description": "Parakolouthisi dematoton, chronoi, epivevaiosi, asfalisi metaforas"
+      },
+      "registration": {
+        "label": "Eggraphi kai KYC",
+        "description": "Dimiourgia logariasmou, epaggelmatiki epivevaiosi, prosvasi timon"
+      },
+      "technical": {
+        "label": "Technikes erotiseis PV",
+        "description": "Symvatotita, dimensionering, pistopoiiseis, protipa"
+      }
+    },
+    "contact": {
+      "chat": { "label": "Online chat", "sub": "Apantisi < 2 lepta" },
+      "email": { "label": "Email", "sub": "support@suntrex.eu" },
+      "whatsapp": { "label": "WhatsApp", "sub": "+33 7 XX XX XX XX" },
+      "phone": { "label": "Tilefono", "sub": "Def-Par 9-18 CET" }
+    },
+    "items": {
+      "orders": [
+        { "q": "Pos kano mia paraggelia sto SUNTREX?", "a": "Meta tin eggraphi kai epivevaiosi logariasmou, periigithite ston katalogo. Kanete klik se mia prosfora, meta **\"Enarxi diapragmateysi\"**. Bisete se apefthias chat me ton politi gia na sizitisete times, posotites kai chronous. Meta ti simphonia, o politis epivevaionei kai lamvanete enan asphale syndemos pliromi Stripe." },
+        { "q": "Poies methodoi pliromi ginontai dektes?", "a": "To SUNTREX chrisimopoiei **Stripe** gia tin asfaleia kathe synallagis. Dektes: pistotiki karta (Visa, Mastercard, Amex), metafora SEPA kai amesi chreopiistisi SEPA. **3D Secure (SCA)** energopoiimeno. Oles oi pliromes se **EUR**." },
+        { "q": "Pos leitourgei i promithia SUNTREX?", "a": "To SUNTREX chreoni promithia **5% ana synallagi** — 5% chamitotero apo ton antagonismo. I promithia afaireitai aftomata kata ti metafora ston politi meso Stripe Connect. O politis vlepei to katharo poso. Choris kryfa kostos." },
+        { "q": "Pos pairno to timologio mou?", "a": "Kathe synallagi dimiourgei aftomata timologio sto **O logariasmos mou -> Oi agores mou**. Perilamvanei: endokoinotiko FPA, arithmous FPA, leptomeries proiontos. Lisi PDF opoiadipote stigmi." },
+        { "q": "Mporo na akyreso mia paraggelia?", "a": "Otan o politis den echei epivevaiosei tin apostoli, mporite na akyrosete apo ti selida synallagis me **\"Akyrosi paraggelias\"**. Aftomati epistrofi se 5-7 ergasimes imeres. Meta tin apostoli, prepei na akolouthisete ti diadikasia epistrofis." },
+        { "q": "Pos diapragmatevome mia kaliteri timi?", "a": "To SUNTREX einai mia agora B2B — i diapragmateysi einai meros tis diadikasias. Apo ti selida proiontos, kanete klik **\"Diapragmateysi timis\"** gia apefthias chat me ton politi." }
+      ],
+      "delivery": [
+        { "q": "Ti einai to SUNTREX DELIVERY?", "a": "To **SUNTREX DELIVERY** einai i oloklirothiki ypiresia paradosis mas. Perilamvanei: parakolouthisi se pragmatiko chrono me monadiko kodiko QR, fotografies kata tin apostoli kai paralavi, chronosimata GPS, ilektroniki ypografi kai pliri asfalisi metaforas." },
+        { "q": "Pos parakoloutho tin paraggelia mou?", "a": "Pao sto **O logariasmos mou -> Oi agores mou** kai kanete klik ston arithmo parakolouthisis. Tha deite: thesi tou pakotou se pragmatiko chrono, fotografies, chronosimata GPS kai analytiki katastasi." },
+        { "q": "Poioi einai oi chronoi paradosis?", "a": "Oi chronoi exartontai apo tin topothesia. Mesos oros: **2-4 ergasimes imeres** esoterikou, **4-8 imeres** endoevropaikes. Oi akrivies chronoi ypologizontai aftomata kata tin paraggelia." },
+        { "q": "Ti na kano an to paketo ftasei katestrammeno?", "a": "Chari sto SUNTREX DELIVERY, echete fotografikes apodeixeis. Kata tin paralavi: **fotografiste amesos** kai simeiaste tis zhmies. Meta **Oi agores mou -> Anafora provlimatos**. I asfalisi kalyptei to 100% tis axias. Lysi se 48-72 ores." },
+        { "q": "Pos leitourgei i epivevaiosi dematon?", "a": "Kathe paketo SUNTREX DELIVERY echei enan **monadiko kodiko QR**. Kata tin paralavi, skandarete to gia na: epivevaiosete tin authentikotita, epivivosite to periechomeno, deite fotografies apostolis kai epivivosite tin paralavi." },
+        { "q": "Mporo na epistrepso ena proion?", "a": "Echete **14 imeres** meta tin paralavi gia epistrofi. To proion prepei na einai stin archiki tou syskeyasia. Sto **Oi agores mou -> Epistrofi proiontos** tha parete etiketa epistrofis. Epistrofi chrimaton se 5-7 imeres meta epivevaiosi." }
+      ],
+      "registration": [
+        { "q": "Pos dimiourgho ena logariasmo SUNTREX?", "a": "I eggraphi einai dorean kai pernei ligotero apo 2 lepta. Kanete klik **\"Eggraphi\"**, sympliroste: epaggelmatiko email, onoma etaireias, chora kai kodiko prosvasis. Epivevaioste to email sas kai apoktiste amesa prosvasi stis times B2B." },
+        { "q": "Giati oi times einai krymmenes?", "a": "To SUNTREX einai **gia epaggelmaties tou iliakoy tomea**. Oi times B2B einai krymmenes gia mi eggegrammenoYs episkeptes. Meta ti dimiourgia logariasmou, oles oi times xeklidonontai. Dorean kai stigmiaia." },
+        { "q": "Ti einai to KYC kai giati einai aparaitito?", "a": "To **KYC (Know Your Customer)** einai ypochreotiki epivevaiosi taftotitas. Sto SUNTREX, to KYC einai **aplopoiimeno**: onoma etaireias kai arithmos FPA einai arketoi. Gia polites: prostheti epivevaiosi Stripe (KYB). Diadikasia se 24-48 ores." },
+        { "q": "Pos ginomai politis sto SUNTREX?", "a": "Meta ti dimiourgia logariasmou agoiasti, kanete klik **\"Polise sto SUNTREX\"** ston pinaka. Chreiazeste: plira stoicheia etaireias, arithmo FPA, onboarding Stripe Connect. Epivevaiosi apo tin omada mas se 24-48 ores." },
+        { "q": "Pos leitourgei i epivevaiosi politi?", "a": "To SUNTREX efarmozei ena proodeytiko systima **simaton empistosynis**: **Epiviomenos** (KYC + KYB Stripe), **Axiopisto** (10+ synallages choris diaphores), **Super Politis** (50+ synallages, vathmologia > 4.5/5)." },
+        { "q": "Xechasa ton kodiko prosvasis mou, ti na kano?", "a": "Sti selida syndesis, kanete klik **\"Xechasa ton kodiko\"**. Vale to email — tha parete syndemos epanaforas ischy 1 oras. Elegxte ta spam. An to provlima synechizei: **support@suntrex.eu**." }
+      ],
+      "technical": [
+        { "q": "Pos epilego metaxy Huawei kai Deye inverter?", "a": "Kai oi dyo markes diasthimes sto SUNTREX se antagonistikes times. **Huawei SUN2000**: apodedygmeni axiopiistia, monitoring FusionSolar. **Deye Hybrid**: exaireti sxesi posotitas-timis. Chrisimopoiiste ton **AI Sygkritiko** gia prosopiki systasi." },
+        { "q": "Poia technologia panel na epilexo to 2026?", "a": "To 2026 kyriarchei to **N-type TOPCon** me pano apo 70% ton apostolon. Pleonektimata: kalyteros vathmos apodosis (22-23%). Sto SUNTREX: **Risen Energy, Trina Solar, Jinko Solar, Canadian Solar, LONGi**." },
+        { "q": "Pos na dimensionaro ena systima apothikeysi?", "a": "Exartatai apo ti chrisi. **Aftokataanalosi**: choytikotita = nychtterini katanalosi x 1.2 (5-10 kWh). **Backup**: ischy x aftonomia. Sto SUNTREX: **Huawei LUNA2000**, **BYD HVS/HVM**, **Deye SE-G5.x** stis kalyteres times B2B." },
+        { "q": "Poies pistopoiiseis na elegxo?", "a": "Gia tin eyropa'iki agora: **IEC 61215** kai **IEC 61730** gia PV modules, **IEC 62109** gia inverters, **EN 50549-1/2** gia syndesi diktyo. Batteries: **IEC 62619** kai **UN 38.3**." },
+        { "q": "Pos na elegxo ti symvatotita inverter-battery?", "a": "Oloi oi kataskeyastes dimosievoun listes symvatotitas. Sto SUNTREX: kathe karta inverter deichnei symvates batteries. Elegxte: **evros tasis**, **protokolo epikoinonias** (CAN, RS485) kai **megisti ischy fortisis/ekfortisis**." },
+        { "q": "Poia i diaphora metaxy string inverter kai micro-inverter?", "a": "**String inverter** (Huawei, SMA, Sungrow): kentropoiimeni metatropi DC->AC. Pio oikonomiKO gia megales egkatastaseis. **Micro-inverter** (Enphase, Hoymiles): ena ana panel. Atomiki veltitopoiisi, ideaniKO me skiasei. **Optimizers** (Huawei, SolarEdge): veltitopoiisi ana panel me string inverter." }
+      ]
+    }
+  },
+  "about": {
+    "title": "Schedia gia to SUNTREX",
+    "subtitle": "I Eyropaiki agora B2B gia fotovoltaika",
+    "description": "To SUNTREX einai i eyropaiki agora B2B gia fotovoltaiko exoplismo kai apothikeysi energias. Syndeoume egkatastates, dianomeis kai epaggelmaties iliakis energeias me epiviomenous polites se oli tin Eyropi.",
+    "missionTitle": "I apostoli mas",
+    "missionText": "Aplopoiisi tis proositis iliakoy exoplismou gia eyropaioyus epaggelmaties, me antagonistikes times, epiviomeni ypiresia paradosis kai exypna ergaleia.",
+    "contactTitle": "Epikoinonia",
+    "contactWhatsapp": "WhatsApp: +33 7 00 00 00 00"
+  },
+  "cgv": {
+    "title": "Oroi kai Proi'potheseis",
+    "intro": "Aftoi oi oroi kai proi'potheseis diepoun ti chrisi tis platformas SUNTREX kai tis synallages metaxy agoraston kai polition.",
+    "section1Title": "1. Antikeimeno",
+    "section1Text": "To SUNTREX einai mia agora B2B pou syndei epaggelmaties tou fotovoltaikoy tomea. Oi synallages pragmatopoiountai apeftheias metaxy agoraston kai polition, me to SUNTREX os mesazo.",
+    "section2Title": "2. Promithia",
+    "section2Text": "To SUNTREX chreoni promithia 4,75% se kathe synallagi meso tis platformas. Oi pliromes asfalizontai meso Stripe Connect me pistopoiisi 3D Secure.",
+    "lastUpdate": "Teleftaia enimerosi: Martios 2026. Gia erotiseis:"
+  },
+  "privacy": {
+    "title": "Politiki Aporritou",
+    "intro": "To SUNTREX desmevetai na prostateyi tin idiotikotita ton christon toy symphona me ton Geniko Kanonismo gia tin Prostasia Dedomenon (GDPR).",
+    "dataCollectedTitle": "Syllogi dedomenon",
+    "dataCollectedText": "Syllegoume mono ta dedomena pou einai aparaitita gia ti leitoyrgia tis platformas: plirofoories etairion, stoicheia epikoinonias, istoriko synallagon kai dedomena ploigisis.",
+    "dataUsageTitle": "Chrisi dedomenon",
+    "dataUsageText": "Ta dedomena sas chrisimopoiountai gia: diacheirisi logariasmou, epexergasia synallagon, veltiosi ton ypiresion mas kai, me ti sygkatathesi sas, apostoli emporikou ylikoy.",
+    "rightsTitle": "Ta dikaiomata sas",
+    "rightsText": "Echete dikaioma prosvasis, diorthosis, diagrafis kai fortitotas ton dedomenon sas. Gia na askisete afta ta dikaiomata:",
+    "lastUpdate": "Teleftaia enimerosi: Martios 2026."
+  },
+  "blog": {
+    "title": "Blog SUNTREX",
+    "subtitle": "Nea kai symvoules gia tin agora fotovoltaikon",
+    "readMore": "Diavaste perissotera",
+    "publishedOn": "Dimosieythike stis",
+    "backToBlog": "Epistrofi sto blog",
+    "readTime": "{min} lepta anagnosis",
+    "comments": "{count} scholia",
+    "featured": "Provathmeni",
+    "latestArticles": "Teleftaia arthra",
+    "noArticles": "Den yparxoun arthra akoma.",
+    "newsletter": "Newsletter",
+    "newsletterText": "Lavete ta teleftaia nea tis agoras.",
+    "subscribe": "Eggraphi",
+    "emailPlaceholder": "to@email.gr",
+    "categories": {
+      "all": "Ola",
+      "market": "Agora",
+      "tech": "Technologia",
+      "guides": "Odigoi",
+      "brand": "Proionta",
+      "regulation": "Kanonismos",
+      "suntrex": "SUNTREX"
+    }
+  }
+}

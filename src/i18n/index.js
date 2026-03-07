@@ -4,7 +4,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 const localeModules = import.meta.glob('./locales/*/*.json', { eager: true });
 const supportedLngs = ['fr', 'en', 'de', 'es', 'it', 'pl', 'el'];
-const namespaces = ['translation', 'common', 'homepage', 'catalog', 'auth', 'dashboard', 'delivery', 'chat'];
+const namespaces = ['translation', 'common', 'homepage', 'catalog', 'auth', 'dashboard', 'delivery', 'chat', 'pages'];
 
 function buildLegacyTranslation(nsData) {
   return {
@@ -36,6 +36,7 @@ const resources = supportedLngs.reduce((acc, lang) => {
     dashboard: nsData.dashboard || {},
     delivery: nsData.delivery || {},
     chat: nsData.chat || {},
+    pages: nsData.pages || {},
   };
 
   return acc;

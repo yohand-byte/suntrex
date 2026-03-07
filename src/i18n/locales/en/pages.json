@@ -1,0 +1,206 @@
+{
+  "faq": {
+    "title": "How can we help you?",
+    "titleHighlight": "help you",
+    "badge": "SUNTREX HELP CENTER",
+    "subtitle": "Find all the answers about the marketplace, payments, delivery and PV equipment.",
+    "searchPlaceholder": "Search for a question...",
+    "clear": "Clear",
+    "resultsFor": "Results for",
+    "resultsCount": "{count} result(s) found",
+    "noResults": "No results found",
+    "noResultsHint": "Try different keywords or browse the categories below.",
+    "viewAllCategories": "View all categories",
+    "frequentQuestions": "{count} frequently asked questions",
+    "questions": "questions",
+    "contactTitle": "Didn't find your answer?",
+    "contactSubtitle": "Our support team responds in under 2 minutes. Multi-channel, responsive, professional.",
+    "ctaTitle": "Ready to compare the best PV prices?",
+    "ctaSubtitle": "Sign up for free and access B2B prices from thousands of verified sellers across Europe.",
+    "ctaButton": "Create my free account",
+    "categories": {
+      "orders": {
+        "label": "Orders & Payments",
+        "description": "Placing orders, payment methods, invoices, commissions"
+      },
+      "delivery": {
+        "label": "Delivery & SUNTREX DELIVERY",
+        "description": "Parcel tracking, delivery times, verification, transport insurance"
+      },
+      "registration": {
+        "label": "Registration & KYC",
+        "description": "Create an account, professional verification, price access"
+      },
+      "technical": {
+        "label": "PV Technical Questions",
+        "description": "Compatibility, sizing, certifications, standards"
+      }
+    },
+    "contact": {
+      "chat": { "label": "Live chat", "sub": "Response < 2 min" },
+      "email": { "label": "Email", "sub": "support@suntrex.eu" },
+      "whatsapp": { "label": "WhatsApp", "sub": "+33 7 XX XX XX XX" },
+      "phone": { "label": "Phone", "sub": "Mon-Fri 9am-6pm CET" }
+    },
+    "items": {
+      "orders": [
+        {
+          "q": "How do I place an order on SUNTREX?",
+          "a": "After registration and account verification, browse the catalog or use the search to find a product. Click on an offer to view details, then click **\"Start a negotiation\"**. You enter a direct chat with the seller where you can discuss prices, quantities and delivery times. Once agreed, the seller confirms the transaction and you receive a secure Stripe payment link."
+        },
+        {
+          "q": "What payment methods are accepted?",
+          "a": "SUNTREX uses **Stripe** to guarantee the security of every transaction. Accepted methods include: credit card (Visa, Mastercard, Amex), SEPA transfer, and SEPA direct debit. **3D Secure (SCA)** is systematically enabled, in compliance with European regulations. All payments are in **EUR**, with multi-currency support coming soon (GBP, CHF, PLN)."
+        },
+        {
+          "q": "How does the SUNTREX commission work?",
+          "a": "SUNTREX charges a commission of **5% on each transaction** — that's 5% below what our competitors charge. This commission is automatically deducted during the transfer to the seller via Stripe Connect. The seller clearly sees the net amount they will receive before accepting the transaction. No hidden fees."
+        },
+        {
+          "q": "How do I get my invoice?",
+          "a": "Each transaction automatically generates an invoice available in your **My Account -> My Purchases** section. The invoice includes: intra-community VAT, buyer and seller VAT numbers, product details and amounts. You can download it as a PDF at any time. For sellers, SUNTREX commission invoices are available in **Seller Dashboard -> Invoices**."
+        },
+        {
+          "q": "Can I cancel an order?",
+          "a": "As long as the seller has not confirmed shipment, you can cancel from the transaction page by clicking **\"Cancel order\"**. The refund is automatic within 5-7 business days to your payment method. After shipment, you must go through the return procedure (see Delivery section). In case of dispute, our support team intervenes within 24 hours."
+        },
+        {
+          "q": "How do I negotiate a better price?",
+          "a": "SUNTREX is a B2B marketplace — negotiation is part of the process. From a product page, click **\"Negotiate price\"** to open a direct chat with the seller. You can propose a price, request volume pricing (tiered discounts), or bundle multiple products. The seller can accept, counter-offer, or decline. All negotiations are tracked and moderated."
+        }
+      ],
+      "delivery": [
+        {
+          "q": "What is SUNTREX DELIVERY?",
+          "a": "**SUNTREX DELIVERY** is our integrated delivery service that brings trust and transparency to every shipment. It includes: real-time tracking with a unique QR code per parcel, photos of the parcel at dispatch and receipt, GPS timestamping at each stage, e-signature on delivery, and complete transport insurance. Both seller and buyer track the same parcel in real time."
+        },
+        {
+          "q": "How do I track my order?",
+          "a": "Go to **My Account -> My Purchases** and click on the tracking number. You will see: the parcel position in real time on a map, photos taken by the seller at dispatch, GPS timestamps at each transit point, and detailed status (preparation, picked up, in transit, delivering, delivered). You can also scan the parcel QR code to verify its authenticity."
+        },
+        {
+          "q": "What are the delivery times?",
+          "a": "Delivery times depend on the seller's location and destination. On average: **2-4 business days** for domestic deliveries, **4-8 days** for intra-European (France, Germany, Benelux, Italy, Spain). Exact times are automatically calculated at order based on postal codes. The seller confirms a pickup slot within 24-48h after payment."
+        },
+        {
+          "q": "What if my parcel arrives damaged?",
+          "a": "Thanks to SUNTREX DELIVERY, you have photo evidence at every stage. Upon receipt: **take photos immediately** and note visible damage on the delivery slip. Then go to **My Purchases -> Report a problem**. Attach your photos and our team compares them with the dispatch photos. Transport insurance covers 100% of product value. Resolution within 48-72h maximum."
+        },
+        {
+          "q": "How does parcel verification work?",
+          "a": "Each SUNTREX DELIVERY parcel has a **unique QR code**. Upon receipt, scan it with your phone to: verify the shipment's authenticity, confirm the contents match the order, view dispatch photos taken by the seller, and trigger receipt confirmation. This verification protects both buyer and seller in case of dispute."
+        },
+        {
+          "q": "Can I return a product?",
+          "a": "You have **14 days** after receipt to initiate a return. The product must be in its original packaging, uninstalled. Go to **My Purchases -> Return a product**: you will receive a SUNTREX DELIVERY return label. The refund is processed within 5-7 days after receipt and verification by the seller. Return costs are borne by the buyer unless a defect is found."
+        }
+      ],
+      "registration": [
+        {
+          "q": "How do I create a SUNTREX account?",
+          "a": "Registration is free and takes less than 2 minutes. Click **\"Sign up\"** in the top right corner, then fill in: your professional email, your company name, your country, and a password. You must accept the T&Cs and privacy policy (required). SUNTREX and partner marketing consents are optional. Confirm your email and you immediately have access to B2B prices."
+        },
+        {
+          "q": "Why are prices hidden?",
+          "a": "SUNTREX is a platform **reserved for solar professionals**. B2B prices are hidden from unregistered visitors to protect our sellers and ensure a professional environment. As soon as you create an account and confirm your email, all prices are unlocked. It's free and instant — no need to wait for manual validation to see prices."
+        },
+        {
+          "q": "What is KYC and why is it necessary?",
+          "a": "**KYC (Know Your Customer)** is a mandatory identity verification for marketplace security. At SUNTREX, KYC is **simplified** to avoid slowing down onboarding: company name and SIRET/intra-community VAT number are sufficient to get started. For sellers, additional Stripe verification (KYB) is required before receiving payments. The complete process takes 24-48h."
+        },
+        {
+          "q": "How do I become a seller on SUNTREX?",
+          "a": "After creating your buyer account, click on **\"Sell on SUNTREX\"** in your dashboard. You will need to provide: complete company information, intra-community VAT number, complete Stripe Connect onboarding (bank account, director identity). Our team verifies your profile within 24-48h. Once validated, you can list your products and receive orders."
+        },
+        {
+          "q": "How does seller verification work?",
+          "a": "SUNTREX applies a progressive **trust badge** system: **Verified** (KYC + KYB Stripe validated), **Reliable** (10+ transactions without disputes), **Super Seller** (50+ transactions, rating > 4.5/5, response time < 2h). Each seller is verified before they can list products. We check: legal existence of the company, active VAT, director identity via Stripe, and commercial history if available."
+        },
+        {
+          "q": "I forgot my password, what should I do?",
+          "a": "On the login page, click **\"Forgot password\"**. Enter your email — you will receive a reset link valid for 1 hour. If you haven't received the email, check your spam. If the problem persists, contact our support: **support@suntrex.eu** or via the chat at the bottom right of the site. Our team responds in under 2 minutes during business hours."
+        }
+      ],
+      "technical": [
+        {
+          "q": "How to choose between a Huawei and Deye inverter?",
+          "a": "Both brands are available on SUNTREX at competitive prices. **Huawei SUN2000**: proven reliability, advanced monitoring (FusionSolar), MPPT optimizers, ideal for premium residential and C&I. **Deye Hybrid**: excellent value for money, multi-battery compatible, ideal for residential storage and budget-sensitive projects. Use our **AI Comparator** for a personalized recommendation based on your project."
+        },
+        {
+          "q": "Which panel technology to choose in 2026?",
+          "a": "The 2026 market is dominated by **N-type TOPCon** which represents over 70% of shipments. Advantages: better efficiency (22-23%), lower temperature coefficient, better performance in low light, and near-zero LID (initial degradation). Leaders available on SUNTREX: **Risen Energy, Trina Solar, Jinko Solar, Canadian Solar, LONGi**. HJT remains a premium segment with 23-24% efficiencies."
+        },
+        {
+          "q": "How to size a storage system?",
+          "a": "Sizing depends on your usage. For **residential self-consumption**: battery capacity = nighttime consumption x 1.2 (typically 5-10 kWh). For **backup**: desired backup power x autonomy (e.g. 5 kW x 4h = 20 kWh). For **C&I peak shaving**: analyze the load profile for sizing. On SUNTREX, find the **Huawei LUNA2000** (modular per 5 kWh), **BYD HVS/HVM**, and **Deye SE-G5.x** ranges at the best B2B prices."
+        },
+        {
+          "q": "Which certifications to check for my products?",
+          "a": "For the European market, essential certifications are: **IEC 61215** and **IEC 61730** for PV modules, **IEC 62109** for inverters, **EN 50549-1/2** for grid connection, and **VDE-AR-N 4105** for Germany. For batteries: **IEC 62619** (stationary Li-ion) and **UN 38.3** (transport). On SUNTREX, each product sheet lists available certifications and you can download official datasheets."
+        },
+        {
+          "q": "How to check inverter-battery compatibility?",
+          "a": "All manufacturers publish official compatibility lists. On SUNTREX: each inverter sheet indicates compatible batteries, and vice versa. Basic rules: check the **voltage range** (inverter MPP range vs battery nominal voltage), the **communication protocol** (CAN, RS485, or proprietary), and the **maximum charge/discharge power**. Our **AI Comparator** can automatically verify the compatibility of your configuration."
+        },
+        {
+          "q": "What is the difference between a string inverter and micro-inverter?",
+          "a": "**String inverter** (Huawei SUN2000, SMA, Sungrow): one device centralizes DC->AC conversion. More economical for large installations, centralized maintenance, per-string monitoring. **Micro-inverter** (Enphase, Hoymiles): one device per panel. Individual optimization, no single point of failure, ideal for shaded roofs. **Optimizers** (Huawei, SolarEdge): add per-panel optimization to a string inverter. The choice depends on shading, installation size and budget."
+        }
+      ]
+    }
+  },
+  "about": {
+    "title": "About SUNTREX",
+    "subtitle": "The European B2B photovoltaic marketplace",
+    "description": "SUNTREX is the European B2B marketplace dedicated to photovoltaic equipment and energy storage. We connect installers, distributors and solar professionals with verified sellers across Europe.",
+    "missionTitle": "Our mission",
+    "missionText": "Simplifying solar equipment sourcing for European professionals, with competitive prices, verified delivery service and intelligent tools.",
+    "contactTitle": "Contact",
+    "contactWhatsapp": "WhatsApp: +33 7 00 00 00 00"
+  },
+  "cgv": {
+    "title": "Terms and Conditions",
+    "intro": "These terms and conditions govern the use of the SUNTREX platform and transactions between buyers and sellers.",
+    "section1Title": "1. Purpose",
+    "section1Text": "SUNTREX is a B2B marketplace connecting professionals in the photovoltaic sector. Transactions are carried out directly between buyers and sellers, with SUNTREX acting as an intermediary.",
+    "section2Title": "2. Commission",
+    "section2Text": "SUNTREX charges a commission of 4.75% on each transaction made through the platform. Payments are secured via Stripe Connect with 3D Secure authentication.",
+    "lastUpdate": "Last updated: March 2026. For any questions:"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro": "SUNTREX is committed to protecting the privacy of its users in compliance with the General Data Protection Regulation (GDPR).",
+    "dataCollectedTitle": "Data collected",
+    "dataCollectedText": "We only collect data necessary for the platform to function: company information, contact details, transaction history and browsing data.",
+    "dataUsageTitle": "Use of data",
+    "dataUsageText": "Your data is used for: managing your account, processing transactions, improving our services and, with your consent, sending marketing communications.",
+    "rightsTitle": "Your rights",
+    "rightsText": "You have the right to access, rectify, delete and port your data. To exercise these rights:",
+    "lastUpdate": "Last updated: March 2026."
+  },
+  "blog": {
+    "title": "SUNTREX Blog",
+    "subtitle": "News and insights on the photovoltaic market",
+    "readMore": "Read more",
+    "publishedOn": "Published on",
+    "backToBlog": "Back to blog",
+    "readTime": "{min} min read",
+    "comments": "{count} comments",
+    "featured": "Featured",
+    "latestArticles": "Latest articles",
+    "noArticles": "No articles yet.",
+    "newsletter": "Newsletter",
+    "newsletterText": "Get the latest solar market news.",
+    "subscribe": "Subscribe",
+    "emailPlaceholder": "your@email.com",
+    "categories": {
+      "all": "All",
+      "market": "Market",
+      "tech": "Technology",
+      "guides": "Guides",
+      "brand": "Products",
+      "regulation": "Regulation",
+      "suntrex": "SUNTREX"
+    }
+  }
+}
