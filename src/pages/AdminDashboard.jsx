@@ -5,6 +5,8 @@ import { supabase } from "../lib/supabase";
 
 var FraudAlerts = lazy(function () { return import("../components/admin/FraudAlerts"); });
 var ModerationDashboard = lazy(function () { return import("./admin/ModerationDashboard"); });
+var ReconciliationPanel = lazy(function () { return import("../components/admin/ReconciliationPanel"); });
+var AlertsPanel = lazy(function () { return import("../components/admin/AlertsPanel"); });
 
 /* ═══════════════════════════════════════════════════════════════
    SUNTREX — Admin Dashboard
@@ -122,6 +124,8 @@ var NAV_ITEMS = [
   { id: "disputes", icon: "⚠️", label: "Litiges" },
   { id: "fraud", icon: "🛡️", label: "Fraude" },
   { id: "moderation", icon: "💬", label: "Modération" },
+  { id: "reconciliation", icon: "🔄", label: "Réconciliation" },
+  { id: "alerts", icon: "🔔", label: "Alertes" },
   { id: "settings", icon: "⚙️", label: "Paramètres" },
 ];
 
@@ -853,6 +857,8 @@ export default function AdminDashboard() {
       case "disputes": return <DisputesSection kpi={kpi} disputes={disputes} />;
       case "fraud": return <Suspense fallback={null}><FraudAlerts /></Suspense>;
       case "moderation": return <Suspense fallback={null}><ModerationDashboard /></Suspense>;
+      case "reconciliation": return <Suspense fallback={null}><ReconciliationPanel /></Suspense>;
+      case "alerts": return <Suspense fallback={null}><AlertsPanel /></Suspense>;
       case "settings": return <SettingsSection />;
       default: return <OverviewSection kpi={kpi} transactions={transactions} monthlyRevenue={monthlyRevenue} />;
     }
