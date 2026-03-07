@@ -68,7 +68,9 @@ const S = {
 };
 
 export default function CatalogPage({ isLoggedIn, onLogin }) {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["translation", "catalog", "common"]);
+  const tcatalog = (key, opts) => t(`catalog:${key}`, opts);
+  const tcommon = (key, opts) => t(`common:${key}`, opts);
   const { formatMoney, currencyInfo } = useCurrency();
   const { category: urlCategory } = useParams();
   const navigate = useNavigate();
@@ -77,7 +79,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
   const { products, loading: productsLoading } = useProductsCatalog();
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
-  const PHASE_LABELS = { "1": t("catalog.monophase"), "3": t("catalog.triphase") };
+  const PHASE_LABELS = { "1": tcatalog("monophase"), "3": tcatalog("triphase") };
   const catalogItems = useMemo(() => products.map((p) => ({
     id: p.id,
     name: p.name,
@@ -146,45 +148,45 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
 
   const CATEGORIES = useMemo(
     () => [
-      { id: "all", label: t("catalog.allProducts"), count: catalogItems.length },
+      { id: "all", label: tcatalog("allProducts"), count: catalogItems.length },
       {
         id: "panels",
-        label: t("catalog.solarPanels", "Panneaux solaires"),
+        label: tcatalog("solarPanels", "Panneaux solaires"),
         count: catalogItems.filter((p) => p.category === "panels").length,
       },
       {
         id: "inverters",
-        label: t("catalog.inverters"),
+        label: tcatalog("inverters"),
         count: catalogItems.filter((p) => p.category === "inverters").length,
       },
       {
         id: "batteries",
-        label: t("catalog.batteriesStorage"),
+        label: tcatalog("batteriesStorage"),
         count: catalogItems.filter((p) => p.category === "batteries").length,
       },
       {
         id: "cables",
-        label: t("catalog.cables", "Câbles"),
+        label: tcatalog("cables", "Câbles"),
         count: catalogItems.filter((p) => p.category === "cables").length,
       },
       {
         id: "mounting",
-        label: t("catalog.mounting", "Systèmes de montage"),
+        label: tcatalog("mounting", "Systèmes de montage"),
         count: catalogItems.filter((p) => p.category === "mounting").length,
       },
       {
         id: "optimizers",
-        label: t("catalog.optimizers"),
+        label: tcatalog("optimizers"),
         count: catalogItems.filter((p) => p.category === "optimizers").length,
       },
       {
         id: "ev-chargers",
-        label: t("catalog.chargingStations"),
+        label: tcatalog("chargingStations"),
         count: catalogItems.filter((p) => p.category === "ev-chargers").length,
       },
       {
         id: "accessories",
-        label: t("catalog.accessories"),
+        label: tcatalog("accessories"),
         count: catalogItems.filter((p) => p.category === "accessories").length,
       },
     ],
@@ -505,7 +507,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
       {isMobile && (
         <button onClick={() => setShowMobileFilters(!showMobileFilters)} style={{display:"flex",alignItems:"center",gap:8,padding:"10px 16px",borderRadius:8,border:"1px solid #ddd",background:"#fff",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"inherit",marginBottom:12,color:"#555"}}>
           <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
-          {t("catalog.filters")} {hasActiveFilters && <span style={{background:"#E8700A",color:"#fff",borderRadius:10,padding:"1px 6px",fontSize:11}}>{selectedBrands.length+selectedTypes.length+selectedPhases.length+selectedMppts.length+(inStockOnly?1:0)+(powerMin!=null||powerMax!=null?1:0)+(priceMin!=null||priceMax!=null?1:0)}</span>}
+          {tcatalog("filters")} {hasActiveFilters && <span style={{background:"#E8700A",color:"#fff",borderRadius:10,padding:"1px 6px",fontSize:11}}>{selectedBrands.length+selectedTypes.length+selectedPhases.length+selectedMppts.length+(inStockOnly?1:0)+(powerMin!=null||powerMax!=null?1:0)+(priceMin!=null||priceMax!=null?1:0)}</span>}
         </button>
       )}
       {/* ══════ SIDEBAR ══════ */}
@@ -518,19 +520,19 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
             color: "#222",
           }}
         >
-          {t("catalog.filters")}
+          {tcatalog("filters")}
         </h2>
 
         {/* Search with smart suggestions */}
         <div style={{ marginBottom: 16, position: "relative" }}>
           <input
             type="text"
-            placeholder={t("catalog.searchProduct")}
+            placeholder={tcatalog("searchProduct")}
             value={searchQuery}
             onChange={(e) => { setSearchQuery(e.target.value); smartSearch.setQuery(e.target.value); setShowSearchSuggestions(e.target.value.length >= 2); }}
             onFocus={() => { if (searchQuery.length >= 2) setShowSearchSuggestions(true); }}
             onBlur={() => { setTimeout(function() { setShowSearchSuggestions(false); }, 200); }}
-            aria-label={t("catalog.searchProduct")}
+            aria-label={tcatalog("searchProduct")}
             style={{
               width: "100%",
               padding: "8px 12px",
@@ -568,7 +570,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
         </div>
 
         {/* 1. Disponibilité toggle */}
-        <FilterSection title={t("catalog.availability")}>
+        <FilterSection title={tcatalog("availability")}>
           <label
             style={{
               display: "flex",
@@ -579,7 +581,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
               cursor: "pointer",
             }}
           >
-            {t("catalog.inStockOnly")}
+            {tcatalog("inStockOnly")}
             <div
               onClick={(e) => {
                 e.preventDefault();
@@ -614,7 +616,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
         </FilterSection>
 
         {/* 2. Puissance */}
-        <FilterSection title={t("catalog.powerKw")} defaultOpen={false}>
+        <FilterSection title={tcatalog("powerKw")} defaultOpen={false}>
           <RangeFilter
             min={filterOptions.powerMin}
             max={filterOptions.powerMax}
@@ -628,7 +630,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
         </FilterSection>
 
         {/* 3. Marque */}
-        <FilterSection title={t("catalog.brand")}>
+        <FilterSection title={tcatalog("brand")}>
           <CheckFilter
             items={filterOptions.brands}
             selected={selectedBrands}
@@ -637,7 +639,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
         </FilterSection>
 
         {/* 4. Prix */}
-        <FilterSection title={t("catalog.priceEur")} defaultOpen={false}>
+        <FilterSection title={tcatalog("priceEur")} defaultOpen={false}>
           <RangeFilter
             min={filterOptions.priceMin}
             max={filterOptions.priceMax}
@@ -651,7 +653,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
         </FilterSection>
 
         {/* 5. Type */}
-        <FilterSection title={t("catalog.type")}>
+        <FilterSection title={tcatalog("type")}>
           <CheckFilter
             items={filterOptions.types}
             selected={selectedTypes}
@@ -660,7 +662,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
         </FilterSection>
 
         {/* 6. Phases */}
-        <FilterSection title={t("catalog.phases")} defaultOpen={false}>
+        <FilterSection title={tcatalog("phases")} defaultOpen={false}>
           <CheckFilter
             items={filterOptions.phases}
             selected={selectedPhases}
@@ -669,7 +671,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
         </FilterSection>
 
         {/* 7. MPPT */}
-        <FilterSection title={t("catalog.mppt")} defaultOpen={false}>
+        <FilterSection title={tcatalog("mppt")} defaultOpen={false}>
           <CheckFilter
             items={filterOptions.mppts}
             selected={selectedMppts}
@@ -678,7 +680,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
         </FilterSection>
 
         {/* 8. Catégories */}
-        <FilterSection title={t("catalog.categoriesTitle")}>
+        <FilterSection title={tcatalog("categoriesTitle")}>
           <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
             {CATEGORIES.map((cat) => (
               <button
@@ -728,10 +730,10 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
               style={{ fontSize: 20, fontWeight: 700, color: "#222", margin: 0 }}
             >
               {CATEGORIES.find((c) => c.id === activeCategory)?.label ||
-                t("catalog.catalogTitle")}
+                tcatalog("catalogTitle")}
             </h1>
             <span style={{ fontSize: 13, color: "#888" }}>
-              {filtered.length} {t("catalog.results")}
+              {filtered.length} {tcatalog("results")}
             </span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
@@ -745,7 +747,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
                 cursor: "pointer",
               }}
             >
-              {t("catalog.grouping")}
+              {tcatalog("grouping")}
               <div
                 onClick={() => setGrouped(!grouped)}
                 style={{
@@ -787,10 +789,10 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
                 cursor: "pointer",
               }}
             >
-              <option value="relevance">{t("catalog.sortRelevance")}</option>
-              <option value="price-asc">{t("catalog.sortPriceAsc")}</option>
-              <option value="price-desc">{t("catalog.sortPriceDesc")}</option>
-              <option value="stock">{t("catalog.sortStock")}</option>
+              <option value="relevance">{tcatalog("sortRelevance")}</option>
+              <option value="price-asc">{tcatalog("sortPriceAsc")}</option>
+              <option value="price-desc">{tcatalog("sortPriceDesc")}</option>
+              <option value="stock">{tcatalog("sortStock")}</option>
             </select>
           </div>
         </div>
@@ -821,7 +823,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
             )}
             {(powerMin != null || powerMax != null) &&
               renderTag(
-                `${t("catalog.powerLabel")} ${powerMin ?? filterOptions.powerMin}–${powerMax ?? filterOptions.powerMax} kW`,
+                `${tcatalog("powerLabel")} ${powerMin ?? filterOptions.powerMin}–${powerMax ?? filterOptions.powerMax} kW`,
                 "power",
                 () => {
                   setPowerMin(null);
@@ -830,7 +832,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
               )}
             {(priceMin != null || priceMax != null) &&
               renderTag(
-                `${t("catalog.priceLabel")} ${priceMin ?? filterOptions.priceMin}–${priceMax ?? filterOptions.priceMax} ${currencyInfo.symbol}`,
+                `${tcatalog("priceLabel")} ${priceMin ?? filterOptions.priceMin}–${priceMax ?? filterOptions.priceMax} ${currencyInfo.symbol}`,
                 "price",
                 () => {
                   setPriceMin(null);
@@ -838,7 +840,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
                 }
               )}
             {inStockOnly &&
-              renderTag(t("catalog.inStock"), "stock", () => setInStockOnly(false))}
+              renderTag(tcatalog("inStock"), "stock", () => setInStockOnly(false))}
             <button
               onClick={clearAll}
               style={{
@@ -851,7 +853,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
                 fontFamily: "inherit",
               }}
             >
-              {t("catalog.clearAll")}
+              {tcatalog("clearAll")}
             </button>
           </div>
         )}
@@ -862,10 +864,10 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
             <div style={{ textAlign: "center", padding: "60px 0", color: "#888" }}>
               <div style={{ fontSize: 48, marginBottom: 12 }}>🔍</div>
               <div style={{ fontSize: 16, fontWeight: 500 }}>
-                {t("catalog.noProductFound")}
+                {tcatalog("noProductFound")}
               </div>
               <div style={{ fontSize: 13, marginTop: 4 }}>
-                {t("catalog.tryModifyFilters")}
+                {tcatalog("tryModifyFilters")}
               </div>
             </div>
           ) : (
@@ -935,7 +937,7 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
               →
             </button>
             <span style={{ fontSize: 13, color: "#888", marginLeft: 8 }}>
-              {t("catalog.page")} {currentPage} {t("catalog.of")} {totalPages}
+              {tcatalog("page")} {currentPage} {tcatalog("of")} {totalPages}
             </span>
           </div>
         )}
@@ -973,20 +975,20 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
       {compareIds.length > 0 && (
         <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 900, background: "#1e293b", padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 16, boxShadow: "0 -4px 20px rgba(0,0,0,0.2)" }}>
           <span style={{ fontSize: 13, color: "#fff", fontWeight: 500 }}>
-            {compareIds.length}/4 {t("catalog.selected", "selectionnes")}
+            {compareIds.length}/4 {tcatalog("selected", "selectionnes")}
           </span>
           <button
             onClick={function () { setShowComparator(true); }}
             disabled={compareIds.length < 2}
             style={{ padding: "8px 20px", borderRadius: 8, border: "none", background: compareIds.length >= 2 ? "#E8700A" : "#475569", color: "#fff", fontSize: 13, fontWeight: 600, cursor: compareIds.length >= 2 ? "pointer" : "not-allowed", fontFamily: "inherit" }}
           >
-            {t("catalog.compare", "Comparer")}
+            {tcatalog("compare", "Comparer")}
           </button>
           <button
             onClick={function () { setCompareIds([]); }}
             style={{ padding: "8px 16px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.2)", background: "transparent", color: "rgba(255,255,255,0.7)", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}
           >
-            {t("catalog.clearAll", "Effacer")}
+            {tcatalog("clearAll", "Effacer")}
           </button>
         </div>
       )}

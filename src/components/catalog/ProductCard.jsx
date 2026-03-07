@@ -73,7 +73,9 @@ const PdfIcon = () => (
 );
 
 export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onOpenModal }) {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["translation", "catalog", "common"]);
+  const tcatalog = (key, opts) => t(`catalog:${key}`, opts);
+  const tcommon = (key, opts) => t(`common:${key}`, opts);
   const navigate = useNavigate();
   const { isMobile } = useResponsive();
   const [expanded, setExpanded] = useState(false);
@@ -125,7 +127,7 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
             />
           </div>
           {offerCount > 1 && grouped && (
-            <span style={{ fontSize: 11, color: "#888" }}>{offerCount} {t("catalog.offers")}</span>
+            <span style={{ fontSize: 11, color: "#888" }}>{offerCount} {tcatalog("offers")}</span>
           )}
         </div>
 
@@ -153,7 +155,7 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 6, gap: 8 }}>
             <span style={{ fontSize: 11, color: "#64748b", fontWeight: 600 }}>⭐ {bestOffer.rating} ({bestOffer.reviews})</span>
             <span style={{ fontSize: 11, color: totalStock > 0 ? "#4CAF50" : "#ef4444", fontWeight: 600 }}>
-              {totalStock > 0 ? `${totalStock.toLocaleString()} ${t("common.pcs")}` : t("catalog.outOfStock", "Rupture")}
+              {totalStock > 0 ? `${totalStock.toLocaleString()} ${tcommon("pcs")}` : tcatalog("outOfStock", "Rupture")}
             </span>
           </div>
 
@@ -208,12 +210,12 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
         <div style={{ textAlign: isMobile ? "left" : "right", flexShrink: 0, minWidth: isMobile ? "100%" : 140, marginTop: isMobile ? 4 : 0 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 }}>
             <div>
-              {isLoggedIn ? <span style={{ fontSize: 11, color: "#888" }}>{t("catalog.from")} </span> : null}
+              {isLoggedIn ? <span style={{ fontSize: 11, color: "#888" }}>{tcatalog("from")} </span> : null}
               <PriceGate price={bestOffer.price} isLoggedIn={isLoggedIn} onLogin={onLogin} />
             </div>
             <button style={{ ...S.greenBtn, padding: isMobile ? "7px 12px" : "8px 16px", fontSize: isMobile ? 11 : 13 }} onClick={(e) => { e.stopPropagation(); navigate(`/product/${product.id}`); }}>
               <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 12H3m9-9l9 9-9 9" /></svg>
-              {t("catalog.offerDetails")}
+              {tcatalog("offerDetails")}
             </button>
           </div>
         </div>
@@ -227,7 +229,7 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
             onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
             style={{ background: expanded ? "#f0f7f0" : "#e8f5e9", padding: isMobile ? "8px 12px" : "8px 20px", cursor: "pointer", display: "flex", justifyContent: "center", alignItems: "center", gap: 6, fontSize: 13, color: "#2e7d32", fontWeight: 500, transition: "background .15s" }}
           >
-            {expanded ? t("catalog.hideOffers") : t("catalog.viewOffers")} {t("catalog.theOffers")} ({offerCount})
+            {expanded ? tcatalog("hideOffers") : tcatalog("viewOffers")} {tcatalog("theOffers")} ({offerCount})
             <Chev open={expanded} />
           </div>
           {expanded && product.offers.map((offer, i) => (
@@ -243,12 +245,12 @@ export default function ProductCard({ product, isLoggedIn, onLogin, grouped, onO
                 <div>
                   <div style={{ fontSize: 12, color: "#4CAF50" }}>
                     <span style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "#4CAF50", marginRight: 3 }} />
-                    {offer.stock.toLocaleString()} {t("common.pcs")}
+                    {offer.stock.toLocaleString()} {tcommon("pcs")}
                   </div>
                   <PriceGate price={offer.price} isLoggedIn={isLoggedIn} onLogin={onLogin} />
                 </div>
                 <button style={{ ...S.greenBtn, padding: "6px 12px", fontSize: 12 }}>
-                  {t("catalog.offerDetails")}
+                  {tcatalog("offerDetails")}
                 </button>
               </div>
             </div>

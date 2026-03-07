@@ -36,25 +36,25 @@ const getCountryConfig = (code) => COUNTRIES.find(c => c.code === code) || COUNT
 
 const validatePhone = (t, phone, countryCode) => {
   const cleaned = phone.replace(/\s+/g, " ").trim();
-  if (!cleaned) return { valid: false, error: t("auth.register.validation.phoneRequired") };
+  if (!cleaned) return { valid: false, error: ta("register.validation.phoneRequired") };
   const cfg = getCountryConfig(countryCode);
-  if (!cleaned.startsWith("+")) return { valid: false, error: t("auth.register.validation.phoneMustStartWith", { prefix: cfg.phonePrefix }) };
-  if (!cleaned.startsWith(cfg.phonePrefix) && countryCode !== "OTHER") return { valid: false, error: t("auth.register.validation.phoneMustStartWithForCountry", { prefix: cfg.phonePrefix, country: t("auth.countries." + countryCode) }) };
+  if (!cleaned.startsWith("+")) return { valid: false, error: ta("register.validation.phoneMustStartWith", { prefix: cfg.phonePrefix }) };
+  if (!cleaned.startsWith(cfg.phonePrefix) && countryCode !== "OTHER") return { valid: false, error: ta("register.validation.phoneMustStartWithForCountry", { prefix: cfg.phonePrefix, country: ta("countries." + countryCode) }) };
   const digitsOnly = cleaned.replace(/[^\d]/g, "");
-  if (digitsOnly.length < 9) return { valid: false, error: t("auth.register.validation.phoneTooShort") };
-  if (digitsOnly.length > 15) return { valid: false, error: t("auth.register.validation.phoneTooLong") };
+  if (digitsOnly.length < 9) return { valid: false, error: ta("register.validation.phoneTooShort") };
+  if (digitsOnly.length > 15) return { valid: false, error: ta("register.validation.phoneTooLong") };
   return { valid: true, error: "" };
 };
 
 const validateVat = (t, vat, countryCode) => {
   const cleaned = vat.replace(/\s+/g, "").toUpperCase();
-  if (!cleaned) return { valid: false, error: t("auth.register.validation.vatRequired") };
+  if (!cleaned) return { valid: false, error: ta("register.validation.vatRequired") };
   const cfg = getCountryConfig(countryCode);
   // Must start with country prefix (except CH which uses CHE)
   const expectedPrefix = countryCode === "CH" ? "CHE" : countryCode;
-  if (countryCode !== "OTHER" && !cleaned.startsWith(expectedPrefix)) return { valid: false, error: t("auth.register.validation.vatMustStartWith", { prefix: expectedPrefix }) };
-  if (cleaned.length < cfg.vatDigits - 3) return { valid: false, error: t("auth.register.validation.vatTooShort") };
-  if (cleaned.length > cfg.vatDigits + 3) return { valid: false, error: t("auth.register.validation.vatTooLong") };
+  if (countryCode !== "OTHER" && !cleaned.startsWith(expectedPrefix)) return { valid: false, error: ta("register.validation.vatMustStartWith", { prefix: expectedPrefix }) };
+  if (cleaned.length < cfg.vatDigits - 3) return { valid: false, error: ta("register.validation.vatTooShort") };
+  if (cleaned.length > cfg.vatDigits + 3) return { valid: false, error: ta("register.validation.vatTooLong") };
   return { valid: true, error: "" };
 };
 
@@ -96,7 +96,9 @@ const SunIcon = () => (
    LOGIN MODAL
    ══════════════════════════════════════════════════════ */
 export function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["translation", "auth", "common"]);
+  const ta = (key, opts) => t(`auth:${key}`, opts);
+  const tc = (key, opts) => t(`common:${key}`, opts);
   const { isMobile } = useResponsive();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -140,27 +142,27 @@ export function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
             <div style={S.logoIcon}><SunIcon/></div>
             <span style={{fontWeight:700,fontSize:20}}>suntrex</span>
           </div>
-          <h2 style={{fontSize:22,fontWeight:700,margin:"0 0 4px"}}>{t("auth.login.title")}</h2>
-          <p style={{fontSize:14,color:"#888",marginBottom:0}}>{t("auth.login.subtitle")}</p>
+          <h2 style={{fontSize:22,fontWeight:700,margin:"0 0 4px"}}>{ta("login.title")}</h2>
+          <p style={{fontSize:14,color:"#888",marginBottom:0}}>{ta("login.subtitle")}</p>
         </div>
         <div style={S.body}>
           <form onSubmit={handleSubmit} style={{display:"flex",flexDirection:"column",gap:14}}>
             <div>
-              <label style={S.label}>{t("auth.login.email")}</label>
-              <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder={t("auth.login.emailPlaceholder")} style={S.input} required/>
+              <label style={S.label}>{ta("login.email")}</label>
+              <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder={ta("login.emailPlaceholder")} style={S.input} required/>
             </div>
             <div>
-              <label style={S.label}>{t("auth.login.password")}</label>
-              <input type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder={t("auth.login.passwordPlaceholder")} style={S.input} required/>
+              <label style={S.label}>{ta("login.password")}</label>
+              <input type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder={ta("login.passwordPlaceholder")} style={S.input} required/>
             </div>
             <div style={{textAlign:"right"}}>
-              <a href="#" style={{...S.link,fontSize:13}}>{t("auth.login.forgotPassword")}</a>
+              <a href="#" style={{...S.link,fontSize:13}}>{ta("login.forgotPassword")}</a>
             </div>
             {loginError && <div style={{padding:"10px 12px",background:"#fef2f2",border:"1px solid #fecaca",borderRadius:8,fontSize:13,color:"#dc2626"}}>{loginError}</div>}
-            <button type="submit" style={{...S.btn,opacity:loginLoading?0.7:1,pointerEvents:loginLoading?"none":"auto"}} disabled={loginLoading}>{loginLoading ? "Connexion..." : t("auth.login.submit")}</button>
+            <button type="submit" style={{...S.btn,opacity:loginLoading?0.7:1,pointerEvents:loginLoading?"none":"auto"}} disabled={loginLoading}>{loginLoading ? "Connexion..." : ta("login.submit")}</button>
           </form>
           <p style={{fontSize:13,color:"#888",textAlign:"center",marginTop:14}}>
-            {t("auth.login.noAccount")} <span onClick={onSwitchToRegister} style={S.link}>{t("auth.login.signUp")}</span>
+            {ta("login.noAccount")} <span onClick={onSwitchToRegister} style={S.link}>{ta("login.signUp")}</span>
           </p>
         </div>
       </div>
@@ -172,7 +174,9 @@ export function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
    REGISTER MODAL — 4 steps, buyer only
    ══════════════════════════════════════════════════════ */
 export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["translation", "auth", "common"]);
+  const ta = (key, opts) => t(`auth:${key}`, opts);
+  const tc = (key, opts) => t(`common:${key}`, opts);
   const { isMobile } = useResponsive();
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({
@@ -199,7 +203,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
   const lookupSiret = async () => {
     const cleaned = form.siret.replace(/\s/g, "");
     if (cleaned.length < 9) {
-      setSirenError(t("auth.register.validation.siretMinLength"));
+      setSirenError(ta("register.validation.siretMinLength"));
       return;
     }
     setSirenLoading(true);
@@ -226,7 +230,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
       }));
     } catch (err) {
       if (err.message === "not_found") {
-        setSirenError(t("auth.register.validation.siretNotFound"));
+        setSirenError(ta("register.validation.siretNotFound"));
       } else {
         // API down or network error — allow manual entry
         setSirenError("Vérification SIRET indisponible — vous pouvez continuer manuellement");
@@ -238,19 +242,19 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
 
   /* ── Password strength rules ── */
   const pwRules = [
-    { label: t("auth.register.passwordRules.minChars"), test: form.password.length >= 8 },
-    { label: t("auth.register.passwordRules.uppercase"), test: /[A-Z]/.test(form.password) },
-    { label: t("auth.register.passwordRules.lowercase"), test: /[a-z]/.test(form.password) },
-    { label: t("auth.register.passwordRules.digit"), test: /[0-9]/.test(form.password) },
-    { label: t("auth.register.passwordRules.special"), test: /[!@#$%^&*]/.test(form.password) },
+    { label: ta("register.passwordRules.minChars"), test: form.password.length >= 8 },
+    { label: ta("register.passwordRules.uppercase"), test: /[A-Z]/.test(form.password) },
+    { label: ta("register.passwordRules.lowercase"), test: /[a-z]/.test(form.password) },
+    { label: ta("register.passwordRules.digit"), test: /[0-9]/.test(form.password) },
+    { label: ta("register.passwordRules.special"), test: /[!@#$%^&*]/.test(form.password) },
   ];
   const pwScore = pwRules.filter(r => r.test).length;
   const pwAllValid = pwScore === 5;
   const pwMatch = form.password.length > 0 && form.passwordConfirm.length > 0 && form.password === form.passwordConfirm;
-  const pwStrength = pwScore <= 1 ? { label: t("auth.register.passwordStrength.weak"), color: "#dc2626" }
-    : pwScore <= 3 ? { label: t("auth.register.passwordStrength.medium"), color: "#f59e0b" }
-    : pwScore === 4 ? { label: t("auth.register.passwordStrength.strong"), color: "#84cc16" }
-    : { label: t("auth.register.passwordStrength.veryStrong"), color: "#4CAF50" };
+  const pwStrength = pwScore <= 1 ? { label: ta("register.passwordStrength.weak"), color: "#dc2626" }
+    : pwScore <= 3 ? { label: ta("register.passwordStrength.medium"), color: "#f59e0b" }
+    : pwScore === 4 ? { label: ta("register.passwordStrength.strong"), color: "#84cc16" }
+    : { label: ta("register.passwordStrength.veryStrong"), color: "#4CAF50" };
 
   const canNext = () => {
     if (step === 0) {
@@ -258,8 +262,8 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
       return emailValid && pwAllValid && pwMatch && form.consentCGV;
     }
     if (step === 1) {
-      const phoneResult = validatePhone(t, form.phone, form.country);
-      const vatResult = validateVat(t, form.vatNumber, form.country);
+      const phoneResult = validatePhone(ta, form.phone, form.country);
+      const vatResult = validateVat(ta, form.vatNumber, form.country);
       const base = form.companyName.trim() && phoneResult.valid && vatResult.valid && form.country && form.address.trim() && form.postalCode.trim() && form.city.trim();
       if (form.country === "FR") return base && form.siret.replace(/\s/g,"").length >= 9 && (sirenVerified || sirenSkipped);
       return base;
@@ -270,24 +274,24 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
 
   const next = () => {
     if (step === 0) {
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) { setError(t("auth.register.validation.emailInvalid")); return; }
-      if (!pwAllValid) { setError(t("auth.register.validation.passwordRulesNotMet")); return; }
-      if (!pwMatch) { setError(t("auth.register.validation.passwordsMismatch")); return; }
-      if (!form.consentCGV) { setError(t("auth.register.validation.consentRequired")); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) { setError(ta("register.validation.emailInvalid")); return; }
+      if (!pwAllValid) { setError(ta("register.validation.passwordRulesNotMet")); return; }
+      if (!pwMatch) { setError(ta("register.validation.passwordsMismatch")); return; }
+      if (!form.consentCGV) { setError(ta("register.validation.consentRequired")); return; }
     }
     if (step === 1) {
-      if (form.country === "FR" && !sirenVerified && !sirenSkipped) { setError(t("auth.register.validation.siretVerifyFirst")); return; }
-      if (!form.companyName.trim()) { setError(t("auth.register.validation.companyNameRequired")); return; }
-      const vatResult = validateVat(t, form.vatNumber, form.country);
+      if (form.country === "FR" && !sirenVerified && !sirenSkipped) { setError(ta("register.validation.siretVerifyFirst")); return; }
+      if (!form.companyName.trim()) { setError(ta("register.validation.companyNameRequired")); return; }
+      const vatResult = validateVat(ta, form.vatNumber, form.country);
       if (!vatResult.valid) { setVatError(vatResult.error); setError(vatResult.error); return; }
-      if (!form.address.trim()) { setError(t("auth.register.validation.addressRequired")); return; }
-      if (!form.postalCode.trim()) { setError(t("auth.register.validation.postalCodeRequired")); return; }
-      if (!form.city.trim()) { setError(t("auth.register.validation.cityRequired")); return; }
-      const phoneResult = validatePhone(t, form.phone, form.country);
+      if (!form.address.trim()) { setError(ta("register.validation.addressRequired")); return; }
+      if (!form.postalCode.trim()) { setError(ta("register.validation.postalCodeRequired")); return; }
+      if (!form.city.trim()) { setError(ta("register.validation.cityRequired")); return; }
+      const phoneResult = validatePhone(ta, form.phone, form.country);
       if (!phoneResult.valid) { setPhoneError(phoneResult.error); setError(phoneResult.error); return; }
       setPhoneError(""); setVatError("");
     }
-    if (step === 2 && !form.kycDocUploaded) { setError(t("auth.register.validation.kycRequired")); return; }
+    if (step === 2 && !form.kycDocUploaded) { setError(ta("register.validation.kycRequired")); return; }
     setError("");
     if (step < 3) setStep(step + 1);
   };
@@ -351,19 +355,19 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
     // Validate file type
     const allowedTypes = ["application/pdf", "image/jpeg", "image/png"];
     if (!allowedTypes.includes(file.type)) {
-      setError(t("auth.register.validation.fileFormatInvalid"));
+      setError(ta("register.validation.fileFormatInvalid"));
       return;
     }
 
     // Validate file size (10 MB max)
     if (file.size > 10 * 1024 * 1024) {
-      setError(t("auth.register.validation.fileTooLarge"));
+      setError(ta("register.validation.fileTooLarge"));
       return;
     }
 
     // Validate file name (not empty/suspicious)
     if (!file.name || file.name.length < 3) {
-      setError(t("auth.register.validation.fileNameInvalid"));
+      setError(ta("register.validation.fileNameInvalid"));
       return;
     }
 
@@ -374,7 +378,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
     // Production: upload file to S3/R2 here
   };
 
-  const STEPS = [t("auth.register.steps.account"), t("auth.register.steps.company"), t("auth.register.steps.verification")];
+  const STEPS = [ta("register.steps.account"), ta("register.steps.company"), ta("register.steps.verification")];
 
   return (
     <div style={S.overlay} onClick={onClose}>
@@ -395,17 +399,17 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
           }}>
             <div style={{textAlign:"center"}}>
               <div style={{fontSize:40,marginBottom:14}}>☀️</div>
-              <h3 style={{color:"#fff",fontSize:18,fontWeight:700,marginBottom:8,lineHeight:1.3}}>{t("auth.register.sidePanel.joinSuntrex")}</h3>
+              <h3 style={{color:"#fff",fontSize:18,fontWeight:700,marginBottom:8,lineHeight:1.3}}>{ta("register.sidePanel.joinSuntrex")}</h3>
               <p style={{color:"rgba(255,255,255,0.85)",fontSize:12,lineHeight:1.6,marginBottom:20}}>
-                {t("auth.register.sidePanel.subtitle")}
+                {ta("register.sidePanel.subtitle")}
               </p>
               <div style={{display:"flex",flexDirection:"column",gap:8,textAlign:"left"}}>
                 {[
-                  { icon:"💰", text: t("auth.register.sidePanel.exclusiveB2B") },
-                  { icon:"🔍", text: t("auth.register.sidePanel.compareThousands") },
-                  { icon:"🚚", text: t("auth.register.sidePanel.suntrexDelivery") },
-                  { icon:"🤖", text: t("auth.register.sidePanel.aiTools") },
-                  { icon:"🔒", text: t("auth.register.sidePanel.securePayments") },
+                  { icon:"💰", text: ta("register.sidePanel.exclusiveB2B") },
+                  { icon:"🔍", text: ta("register.sidePanel.compareThousands") },
+                  { icon:"🚚", text: ta("register.sidePanel.suntrexDelivery") },
+                  { icon:"🤖", text: ta("register.sidePanel.aiTools") },
+                  { icon:"🔒", text: ta("register.sidePanel.securePayments") },
                 ].map((item,i) => (
                   <div key={i} style={{display:"flex",alignItems:"center",gap:8,color:"rgba(255,255,255,0.9)",fontSize:11}}>
                     <span>{item.icon}</span> {item.text}
@@ -444,10 +448,10 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                   ))}
                 </div>
                 <h2 style={{fontSize:19,fontWeight:700,margin:"0 0 3px"}}>
-                  {step === 0 ? t("auth.register.step0.title") : step === 1 ? t("auth.register.step1.title") : t("auth.register.step2.title")}
+                  {step === 0 ? ta("register.step0.title") : step === 1 ? ta("register.step1.title") : ta("register.step2.title")}
                 </h2>
                 <p style={{fontSize:12,color:"#888",marginBottom:0}}>
-                  {step === 0 ? t("auth.register.step0.subtitle") : step === 1 ? t("auth.register.step1.subtitle") : t("auth.register.step2.subtitle")}
+                  {step === 0 ? ta("register.step0.subtitle") : step === 1 ? ta("register.step1.subtitle") : ta("register.step2.subtitle")}
                 </p>
               </>
             )}
@@ -496,12 +500,12 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                   </div>
                 </div>
                 <div>
-                  <label style={S.label}>{t("auth.register.step0.professionalEmail")}</label>
+                  <label style={S.label}>{ta("register.step0.professionalEmail")}</label>
                   <input type="email" value={form.email} onChange={e=>update("email",e.target.value)}
-                    placeholder={t("auth.register.step0.emailPlaceholder")} style={S.input}/>
+                    placeholder={ta("register.step0.emailPlaceholder")} style={S.input}/>
                 </div>
                 <div>
-                  <label style={S.label}>{t("auth.register.step0.password")}</label>
+                  <label style={S.label}>{ta("register.step0.password")}</label>
                   <input type="password" value={form.password} onChange={e=>update("password",e.target.value)}
                     placeholder="••••••••" style={S.input}/>
                   {/* Password rules checklist */}
@@ -528,7 +532,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                   )}
                 </div>
                 <div>
-                  <label style={S.label}>{t("auth.register.step0.confirmPassword")}</label>
+                  <label style={S.label}>{ta("register.step0.confirmPassword")}</label>
                   <input type="password" value={form.passwordConfirm} onChange={e=>update("passwordConfirm",e.target.value)}
                     placeholder="••••••••" style={{
                       ...S.input,
@@ -538,9 +542,9 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                     }}/>
                   {form.passwordConfirm.length > 0 && (
                     pwMatch ? (
-                      <div style={{fontSize:11,color:"#16a34a",marginTop:3}}>{t("auth.register.validation.passwordsMatch")}</div>
+                      <div style={{fontSize:11,color:"#16a34a",marginTop:3}}>{ta("register.validation.passwordsMatch")}</div>
                     ) : (
-                      <div style={{fontSize:11,color:"#dc2626",marginTop:3}}>{t("auth.register.validation.passwordsMismatch")}</div>
+                      <div style={{fontSize:11,color:"#dc2626",marginTop:3}}>{ta("register.validation.passwordsMismatch")}</div>
                     )
                   )}
                 </div>
@@ -551,31 +555,31 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                     <input type="checkbox" checked={form.consentCGV} onChange={e=>update("consentCGV",e.target.checked)}
                       style={{marginTop:2,accentColor:"#4CAF50",width:15,height:15,flexShrink:0}}/>
                     <span style={{fontSize:11,color:"#444",lineHeight:1.5}}>
-                      J'accepte les <a href="/cgv" target="_blank" rel="noreferrer" style={{color:"#E8700A"}}>{t("auth.register.consent.termsLink")}</a> et la <a href="/privacy" target="_blank" rel="noreferrer" style={{color:"#E8700A"}}>{t("auth.register.consent.privacyLink")}</a>. <span style={{color:"#dc2626"}}>*</span>
+                      J'accepte les <a href="/cgv" target="_blank" rel="noreferrer" style={{color:"#E8700A"}}>{ta("register.consent.termsLink")}</a> et la <a href="/privacy" target="_blank" rel="noreferrer" style={{color:"#E8700A"}}>{ta("register.consent.privacyLink")}</a>. <span style={{color:"#dc2626"}}>*</span>
                     </span>
                   </label>
                   <label style={{display:"flex",gap:8,cursor:"pointer",alignItems:"flex-start"}}>
                     <input type="checkbox" checked={form.consentMarketing} onChange={e=>update("consentMarketing",e.target.checked)}
                       style={{marginTop:2,accentColor:"#4CAF50",width:15,height:15,flexShrink:0}}/>
                     <span style={{fontSize:11,color:"#666",lineHeight:1.5}}>
-                      {t("auth.register.consent.marketing")}
+                      {ta("register.consent.marketing")}
                     </span>
                   </label>
                   <label style={{display:"flex",gap:8,cursor:"pointer",alignItems:"flex-start"}}>
                     <input type="checkbox" checked={form.consentPartners} onChange={e=>update("consentPartners",e.target.checked)}
                       style={{marginTop:2,accentColor:"#4CAF50",width:15,height:15,flexShrink:0}}/>
                     <span style={{fontSize:11,color:"#666",lineHeight:1.5}}>
-                      {t("auth.register.consent.partners")}
+                      {ta("register.consent.partners")}
                     </span>
                   </label>
                 </div>
 
                 <button onClick={next} disabled={!canNext()}
                   style={{...S.btn,...(!canNext()?S.btnDisabled:{}),height:44,marginTop:2}}>
-                  {t("auth.register.step0.continue")}
+                  {ta("register.step0.continue")}
                 </button>
                 <p style={{fontSize:12,color:"#888",textAlign:"center",margin:0}}>
-                  {t("auth.register.step0.alreadyAccount")} <span onClick={onSwitchToLogin} style={S.link}>{t("auth.register.step0.login")}</span>
+                  {ta("register.step0.alreadyAccount")} <span onClick={onSwitchToLogin} style={S.link}>{ta("register.step0.login")}</span>
                 </p>
               </div>
             )}
@@ -584,7 +588,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
             {step === 1 && (
               <div style={{display:"flex",flexDirection:"column",gap:12}}>
                 <div>
-                  <label style={S.label}>{t("auth.register.step1.companyCountry")}</label>
+                  <label style={S.label}>{ta("register.step1.companyCountry")}</label>
                   <select value={form.country} onChange={e=>{
                     const newCountry = e.target.value;
                     const cfg = getCountryConfig(newCountry);
@@ -595,14 +599,14 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                     setSirenVerified(false);setSirenSkipped(false);setSirenError("");setSirenData(null);
                   }}
                     style={{...S.input,cursor:"pointer",appearance:"auto"}}>
-                    {COUNTRIES.map(c => <option key={c.code} value={c.code}>{c.flag} {t("auth.countries." + c.code)}</option>)}
+                    {COUNTRIES.map(c => <option key={c.code} value={c.code}>{c.flag} {ta("countries." + c.code)}</option>)}
                   </select>
                 </div>
 
                 {/* SIRET — France only */}
                 {form.country === "FR" && (
                   <div>
-                    <label style={S.label}>{t("auth.register.step1.siretLabel")}</label>
+                    <label style={S.label}>{ta("register.step1.siretLabel")}</label>
                     <div style={{display:"flex",gap:8}}>
                       <input value={form.siret}
                         onChange={e=>{update("siret",e.target.value);setSirenVerified(false);setSirenSkipped(false);setSirenError("");setSirenData(null)}}
@@ -619,17 +623,17 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                           fontFamily:"inherit",whiteSpace:"nowrap",
                           opacity:form.siret.replace(/\s/g,"").length<9?0.4:1,
                         }}>
-                        {sirenLoading ? "⏳" : "🔍 " + t("auth.register.step1.verify")}
+                        {sirenLoading ? "⏳" : "🔍 " + ta("register.step1.verify")}
                       </button>
                     </div>
                     {sirenVerified && sirenData && (
                       <div style={{marginTop:8,background:"#f0fdf4",border:"1px solid #bbf7d0",borderRadius:8,padding:"10px 12px"}}>
-                        <div style={{fontSize:12,color:"#16a34a",fontWeight:600,marginBottom:3}}>✓ {t("auth.register.step1.companyFound")}</div>
+                        <div style={{fontSize:12,color:"#16a34a",fontWeight:600,marginBottom:3}}>✓ {ta("register.step1.companyFound")}</div>
                         <div style={{fontSize:11,color:"#166534",lineHeight:1.5}}>
                           <b>{sirenData.nom_complet}</b><br/>
-                          {t("auth.register.step1.siren")} : {sirenData.siren}
-                          {sirenData.siege?.geo_adresse && <><br/>{t("auth.register.step1.headquarters")} : {sirenData.siege.geo_adresse}</>}
-                          {sirenData.siege?.activite_principale && <><br/>{t("auth.register.step1.naf")} : {sirenData.siege.activite_principale}</>}
+                          {ta("register.step1.siren")} : {sirenData.siren}
+                          {sirenData.siege?.geo_adresse && <><br/>{ta("register.step1.headquarters")} : {sirenData.siege.geo_adresse}</>}
+                          {sirenData.siege?.activite_principale && <><br/>{ta("register.step1.naf")} : {sirenData.siege.activite_principale}</>}
                         </div>
                       </div>
                     )}
@@ -640,7 +644,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                 )}
 
                 <div>
-                  <label style={S.label}>{t("auth.register.step1.companyName")} {sirenVerified && <span style={{color:"#16a34a",fontWeight:400,fontSize:10}}>✓ {t("auth.register.step1.verified")}</span>}</label>
+                  <label style={S.label}>{ta("register.step1.companyName")} {sirenVerified && <span style={{color:"#16a34a",fontWeight:400,fontSize:10}}>✓ {ta("register.step1.verified")}</span>}</label>
                   <input value={form.companyName} onChange={e=>update("companyName",e.target.value)}
                     placeholder="Ex: Solar Pro SARL"
                     style={{...S.input,...(sirenVerified?{background:"#f0fdf4",borderColor:"#bbf7d0"}:{})}}
@@ -648,20 +652,20 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                 </div>
 
                 <div>
-                  <label style={S.label}>{t("auth.register.step1.vatNumber")}</label>
+                  <label style={S.label}>{ta("register.step1.vatNumber")}</label>
                   <input value={form.vatNumber} onChange={e=>{update("vatNumber",e.target.value.toUpperCase()); setVatError("");}}
                     placeholder={getCountryConfig(form.country).vatPlaceholder}
                     style={{...S.input,...(vatError?{borderColor:"#dc2626",background:"#fef2f2"}:{})}}
-                    onBlur={() => { if(form.vatNumber.trim()) { const r = validateVat(t, form.vatNumber, form.country); if(!r.valid) setVatError(r.error); else setVatError(""); }}}/>
+                    onBlur={() => { if(form.vatNumber.trim()) { const r = validateVat(ta, form.vatNumber, form.country); if(!r.valid) setVatError(r.error); else setVatError(""); }}}/>
                   {vatError ? (
                     <div style={{fontSize:10,color:"#dc2626",marginTop:2}}>✕ {vatError}</div>
                   ) : (
-                    <div style={{fontSize:10,color:"#aaa",marginTop:2}}>{t("auth.register.step1.vatHint")} {form.country === "CH" ? "CHE" : form.country}</div>
+                    <div style={{fontSize:10,color:"#aaa",marginTop:2}}>{ta("register.step1.vatHint")} {form.country === "CH" ? "CHE" : form.country}</div>
                   )}
                 </div>
 
                 <div>
-                  <label style={S.label}>{t("auth.register.step1.address")}</label>
+                  <label style={S.label}>{ta("register.step1.address")}</label>
                   <input value={form.address} onChange={e=>update("address",e.target.value)}
                     placeholder="16-18 rue Eiffel"
                     style={{...S.input,...(sirenVerified&&form.address?{background:"#f0fdf4",borderColor:"#bbf7d0"}:{})}}
@@ -669,20 +673,20 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                 </div>
                 <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
                   <div>
-                    <label style={S.label}>{t("auth.register.step1.postalCode")}</label>
+                    <label style={S.label}>{ta("register.step1.postalCode")}</label>
                     <input value={form.postalCode} onChange={e=>update("postalCode",e.target.value)} placeholder="75017"
                       style={{...S.input,...(sirenVerified&&form.postalCode?{background:"#f0fdf4",borderColor:"#bbf7d0"}:{})}}
                       readOnly={sirenVerified&&!!form.postalCode}/>
                   </div>
                   <div>
-                    <label style={S.label}>{t("auth.register.step1.city")}</label>
+                    <label style={S.label}>{ta("register.step1.city")}</label>
                     <input value={form.city} onChange={e=>update("city",e.target.value)} placeholder="Paris"
                       style={{...S.input,...(sirenVerified&&form.city?{background:"#f0fdf4",borderColor:"#bbf7d0"}:{})}}
                       readOnly={sirenVerified&&!!form.city}/>
                   </div>
                 </div>
                 <div>
-                  <label style={S.label}>{t("auth.register.step1.phone")}</label>
+                  <label style={S.label}>{ta("register.step1.phone")}</label>
                   <input value={form.phone} onChange={e=>{
                       const val = formatPhoneInput(e.target.value, form.country);
                       update("phone", val);
@@ -690,14 +694,14 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                     }}
                     placeholder={getCountryConfig(form.country).phonePlaceholder}
                     style={{...S.input,...(phoneError?{borderColor:"#dc2626",background:"#fef2f2"}:{})}}
-                    onBlur={() => { if(form.phone.trim()) { const r = validatePhone(t, form.phone, form.country); if(!r.valid) setPhoneError(r.error); else setPhoneError(""); }}}
+                    onBlur={() => { if(form.phone.trim()) { const r = validatePhone(ta, form.phone, form.country); if(!r.valid) setPhoneError(r.error); else setPhoneError(""); }}}
                     maxLength={20}/>
                   {phoneError && <div style={{fontSize:10,color:"#dc2626",marginTop:2}}>✕ {phoneError}</div>}
                 </div>
 
                 <div style={{display:"flex",gap:10,marginTop:4}}>
-                  <button onClick={()=>setStep(0)} style={{...S.btnOutline,flex:1,height:44,fontSize:14}}>{t("auth.register.step1.back")}</button>
-                  <button onClick={next} disabled={!canNext()} style={{...S.btn,...(!canNext()?S.btnDisabled:{}),flex:2,height:44}}>{t("auth.register.step1.continue")}</button>
+                  <button onClick={()=>setStep(0)} style={{...S.btnOutline,flex:1,height:44,fontSize:14}}>{ta("register.step1.back")}</button>
+                  <button onClick={next} disabled={!canNext()} style={{...S.btn,...(!canNext()?S.btnDisabled:{}),flex:2,height:44}}>{ta("register.step1.continue")}</button>
                 </div>
               </div>
             )}
@@ -708,18 +712,18 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                 <div style={{background:"#fef2f2",border:"1px solid #fecaca",borderRadius:10,padding:"10px 14px",display:"flex",gap:8,alignItems:"flex-start"}}>
                   <span style={{fontSize:16}}>🔒</span>
                   <div style={{fontSize:11,color:"#991b1b",lineHeight:1.5}}>
-                    <b>{t("auth.register.step2.mandatoryDoc")}</b> — {t("auth.register.step2.mandatoryDocDesc")}
+                    <b>{ta("register.step2.mandatoryDoc")}</b> — {ta("register.step2.mandatoryDocDesc")}
                   </div>
                 </div>
 
                 {form.kycDocUploaded ? (
                   <div style={{border:"2px solid #4CAF50",borderRadius:12,padding:"24px 20px",textAlign:"center",background:"#f0fdf4"}}>
                     <div style={{fontSize:32,marginBottom:6}}>✅</div>
-                    <div style={{fontWeight:600,fontSize:14,color:"#16a34a",marginBottom:3}}>{t("auth.register.step2.documentSelected")}</div>
+                    <div style={{fontWeight:600,fontSize:14,color:"#16a34a",marginBottom:3}}>{ta("register.step2.documentSelected")}</div>
                     <div style={{fontSize:12,color:"#555"}}>{form.kycFileName} — {form.kycFileSize || ""}</div>
                     <button onClick={()=>{update("kycDocUploaded",false);update("kycFileName","");update("kycFileSize","")}}
                       style={{marginTop:8,background:"none",border:"1px solid #ddd",borderRadius:6,padding:"4px 12px",fontSize:11,cursor:"pointer",color:"#888",fontFamily:"inherit"}}>
-                      {t("auth.register.step2.changeFile")}
+                      {ta("register.step2.changeFile")}
                     </button>
                   </div>
                 ) : (
@@ -729,18 +733,18 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                       onChange={handleFileSelect}
                       style={{position:"absolute",opacity:0,width:0,height:0}}/>
                     <div style={{fontSize:36,marginBottom:6}}>📄</div>
-                    <div style={{fontWeight:600,fontSize:13,color:"#333",marginBottom:3}}>{t("auth.register.step2.clickToChoose")}</div>
-                    <div style={{fontSize:11,color:"#888"}}>{t("auth.register.step2.fileFormats")}</div>
+                    <div style={{fontWeight:600,fontSize:13,color:"#333",marginBottom:3}}>{ta("register.step2.clickToChoose")}</div>
+                    <div style={{fontSize:11,color:"#888"}}>{ta("register.step2.fileFormats")}</div>
                   </div>
                 )}
 
                 <div style={{background:"#f8f8f8",borderRadius:10,padding:"12px 14px"}}>
-                  <div style={{fontSize:11,fontWeight:600,color:"#333",marginBottom:6}}>{t("auth.register.step2.acceptedDocs")}</div>
+                  <div style={{fontSize:11,fontWeight:600,color:"#333",marginBottom:6}}>{ta("register.step2.acceptedDocs")}</div>
                   {[
-                    t("auth.register.step2.kbisExtract"),
-                    t("auth.register.step2.vatCertificate"),
-                    t("auth.register.step2.rgeLicense"),
-                    t("auth.register.step2.pvInvoice"),
+                    ta("register.step2.kbisExtract"),
+                    ta("register.step2.vatCertificate"),
+                    ta("register.step2.rgeLicense"),
+                    ta("register.step2.pvInvoice"),
                   ].map((doc,i) => (
                     <div key={i} style={{display:"flex",alignItems:"center",gap:6,fontSize:11,color:"#555",padding:"2px 0"}}>
                       <span style={{color:"#4CAF50"}}>✓</span> {doc}
@@ -749,10 +753,10 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                 </div>
 
                 <div style={{display:"flex",gap:10}}>
-                  <button onClick={()=>setStep(1)} style={{...S.btnOutline,flex:1,height:44,fontSize:14}}>{t("auth.register.step2.back")}</button>
-                  <button onClick={next} disabled={!canNext()} style={{...S.btn,...(!canNext()?S.btnDisabled:{}),flex:2,height:44}}>{t("auth.register.step2.finalize")}</button>
+                  <button onClick={()=>setStep(1)} style={{...S.btnOutline,flex:1,height:44,fontSize:14}}>{ta("register.step2.back")}</button>
+                  <button onClick={next} disabled={!canNext()} style={{...S.btn,...(!canNext()?S.btnDisabled:{}),flex:2,height:44}}>{ta("register.step2.finalize")}</button>
                 </div>
-                <div style={{textAlign:"center",fontSize:10,color:"#aaa"}}>{t("auth.register.step2.secureStorage")}</div>
+                <div style={{textAlign:"center",fontSize:10,color:"#aaa"}}>{ta("register.step2.secureStorage")}</div>
               </div>
             )}
 
@@ -762,23 +766,23 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
                 <div style={S.successIcon}>
                   <svg width="32" height="32" fill="none" stroke="#4CAF50" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
                 </div>
-                <h2 style={{fontSize:20,fontWeight:700,margin:"0 0 6px",color:"#222"}}>{t("auth.register.step3.title")}</h2>
+                <h2 style={{fontSize:20,fontWeight:700,margin:"0 0 6px",color:"#222"}}>{ta("register.step3.title")}</h2>
                 <p style={{fontSize:13,color:"#666",lineHeight:1.6,marginBottom:14}}>
-                  {t("auth.register.step3.subtitle")}
+                  {ta("register.step3.subtitle")}
                 </p>
 
                 <div style={{background:"#fffbeb",border:"1px solid #fde68a",borderRadius:10,padding:"12px",marginBottom:16,textAlign:"left"}}>
                   <div style={{fontSize:12,color:"#92400e",lineHeight:1.6}}>
-                    <b>{t("auth.register.step3.verificationInProgress")}</b> — {t("auth.register.step3.verificationDesc")}
+                    <b>{ta("register.step3.verificationInProgress")}</b> — {ta("register.step3.verificationDesc")}
                   </div>
                 </div>
 
                 <div style={{background:"#f8f8f8",borderRadius:10,padding:"12px",marginBottom:16,textAlign:"left"}}>
-                  <div style={{fontSize:11,fontWeight:600,color:"#333",marginBottom:6}}>{t("auth.register.step3.meanwhile")}</div>
+                  <div style={{fontSize:11,fontWeight:600,color:"#333",marginBottom:6}}>{ta("register.step3.meanwhile")}</div>
                   {[
-                    { icon:"🔍", text: t("auth.register.step3.exploreCatalog") },
-                    { icon:"📊", text: t("auth.register.step3.compareOffers") },
-                    { icon:"📄", text: t("auth.register.step3.downloadDatasheets") },
+                    { icon:"🔍", text: ta("register.step3.exploreCatalog") },
+                    { icon:"📊", text: ta("register.step3.compareOffers") },
+                    { icon:"📄", text: ta("register.step3.downloadDatasheets") },
                   ].map((item,i) => (
                     <div key={i} style={{display:"flex",alignItems:"center",gap:8,fontSize:12,color:"#555",padding:"2px 0"}}>
                       <span>{item.icon}</span> {item.text}
@@ -788,12 +792,12 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
 
                 <div style={{background:"#eff6ff",border:"1px solid #bfdbfe",borderRadius:10,padding:"12px",marginBottom:16,textAlign:"left"}}>
                   <div style={{fontSize:11,color:"#1e40af",lineHeight:1.5}}>
-                    <b>{t("auth.register.step3.wantToSell")}</b> {t("auth.register.step3.wantToSellDesc")}
+                    <b>{ta("register.step3.wantToSell")}</b> {ta("register.step3.wantToSellDesc")}
                   </div>
                 </div>
 
                 {error && <div style={{padding:"10px 12px",background:"#fef2f2",border:"1px solid #fecaca",borderRadius:8,fontSize:13,color:"#dc2626",marginBottom:8}}>{error}</div>}
-                <button onClick={handleFinish} style={{...S.btn,opacity:registerLoading?0.7:1,pointerEvents:registerLoading?"none":"auto"}} disabled={registerLoading}>{registerLoading ? "Création du compte..." : t("auth.register.step3.exploreCatalogBtn")}</button>
+                <button onClick={handleFinish} style={{...S.btn,opacity:registerLoading?0.7:1,pointerEvents:registerLoading?"none":"auto"}} disabled={registerLoading}>{registerLoading ? "Création du compte..." : ta("register.step3.exploreCatalogBtn")}</button>
               </div>
             )}
           </div>
@@ -807,30 +811,31 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
    USER MENU (header dropdown)
    ══════════════════════════════════════════════════════ */
 export function UserMenu({ user, onLogout, onNavigate }) {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["translation", "auth", "common"]);
+  const ta = (key, opts) => t(`auth:${key}`, opts);
   const [open, setOpen] = useState(false);
   const isSeller = user.role === "seller" || user.role === "both";
   const isPending = user.kycStatus !== "verified";
 
   const menuItems = [
-    { section: t("auth.userMenu.sections.myProfile") },
-    { icon:"👤", label: t("auth.userMenu.accountDetails"), action:"profile" },
-    { icon:"🔑", label: t("auth.userMenu.password"), action:"password" },
-    { icon:"🏢", label: t("auth.userMenu.companyDetails"), action:"company" },
-    { icon:"📋", label: t("auth.userMenu.kycVerification"), action:"kyc", badge: isPending?"⏳":"✅" },
-    ...(!isSeller ? [{ icon:"📦", label: t("auth.userMenu.becomeSeller"), action:"become-seller", highlight:true }] : []),
-    { section: t("auth.userMenu.sections.buy") },
-    { icon:"🛒", label: t("auth.userMenu.myPurchases"), action:"purchases" },
-    { icon:"📍", label: t("auth.userMenu.deliveryAddresses"), action:"addresses" },
-    { icon:"📝", label: t("auth.userMenu.quoteRequests"), action:"rfq" },
+    { section: ta("userMenu.sections.myProfile") },
+    { icon:"👤", label: ta("userMenu.accountDetails"), action:"profile" },
+    { icon:"🔑", label: ta("userMenu.password"), action:"password" },
+    { icon:"🏢", label: ta("userMenu.companyDetails"), action:"company" },
+    { icon:"📋", label: ta("userMenu.kycVerification"), action:"kyc", badge: isPending?"⏳":"✅" },
+    ...(!isSeller ? [{ icon:"📦", label: ta("userMenu.becomeSeller"), action:"become-seller", highlight:true }] : []),
+    { section: ta("userMenu.sections.buy") },
+    { icon:"🛒", label: ta("userMenu.myPurchases"), action:"purchases" },
+    { icon:"📍", label: ta("userMenu.deliveryAddresses"), action:"addresses" },
+    { icon:"📝", label: ta("userMenu.quoteRequests"), action:"rfq" },
     ...(isSeller ? [
-      { section: t("auth.userMenu.sections.sell") },
-      { icon:"📦", label: t("auth.userMenu.manageOffers"), action:"offers" },
-      { icon:"💰", label: t("auth.userMenu.mySales"), action:"sales" },
-      { icon:"📨", label: t("auth.userMenu.receiveRequests"), action:"seller-rfq" },
-      { icon:"🏭", label: t("auth.userMenu.warehouses"), action:"warehouses" },
-      { icon:"🚚", label: t("auth.userMenu.shipping"), action:"shipping" },
-      { icon:"💳", label: t("auth.userMenu.paymentMethods"), action:"payment-methods" },
+      { section: ta("userMenu.sections.sell") },
+      { icon:"📦", label: ta("userMenu.manageOffers"), action:"offers" },
+      { icon:"💰", label: ta("userMenu.mySales"), action:"sales" },
+      { icon:"📨", label: ta("userMenu.receiveRequests"), action:"seller-rfq" },
+      { icon:"🏭", label: ta("userMenu.warehouses"), action:"warehouses" },
+      { icon:"🚚", label: ta("userMenu.shipping"), action:"shipping" },
+      { icon:"💳", label: ta("userMenu.paymentMethods"), action:"payment-methods" },
     ] : []),
   ];
 
@@ -850,9 +855,9 @@ export function UserMenu({ user, onLogout, onNavigate }) {
               <div style={{fontWeight:600,fontSize:14,color:"#222"}}>{user.company||user.name}</div>
               <div style={{fontSize:11,color:"#888",marginTop:2}}>{user.email}</div>
               <div style={{display:"flex",gap:5,marginTop:6}}>
-                <span style={{fontSize:9,padding:"2px 6px",borderRadius:4,background:"#e8f4fd",color:"#1e40af",fontWeight:600}}>{t("auth.userMenu.buyer")}</span>
-                {isSeller && <span style={{fontSize:9,padding:"2px 6px",borderRadius:4,background:"#fff3e0",color:"#e65100",fontWeight:600}}>{t("auth.userMenu.seller")}</span>}
-                {isPending && <span style={{fontSize:9,padding:"2px 6px",borderRadius:4,background:"#fef2f2",color:"#dc2626",fontWeight:600}}>{t("auth.userMenu.verification")}</span>}
+                <span style={{fontSize:9,padding:"2px 6px",borderRadius:4,background:"#e8f4fd",color:"#1e40af",fontWeight:600}}>{ta("userMenu.buyer")}</span>
+                {isSeller && <span style={{fontSize:9,padding:"2px 6px",borderRadius:4,background:"#fff3e0",color:"#e65100",fontWeight:600}}>{ta("userMenu.seller")}</span>}
+                {isPending && <span style={{fontSize:9,padding:"2px 6px",borderRadius:4,background:"#fef2f2",color:"#dc2626",fontWeight:600}}>{ta("userMenu.verification")}</span>}
               </div>
             </div>
             {menuItems.map((item,i) => {
@@ -870,7 +875,7 @@ export function UserMenu({ user, onLogout, onNavigate }) {
             <div style={{borderTop:"1px solid #f0f0f0",padding:"6px 0"}}>
               <button onClick={()=>{setOpen(false);onLogout()}}
                 style={{display:"flex",alignItems:"center",gap:10,width:"100%",padding:"9px 16px",border:"none",background:"none",cursor:"pointer",fontSize:13,color:"#dc2626",fontFamily:"inherit"}}>
-                <span>🚪</span> {t("auth.userMenu.logout")}
+                <span>🚪</span> {ta("userMenu.logout")}
               </button>
             </div>
           </div>

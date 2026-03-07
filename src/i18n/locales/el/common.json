@@ -37,7 +37,44 @@
     "mounting": "Στήριξη",
     "brands": "Μάρκες",
     "legal": "Νομικά",
-    "telWhatsappEmail": "Τηλ. - WhatsApp - Email"
+    "telWhatsappEmail": "Τηλ. - WhatsApp - Email",
+    "brandDescription": "B2B marketplace φωτοβολταϊκών. Πάνελ, inverters, μπαταρίες και περισσότερα για Ευρωπαίους επαγγελματίες του ηλιακού κλάδου.",
+    "phoneWhatsapp": "Τηλ. / WhatsApp: +33 7 00 00 00 00",
+    "paymentsAccepted": "Αποδεκτές πληρωμές",
+    "copyright": "© 2026 SUNTREX — Με επιφύλαξη παντός δικαιώματος",
+    "columns": {
+      "navigation": "Πλοήγηση",
+      "categories": "Κατηγορίες",
+      "brands": "Μάρκες"
+    },
+    "links": {
+      "helpCenter": "Κέντρο βοήθειας",
+      "blog": "Blog",
+      "sellOnSuntrex": "Πουλήστε στο SUNTREX",
+      "about": "Σχετικά",
+      "terms": "Γενικοί όροι",
+      "privacy": "Πολιτική απορρήτου",
+      "legalNotice": "Νομικές πληροφορίες"
+    },
+    "categoriesExtended": {
+      "panels": "Ηλιακά πάνελ",
+      "inverters": "Inverters",
+      "storage": "Μπαταρίες",
+      "mounting": "Συστήματα στήριξης",
+      "electrical": "Ηλεκτροτεχνία",
+      "emobility": "Ηλεκτροκίνηση"
+    },
+    "trustBadges": {
+      "securePayment": "Ασφαλής πληρωμή 3D Secure",
+      "verifiedDelivery": "Επαληθευμένη παράδοση SUNTREX",
+      "lowCommission": "Προμήθεια -5% έναντι αγοράς",
+      "gdpr": "Συμβατό με GDPR"
+    },
+    "legalShort": {
+      "terms": "Όροι",
+      "privacy": "Απόρρητο",
+      "legalNotice": "Νομικές πληροφορίες"
+    }
   },
   "common": {
     "pcs": "τεμ.",

@@ -234,19 +234,21 @@ function SimilarCard({ p, navigate, formatMoney, lang, isLoggedIn }) {
 export default function ProductDetailPage({ isLoggedIn, onLogin }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation(["translation", "catalog", "homepage"]);
+  const tcatalog = (key, opts) => t(`catalog:${key}`, opts);
+  const thome = (key, opts) => t(`homepage:${key}`, opts);
   const { formatMoney } = useCurrency();
   const { isMobile } = useResponsive();
   const { products, loading: productsLoading } = useProductsCatalog();
   const lang = i18n.language;
 
   const CATS = {
-    inverters: t("catalog.inverters", "Onduleurs"),
-    batteries: t("catalog.batteriesStorage", "Batteries"),
-    optimizers: t("catalog.optimizers", "Optimiseurs"),
-    "ev-chargers": t("catalog.chargingStations", "Bornes de recharge"),
-    accessories: t("catalog.accessories", "Accessoires"),
-    panels: t("home.categories.solarPanels", "Panneaux solaires"),
+    inverters: tcatalog("inverters", "Onduleurs"),
+    batteries: tcatalog("batteriesStorage", "Batteries"),
+    optimizers: tcatalog("optimizers", "Optimiseurs"),
+    "ev-chargers": tcatalog("chargingStations", "Bornes de recharge"),
+    accessories: tcatalog("accessories", "Accessoires"),
+    panels: thome("categories.solarPanels", "Panneaux solaires"),
     mounting: "Structures de montage",
   };
 

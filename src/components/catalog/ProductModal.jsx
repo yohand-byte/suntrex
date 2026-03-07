@@ -29,7 +29,9 @@ const BRAND_LOGOS = {
 };
 
 export default function ProductModal({ product, isLoggedIn, onLogin, onClose }) {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["translation", "catalog", "common"]);
+  const tcatalog = (key, opts) => t(`catalog:${key}`, opts);
+  const tcommon = (key, opts) => t(`common:${key}`, opts);
   const navigate = useNavigate();
   const { isMobile } = useResponsive();
 
@@ -54,16 +56,16 @@ export default function ProductModal({ product, isLoggedIn, onLogin, onClose }) 
 
   // Spec rows to display
   const specRows = [];
-  if (product.power > 0) specRows.push({ label: t("catalog.powerLabel", "Power"), value: product.power >= 1 ? product.power + " kW" : (product.power * 1000) + " W" });
-  if (product.type) specRows.push({ label: t("catalog.type", "Type"), value: product.type });
-  if (product.phases > 0) specRows.push({ label: t("catalog.phases", "Phases"), value: product.phases === 1 ? "Monophasé" : "Triphasé" });
+  if (product.power > 0) specRows.push({ label: tcatalog("powerLabel", "Power"), value: product.power >= 1 ? product.power + " kW" : (product.power * 1000) + " W" });
+  if (product.type) specRows.push({ label: tcatalog("type", "Type"), value: product.type });
+  if (product.phases > 0) specRows.push({ label: tcatalog("phases", "Phases"), value: product.phases === 1 ? "Monophasé" : "Triphasé" });
   if (product.mppt > 0) specRows.push({ label: "MPPT", value: product.mppt });
-  if (product.efficiency) specRows.push({ label: t("catalog.efficiency", "Efficiency"), value: product.efficiency });
-  if (product.protection) specRows.push({ label: t("catalog.protection", "Protection"), value: product.protection });
-  if (product.weight) specRows.push({ label: t("catalog.weight", "Weight"), value: product.weight + " kg" });
-  if (product.warranty) specRows.push({ label: t("catalog.warranty", "Warranty"), value: product.warranty });
+  if (product.efficiency) specRows.push({ label: tcatalog("efficiency", "Efficiency"), value: product.efficiency });
+  if (product.protection) specRows.push({ label: tcatalog("protection", "Protection"), value: product.protection });
+  if (product.weight) specRows.push({ label: tcatalog("weight", "Weight"), value: product.weight + " kg" });
+  if (product.warranty) specRows.push({ label: tcatalog("warranty", "Warranty"), value: product.warranty });
   if (product.dimensions) specRows.push({ label: "Dimensions", value: product.dimensions });
-  if (product.capacityKwh) specRows.push({ label: t("catalog.capacity", "Capacity"), value: product.capacityKwh + " kWh" });
+  if (product.capacityKwh) specRows.push({ label: tcatalog("capacity", "Capacity"), value: product.capacityKwh + " kWh" });
 
   return (
     <div
@@ -159,12 +161,12 @@ export default function ProductModal({ product, isLoggedIn, onLogin, onClose }) 
               {/* Price + stock */}
               <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 12 }}>
                 <div>
-                  <span style={{ fontSize: 12, color: "#888" }}>{t("catalog.from")} </span>
+                  <span style={{ fontSize: 12, color: "#888" }}>{tcatalog("from")} </span>
                   <PriceGate price={bestOffer.price} isLoggedIn={isLoggedIn} onLogin={onLogin} size="large" />
                 </div>
                 <div style={{ fontSize: 13, color: totalStock > 0 ? "#4CAF50" : "#ef4444", fontWeight: 500 }}>
                   <span style={{ display: "inline-block", width: 7, height: 7, borderRadius: "50%", background: totalStock > 0 ? "#4CAF50" : "#ef4444", marginRight: 4 }} />
-                  {totalStock > 0 ? `${totalStock.toLocaleString()} ${t("common.pcs")}` : t("catalog.outOfStock", "Rupture")}
+                  {totalStock > 0 ? `${totalStock.toLocaleString()} ${tcommon("pcs")}` : tcatalog("outOfStock", "Rupture")}
                 </div>
               </div>
 
@@ -181,7 +183,7 @@ export default function ProductModal({ product, isLoggedIn, onLogin, onClose }) 
           {specRows.length > 0 && (
             <div style={{ marginTop: 20 }}>
               <h3 style={{ fontSize: 14, fontWeight: 600, color: "#475569", marginBottom: 10, textTransform: "uppercase", letterSpacing: 0.5 }}>
-                {t("catalog.technicalSpecs", "Technical Specifications")}
+                {tcatalog("technicalSpecs", "Technical Specifications")}
               </h3>
               <div style={{ border: "1px solid #e2e8f0", borderRadius: 10, overflow: "hidden" }}>
                 {specRows.map((row, i) => (
@@ -202,7 +204,7 @@ export default function ProductModal({ product, isLoggedIn, onLogin, onClose }) 
           {product.certifications && product.certifications.length > 0 && (
             <div style={{ marginTop: 16 }}>
               <span style={{ fontSize: 12, color: "#64748b", fontWeight: 500 }}>
-                {t("catalog.certifications", "Certifications")}:
+                {tcatalog("certifications", "Certifications")}:
               </span>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginTop: 4 }}>
                 {product.certifications.map((cert, i) => (
@@ -221,7 +223,7 @@ export default function ProductModal({ product, isLoggedIn, onLogin, onClose }) 
           {product.features && product.features.length > 0 && (
             <div style={{ marginTop: 16 }}>
               <span style={{ fontSize: 12, color: "#64748b", fontWeight: 500 }}>
-                {t("catalog.features", "Features")}:
+                {tcatalog("features", "Features")}:
               </span>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 6 }}>
                 {product.features.map((feat, i) => (
@@ -248,7 +250,7 @@ export default function ProductModal({ product, isLoggedIn, onLogin, onClose }) 
               }}
             >
               <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15 12H3m9-9l9 9-9 9" /></svg>
-              {t("catalog.offerDetails")}
+              {tcatalog("offerDetails")}
             </button>
             {product.datasheet && (
               <a

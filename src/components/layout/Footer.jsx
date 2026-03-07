@@ -47,7 +47,8 @@ function TrustBadge({ icon, label }) {
 }
 
 export default function Footer() {
-  var _t = useTranslation(), t = _t.t;
+  var _t = useTranslation(["translation", "common"]), t = _t.t;
+  const tc = (key, opts) => t(`common:${key}`, opts);
   var _r = useResponsive(), isMobile = _r.isMobile, isTablet = _r.isTablet;
   var navigate = useNavigate();
 
@@ -67,33 +68,33 @@ export default function Footer() {
             <span style={{ fontWeight: 800, fontSize: 17, color: "#fff", letterSpacing: "-0.02em" }}>suntrex</span>
           </div>
           <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", lineHeight: 1.6, marginBottom: 16 }}>
-            Marketplace B2B photovoltaïque.<br/>Panneaux, onduleurs, batteries &amp; plus pour les professionnels européens du solaire.
+            {tc("footer.brandDescription")}
           </p>
           <a href="mailto:contact@suntrex.eu" style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", marginBottom: 6, display: "block", textDecoration: "none" }}>contact@suntrex.eu</a>
-          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>Tél / WhatsApp : +33 7 00 00 00 00</p>
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>{tc("footer.phoneWhatsapp")}</p>
         </div>
 
         {/* Col 2 — Navigation */}
         <div>
-          <FooterHeading>Navigation</FooterHeading>
-          <FooterLink label="Centre d'aide" onClick={function() { navigate("/faq"); }} />
-          <FooterLink label="Blog" onClick={function() { navigate("/blog"); }} />
-          <FooterLink label="Vendre sur SUNTREX" onClick={function() { navigate("/dashboard/sell"); }} />
-          <FooterLink label="À propos" onClick={function() { navigate("/about"); }} />
-          <FooterLink label="Conditions Générales" onClick={function() { navigate("/cgv"); }} />
-          <FooterLink label="Politique de confidentialité" onClick={function() { navigate("/privacy"); }} />
+          <FooterHeading>{tc("footer.columns.navigation")}</FooterHeading>
+          <FooterLink label={tc("footer.links.helpCenter")} onClick={function() { navigate("/faq"); }} />
+          <FooterLink label={tc("footer.links.blog")} onClick={function() { navigate("/blog"); }} />
+          <FooterLink label={tc("footer.links.sellOnSuntrex")} onClick={function() { navigate("/dashboard/seller"); }} />
+          <FooterLink label={tc("footer.links.about")} onClick={function() { navigate("/about"); }} />
+          <FooterLink label={tc("footer.links.terms")} onClick={function() { navigate("/cgv"); }} />
+          <FooterLink label={tc("footer.links.privacy")} onClick={function() { navigate("/privacy"); }} />
         </div>
 
         {/* Col 3 — Categories */}
         <div>
-          <FooterHeading>Catégories</FooterHeading>
+          <FooterHeading>{tc("footer.columns.categories")}</FooterHeading>
           {[
-            { key: "panels", label: "Panneaux solaires" },
-            { key: "inverters", label: "Onduleurs" },
-            { key: "storage", label: "Batteries" },
-            { key: "mounting", label: "Systèmes de montage" },
-            { key: "electrical", label: "Électrotechnique" },
-            { key: "emobility", label: "E-mobilité" },
+            { key: "panels", label: tc("footer.categoriesExtended.panels") },
+            { key: "inverters", label: tc("footer.categoriesExtended.inverters") },
+            { key: "storage", label: tc("footer.categoriesExtended.storage") },
+            { key: "mounting", label: tc("footer.categoriesExtended.mounting") },
+            { key: "electrical", label: tc("footer.categoriesExtended.electrical") },
+            { key: "emobility", label: tc("footer.categoriesExtended.emobility") },
           ].map(function(c) {
             return <FooterLink key={c.key} label={c.label} onClick={function() { navigate(CATEGORY_ROUTES[c.key]); }} />;
           })}
@@ -101,7 +102,7 @@ export default function Footer() {
 
         {/* Col 4 — Brands */}
         <div>
-          <FooterHeading>Marques</FooterHeading>
+          <FooterHeading>{tc("footer.columns.brands")}</FooterHeading>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 16px" }}>
             {["Huawei", "Deye", "Jinko", "LONGi", "Trina", "BYD", "SMA", "Enphase"].map(function(b) {
               return <FooterLink key={b} label={b} onClick={function() { navigate("/catalog/all?q=" + b); }} />;
@@ -113,7 +114,7 @@ export default function Footer() {
       {/* ── Payment Logos ── */}
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 24, marginBottom: 20 }}>
         <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 16, justifyContent: isMobile ? "center" : "flex-start" }}>
-          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", marginRight: 4 }}>Paiements acceptés</span>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", marginRight: 4 }}>{tc("footer.paymentsAccepted")}</span>
           {PAYMENT_LOGOS.map(function(logo) {
             return <img key={logo.name} src={logo.src} alt={logo.name} style={{ height: 30, width: "auto", objectFit: "contain" }} />;
           })}
@@ -122,20 +123,20 @@ export default function Footer() {
 
       {/* ── Trust Badges ── */}
       <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, max-content)", gap: isMobile ? 10 : 28, marginBottom: 24, justifyContent: isMobile ? "center" : "flex-start" }}>
-        <TrustBadge icon="🔒" label="Paiement sécurisé 3D Secure" />
-        <TrustBadge icon="🚚" label="Livraison vérifiée SUNTREX" />
-        <TrustBadge icon="🏷️" label="Commission -5% vs concurrence" />
-        <TrustBadge icon="🇪🇺" label="Conforme RGPD" />
+        <TrustBadge icon="🔒" label={tc("footer.trustBadges.securePayment")} />
+        <TrustBadge icon="🚚" label={tc("footer.trustBadges.verifiedDelivery")} />
+        <TrustBadge icon="🏷️" label={tc("footer.trustBadges.lowCommission")} />
+        <TrustBadge icon="🇪🇺" label={tc("footer.trustBadges.gdpr")} />
       </div>
 
       {/* ── Legal Bar ── */}
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 16, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
-        <span style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>© 2026 SUNTREX — Tous droits réservés</span>
+        <span style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>{tc("footer.copyright")}</span>
         <div style={{ display: "flex", gap: 16 }}>
           {[
-            { label: "CGV", path: "/cgv" },
-            { label: "Confidentialité", path: "/privacy" },
-            { label: "Mentions légales", path: "/about" },
+            { label: tc("footer.legalShort.terms"), path: "/cgv" },
+            { label: tc("footer.legalShort.privacy"), path: "/privacy" },
+            { label: tc("footer.legalShort.legalNotice"), path: "/about" },
           ].map(function(l) {
             return <a key={l.label} href={l.path} onClick={function(e) { e.preventDefault(); navigate(l.path); }} style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", textDecoration: "none", transition: "color .15s" }} onMouseEnter={function(e) { e.target.style.color = "rgba(255,255,255,0.7)"; }} onMouseLeave={function(e) { e.target.style.color = "rgba(255,255,255,0.35)"; }}>{l.label}</a>;
           })}

@@ -7,7 +7,8 @@ import CurrencySwitcher from "./CurrencySwitcher";
 import useResponsive from "../../hooks/useResponsive";
 
 export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowRegister, onLogout }) {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["translation", "common"]);
+  const tc = (key, opts) => t(`common:${key}`, opts);
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -15,13 +16,13 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
   const [menuOpen, setMenuOpen] = useState(false);
 
   const NAV_ITEMS = [
-    { label: t("header.nav.allProducts"), path: "/catalog" },
-    { label: t("header.nav.solarPanels"), path: "/catalog/panels" },
-    { label: t("header.nav.inverters"), path: "/catalog/inverters" },
-    { label: t("header.nav.energyStorage"), path: "/catalog/batteries" },
-    { label: t("header.nav.optimizers"), path: "/catalog/optimizers" },
-    { label: t("header.nav.electrical"), path: "/catalog?category=electrical" },
-    { label: t("header.nav.eMobility"), path: "/catalog?category=emobility" },
+    { label: tc("header.nav.allProducts"), path: "/catalog" },
+    { label: tc("header.nav.solarPanels"), path: "/catalog/panels" },
+    { label: tc("header.nav.inverters"), path: "/catalog/inverters" },
+    { label: tc("header.nav.energyStorage"), path: "/catalog/batteries" },
+    { label: tc("header.nav.optimizers"), path: "/catalog/optimizers" },
+    { label: tc("header.nav.electrical"), path: "/catalog?category=electrical" },
+    { label: tc("header.nav.eMobility"), path: "/catalog?category=emobility" },
   ];
 
   return (
@@ -29,7 +30,7 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
       {/* TOP BAR */}
       <div style={{ background: "#1a1a1a", color: "#fff", fontSize: 12, padding: isMobile ? "6px 16px" : "6px 40px", display: "flex", justifyContent: "space-between" }}>
         <div style={{ display: "flex", gap: 20, opacity: .7 }}>
-          {isMobile ? null : [{key:"about",label:t("header.topLinks.about"),path:"/about"},{key:"blog",label:t("header.topLinks.blog"),path:"/blog"},{key:"faq",label:t("header.topLinks.faq"),path:"/faq"}].map(l => <a key={l.key} onClick={l.path ? (e) => { e.preventDefault(); navigate(l.path); } : undefined} href={l.path || "#"} style={{ color: "#fff", textDecoration: "none", cursor: "pointer" }}>{l.label}</a>)}
+          {isMobile ? null : [{key:"about",label:tc("header.topLinks.about"),path:"/about"},{key:"blog",label:tc("header.topLinks.blog"),path:"/blog"},{key:"faq",label:tc("header.topLinks.faq"),path:"/faq"}].map(l => <a key={l.key} onClick={l.path ? (e) => { e.preventDefault(); navigate(l.path); } : undefined} href={l.path || "#"} style={{ color: "#fff", textDecoration: "none", cursor: "pointer" }}>{l.label}</a>)}
         </div>
         <span style={{ opacity: .7 }}>+33 1 XX XX XX XX</span>
       </div>
@@ -55,7 +56,7 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
         {/* Search bar - hidden on mobile */}
         {!isMobile && (
           <div style={{ flex: 1, maxWidth: 420, position: "relative" }}>
-            <input placeholder={t("header.search")} style={{ width: "100%", height: 36, borderRadius: 6, border: "1px solid #d3d4db", padding: "0 36px 0 12px", fontSize: 13, outline: "none" }} />
+            <input placeholder={tc("header.search")} style={{ width: "100%", height: 36, borderRadius: 6, border: "1px solid #d3d4db", padding: "0 36px 0 12px", fontSize: 13, outline: "none" }} />
             <button style={{ position: "absolute", right: 1, top: 1, bottom: 1, width: 34, borderRadius: "0 5px 5px 0", border: "none", background: "#E8700A", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <svg width="14" height="14" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
             </button>
@@ -79,8 +80,8 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
             </>
           ) : (
             <>
-              {!isMobile && <button onClick={onShowLogin} style={{ background: "none", border: "1px solid #ddd", borderRadius: 6, padding: "6px 14px", fontSize: 13, cursor: "pointer", fontFamily: "inherit", color: "#555" }}>{t("header.login")}</button>}
-              <button onClick={onShowRegister} style={{ background: "#E8700A", border: "none", borderRadius: 6, padding: isMobile ? "6px 10px" : "6px 14px", fontSize: 13, cursor: "pointer", fontFamily: "inherit", color: "#fff", fontWeight: 600 }}>{t("header.register")}</button>
+              {!isMobile && <button onClick={onShowLogin} style={{ background: "none", border: "1px solid #ddd", borderRadius: 6, padding: "6px 14px", fontSize: 13, cursor: "pointer", fontFamily: "inherit", color: "#555" }}>{tc("header.login")}</button>}
+              <button onClick={onShowRegister} style={{ background: "#E8700A", border: "none", borderRadius: 6, padding: isMobile ? "6px 10px" : "6px 14px", fontSize: 13, cursor: "pointer", fontFamily: "inherit", color: "#fff", fontWeight: 600 }}>{tc("header.register")}</button>
             </>
           )}
         </div>
@@ -96,7 +97,7 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
             </button>
           );
         })}
-        {!isMobile && <Link to="/catalog" style={{ marginLeft: "auto", fontSize: 13, color: "#E8700A", textDecoration: "none", fontWeight: 500, whiteSpace: "nowrap", flexShrink: 0 }}>{t("header.sellOnSuntrex")}</Link>}
+        {!isMobile && <Link to="/catalog" style={{ marginLeft: "auto", fontSize: 13, color: "#E8700A", textDecoration: "none", fontWeight: 500, whiteSpace: "nowrap", flexShrink: 0 }}>{tc("header.sellOnSuntrex")}</Link>}
       </nav>
 
       {/* Mobile slide-out menu */}
@@ -111,7 +112,7 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
 
             {/* Mobile search */}
             <div style={{ marginBottom: 16, position: "relative" }}>
-              <input placeholder={t("header.search")} style={{ width: "100%", height: 36, borderRadius: 6, border: "1px solid #d3d4db", padding: "0 36px 0 12px", fontSize: 13, outline: "none", boxSizing: "border-box" }} />
+              <input placeholder={tc("header.search")} style={{ width: "100%", height: 36, borderRadius: 6, border: "1px solid #d3d4db", padding: "0 36px 0 12px", fontSize: 13, outline: "none", boxSizing: "border-box" }} />
               <button style={{ position: "absolute", right: 1, top: 1, bottom: 1, width: 34, borderRadius: "0 5px 5px 0", border: "none", background: "#E8700A", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <svg width="14" height="14" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
               </button>
@@ -133,14 +134,14 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
             {/* Auth buttons */}
             {!isLoggedIn && (
               <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 8 }}>
-                <button onClick={() => { onShowLogin(); setMenuOpen(false); }} style={{ width: "100%", padding: "10px 0", border: "1px solid #ddd", borderRadius: 6, background: "none", fontSize: 13, cursor: "pointer", fontFamily: "inherit", color: "#555" }}>{t("header.login")}</button>
-                <button onClick={() => { onShowRegister(); setMenuOpen(false); }} style={{ width: "100%", padding: "10px 0", border: "none", borderRadius: 6, background: "#E8700A", fontSize: 13, cursor: "pointer", fontFamily: "inherit", color: "#fff", fontWeight: 600 }}>{t("header.register")}</button>
+                <button onClick={() => { onShowLogin(); setMenuOpen(false); }} style={{ width: "100%", padding: "10px 0", border: "1px solid #ddd", borderRadius: 6, background: "none", fontSize: 13, cursor: "pointer", fontFamily: "inherit", color: "#555" }}>{tc("header.login")}</button>
+                <button onClick={() => { onShowRegister(); setMenuOpen(false); }} style={{ width: "100%", padding: "10px 0", border: "none", borderRadius: 6, background: "#E8700A", fontSize: 13, cursor: "pointer", fontFamily: "inherit", color: "#fff", fontWeight: 600 }}>{tc("header.register")}</button>
               </div>
             )}
 
             {/* Links */}
             <div style={{ marginTop: 20, display: "flex", flexDirection: "column", gap: 8, fontSize: 13, color: "#888" }}>
-              {[{key:"about",label:t("header.topLinks.about"),path:null},{key:"blog",label:t("header.topLinks.blog"),path:"/blog"},{key:"faq",label:t("header.topLinks.faq"),path:"/faq"}].map(l => <a key={l.key} onClick={l.path ? (e) => { e.preventDefault(); navigate(l.path); setMenuOpen(false); } : undefined} href={l.path || "#"} style={{ color: "#888", textDecoration: "none", cursor: "pointer" }}>{l.label}</a>)}
+              {[{key:"about",label:tc("header.topLinks.about"),path:"/about"},{key:"blog",label:tc("header.topLinks.blog"),path:"/blog"},{key:"faq",label:tc("header.topLinks.faq"),path:"/faq"}].map(l => <a key={l.key} onClick={l.path ? (e) => { e.preventDefault(); navigate(l.path); setMenuOpen(false); } : undefined} href={l.path || "#"} style={{ color: "#888", textDecoration: "none", cursor: "pointer" }}>{l.label}</a>)}
             </div>
           </div>
         </div>
@@ -151,10 +152,10 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
         <div style={{ background: "#fffbeb", borderBottom: "1px solid #fde68a", padding: isMobile ? "10px 16px" : "10px 40px", display: "flex", alignItems: "center", gap: 12, flexWrap: isMobile ? "wrap" : "nowrap" }}>
           <span style={{ fontSize: 16 }}>⏳</span>
           <div style={{ fontSize: 13, color: "#92400e", flex: 1 }}>
-            <b>{t("header.verificationBanner.title")}</b> — {t("header.verificationBanner.message")}
+            <b>{tc("header.verificationBanner.title")}</b> — {tc("header.verificationBanner.message")}
           </div>
           <button onClick={() => navigate("/dashboard")} style={{ background: "#E8700A", color: "#fff", border: "none", borderRadius: 6, padding: "6px 14px", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap" }}>
-            {t("header.verificationBanner.button")}
+            {tc("header.verificationBanner.button")}
           </button>
         </div>
       )}

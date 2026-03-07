@@ -37,7 +37,44 @@
     "mounting": "Montaggio",
     "brands": "Marchi",
     "legal": "Note legali",
-    "telWhatsappEmail": "Tel. - WhatsApp - Email"
+    "telWhatsappEmail": "Tel. - WhatsApp - Email",
+    "brandDescription": "Marketplace B2B fotovoltaico. Pannelli, inverter, batterie e altro per i professionisti europei del solare.",
+    "phoneWhatsapp": "Tel. / WhatsApp: +33 7 00 00 00 00",
+    "paymentsAccepted": "Pagamenti accettati",
+    "copyright": "© 2026 SUNTREX — Tutti i diritti riservati",
+    "columns": {
+      "navigation": "Navigazione",
+      "categories": "Categorie",
+      "brands": "Marchi"
+    },
+    "links": {
+      "helpCenter": "Centro assistenza",
+      "blog": "Blog",
+      "sellOnSuntrex": "Vendere su SUNTREX",
+      "about": "Chi siamo",
+      "terms": "Condizioni generali",
+      "privacy": "Informativa privacy",
+      "legalNotice": "Note legali"
+    },
+    "categoriesExtended": {
+      "panels": "Pannelli solari",
+      "inverters": "Inverter",
+      "storage": "Batterie",
+      "mounting": "Sistemi di montaggio",
+      "electrical": "Elettrotecnica",
+      "emobility": "E-mobility"
+    },
+    "trustBadges": {
+      "securePayment": "Pagamento sicuro 3D Secure",
+      "verifiedDelivery": "Consegna verificata SUNTREX",
+      "lowCommission": "Commissione -5% rispetto al mercato",
+      "gdpr": "Conforme GDPR"
+    },
+    "legalShort": {
+      "terms": "CGV",
+      "privacy": "Privacy",
+      "legalNotice": "Note legali"
+    }
   },
   "common": {
     "pcs": "pz.",

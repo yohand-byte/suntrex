@@ -37,7 +37,44 @@
     "mounting": "Montage",
     "brands": "Marken",
     "legal": "Rechtliches",
-    "telWhatsappEmail": "Tel. - WhatsApp - E-Mail"
+    "telWhatsappEmail": "Tel. - WhatsApp - E-Mail",
+    "brandDescription": "B2B-Marktplatz für Photovoltaik. Module, Wechselrichter, Batterien und mehr für europäische Solarprofis.",
+    "phoneWhatsapp": "Tel. / WhatsApp: +33 7 00 00 00 00",
+    "paymentsAccepted": "Akzeptierte Zahlungen",
+    "copyright": "© 2026 SUNTREX — Alle Rechte vorbehalten",
+    "columns": {
+      "navigation": "Navigation",
+      "categories": "Kategorien",
+      "brands": "Marken"
+    },
+    "links": {
+      "helpCenter": "Hilfecenter",
+      "blog": "Blog",
+      "sellOnSuntrex": "Auf SUNTREX verkaufen",
+      "about": "Über uns",
+      "terms": "Allgemeine Geschäftsbedingungen",
+      "privacy": "Datenschutzerklärung",
+      "legalNotice": "Impressum"
+    },
+    "categoriesExtended": {
+      "panels": "Solarmodule",
+      "inverters": "Wechselrichter",
+      "storage": "Batterien",
+      "mounting": "Montagesysteme",
+      "electrical": "Elektrotechnik",
+      "emobility": "E-Mobilität"
+    },
+    "trustBadges": {
+      "securePayment": "3D Secure-Zahlung",
+      "verifiedDelivery": "Von SUNTREX verifizierte Lieferung",
+      "lowCommission": "-5 % Provision vs. Markt",
+      "gdpr": "DSGVO-konform"
+    },
+    "legalShort": {
+      "terms": "AGB",
+      "privacy": "Datenschutz",
+      "legalNotice": "Impressum"
+    }
   },
   "common": {
     "pcs": "Stk.",
