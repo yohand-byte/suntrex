@@ -1,7 +1,10 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAdminData } from "../hooks/useAdminData";
 import { supabase } from "../lib/supabase";
+
+var FraudAlerts = lazy(function () { return import("../components/admin/FraudAlerts"); });
+var ModerationDashboard = lazy(function () { return import("./admin/ModerationDashboard"); });
 
 /* ═══════════════════════════════════════════════════════════════
    SUNTREX — Admin Dashboard
@@ -117,6 +120,8 @@ var NAV_ITEMS = [
   { id: "users", icon: "👥", label: "Utilisateurs" },
   { id: "delivery", icon: "🚚", label: "Livraisons" },
   { id: "disputes", icon: "⚠️", label: "Litiges" },
+  { id: "fraud", icon: "🛡️", label: "Fraude" },
+  { id: "moderation", icon: "💬", label: "Modération" },
   { id: "settings", icon: "⚙️", label: "Paramètres" },
 ];
 
@@ -846,6 +851,8 @@ export default function AdminDashboard() {
       case "users": return <UsersSection users={users} />;
       case "delivery": return <DeliverySection kpi={kpi} deliveries={deliveries} />;
       case "disputes": return <DisputesSection kpi={kpi} disputes={disputes} />;
+      case "fraud": return <Suspense fallback={null}><FraudAlerts /></Suspense>;
+      case "moderation": return <Suspense fallback={null}><ModerationDashboard /></Suspense>;
       case "settings": return <SettingsSection />;
       default: return <OverviewSection kpi={kpi} transactions={transactions} monthlyRevenue={monthlyRevenue} />;
     }

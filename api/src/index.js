@@ -19,6 +19,7 @@ fastify.register(require('./routes/blog-sitemap'), { prefix: '/api' });
 fastify.register(require('./routes/escrow'), { prefix: '/api' });
 fastify.register(require('./routes/whatsapp-webhook'), { prefix: '/api' });
 fastify.register(require('./routes/delivery'), { prefix: '/api' });
+fastify.register(require('./routes/fraud-detection'), { prefix: '/api' });
 
 // Health check (Cloud Run)
 fastify.get('/health', async () => ({ status: 'ok', version: '1.0.0' }));
