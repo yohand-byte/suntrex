@@ -393,13 +393,6 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
     sortBy,
   ]);
 
-  if (productsLoading) {
-    return <div style={{ maxWidth: 1280, margin: "0 auto", padding: "48px 24px", fontFamily: "'DM Sans',sans-serif" }}>
-      <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>Chargement du catalogue...</div>
-      <div style={{ fontSize: 14, color: "#6b7280" }}>Les produits SUNTREX sont en cours de chargement.</div>
-    </div>;
-  }
-
   /* ── Pagination ── */
   const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
   const paginatedItems = useMemo(
@@ -419,6 +412,13 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
     },
     [totalPages]
   );
+
+  if (productsLoading) {
+    return <div style={{ maxWidth: 1280, margin: "0 auto", padding: "48px 24px", fontFamily: "'DM Sans',sans-serif" }}>
+      <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>Chargement du catalogue...</div>
+      <div style={{ fontSize: 14, color: "#6b7280" }}>Les produits SUNTREX sont en cours de chargement.</div>
+    </div>;
+  }
 
   /* ── Clear all filters ── */
   const clearAll = () => {
