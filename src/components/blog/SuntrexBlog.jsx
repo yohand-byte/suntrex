@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import i18n from "../../i18n/index";
 import { supabase } from "../../lib/supabase";
 
 // ═══════════════════════════════════════════════════════════════════
@@ -52,7 +53,8 @@ function buildCategories(t) {
   return CATEGORY_IDS.map(function (id) { return { id: id, label: t("blog.categories." + id), icon: CATEGORY_ICONS[id] }; });
 }
 function getCatFromList(cats, id) { return cats.find(function (c) { return c.id === id; }) || cats[0]; }
-import i18n from "../../i18n/index";
+var _categories = null;
+function getCat(id) { return getCatFromList(_categories || [], id); }
 const LANG_LOCALE = { fr: "fr-FR", en: "en-GB", de: "de-DE", es: "es-ES", it: "it-IT", pl: "pl-PL", el: "el-GR" };
 const formatDate = (d) => new Date(d).toLocaleDateString(LANG_LOCALE[i18n.language] || "fr-FR", { day: "numeric", month: "long", year: "numeric" });
 
@@ -504,9 +506,9 @@ const ArticleDetail = ({ article, onBack }) => {
 // MAIN BLOG APP
 // ═══════════════════════════════════════════════════════════════════
 export default function SuntrexBlog() {
-  const { t, i18n } = useTranslation("pages");
+  const { t } = useTranslation("pages");
   const CATEGORIES = buildCategories(t);
-  const getCat = (id) => getCatFromList(CATEGORIES, id);
+  _categories = CATEGORIES;
   const { isMobile, isTablet, isDesktop } = useResponsive();
   const [view, setView] = useState("list");
   const [articles, setArticles] = useState([]);
