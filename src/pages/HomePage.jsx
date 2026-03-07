@@ -150,7 +150,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
       <section style={{position:"relative",height:isMobile?320:480,background:"#0a1628"}}>
         <div style={{position:"absolute",inset:0,overflow:"hidden"}}>
           <video autoPlay muted loop playsInline poster="/hero-solar.jpg" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.35)",zIndex:1}}><source src="/hero-video.mp4" type="video/mp4"/></video>
-          <div style={{position:"absolute",inset:0,backgroundImage:"url('/hero-solar.jpg')",backgroundSize:"cover",backgroundPosition:"center",filter:"brightness(0.35)",zIndex:0}}/>
+          <img src="/hero-solar.jpg" alt="" fetchpriority="high" width="1440" height="480" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",filter:"brightness(0.35)",zIndex:0}}/>
           <div style={{position:"absolute",inset:0,background:"linear-gradient(180deg,rgba(10,22,40,0.3) 0%,rgba(10,22,40,0.7) 100%)",zIndex:2}}/>
         </div>
         <div style={{position:"relative",zIndex:10,height:"100%",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",textAlign:"center",padding:isMobile?"0 16px":"0 24px"}}>
@@ -165,7 +165,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
               placeholder={t("home.hero.searchPlaceholder")}
               style={{width:"100%",height:isMobile?44:50,borderRadius:showDrop&&searchResults.length>0?"8px 8px 0 0":8,border:"none",padding:"0 56px 0 18px",fontSize:isMobile?14:15,background:"#fff",boxShadow:"0 4px 24px rgba(0,0,0,0.2)",outline:"none",fontFamily:"'DM Sans',sans-serif"}}
             />
-            <button onClick={goSearch} style={{position:"absolute",right:5,top:5,bottom:showDrop&&searchResults.length>0?"auto":5,height:isMobile?34:40,width:isMobile?38:44,borderRadius:6,border:"none",background:"#E8700A",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",zIndex:5}}>
+            <button onClick={goSearch} aria-label="Search" style={{position:"absolute",right:5,top:5,bottom:showDrop&&searchResults.length>0?"auto":5,height:isMobile?34:40,width:isMobile?38:44,borderRadius:6,border:"none",background:"#E8700A",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",zIndex:5}}>
               <svg width="18" height="18" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
             </button>
             {/* Autocomplete dropdown */}
@@ -239,7 +239,7 @@ export default function HomePage({ isVerified, isLoggedIn, onShowRegister, navig
             <div key={p.id} className="hl" onClick={()=>navigate(`/product/${p.id}`)} style={{borderRadius:10,border:"1px solid #e4e5ec",background:"#fff",overflow:"hidden",cursor:"pointer",display:"flex",flexDirection:"column"}}>
               <div style={{padding:"8px 12px 0"}}><span style={{fontSize:11,color:"#4CAF50",fontWeight:500}}>{"● "+p.stock.toLocaleString()+" "+t("common.pcs")}</span></div>
               <div style={{height:isMobile?110:150,display:"flex",alignItems:"center",justifyContent:"center",background:"#fff",padding:isMobile?12:20}}>
-                <img src={p.img} alt={p.name} style={{maxHeight:isMobile?90:130,maxWidth:"100%",objectFit:"contain"}} onError={e=>{e.target.onerror=null;e.target.style.opacity="0.3"}}/>
+                <img src={p.img} alt={p.name} loading="lazy" width="200" height="150" style={{maxHeight:isMobile?90:130,maxWidth:"100%",objectFit:"contain"}} onError={e=>{e.target.onerror=null;e.target.style.opacity="0.3"}}/>
               </div>
               <div style={{padding:isMobile?"8px 10px 12px":"10px 12px 14px",flex:1,display:"flex",flexDirection:"column"}}>
                 <h3 style={{fontSize:isMobile?12:13,fontWeight:600,marginBottom:6,lineHeight:1.3}}>{p.name}</h3>

@@ -108,6 +108,9 @@ export default function ProductRecommendation({ currentProduct, title, lang = "f
               <img
                 src={p.image}
                 alt={p.name}
+                loading="lazy"
+                width="200"
+                height="120"
                 style={{ maxHeight: isMobile ? 70 : 100, maxWidth: "100%", objectFit: "contain" }}
                 onError={(e) => { e.target.onerror = null; e.target.style.opacity = "0.2"; }}
               />
