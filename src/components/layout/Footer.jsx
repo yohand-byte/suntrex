@@ -33,8 +33,6 @@ function FooterHeading({ children }) {
 
 
 var PAYMENT_LOGOS = [
-  { name: "Visa", src: "https://img.icons8.com/color/96/visa.png" },
-  { name: "Mastercard", src: "https://img.icons8.com/color/96/mastercard-logo.png" },
   { name: "Stripe", src: "https://img.icons8.com/color/96/stripe.png" },
   { name: "PayPal", src: "https://img.icons8.com/color/96/paypal.png" },
   { name: "Apple Pay", src: "https://img.icons8.com/ios-filled/100/FFFFFF/apple-pay.png" },
