@@ -16,6 +16,7 @@ fastify.register(require('./routes/admin-stats'), { prefix: '/api' });
 fastify.register(require('./routes/blog-ai-generate'), { prefix: '/api' });
 fastify.register(require('./routes/blog-rss'), { prefix: '/api' });
 fastify.register(require('./routes/blog-sitemap'), { prefix: '/api' });
+fastify.register(require('./routes/gemini'), { prefix: '/api' });
 fastify.register(require('./routes/escrow'), { prefix: '/api' });
 fastify.register(require('./routes/whatsapp-webhook'), { prefix: '/api' });
 fastify.register(require('./routes/delivery'), { prefix: '/api' });

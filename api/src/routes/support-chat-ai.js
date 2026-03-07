@@ -115,15 +115,12 @@ Response format:
 --- SUNTREX PRODUCT CATALOG ---
 ${PRODUCT_CATALOG}`;
 
+const { callGemini } = require("../lib/gemini");
+
 async function routes(fastify) {
   fastify.post("/support-chat-ai", async (request, reply) => {
-    const MISTRAL_API_KEY = process.env.MISTRAL_API_KEY;
     const SUPABASE_URL = process.env.SUPABASE_URL;
     const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-    if (!MISTRAL_API_KEY) {
-      return reply.code(500).send({ error: "AI service not configured" });
-    }
 
     try {
       const { conversation_id, message, context = {} } = request.body || {};
@@ -132,42 +129,27 @@ async function routes(fastify) {
         return reply.code(400).send({ error: "Missing message or conversation_id" });
       }
 
-      // Build conversation history for context (OpenAI-compatible format for Mistral)
-      const previousMessages = [
-        { role: "system", content: SYSTEM_PROMPT },
+      // Build conversation history for Gemini
+      const contents = [
         ...(context.previousMessages || []).map((m) => ({
-          role: m.role === "user" ? "user" : "assistant",
-          content: m.content,
+          role: m.role === "user" ? "user" : "model",
+          parts: [{ text: m.content }],
         })),
-        { role: "user", content: message },
+        { role: "user", parts: [{ text: message }] },
       ];
 
-      // Call Mistral AI API
-      const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${MISTRAL_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: "mistral-small-latest",
-          max_tokens: 512,
-          messages: previousMessages,
-        }),
+      // Call Gemini via Vertex AI
+      const { text: aiText } = await callGemini({
+        contents,
+        systemInstruction: SYSTEM_PROMPT,
+        generationConfig: { maxOutputTokens: 512 },
       });
 
-      if (!response.ok) {
-        const errData = await response.text();
-        console.error("Mistral API error:", response.status, errData);
-        return reply.code(502).send({ error: "AI service error" });
-      }
-
-      const data = await response.json();
-      const aiText = data.choices?.[0]?.message?.content || "Désolé, je n'ai pas pu générer une réponse.";
+      const finalText = aiText || "Désolé, je n'ai pas pu générer une réponse.";
 
       // Detect if handoff is needed
       const handoffKeywords = ["litige", "dispute", "remboursement", "refund", "avocat", "lawyer", "plainte", "complaint", "urgent"];
-      const needsHandoff = handoffKeywords.some((kw) => message.toLowerCase().includes(kw) || aiText.toLowerCase().includes(kw));
+      const needsHandoff = handoffKeywords.some((kw) => message.toLowerCase().includes(kw) || finalText.toLowerCase().includes(kw));
 
       // Save AI response to Supabase (server-side with service_role)
       if (SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY && !conversation_id.startsWith("demo-")) {
@@ -183,8 +165,8 @@ async function routes(fastify) {
             body: JSON.stringify({
               conversation_id,
               sender_type: "ai",
-              content: aiText,
-              metadata: { model: "mistral-small-latest", handoff: needsHandoff },
+              content: finalText,
+              metadata: { model: "gemini-2.0-flash", provider: "vertex-ai", handoff: needsHandoff },
             }),
           });
         } catch (dbErr) {
@@ -196,7 +178,7 @@ async function routes(fastify) {
         messages: [
           {
             id: "ai-" + Date.now(),
-            text: aiText,
+            text: finalText,
             handoff: needsHandoff,
           },
         ],

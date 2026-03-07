@@ -1,7 +1,8 @@
 // blog-ai-generate.js — AI Article Generation for SUNTREX Blog (Fastify)
-// Uses Mistral AI API server-side (API key never exposed)
+// Uses Gemini via Vertex AI server-side
 
 const { getSupabaseAdmin } = require("../lib/supabase");
+const { callGemini } = require("../lib/gemini");
 
 const CATEGORIES = {
   market: "Marché & Tendances",
@@ -41,41 +42,24 @@ async function routes(fastify) {
 
       const categoryLabel = CATEGORIES[category] || category;
 
-      // Call Mistral AI API
-      const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.MISTRAL_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: "mistral-large-latest",
-          messages: [
-            {
-              role: "system",
-              content: `Tu es le rédacteur en chef du blog SUNTREX, marketplace B2B d'équipements photovoltaïques en Europe. Tu écris des articles professionnels, factuels, orientés installateurs et distributeurs solaires. Ton ton est expert mais accessible. Tu utilises des données réelles du marché PV européen 2026 (406 GW cumulés UE, modules N-type TOPCon 70%+ des livraisons, stockage à 70$/kWh). Tu termines toujours par un CTA vers SUNTREX. Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.`,
-            },
-            {
-              role: "user",
-              content: `Écris un article de blog sur "${topic}" pour la catégorie "${categoryLabel}". Retourne UNIQUEMENT ce JSON: {"title":"titre accrocheur 60 chars max","slug":"url-friendly-slug","excerpt":"résumé 2 phrases 155 chars pour SEO","content":"article 500-700 mots avec sections **Titre Section** et données marché réelles, CTA SUNTREX à la fin","tags":["tag1","tag2","tag3","tag4"],"seo_title":"titre SEO 60 chars | SUNTREX Blog","seo_description":"meta description 155 chars","read_time":7}`,
-            },
-          ],
-          temperature: 0.7,
-          max_tokens: 3000,
-          response_format: { type: "json_object" },
-        }),
+      // Call Gemini via Vertex AI
+      const systemPrompt = `Tu es le rédacteur en chef du blog SUNTREX, marketplace B2B d'équipements photovoltaïques en Europe. Tu écris des articles professionnels, factuels, orientés installateurs et distributeurs solaires. Ton ton est expert mais accessible. Tu utilises des données réelles du marché PV européen 2026 (406 GW cumulés UE, modules N-type TOPCon 70%+ des livraisons, stockage à 70$/kWh). Tu termines toujours par un CTA vers SUNTREX. Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.`;
+
+      const userPrompt = `Écris un article de blog sur "${topic}" pour la catégorie "${categoryLabel}". Retourne UNIQUEMENT ce JSON: {"title":"titre accrocheur 60 chars max","slug":"url-friendly-slug","excerpt":"résumé 2 phrases 155 chars pour SEO","content":"article 500-700 mots avec sections **Titre Section** et données marché réelles, CTA SUNTREX à la fin","tags":["tag1","tag2","tag3","tag4"],"seo_title":"titre SEO 60 chars | SUNTREX Blog","seo_description":"meta description 155 chars","read_time":7}`;
+
+      const { text: rawText } = await callGemini({
+        contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
+        systemInstruction: systemPrompt,
+        generationConfig: { temperature: 0.7, maxOutputTokens: 3000 },
       });
 
-      if (!response.ok) {
-        const errText = await response.text();
-        console.error("Mistral API error:", response.status, errText);
-        return reply.code(502).send({ error: "AI generation failed", details: response.status });
+      if (!rawText) {
+        return reply.code(502).send({ error: "AI generation failed" });
       }
 
-      const data = await response.json();
-      const parsed = JSON.parse(data.choices[0].message.content);
+      const parsed = JSON.parse(rawText);
 
-      // Mistral may return content as a structured object instead of a string
+      // AI may return content as a structured object instead of a string
       let contentStr = parsed.content;
       if (typeof contentStr === "object" && contentStr !== null) {
         contentStr = Object.values(contentStr).join("\n\n");
@@ -104,7 +88,7 @@ async function routes(fastify) {
         seo_title: parsed.seo_title,
         seo_description: parsed.seo_description,
         ai_generated: true,
-        ai_model: "mistral-large-latest",
+        ai_model: "gemini-2.0-flash",
         ai_prompt: topic,
       };
 
