@@ -8,6 +8,7 @@ import ProductModal from "../components/catalog/ProductModal";
 import { FilterSection, CheckFilter } from "../components/catalog/FilterSidebar";
 import RangeFilter from "../components/catalog/RangeFilter";
 import useResponsive from "../hooks/useResponsive";
+import useSmartSearch from "../hooks/useSmartSearch";
 
 var SmartComparator = lazy(function () { return import("../components/ai/SmartComparator"); });
 
@@ -211,6 +212,8 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
   const [sortBy, setSortBy] = useState("relevance");
   const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
+  const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
+  const smartSearch = useSmartSearch(REAL_PRODUCTS, { maxResults: 6 });
   const [quickFilters, setQuickFilters] = useState({
     bankTransfer: false,
     suntrexDelivery: false,
@@ -293,14 +296,21 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
     if (selectedMppts.length)
       items = items.filter((p) => selectedMppts.includes(String(p.mppt)));
 
-    // 6. Search
+    // 6. Search (smart: fuzzy + synonyms + multi-field)
     if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      items = items.filter(
-        (p) =>
+      smartSearch.setQuery(searchQuery);
+      const matchIds = new Set(smartSearch.results.map(r => r.id));
+      if (matchIds.size > 0) {
+        items = items.filter(p => matchIds.has(p.id));
+      } else {
+        // Fallback to simple includes for very short queries
+        const q = searchQuery.toLowerCase();
+        items = items.filter(p =>
           p.name.toLowerCase().includes(q) ||
-          p.brand.toLowerCase().includes(q)
-      );
+          p.brand.toLowerCase().includes(q) ||
+          (p.sku && p.sku.toLowerCase().includes(q))
+        );
+      }
     }
 
     // 7. Stock
@@ -493,13 +503,16 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
           {t("catalog.filters")}
         </h2>
 
-        {/* Search */}
-        <div style={{ marginBottom: 16 }}>
+        {/* Search with smart suggestions */}
+        <div style={{ marginBottom: 16, position: "relative" }}>
           <input
             type="text"
             placeholder={t("catalog.searchProduct")}
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => { setSearchQuery(e.target.value); smartSearch.setQuery(e.target.value); setShowSearchSuggestions(e.target.value.length >= 2); }}
+            onFocus={() => { if (searchQuery.length >= 2) setShowSearchSuggestions(true); }}
+            onBlur={() => { setTimeout(function() { setShowSearchSuggestions(false); }, 200); }}
+            aria-label={t("catalog.searchProduct")}
             style={{
               width: "100%",
               padding: "8px 12px",
@@ -511,6 +524,29 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
               boxSizing: "border-box",
             }}
           />
+          {showSearchSuggestions && smartSearch.suggestions.length > 0 && (
+            <div style={{ position: "absolute", top: "100%", left: 0, right: 0, background: "#fff", borderRadius: "0 0 8px 8px", boxShadow: "0 8px 24px rgba(0,0,0,0.15)", zIndex: 50, overflow: "hidden", border: "1px solid #e2e8f0", borderTop: "none" }}>
+              {smartSearch.suggestions.map(function (p) {
+                return (
+                  <div
+                    key={p.id}
+                    onMouseDown={function () { navigate("/product/" + p.id); }}
+                    style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 12px", cursor: "pointer", fontSize: 12, borderBottom: "1px solid #f8fafc", transition: "background .1s" }}
+                    onMouseEnter={function (e) { e.currentTarget.style.background = "#f8fafc"; }}
+                    onMouseLeave={function (e) { e.currentTarget.style.background = "#fff"; }}
+                  >
+                    <div style={{ width: 32, height: 32, borderRadius: 4, background: "#f8fafc", border: "1px solid #f0f0f0", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, overflow: "hidden" }}>
+                      {p.image ? <img src={p.image} alt="" loading="lazy" width="28" height="28" style={{ maxWidth: 28, maxHeight: 28, objectFit: "contain" }} /> : <span style={{ fontSize: 8, color: "#bbb" }}>{p.brand}</span>}
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontWeight: 600, color: "#1e293b", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.name}</div>
+                      <div style={{ fontSize: 10, color: "#94a3b8" }}>{p.brand} · {p.sku}</div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* 1. Disponibilité toggle */}
