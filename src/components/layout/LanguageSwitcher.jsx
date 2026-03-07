@@ -13,7 +13,7 @@ const LANGUAGES = [
 ];
 
 export default function LanguageSwitcher() {
-  const { i18n } = useTranslation();
+  const { i18n } = useTranslation(["common"]);
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -23,13 +23,16 @@ export default function LanguageSwitcher() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = i18n.language || "fr";
+  }, [i18n.language]);
+
   const current = LANGUAGES.find(l => l.code === i18n.language) || LANGUAGES[0];
 
   const handleSelect = (code) => {
     i18n.changeLanguage(code);
     Cookies.set("locale", code, { expires: 365, sameSite: "lax" });
     localStorage.setItem("locale", code);
-    document.documentElement.lang = code;
     setOpen(false);
   };
 

@@ -1,1 +1,47 @@
-{}
+{
+  "supportChat": {
+    "headerTitle": "Support SUNTREX",
+    "welcome": "👋 Bonjour ! Je suis l'assistant SUNTREX. Comment puis-je vous aider ?",
+    "revertedToAI": "Vous êtes reconnecté à l'assistant IA.",
+    "handoffMessage": "Mise en relation avec un agent... Veuillez patienter.",
+    "waitingAgent": "En attente d'un agent...",
+    "aiPowered": "Assistant IA • 24/7",
+    "agentConnected": "Agent connecté",
+    "talkToAgent": "Parler à un agent",
+    "talkToAgentShort": "Agent",
+    "newConversation": "Nouvelle conversation",
+    "closeConversation": "Fermer la conversation",
+    "homeTitle": "Comment pouvons-nous vous aider ?",
+    "homeSubtitle": "Choisissez un sujet ou posez votre question",
+    "startChat": "Écrire un message",
+    "email": "Email",
+    "phone": "Téléphone",
+    "agentLabel": "Agent Support",
+    "aiLabel": "Assistant IA",
+    "waitingAgentMsg": "Un agent va vous répondre sous peu...",
+    "revertToAI": "Revenir au chat IA",
+    "inputPlaceholder": "Votre message...",
+    "channelChat": "Chat",
+    "faq": {
+      "tracking": "Suivi de commande",
+      "returns": "Retours / SAV",
+      "billing": "Facturation",
+      "other": "Autre question"
+    },
+    "faqDesc": {
+      "tracking": "Suivez vos commandes en temps réel",
+      "returns": "Retours, échanges et SAV",
+      "billing": "Factures, paiements et devis",
+      "other": "Produits, technique, autre"
+    },
+    "responses": {
+      "tracking": "Pour suivre votre commande, rendez-vous dans **Mon compte** > **Mes commandes**. Chaque commande dispose d'un suivi en temps réel avec SUNTREX DELIVERY.\n\nSouhaitez-vous que je vérifie une commande spécifique ?",
+      "returns": "La procédure de retour est simple :\n• Délai : **14 jours** après réception\n• Rendez-vous dans **Mes achats** → sélectionnez la commande → **Signaler un problème**\n• Les frais de retour dépendent du vendeur\n\nUn problème avec une commande en particulier ?",
+      "billing": "Pour toute question de facturation :\n• Vos factures sont dans **Mon compte** > **Facturation**\n• Le paiement est sécurisé via **Stripe** (3D Secure)\n• Commission SUNTREX : **5% en dessous** des concurrents\n\nQuelle est votre question précise ?",
+      "other": "Je suis l’assistant IA SUNTREX. Je peux vous aider sur :\n• Suivi de commandes\n• Informations produits (panneaux, onduleurs, batteries)\n• Procédures de retour/SAV\n• Facturation et paiements\n\nPosez-moi votre question !",
+      "default": "Merci pour votre message. Laissez-moi vérifier cela pour vous...",
+      "unavailable": "Service IA temporairement indisponible. Contactez-nous par email à contact@suntrex.eu ou par WhatsApp au +33 7 00 00 00 00.",
+      "agent": "Je vous mets en relation avec un agent. Veuillez patienter..."
+    }
+  }
+}

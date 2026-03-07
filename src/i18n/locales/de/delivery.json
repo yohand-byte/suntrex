@@ -1,1 +1,53 @@
-{}
+{
+  "deliveryVerification": {
+    "headerTitle": "SUNTREX DELIVERY",
+    "headerSubtitle": "Prüfung und Sendungsverfolgung Ihrer Lieferung",
+    "verificationPrompt": "Zustand des Pakets bei Empfang:",
+    "steps": {
+      "seller_dispatch": {
+        "label": "Versand durch Verkäufer",
+        "desc": "Fotos vom Paket und Inhalt, QR-Code erzeugt"
+      },
+      "pickup_inspection": {
+        "label": "SUNTREX Abholung",
+        "desc": "QR-Scan, Sichtprüfung, Foto und GPS"
+      },
+      "in_transit": {
+        "label": "Im Transit",
+        "desc": "Echtzeit-Tracking durch den Transporteur"
+      },
+      "delivery_confirmation": {
+        "label": "Lieferung",
+        "desc": "Lieferfoto, Prüfung durch den Käufer"
+      }
+    },
+    "verification": {
+      "ok": "Alles ist konform",
+      "damaged": "Paket beschädigt",
+      "missing": "Artikel fehlen"
+    }
+  },
+  "escrowStatus": {
+    "title": "SUNTREX Escrow",
+    "statuses": {
+      "held": "Mittel gesichert",
+      "released": "Mittel freigegeben",
+      "disputed": "Streitfall läuft",
+      "pending": "Ausstehend"
+    },
+    "steps": {
+      "paid": "Bezahlt",
+      "shipped": "Versandt",
+      "delivered": "Geliefert",
+      "released": "Mittel freigegeben"
+    },
+    "autoRelease_one": "Automatische Freigabe in {{count}} Tag, wenn kein Streitfall vorliegt",
+    "autoRelease_other": "Automatische Freigabe in {{count}} Tagen, wenn kein Streitfall vorliegt",
+    "confirmReceipt": "Empfang bestätigen — Mittel freigeben",
+    "reportIssue": "Problem melden",
+    "disputePlaceholder": "Beschreiben Sie das Problem...",
+    "confirmDispute": "Streitfall bestätigen",
+    "cancel": "Abbrechen",
+    "errorPrefix": "Fehler:"
+  }
+}

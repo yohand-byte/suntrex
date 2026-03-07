@@ -16,7 +16,9 @@
     "from": "From",
     "perPiece": "/pc",
     "verificationPending": "Verification pending",
-    "seePrice": "See price"
+    "seePrice": "See price",
+    "available": "products available",
+    "recommended": "Recommended for you"
   },
   "categories": {
     "title": "Get the best prices by comparing multiple offers",
@@ -234,5 +236,74 @@
     "title": "Newsletter",
     "placeholder": "Your email",
     "subscribe": "Subscribe"
+  },
+  "mockups": {
+    "catalog": {
+      "title": "Seller comparison",
+      "offersFromSellers": "offers from {{sellerCount}} sellers",
+      "inStock": "In stock",
+      "viewAllOffers": "View all offers"
+    },
+    "chat": {
+      "title": "Multilingual negotiation",
+      "agreementFound": "Agreement reached, purchase order ready"
+    },
+    "payment": {
+      "title": "Secure payment",
+      "deliverySuntrex": "SUNTREX Delivery",
+      "commission": "SUNTREX fee",
+      "total": "Total",
+      "escrowActivated": "Escrow activated until receipt confirmation",
+      "paymentConfirmed": "Payment confirmed",
+      "badges": {
+        "secure3d": "3D Secure",
+        "scaEurope": "EU SCA",
+        "escrow": "Escrow"
+      }
+    },
+    "delivery": {
+      "title": "Delivery tracking",
+      "orderConfirmed": "Order confirmed",
+      "shippedBySeller": "Shipped by seller",
+      "pickedUpSuntrex": "Picked up by SUNTREX",
+      "qualityControl": "Quality control",
+      "inTransit": "In transit",
+      "deliveredPhotoConfirmed": "Delivered, photo confirmed"
+    },
+    "europe": {
+      "title": "European coverage"
+    },
+    "createOffer": {
+      "title": "Offer creation",
+      "product": "Product",
+      "unitPrice": "Unit price",
+      "stock": "Stock",
+      "businessDays": "business days",
+      "aiSuggestion": "AI suggestion: adjust the price to maximize conversion.",
+      "offerPublished": "Offer published",
+      "deliveryEtaPrefix": "SUNTREX Delivery"
+    },
+    "stockMgmt": {
+      "title": "Stock management",
+      "product": "Product",
+      "stock": "Stock",
+      "price": "Price",
+      "status": "Status",
+      "inStock": "In stock",
+      "lowStock": "Low stock",
+      "outOfStock": "Out of stock",
+      "aiAlert": "AI alert: consider replenishing high-demand references."
+    },
+    "dashboard": {
+      "title": "Seller dashboard",
+      "offers": "Offers",
+      "sales": "Sales",
+      "orders": "Orders",
+      "rating": "Rating",
+      "latestOrders": "Latest orders",
+      "inTransit": "In transit",
+      "delivered": "Delivered",
+      "paid": "Paid"
+    }
   }
 }

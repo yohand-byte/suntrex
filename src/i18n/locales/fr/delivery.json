@@ -1,1 +1,53 @@
-{}
+{
+  "deliveryVerification": {
+    "headerTitle": "SUNTREX DELIVERY",
+    "headerSubtitle": "Vérification et suivi de votre colis",
+    "verificationPrompt": "État du colis à la réception :",
+    "steps": {
+      "seller_dispatch": {
+        "label": "Expédition vendeur",
+        "desc": "Photos du colis et du contenu, QR code généré"
+      },
+      "pickup_inspection": {
+        "label": "Pickup SUNTREX",
+        "desc": "Scan QR, inspection visuelle, photo et GPS"
+      },
+      "in_transit": {
+        "label": "En transit",
+        "desc": "Tracking temps réel via transporteur"
+      },
+      "delivery_confirmation": {
+        "label": "Livraison",
+        "desc": "Photo livraison, vérification acheteur"
+      }
+    },
+    "verification": {
+      "ok": "Tout est conforme",
+      "damaged": "Colis endommagé",
+      "missing": "Articles manquants"
+    }
+  },
+  "escrowStatus": {
+    "title": "Escrow SUNTREX",
+    "statuses": {
+      "held": "Fonds sécurisés",
+      "released": "Fonds libérés",
+      "disputed": "Litige en cours",
+      "pending": "En attente"
+    },
+    "steps": {
+      "paid": "Payé",
+      "shipped": "Expédié",
+      "delivered": "Livré",
+      "released": "Fonds libérés"
+    },
+    "autoRelease_one": "Auto-release dans {{count}} jour si aucun litige",
+    "autoRelease_other": "Auto-release dans {{count}} jours si aucun litige",
+    "confirmReceipt": "Confirmer réception — Libérer les fonds",
+    "reportIssue": "Signaler un problème",
+    "disputePlaceholder": "Décrivez le problème...",
+    "confirmDispute": "Confirmer le litige",
+    "cancel": "Annuler",
+    "errorPrefix": "Erreur :"
+  }
+}

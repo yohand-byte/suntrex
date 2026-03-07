@@ -234,7 +234,7 @@ function SimilarCard({ p, navigate, formatMoney, lang, isLoggedIn }) {
 export default function ProductDetailPage({ isLoggedIn, onLogin }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation(["translation", "catalog", "homepage"]);
+  const { t, i18n } = useTranslation(["catalog", "homepage"]);
   const tcatalog = (key, opts) => t(`catalog:${key}`, opts);
   const thome = (key, opts) => t(`homepage:${key}`, opts);
   const { formatMoney } = useCurrency();

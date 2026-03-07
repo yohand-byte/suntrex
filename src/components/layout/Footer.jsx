@@ -47,7 +47,7 @@ function TrustBadge({ icon, label }) {
 }
 
 export default function Footer() {
-  var _t = useTranslation(["translation", "common"]), t = _t.t;
+  var _t = useTranslation(["common"]), t = _t.t;
   const tc = (key, opts) => t(`common:${key}`, opts);
   var _r = useResponsive(), isMobile = _r.isMobile, isTablet = _r.isTablet;
   var navigate = useNavigate();

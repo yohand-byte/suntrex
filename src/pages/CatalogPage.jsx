@@ -68,7 +68,7 @@ const S = {
 };
 
 export default function CatalogPage({ isLoggedIn, onLogin }) {
-  const { t } = useTranslation(["translation", "catalog", "common"]);
+  const { t } = useTranslation(["catalog", "common"]);
   const tcatalog = (key, opts) => t(`catalog:${key}`, opts);
   const tcommon = (key, opts) => t(`common:${key}`, opts);
   const { formatMoney, currencyInfo } = useCurrency();

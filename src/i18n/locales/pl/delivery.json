@@ -1,1 +1,53 @@
-{}
+{
+  "deliveryVerification": {
+    "headerTitle": "SUNTREX DELIVERY",
+    "headerSubtitle": "Weryfikacja i śledzenie przesyłki",
+    "verificationPrompt": "Stan paczki przy odbiorze:",
+    "steps": {
+      "seller_dispatch": {
+        "label": "Wysyłka sprzedawcy",
+        "desc": "Zdjęcia paczki i zawartości, wygenerowany kod QR"
+      },
+      "pickup_inspection": {
+        "label": "Odbiór SUNTREX",
+        "desc": "Skan QR, inspekcja wizualna, zdjęcie i GPS"
+      },
+      "in_transit": {
+        "label": "W transporcie",
+        "desc": "Śledzenie przewoźnika w czasie rzeczywistym"
+      },
+      "delivery_confirmation": {
+        "label": "Dostawa",
+        "desc": "Zdjęcie dostawy, weryfikacja kupującego"
+      }
+    },
+    "verification": {
+      "ok": "Wszystko zgodne",
+      "damaged": "Paczka uszkodzona",
+      "missing": "Brakujące pozycje"
+    }
+  },
+  "escrowStatus": {
+    "title": "Escrow SUNTREX",
+    "statuses": {
+      "held": "Środki zabezpieczone",
+      "released": "Środki zwolnione",
+      "disputed": "Spór w toku",
+      "pending": "Oczekujące"
+    },
+    "steps": {
+      "paid": "Opłacono",
+      "shipped": "Wysłano",
+      "delivered": "Dostarczono",
+      "released": "Środki zwolnione"
+    },
+    "autoRelease_one": "Automatyczne zwolnienie za {{count}} dzień, jeśli nie będzie sporu",
+    "autoRelease_other": "Automatyczne zwolnienie za {{count}} dni, jeśli nie będzie sporu",
+    "confirmReceipt": "Potwierdź odbiór — Zwolnij środki",
+    "reportIssue": "Zgłoś problem",
+    "disputePlaceholder": "Opisz problem...",
+    "confirmDispute": "Potwierdź spór",
+    "cancel": "Anuluj",
+    "errorPrefix": "Błąd:"
+  }
+}

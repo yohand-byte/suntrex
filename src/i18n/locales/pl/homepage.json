@@ -16,7 +16,9 @@
     "from": "Od",
     "perPiece": "/szt.",
     "verificationPending": "Weryfikacja w toku",
-    "seePrice": "Zobacz cenę"
+    "seePrice": "Zobacz cenę",
+    "available": "dostępnych produktów",
+    "recommended": "Polecane dla Ciebie"
   },
   "categories": {
     "title": "Uzyskaj najlepsze ceny, porównując wiele ofert",
@@ -234,5 +236,74 @@
     "title": "Newsletter",
     "placeholder": "Twój email",
     "subscribe": "Subskrybuj"
+  },
+  "mockups": {
+    "catalog": {
+      "title": "Porównanie sprzedawców",
+      "offersFromSellers": "ofert od {{sellerCount}} sprzedawców",
+      "inStock": "W magazynie",
+      "viewAllOffers": "Zobacz wszystkie oferty"
+    },
+    "chat": {
+      "title": "Negocjacje wielojęzyczne",
+      "agreementFound": "Uzgodniono warunki, zamówienie gotowe"
+    },
+    "payment": {
+      "title": "Bezpieczna płatność",
+      "deliverySuntrex": "Dostawa SUNTREX",
+      "commission": "Prowizja SUNTREX",
+      "total": "Suma",
+      "escrowActivated": "Escrow aktywny do potwierdzenia odbioru",
+      "paymentConfirmed": "Płatność potwierdzona",
+      "badges": {
+        "secure3d": "3D Secure",
+        "scaEurope": "SCA UE",
+        "escrow": "Escrow"
+      }
+    },
+    "delivery": {
+      "title": "Śledzenie dostawy",
+      "orderConfirmed": "Zamówienie potwierdzone",
+      "shippedBySeller": "Wysłane przez sprzedawcę",
+      "pickedUpSuntrex": "Odebrane przez SUNTREX",
+      "qualityControl": "Kontrola jakości",
+      "inTransit": "W transporcie",
+      "deliveredPhotoConfirmed": "Dostarczono, zdjęcie potwierdzone"
+    },
+    "europe": {
+      "title": "Zasięg europejski"
+    },
+    "createOffer": {
+      "title": "Tworzenie oferty",
+      "product": "Produkt",
+      "unitPrice": "Cena jednostkowa",
+      "stock": "Stan",
+      "businessDays": "dni roboczych",
+      "aiSuggestion": "Sugestia AI: dostosuj cenę, aby zwiększyć konwersję.",
+      "offerPublished": "Oferta opublikowana",
+      "deliveryEtaPrefix": "SUNTREX Delivery"
+    },
+    "stockMgmt": {
+      "title": "Zarządzanie stanem",
+      "product": "Produkt",
+      "stock": "Stan",
+      "price": "Cena",
+      "status": "Status",
+      "inStock": "Dostępne",
+      "lowStock": "Niski stan",
+      "outOfStock": "Brak na stanie",
+      "aiAlert": "Alert AI: rozważ uzupełnienie pozycji o wysokim popycie."
+    },
+    "dashboard": {
+      "title": "Panel sprzedawcy",
+      "offers": "Oferty",
+      "sales": "Sprzedaż",
+      "orders": "Zamówienia",
+      "rating": "Ocena",
+      "latestOrders": "Najnowsze zamówienia",
+      "inTransit": "W transporcie",
+      "delivered": "Dostarczono",
+      "paid": "Opłacono"
+    }
   }
 }

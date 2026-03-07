@@ -16,7 +16,8 @@
     "review:fix": "bash ./scripts/codex_fix_from_review.sh",
     "review:next": "bash ./scripts/review_oneclick_import.sh && bash ./scripts/codex_fix_from_review.sh",
     "review:auto": "bash ./scripts/review_autopilot.sh",
-    "n8n:postcheck": "bash ./scripts/n8n_post_rotation_check.sh"
+    "n8n:postcheck": "bash ./scripts/n8n_post_rotation_check.sh",
+    "smoke:i18n": "node scripts/smoke-i18n.mjs"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^5.6.0",

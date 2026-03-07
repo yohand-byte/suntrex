@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 const S_BADGE = { display:"inline-flex", alignItems:"center", gap:4, padding:"3px 8px", borderRadius:999, fontSize:11, fontWeight:500, whiteSpace:"nowrap" };
 
 export default function SellerBadge({ offer, compactMobile = false, showRating = true }) {
-  const { t } = useTranslation(["translation", "common"]);
+  const { t } = useTranslation(["common"]);
   const tcommon = (key, opts) => t(`common:${key}`, opts);
 
   const badgeStyle = compactMobile

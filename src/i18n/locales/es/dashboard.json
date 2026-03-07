@@ -1,1 +1,8 @@
-{}
+{
+  "mobileTabs": {
+    "buy": "Comprar",
+    "sell": "Vender",
+    "profile": "Perfil",
+    "notifications": "Avisos"
+  }
+}

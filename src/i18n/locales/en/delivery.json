@@ -1,1 +1,53 @@
-{}
+{
+  "deliveryVerification": {
+    "headerTitle": "SUNTREX DELIVERY",
+    "headerSubtitle": "Verification and tracking for your shipment",
+    "verificationPrompt": "Condition of the package upon delivery:",
+    "steps": {
+      "seller_dispatch": {
+        "label": "Seller dispatch",
+        "desc": "Package and content photos, QR code generated"
+      },
+      "pickup_inspection": {
+        "label": "SUNTREX pickup",
+        "desc": "QR scan, visual inspection, photo and GPS"
+      },
+      "in_transit": {
+        "label": "In transit",
+        "desc": "Real-time carrier tracking"
+      },
+      "delivery_confirmation": {
+        "label": "Delivery",
+        "desc": "Delivery photo, buyer verification"
+      }
+    },
+    "verification": {
+      "ok": "Everything is compliant",
+      "damaged": "Package damaged",
+      "missing": "Missing items"
+    }
+  },
+  "escrowStatus": {
+    "title": "SUNTREX Escrow",
+    "statuses": {
+      "held": "Funds secured",
+      "released": "Funds released",
+      "disputed": "Dispute in progress",
+      "pending": "Pending"
+    },
+    "steps": {
+      "paid": "Paid",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "released": "Funds released"
+    },
+    "autoRelease_one": "Auto-release in {{count}} day if there is no dispute",
+    "autoRelease_other": "Auto-release in {{count}} days if there is no dispute",
+    "confirmReceipt": "Confirm receipt — Release funds",
+    "reportIssue": "Report an issue",
+    "disputePlaceholder": "Describe the issue...",
+    "confirmDispute": "Confirm dispute",
+    "cancel": "Cancel",
+    "errorPrefix": "Error:"
+  }
+}

@@ -7,7 +7,7 @@ import CurrencySwitcher from "./CurrencySwitcher";
 import useResponsive from "../../hooks/useResponsive";
 
 export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowRegister, onLogout }) {
-  const { t } = useTranslation(["translation", "common"]);
+  const { t } = useTranslation(["common"]);
   const tc = (key, opts) => t(`common:${key}`, opts);
   const navigate = useNavigate();
   const location = useLocation();

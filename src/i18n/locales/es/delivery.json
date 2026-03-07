@@ -1,1 +1,53 @@
-{}
+{
+  "deliveryVerification": {
+    "headerTitle": "SUNTREX DELIVERY",
+    "headerSubtitle": "Verificación y seguimiento de su envío",
+    "verificationPrompt": "Estado del paquete en la recepción:",
+    "steps": {
+      "seller_dispatch": {
+        "label": "Expedición del vendedor",
+        "desc": "Fotos del paquete y del contenido, QR generado"
+      },
+      "pickup_inspection": {
+        "label": "Recogida SUNTREX",
+        "desc": "Escaneo QR, inspección visual, foto y GPS"
+      },
+      "in_transit": {
+        "label": "En tránsito",
+        "desc": "Seguimiento en tiempo real del transportista"
+      },
+      "delivery_confirmation": {
+        "label": "Entrega",
+        "desc": "Foto de entrega, verificación del comprador"
+      }
+    },
+    "verification": {
+      "ok": "Todo conforme",
+      "damaged": "Paquete dañado",
+      "missing": "Artículos faltantes"
+    }
+  },
+  "escrowStatus": {
+    "title": "Escrow SUNTREX",
+    "statuses": {
+      "held": "Fondos asegurados",
+      "released": "Fondos liberados",
+      "disputed": "Disputa en curso",
+      "pending": "Pendiente"
+    },
+    "steps": {
+      "paid": "Pagado",
+      "shipped": "Enviado",
+      "delivered": "Entregado",
+      "released": "Fondos liberados"
+    },
+    "autoRelease_one": "Liberación automática en {{count}} día si no hay disputa",
+    "autoRelease_other": "Liberación automática en {{count}} días si no hay disputa",
+    "confirmReceipt": "Confirmar recepción — Liberar fondos",
+    "reportIssue": "Informar de un problema",
+    "disputePlaceholder": "Describa el problema...",
+    "confirmDispute": "Confirmar disputa",
+    "cancel": "Cancelar",
+    "errorPrefix": "Error:"
+  }
+}

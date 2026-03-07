@@ -1,1 +1,8 @@
-{}
+{
+  "mobileTabs": {
+    "buy": "Αγορές",
+    "sell": "Πωλήσεις",
+    "profile": "Προφίλ",
+    "notifications": "Ειδοπ."
+  }
+}

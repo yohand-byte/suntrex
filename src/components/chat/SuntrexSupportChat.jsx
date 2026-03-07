@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import useResponsive from "../../hooks/useResponsive";
 import { useSupportChat } from "./useSupportChat";
@@ -27,15 +27,6 @@ const ALLOWED_TYPES = [
 ];
 
 // Client-side AI fallback responses (when backend is unavailable)
-const AI_FALLBACK = {
-  tracking: "Pour suivre votre commande, rendez-vous dans **Mon compte** > **Mes commandes**. Chaque commande dispose d'un suivi en temps r\u00e9el avec SUNTREX DELIVERY.\n\nSouhaitez-vous que je v\u00e9rifie une commande sp\u00e9cifique ?",
-  returns: "La proc\u00e9dure de retour est simple :\n\u2022 D\u00e9lai : **14 jours** apr\u00e8s r\u00e9ception\n\u2022 Rendez-vous dans **Mes achats** \u2192 s\u00e9lectionnez la commande \u2192 **Signaler un probl\u00e8me**\n\u2022 Les frais de retour d\u00e9pendent du vendeur\n\nUn probl\u00e8me avec une commande en particulier ?",
-  billing: "Pour toute question de facturation :\n\u2022 Vos factures sont dans **Mon compte** > **Facturation**\n\u2022 Le paiement est s\u00e9curis\u00e9 via **Stripe** (3D Secure)\n\u2022 Commission SUNTREX : **5% en dessous** des concurrents\n\nQuelle est votre question pr\u00e9cise ?",
-  other: "Je suis l\u2019assistant IA SUNTREX. Je peux vous aider sur :\n\u2022 Suivi de commandes\n\u2022 Informations produits (panneaux, onduleurs, batteries)\n\u2022 Proc\u00e9dures de retour/SAV\n\u2022 Facturation et paiements\n\nPosez-moi votre question !",
-  default: "Merci pour votre message. Laissez-moi v\u00e9rifier cela pour vous...",
-  unavailable: "Service IA temporairement indisponible. Contactez-nous par email \u00e0 contact@suntrex.eu ou par WhatsApp au +33 7 00 00 00 00.",
-};
-
 // Safe text rendering: parses **bold** and bullet points without innerHTML
 function renderText(text) {
   if (!text) return null;
@@ -77,13 +68,14 @@ function renderText(text) {
 let nextLocalId = 1;
 
 export default function SuntrexSupportChat({ userId = null }) {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["chat"]);
+  const tchat = (key, options) => t(`chat:${key}`, options);
   const { isMobile } = useResponsive();
   const [isOpen, setIsOpen] = useState(false);
   const [unread, setUnread] = useState(0);
   const [input, setInput] = useState("");
   const [localMessages, setLocalMessages] = useState([
-    { id: "welcome", from: "ai", text: t("supportChat.welcome", "\ud83d\udc4b Bonjour ! Je suis l'assistant SUNTREX. Comment puis-je vous aider ?"), time: new Date() },
+    { id: "welcome", from: "ai", text: tchat("supportChat.welcome"), time: new Date() },
   ]);
   const [localTyping, setLocalTyping] = useState(false);
   const [view, setView] = useState("home"); // "home" | "chat"
@@ -109,6 +101,16 @@ export default function SuntrexSupportChat({ userId = null }) {
     closeConversation: backendCloseConversation,
     resetChat: backendResetChat,
   } = useSupportChat(userId);
+
+  const aiFallback = useMemo(() => ({
+    tracking: tchat("supportChat.responses.tracking"),
+    returns: tchat("supportChat.responses.returns"),
+    billing: tchat("supportChat.responses.billing"),
+    other: tchat("supportChat.responses.other"),
+    default: tchat("supportChat.responses.default"),
+    unavailable: tchat("supportChat.responses.unavailable"),
+    agent: tchat("supportChat.responses.agent"),
+  }), [t]);
 
   const isBackendConnected = conversation && !conversation.isDemo;
 
@@ -151,12 +153,12 @@ export default function SuntrexSupportChat({ userId = null }) {
     setAttachments([]);
     setRawFiles([]);
     setLocalMessages([
-      { id: "welcome", from: "ai", text: t("supportChat.welcome", "\ud83d\udc4b Bonjour ! Je suis l'assistant SUNTREX. Comment puis-je vous aider ?"), time: new Date() },
+      { id: "welcome", from: "ai", text: tchat("supportChat.welcome"), time: new Date() },
     ]);
     setLocalTyping(false);
     backendResetChat();
     setView("home");
-  }, [backendResetChat, t]);
+  }, [backendResetChat, tchat]);
 
   // Close current conversation (mark as closed in Supabase)
   const handleCloseConversation = useCallback(async () => {
@@ -166,12 +168,12 @@ export default function SuntrexSupportChat({ userId = null }) {
     setAttachments([]);
     setRawFiles([]);
     setLocalMessages([
-      { id: "welcome", from: "ai", text: t("supportChat.welcome", "\ud83d\udc4b Bonjour ! Je suis l'assistant SUNTREX. Comment puis-je vous aider ?"), time: new Date() },
+      { id: "welcome", from: "ai", text: tchat("supportChat.welcome"), time: new Date() },
     ]);
     setLocalTyping(false);
     await backendCloseConversation();
     setView("home");
-  }, [backendCloseConversation, t]);
+  }, [backendCloseConversation, tchat]);
 
   // Cancel handoff, revert to AI mode
   const handleRevertToAI = useCallback(async () => {
@@ -182,10 +184,10 @@ export default function SuntrexSupportChat({ userId = null }) {
     setLocalMessages(prev => [...prev, {
       id: "system-revert-" + nextLocalId++,
       from: "system",
-      text: t("supportChat.revertedToAI", "Vous \u00eates reconnect\u00e9 \u00e0 l'assistant IA."),
+      text: tchat("supportChat.revertedToAI"),
       time: new Date(),
     }]);
-  }, [isBackendConnected, backendRevertToAI, t]);
+  }, [isBackendConnected, backendRevertToAI, tchat]);
 
   // --- Demo mode AI response ---
   const demoAIResponse = useCallback((userText, faqKey = null) => {
@@ -193,21 +195,21 @@ export default function SuntrexSupportChat({ userId = null }) {
     const delay = 800 + Math.random() * 1200;
     setTimeout(() => {
       let responseText;
-      if (faqKey && AI_FALLBACK[faqKey]) {
-        responseText = AI_FALLBACK[faqKey];
+      if (faqKey && aiFallback[faqKey]) {
+        responseText = aiFallback[faqKey];
       } else {
         const lower = userText.toLowerCase();
         if (lower.includes("commande") || lower.includes("suivi") || lower.includes("livr")) {
-          responseText = AI_FALLBACK.tracking;
+          responseText = aiFallback.tracking;
         } else if (lower.includes("retour") || lower.includes("sav") || lower.includes("probl")) {
-          responseText = AI_FALLBACK.returns;
+          responseText = aiFallback.returns;
         } else if (lower.includes("factur") || lower.includes("paiement") || lower.includes("prix")) {
-          responseText = AI_FALLBACK.billing;
+          responseText = aiFallback.billing;
         } else if (lower.includes("agent") || lower.includes("humain") || lower.includes("personne")) {
-          responseText = "Je vous mets en relation avec un agent. Veuillez patienter...";
+          responseText = aiFallback.agent;
           setTimeout(() => setWaitingAgent(true), 500);
         } else {
-          responseText = AI_FALLBACK.default + "\n\nJe peux vous aider avec le suivi de commandes, la facturation, ou les retours. Si vous pr\u00e9f\u00e9rez parler \u00e0 un agent humain, dites-le moi.";
+          responseText = aiFallback.default;
         }
       }
       setLocalMessages(prev => [...prev, {
@@ -218,16 +220,16 @@ export default function SuntrexSupportChat({ userId = null }) {
       }]);
       setLocalTyping(false);
     }, delay);
-  }, []);
+  }, [aiFallback]);
 
   // --- FAQ handler ---
   const handleFaq = useCallback(async (faqKey) => {
     setView("chat");
     const labels = {
-      tracking: t("supportChat.faq.tracking", "Suivi de commande"),
-      returns: t("supportChat.faq.returns", "Retours / SAV"),
-      billing: t("supportChat.faq.billing", "Facturation"),
-      other: t("supportChat.faq.other", "Autre question"),
+      tracking: tchat("supportChat.faq.tracking"),
+      returns: tchat("supportChat.faq.returns"),
+      billing: tchat("supportChat.faq.billing"),
+      other: tchat("supportChat.faq.other"),
     };
     const text = labels[faqKey] || faqKey;
 
@@ -279,11 +281,11 @@ export default function SuntrexSupportChat({ userId = null }) {
       setLocalMessages(prev => [...prev, {
         id: "system-" + nextLocalId++,
         from: "system",
-        text: t("supportChat.handoffMessage", "Mise en relation avec un agent... Veuillez patienter."),
+        text: tchat("supportChat.handoffMessage"),
         time: new Date(),
       }]);
     }
-  }, [isBackendConnected, backendHandoff, t]);
+  }, [isBackendConnected, backendHandoff, tchat]);
 
   // --- File attachment ---
   const handleFileSelect = (e) => {
@@ -404,22 +406,22 @@ export default function SuntrexSupportChat({ userId = null }) {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" fill="#fff"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>
               </div>
               <div style={{ minWidth: 0 }}>
-                <div style={{ fontSize: 15, fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Support SUNTREX</div>
+                <div style={{ fontSize: 15, fontWeight: 700, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{tchat("supportChat.headerTitle")}</div>
                 <div style={{ fontSize: 11, opacity: 0.85 }}>
                   {waitingAgent
-                    ? t("supportChat.waitingAgent", "En attente d'un agent...")
+                    ? tchat("supportChat.waitingAgent")
                     : aiMode
-                      ? t("supportChat.aiPowered", "Assistant IA \u2022 24/7")
-                      : t("supportChat.agentConnected", "Agent connect\u00e9")}
+                      ? tchat("supportChat.aiPowered")
+                      : tchat("supportChat.agentConnected")}
                 </div>
               </div>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0, position: "relative" }}>
               {/* Agent handoff button — only in chat view, not waiting */}
               {view === "chat" && !waitingAgent && (
-                <button onClick={handleHandoff} title={t("supportChat.talkToAgent", "Parler \u00e0 un agent")} style={{ background: "rgba(255,255,255,0.15)", border: "none", borderRadius: 6, padding: "4px 8px", color: "#fff", cursor: "pointer", fontSize: 11, fontWeight: 600, fontFamily: "inherit" }}>
+                <button onClick={handleHandoff} title={tchat("supportChat.talkToAgent")} style={{ background: "rgba(255,255,255,0.15)", border: "none", borderRadius: 6, padding: "4px 8px", color: "#fff", cursor: "pointer", fontSize: 11, fontWeight: 600, fontFamily: "inherit" }}>
                   <svg width="14" height="14" fill="none" stroke="#fff" strokeWidth="2" viewBox="0 0 24 24" style={{ verticalAlign: "middle", marginRight: 4 }}><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                  Agent
+                  {tchat("supportChat.talkToAgentShort")}
                 </button>
               )}
               {/* ⋮ Menu button */}
@@ -444,7 +446,7 @@ export default function SuntrexSupportChat({ userId = null }) {
                     textAlign: "left", borderBottom: "1px solid #f0f0f0",
                   }}>
                     <svg width="16" height="16" fill="none" stroke="#E8700A" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-                    {t("supportChat.newConversation", "Nouvelle conversation")}
+                    {tchat("supportChat.newConversation")}
                   </button>
                   <button onClick={handleCloseConversation} style={{
                     width: "100%", display: "flex", alignItems: "center", gap: 10,
@@ -453,7 +455,7 @@ export default function SuntrexSupportChat({ userId = null }) {
                     textAlign: "left",
                   }}>
                     <svg width="16" height="16" fill="none" stroke="#ef4444" strokeWidth="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                    {t("supportChat.closeConversation", "Fermer la conversation")}
+                    {tchat("supportChat.closeConversation")}
                   </button>
                 </div>
               )}
@@ -468,8 +470,8 @@ export default function SuntrexSupportChat({ userId = null }) {
                 {/* Welcome */}
                 <div style={{ textAlign: "center", padding: "8px 0 4px" }}>
                   <div style={{ fontSize: 32, marginBottom: 6 }}>{"\u2600\ufe0f"}</div>
-                  <div style={{ fontSize: 16, fontWeight: 700, color: "#222", marginBottom: 4 }}>{t("supportChat.homeTitle", "Comment pouvons-nous vous aider ?")}</div>
-                  <div style={{ fontSize: 13, color: "#888" }}>{t("supportChat.homeSubtitle", "Choisissez un sujet ou posez votre question")}</div>
+                  <div style={{ fontSize: 16, fontWeight: 700, color: "#222", marginBottom: 4 }}>{tchat("supportChat.homeTitle")}</div>
+                  <div style={{ fontSize: 13, color: "#888" }}>{tchat("supportChat.homeSubtitle")}</div>
                 </div>
 
                 {/* FAQ quick actions */}
@@ -487,12 +489,12 @@ export default function SuntrexSupportChat({ userId = null }) {
                     >
                       <span style={{ fontSize: 22, flexShrink: 0 }}>{faq.icon}</span>
                       <div>
-                        <div style={{ fontSize: 14, fontWeight: 600, color: "#222" }}>{t("supportChat.faq." + faq.key, faq.key)}</div>
+                        <div style={{ fontSize: 14, fontWeight: 600, color: "#222" }}>{tchat(`supportChat.faq.${faq.key}`)}</div>
                         <div style={{ fontSize: 12, color: "#999", marginTop: 2 }}>
-                          {faq.key === "tracking" && t("supportChat.faqDesc.tracking", "Suivez vos commandes en temps r\u00e9el")}
-                          {faq.key === "returns" && t("supportChat.faqDesc.returns", "Retours, \u00e9changes et SAV")}
-                          {faq.key === "billing" && t("supportChat.faqDesc.billing", "Factures, paiements et devis")}
-                          {faq.key === "other" && t("supportChat.faqDesc.other", "Produits, technique, autre")}
+                          {faq.key === "tracking" && tchat("supportChat.faqDesc.tracking")}
+                          {faq.key === "returns" && tchat("supportChat.faqDesc.returns")}
+                          {faq.key === "billing" && tchat("supportChat.faqDesc.billing")}
+                          {faq.key === "other" && tchat("supportChat.faqDesc.other")}
                         </div>
                       </div>
                       <svg width="16" height="16" fill="none" stroke="#ccc" strokeWidth="2" viewBox="0 0 24 24" style={{ marginLeft: "auto", flexShrink: 0 }}><path d="M9 18l6-6-6-6"/></svg>
@@ -508,14 +510,14 @@ export default function SuntrexSupportChat({ userId = null }) {
                   fontSize: 14, fontWeight: 600, cursor: "pointer", fontFamily: "inherit",
                 }}>
                   <svg width="16" height="16" fill="none" stroke="#fff" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-                  {t("supportChat.startChat", "\u00c9crire un message")}
+                  {tchat("supportChat.startChat")}
                 </button>
 
                 {/* Channels */}
                 <div style={{ display: "flex", justifyContent: "center", gap: 20, padding: "4px 0" }}>
                   {[
-                    { icon: "\ud83d\udce7", label: "Email", href: "mailto:support@suntrex.eu" },
-                    { icon: "\ud83d\udcde", label: t("supportChat.phone", "T\u00e9l\u00e9phone"), href: "tel:+33123456789" },
+                    { icon: "\ud83d\udce7", label: tchat("supportChat.email"), href: "mailto:support@suntrex.eu" },
+                    { icon: "\ud83d\udcde", label: tchat("supportChat.phone"), href: "tel:+33123456789" },
                   ].map((ch) => (
                     <a key={ch.label} href={ch.href} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, textDecoration: "none", color: "#666", fontSize: 11 }}>
                       <span style={{ fontSize: 20 }}>{ch.icon}</span>
@@ -531,12 +533,12 @@ export default function SuntrexSupportChat({ userId = null }) {
                   <div key={m.id} style={{ display: "flex", flexDirection: "column", alignItems: m.from === "user" ? "flex-end" : m.from === "system" ? "center" : "flex-start" }}>
                     {m.from === "agent" && (
                       <div style={{ fontSize: 11, color: "#4CAF50", fontWeight: 600, marginBottom: 2, marginLeft: 4 }}>
-                        {t("supportChat.agentLabel", "Agent Support")}
+                        {tchat("supportChat.agentLabel")}
                       </div>
                     )}
                     {m.from === "ai" && m.id !== "welcome" && (
                       <div style={{ fontSize: 10, color: "#999", marginBottom: 2, marginLeft: 4 }}>
-                        {t("supportChat.aiLabel", "Assistant IA")}
+                        {tchat("supportChat.aiLabel")}
                       </div>
                     )}
                     <div style={getBubbleStyle(m.from)}>
@@ -575,7 +577,7 @@ export default function SuntrexSupportChat({ userId = null }) {
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
                     <div style={{ ...systemBubble, display: "flex", alignItems: "center", gap: 8, justifyContent: "center" }}>
                       <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#E8700A", animation: "pulseUnread 1.5s infinite" }} />
-                      {t("supportChat.waitingAgentMsg", "Un agent va vous r\u00e9pondre sous peu...")}
+                      {tchat("supportChat.waitingAgentMsg")}
                     </div>
                     <button onClick={handleRevertToAI} style={{
                       padding: "8px 16px", borderRadius: 20,
@@ -583,7 +585,7 @@ export default function SuntrexSupportChat({ userId = null }) {
                       color: "#E8700A", fontSize: 12, fontWeight: 600,
                       cursor: "pointer", fontFamily: "inherit",
                     }}>
-                      {t("supportChat.revertToAI", "Revenir au chat IA")}
+                      {tchat("supportChat.revertToAI")}
                     </button>
                   </div>
                 )}
@@ -615,7 +617,7 @@ export default function SuntrexSupportChat({ userId = null }) {
 
               <textarea
                 rows={1}
-                placeholder={t("supportChat.inputPlaceholder", "Votre message...")}
+                placeholder={tchat("supportChat.inputPlaceholder")}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -642,8 +644,8 @@ export default function SuntrexSupportChat({ userId = null }) {
           <div style={{ padding: "6px 14px 8px", borderTop: "1px solid #f0f0f0", display: "flex", justifyContent: "space-between", alignItems: "center", flexShrink: 0, background: "#fff" }}>
             <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
               {[
-                { icon: "\ud83d\udcac", label: "Chat" },
-                { icon: "\ud83d\udce7", label: "Email" },
+                { icon: "\ud83d\udcac", label: tchat("supportChat.channelChat") },
+                { icon: "\ud83d\udce7", label: tchat("supportChat.email") },
               ].map((ch) => (
                 <span key={ch.label} style={{ fontSize: 10, color: "#999", display: "flex", alignItems: "center", gap: 3 }}>
                   <span>{ch.icon}</span> {ch.label}

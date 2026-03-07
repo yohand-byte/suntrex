@@ -1,1 +1,47 @@
-{}
+{
+  "supportChat": {
+    "headerTitle": "Wsparcie SUNTREX",
+    "welcome": "👋 Dzień dobry. Jestem asystentem SUNTREX. W czym mogę pomóc?",
+    "revertedToAI": "Ponownie połączono z asystentem AI.",
+    "handoffMessage": "Łączymy z konsultantem... Proszę czekać.",
+    "waitingAgent": "Oczekiwanie na konsultanta...",
+    "aiPowered": "Asystent AI • 24/7",
+    "agentConnected": "Konsultant połączony",
+    "talkToAgent": "Porozmawiaj z konsultantem",
+    "talkToAgentShort": "Agent",
+    "newConversation": "Nowa rozmowa",
+    "closeConversation": "Zamknij rozmowę",
+    "homeTitle": "Jak możemy pomóc?",
+    "homeSubtitle": "Wybierz temat lub zadaj pytanie",
+    "startChat": "Napisz wiadomość",
+    "email": "Email",
+    "phone": "Telefon",
+    "agentLabel": "Konsultant",
+    "aiLabel": "Asystent AI",
+    "waitingAgentMsg": "Konsultant odpowie wkrótce...",
+    "revertToAI": "Wróć do czatu AI",
+    "inputPlaceholder": "Twoja wiadomość...",
+    "channelChat": "Czat",
+    "faq": {
+      "tracking": "Śledzenie zamówienia",
+      "returns": "Zwroty / Serwis",
+      "billing": "Rozliczenia",
+      "other": "Inne pytanie"
+    },
+    "faqDesc": {
+      "tracking": "Śledź zamówienia w czasie rzeczywistym",
+      "returns": "Zwroty, wymiany i serwis",
+      "billing": "Faktury, płatności i wyceny",
+      "other": "Produkty, techniczne, inne"
+    },
+    "responses": {
+      "tracking": "Aby śledzić zamówienie, przejdź do **Moje konto** > **Moje zamówienia**. Każde zamówienie ma śledzenie w czasie rzeczywistym z SUNTREX DELIVERY.\n\nCzy mam sprawdzić konkretne zamówienie?",
+      "returns": "Procedura zwrotu jest prosta:\n• Termin: **14 dni** od odbioru\n• Wejdź do **Moje zakupy** → wybierz zamówienie → **Zgłoś problem**\n• Koszty zwrotu zależą od sprzedawcy\n\nCzy chodzi o konkretne zamówienie?",
+      "billing": "W przypadku pytań dotyczących rozliczeń:\n• Faktury znajdziesz w **Moje konto** > **Rozliczenia**\n• Płatność jest zabezpieczona przez **Stripe** (3D Secure)\n• Prowizja SUNTREX: **o 5% niższa** niż u konkurencji\n\nJakie jest dokładnie pytanie?",
+      "other": "Jestem asystentem AI SUNTREX. Mogę pomóc w zakresie:\n• Śledzenia zamówień\n• Informacji o produktach (panele, falowniki, baterie)\n• Procedur zwrotu i serwisu\n• Rozliczeń i płatności\n\nZadaj swoje pytanie.",
+      "default": "Dziękuję za wiadomość. Już to sprawdzam...",
+      "unavailable": "Usługa AI jest chwilowo niedostępna. Skontaktuj się z nami mailowo pod adresem contact@suntrex.eu lub przez WhatsApp pod numerem +33 7 00 00 00 00.",
+      "agent": "Łączę Cię z konsultantem. Proszę czekać..."
+    }
+  }
+}

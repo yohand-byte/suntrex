@@ -96,7 +96,7 @@ const SunIcon = () => (
    LOGIN MODAL
    ══════════════════════════════════════════════════════ */
 export function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
-  const { t } = useTranslation(["translation", "auth", "common"]);
+  const { t } = useTranslation(["auth", "common"]);
   const ta = (key, opts) => t(`auth:${key}`, opts);
   const tc = (key, opts) => t(`common:${key}`, opts);
   const { isMobile } = useResponsive();
@@ -174,7 +174,7 @@ export function LoginModal({ onClose, onLogin, onSwitchToRegister }) {
    REGISTER MODAL — 4 steps, buyer only
    ══════════════════════════════════════════════════════ */
 export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
-  const { t } = useTranslation(["translation", "auth", "common"]);
+  const { t } = useTranslation(["auth", "common"]);
   const ta = (key, opts) => t(`auth:${key}`, opts);
   const tc = (key, opts) => t(`common:${key}`, opts);
   const { isMobile } = useResponsive();
@@ -811,7 +811,7 @@ export function RegisterModal({ onClose, onRegister, onSwitchToLogin }) {
    USER MENU (header dropdown)
    ══════════════════════════════════════════════════════ */
 export function UserMenu({ user, onLogout, onNavigate }) {
-  const { t } = useTranslation(["translation", "auth", "common"]);
+  const { t } = useTranslation(["auth", "common"]);
   const ta = (key, opts) => t(`auth:${key}`, opts);
   const [open, setOpen] = useState(false);
   const isSeller = user.role === "seller" || user.role === "both";

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, createContext, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { T } from "./tokens";
 import { useResponsive } from "./shared/useResponsive";
 import DashboardTopbar from "./DashboardTopbar";
@@ -38,10 +39,10 @@ const DEMO_NOTIFICATIONS = [...MOCK_BUYER.notifications, ...MOCK_SELLER.notifica
 
 // ── Mobile bottom tab bar ──────────────────────────────────────────
 const MOBILE_TABS = [
-  { id: "buy",           icon: "\uD83D\uDED2", label: "Buy",    labelFr: "Acheter" },
-  { id: "sell",          icon: "\uD83D\uDCB0", label: "Sell",   labelFr: "Vendre" },
-  { id: "profile",       icon: "\uD83D\uDC64", label: "Profile", labelFr: "Profil" },
-  { id: "notifications", icon: "\uD83D\uDD14", label: "Notifs", labelFr: "Notifs" },
+  { id: "buy", icon: "\uD83D\uDED2" },
+  { id: "sell", icon: "\uD83D\uDCB0" },
+  { id: "profile", icon: "\uD83D\uDC64" },
+  { id: "notifications", icon: "\uD83D\uDD14" },
 ];
 
 const KYC_STATES = new Set(["not_started", "pending", "in_review", "rejected", "approved", "demo"]);
@@ -56,11 +57,13 @@ function normalizeKycStatus(rawStatus) {
 }
 
 export default function DashboardLayout({ initialTab = "buy", user: propUser, company: propCompany }) {
+  const { t, i18n } = useTranslation(["dashboard"]);
+  const tdashboard = (key, options) => t(`dashboard:${key}`, options);
   const { isMobile, isTablet } = useResponsive();
   const [activeTab, setActiveTab] = useState(initialTab);
   const [activeSection, setActiveSection] = useState(DEFAULT_SECTIONS[initialTab]);
   const [transactionId, setTransactionId] = useState(null);
-  const [lang] = useState("fr");
+  const lang = i18n.language || "fr";
 
   // Use prop user or demo user
   const { data: dashData } = useDashboardData("buyer");
@@ -301,6 +304,7 @@ export default function DashboardLayout({ initialTab = "buy", user: propUser, co
           }}>
             {MOBILE_TABS.map((tab) => {
               const active = activeTab === tab.id;
+              const tabLabel = tdashboard(`mobileTabs.${tab.id}`);
               return (
                 <button
                   key={tab.id}
@@ -318,7 +322,7 @@ export default function DashboardLayout({ initialTab = "buy", user: propUser, co
                     minHeight: 44,
                     position: "relative",
                   }}
-                  aria-label={lang === "fr" ? tab.labelFr : tab.label}
+                  aria-label={tabLabel}
                 >
                   <span style={{
                     fontSize: 20,
@@ -333,7 +337,7 @@ export default function DashboardLayout({ initialTab = "buy", user: propUser, co
                     color: active ? T.accent : T.textMuted,
                     fontFamily: T.font,
                   }}>
-                    {lang === "fr" ? tab.labelFr : tab.label}
+                    {tabLabel}
                   </span>
                   {active && (
                     <div style={{

@@ -371,7 +371,7 @@ export default function CheckoutPage({ isLoggedIn, onLogin }) {
   var _useParams = useParams(), productId = _useParams.productId;
   var navigate = useNavigate();
   var location = useLocation();
-  var _useTrans = useTranslation(), t = _useTrans.t, i18n = _useTrans.i18n;
+  var _useTrans = useTranslation(["common"]), i18n = _useTrans.i18n;
   var _useCurr = useCurrency(), formatMoney = _useCurr.formatMoney;
   var _useResp = useResponsive(), isMobile = _useResp.isMobile;
   var _useProducts = useProductsCatalog(), products = _useProducts.products, productsLoading = _useProducts.loading;

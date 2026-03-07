@@ -1,67 +1,66 @@
 import { useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import useResponsive from "../../hooks/useResponsive";
 import QRCodeGenerator from "./QRCodeGenerator";
 import DeliveryPhotoUpload from "./DeliveryPhotoUpload";
 
 const API_URL = import.meta.env.VITE_API_URL || "";
 
-const DELIVERY_STEPS = [
-  {
-    key: "seller_dispatch",
-    label: "Expedition vendeur",
-    labelEn: "Seller Dispatch",
-    icon: "📦",
-    desc: "Photos du colis + contenu, QR code genere",
-    requiresPhoto: true,
-    actor: "seller",
-  },
-  {
-    key: "pickup_inspection",
-    label: "Pickup SUNTREX",
-    labelEn: "SUNTREX Pickup",
-    icon: "🔍",
-    desc: "Scan QR, inspection visuelle, photo + GPS",
-    requiresPhoto: true,
-    actor: "suntrex",
-  },
-  {
-    key: "in_transit",
-    label: "En transit",
-    labelEn: "In Transit",
-    icon: "🚛",
-    desc: "Tracking temps reel via transporteur",
-    requiresPhoto: false,
-    actor: "system",
-  },
-  {
-    key: "delivery_confirmation",
-    label: "Livraison",
-    labelEn: "Delivery",
-    icon: "✅",
-    desc: "Photo livraison, verification buyer",
-    requiresPhoto: true,
-    actor: "buyer",
-  },
-];
-
-const VERIFICATION_OPTIONS = [
-  { value: "ok", label: "Tout est conforme", color: "#10b981" },
-  { value: "damaged", label: "Colis endommage", color: "#f59e0b" },
-  { value: "missing", label: "Articles manquants", color: "#ef4444" },
-];
-
 export default function DeliveryVerification({ order, currentUser, delivery: deliveryProp }) {
+  const { t } = useTranslation(["delivery"]);
+  const tdelivery = (key, options) => t(`delivery:${key}`, options);
   const { isMobile } = useResponsive();
   const [delivery, setDelivery] = useState(deliveryProp || null);
   const [loading, setLoading] = useState(false);
   const [verification, setVerification] = useState(null);
+
+  const deliverySteps = [
+    {
+      key: "seller_dispatch",
+      label: tdelivery("deliveryVerification.steps.seller_dispatch.label"),
+      icon: "📦",
+      desc: tdelivery("deliveryVerification.steps.seller_dispatch.desc"),
+      requiresPhoto: true,
+      actor: "seller",
+    },
+    {
+      key: "pickup_inspection",
+      label: tdelivery("deliveryVerification.steps.pickup_inspection.label"),
+      icon: "🔍",
+      desc: tdelivery("deliveryVerification.steps.pickup_inspection.desc"),
+      requiresPhoto: true,
+      actor: "suntrex",
+    },
+    {
+      key: "in_transit",
+      label: tdelivery("deliveryVerification.steps.in_transit.label"),
+      icon: "🚛",
+      desc: tdelivery("deliveryVerification.steps.in_transit.desc"),
+      requiresPhoto: false,
+      actor: "system",
+    },
+    {
+      key: "delivery_confirmation",
+      label: tdelivery("deliveryVerification.steps.delivery_confirmation.label"),
+      icon: "✅",
+      desc: tdelivery("deliveryVerification.steps.delivery_confirmation.desc"),
+      requiresPhoto: true,
+      actor: "buyer",
+    },
+  ];
+
+  const verificationOptions = [
+    { value: "ok", label: tdelivery("deliveryVerification.verification.ok"), color: "#10b981" },
+    { value: "damaged", label: tdelivery("deliveryVerification.verification.damaged"), color: "#f59e0b" },
+    { value: "missing", label: tdelivery("deliveryVerification.verification.missing"), color: "#ef4444" },
+  ];
 
   const pad = isMobile ? 16 : 24;
   const isSeller = currentUser?.id === order?.sellerId;
   const isBuyer = currentUser?.id === order?.buyerId;
 
   const currentStepIndex = delivery?.steps
-    ? DELIVERY_STEPS.findIndex(s => !delivery.steps[s.key]?.completedAt)
+    ? deliverySteps.findIndex((s) => !delivery.steps[s.key]?.completedAt)
     : 0;
 
   const fetchDelivery = useCallback(async () => {
@@ -120,10 +119,10 @@ export default function DeliveryVerification({ order, currentUser, delivery: del
       <div style={{ padding: pad, borderBottom: "1px solid #f1f5f9", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div>
           <div style={{ fontSize: isMobile ? 15 : 17, fontWeight: 700, color: "#1e293b" }}>
-            🚛 SUNTREX DELIVERY
+            🚛 {tdelivery("deliveryVerification.headerTitle")}
           </div>
           <div style={{ fontSize: 12, color: "#64748b", marginTop: 2 }}>
-            Verification et suivi de votre colis
+            {tdelivery("deliveryVerification.headerSubtitle")}
           </div>
         </div>
         {delivery?.trackingNumber && (
@@ -135,7 +134,7 @@ export default function DeliveryVerification({ order, currentUser, delivery: del
 
       {/* Steps */}
       <div style={{ padding: pad }}>
-        {DELIVERY_STEPS.map((step, i) => {
+        {deliverySteps.map((step, i) => {
           const stepData = delivery?.steps?.[step.key] || {};
           const isComplete = !!stepData.completedAt;
           const isCurrent = i === currentStepIndex;
@@ -171,7 +170,7 @@ export default function DeliveryVerification({ order, currentUser, delivery: del
                   </span>
                   {isComplete && stepData.completedAt && (
                     <span style={{ fontSize: 10, color: "#10b981", fontWeight: 600 }}>
-                      {new Date(stepData.completedAt).toLocaleDateString("fr-FR")}
+                      {new Date(stepData.completedAt).toLocaleDateString()}
                     </span>
                   )}
                 </div>
@@ -209,10 +208,10 @@ export default function DeliveryVerification({ order, currentUser, delivery: del
                 {isCurrent && step.key === "delivery_confirmation" && isBuyer && !verification && (
                   <div style={{ marginTop: 8 }}>
                     <div style={{ fontSize: 12, fontWeight: 600, color: "#1e293b", marginBottom: 8 }}>
-                      Etat du colis a la reception :
+                      {tdelivery("deliveryVerification.verificationPrompt")}
                     </div>
                     <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: 8 }}>
-                      {VERIFICATION_OPTIONS.map((opt) => (
+                      {verificationOptions.map((opt) => (
                         <button
                           key={opt.value}
                           onClick={() => handleVerify(opt.value)}

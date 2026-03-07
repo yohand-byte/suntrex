@@ -1,1 +1,53 @@
-{}
+{
+  "deliveryVerification": {
+    "headerTitle": "SUNTREX DELIVERY",
+    "headerSubtitle": "Επαλήθευση και παρακολούθηση της αποστολής σας",
+    "verificationPrompt": "Κατάσταση δέματος κατά την παραλαβή:",
+    "steps": {
+      "seller_dispatch": {
+        "label": "Αποστολή πωλητή",
+        "desc": "Φωτογραφίες δέματος και περιεχομένου, δημιουργία QR"
+      },
+      "pickup_inspection": {
+        "label": "Παραλαβή SUNTREX",
+        "desc": "Σάρωση QR, οπτικός έλεγχος, φωτογραφία και GPS"
+      },
+      "in_transit": {
+        "label": "Σε μεταφορά",
+        "desc": "Παρακολούθηση μεταφορέα σε πραγματικό χρόνο"
+      },
+      "delivery_confirmation": {
+        "label": "Παράδοση",
+        "desc": "Φωτογραφία παράδοσης, επαλήθευση αγοραστή"
+      }
+    },
+    "verification": {
+      "ok": "Όλα είναι σύμφωνα",
+      "damaged": "Κατεστραμμένο δέμα",
+      "missing": "Λείπουν είδη"
+    }
+  },
+  "escrowStatus": {
+    "title": "Escrow SUNTREX",
+    "statuses": {
+      "held": "Τα κεφάλαια είναι ασφαλισμένα",
+      "released": "Τα κεφάλαια αποδεσμεύτηκαν",
+      "disputed": "Η διαφορά είναι σε εξέλιξη",
+      "pending": "Σε αναμονή"
+    },
+    "steps": {
+      "paid": "Πληρώθηκε",
+      "shipped": "Απεστάλη",
+      "delivered": "Παραδόθηκε",
+      "released": "Τα κεφάλαια αποδεσμεύτηκαν"
+    },
+    "autoRelease_one": "Αυτόματη αποδέσμευση σε {{count}} ημέρα αν δεν υπάρξει διαφορά",
+    "autoRelease_other": "Αυτόματη αποδέσμευση σε {{count}} ημέρες αν δεν υπάρξει διαφορά",
+    "confirmReceipt": "Επιβεβαίωση παραλαβής — Αποδέσμευση κεφαλαίων",
+    "reportIssue": "Αναφορά προβλήματος",
+    "disputePlaceholder": "Περιγράψτε το πρόβλημα...",
+    "confirmDispute": "Επιβεβαίωση διαφοράς",
+    "cancel": "Ακύρωση",
+    "errorPrefix": "Σφάλμα:"
+  }
+}

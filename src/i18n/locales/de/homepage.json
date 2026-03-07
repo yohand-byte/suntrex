@@ -16,7 +16,9 @@
     "from": "Ab",
     "perPiece": "/Stk.",
     "verificationPending": "Überprüfung läuft",
-    "seePrice": "Preis anzeigen"
+    "seePrice": "Preis anzeigen",
+    "available": "Produkte verfügbar",
+    "recommended": "Für Sie empfohlen"
   },
   "categories": {
     "title": "Erhalten Sie die besten Preise durch den Vergleich mehrerer Angebote",
@@ -234,5 +236,74 @@
     "title": "Newsletter",
     "placeholder": "Ihre E-Mail",
     "subscribe": "Abonnieren"
+  },
+  "mockups": {
+    "catalog": {
+      "title": "Verkäufervergleich",
+      "offersFromSellers": "Angebote von {{sellerCount}} Verkäufern",
+      "inStock": "Auf Lager",
+      "viewAllOffers": "Alle Angebote ansehen"
+    },
+    "chat": {
+      "title": "Mehrsprachige Verhandlung",
+      "agreementFound": "Einigung erzielt, Bestellung bereit"
+    },
+    "payment": {
+      "title": "Sichere Zahlung",
+      "deliverySuntrex": "SUNTREX Lieferung",
+      "commission": "SUNTREX Gebühr",
+      "total": "Gesamt",
+      "escrowActivated": "Escrow bis zur Empfangsbestätigung aktiviert",
+      "paymentConfirmed": "Zahlung bestätigt",
+      "badges": {
+        "secure3d": "3D Secure",
+        "scaEurope": "EU-SCA",
+        "escrow": "Escrow"
+      }
+    },
+    "delivery": {
+      "title": "Lieferverfolgung",
+      "orderConfirmed": "Bestellung bestätigt",
+      "shippedBySeller": "Vom Verkäufer versandt",
+      "pickedUpSuntrex": "Von SUNTREX übernommen",
+      "qualityControl": "Qualitätskontrolle",
+      "inTransit": "Im Transit",
+      "deliveredPhotoConfirmed": "Geliefert, Foto bestätigt"
+    },
+    "europe": {
+      "title": "Europaweite Abdeckung"
+    },
+    "createOffer": {
+      "title": "Angebotserstellung",
+      "product": "Produkt",
+      "unitPrice": "Stückpreis",
+      "stock": "Bestand",
+      "businessDays": "Werktage",
+      "aiSuggestion": "KI-Empfehlung: Passen Sie den Preis an, um die Conversion zu erhöhen.",
+      "offerPublished": "Angebot veröffentlicht",
+      "deliveryEtaPrefix": "SUNTREX Delivery"
+    },
+    "stockMgmt": {
+      "title": "Bestandsverwaltung",
+      "product": "Produkt",
+      "stock": "Bestand",
+      "price": "Preis",
+      "status": "Status",
+      "inStock": "Auf Lager",
+      "lowStock": "Niedriger Bestand",
+      "outOfStock": "Nicht auf Lager",
+      "aiAlert": "KI-Hinweis: Bestellen Sie stark nachgefragte Referenzen nach."
+    },
+    "dashboard": {
+      "title": "Verkäufer-Dashboard",
+      "offers": "Angebote",
+      "sales": "Umsatz",
+      "orders": "Bestellungen",
+      "rating": "Bewertung",
+      "latestOrders": "Neueste Bestellungen",
+      "inTransit": "Im Transit",
+      "delivered": "Geliefert",
+      "paid": "Bezahlt"
+    }
   }
 }

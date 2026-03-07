@@ -1,1 +1,47 @@
-{}
+{
+  "supportChat": {
+    "headerTitle": "SUNTREX Support",
+    "welcome": "👋 Guten Tag! Ich bin der SUNTREX-Assistent. Wie kann ich Ihnen helfen?",
+    "revertedToAI": "Sie sind wieder mit dem KI-Assistenten verbunden.",
+    "handoffMessage": "Wir verbinden Sie mit einem Mitarbeiter. Bitte warten Sie.",
+    "waitingAgent": "Warten auf einen Mitarbeiter...",
+    "aiPowered": "KI-Assistent • 24/7",
+    "agentConnected": "Mitarbeiter verbunden",
+    "talkToAgent": "Mit einem Mitarbeiter sprechen",
+    "talkToAgentShort": "Agent",
+    "newConversation": "Neue Unterhaltung",
+    "closeConversation": "Unterhaltung schließen",
+    "homeTitle": "Wie können wir Ihnen helfen?",
+    "homeSubtitle": "Wählen Sie ein Thema oder stellen Sie Ihre Frage",
+    "startChat": "Nachricht schreiben",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "agentLabel": "Support-Mitarbeiter",
+    "aiLabel": "KI-Assistent",
+    "waitingAgentMsg": "Ein Mitarbeiter wird Ihnen in Kürze antworten...",
+    "revertToAI": "Zum KI-Chat zurückkehren",
+    "inputPlaceholder": "Ihre Nachricht...",
+    "channelChat": "Chat",
+    "faq": {
+      "tracking": "Bestellverfolgung",
+      "returns": "Retouren / Service",
+      "billing": "Abrechnung",
+      "other": "Andere Frage"
+    },
+    "faqDesc": {
+      "tracking": "Verfolgen Sie Ihre Bestellungen in Echtzeit",
+      "returns": "Retouren, Umtausch und Service",
+      "billing": "Rechnungen, Zahlungen und Angebote",
+      "other": "Produkte, Technik, Sonstiges"
+    },
+    "responses": {
+      "tracking": "Um Ihre Bestellung zu verfolgen, gehen Sie zu **Mein Konto** > **Meine Bestellungen**. Jede Bestellung verfügt über Echtzeit-Tracking mit SUNTREX DELIVERY.\n\nSoll ich eine bestimmte Bestellung prüfen?",
+      "returns": "Der Rückgabeprozess ist einfach:\n• Frist: **14 Tage** nach Erhalt\n• Gehen Sie zu **Meine Einkäufe** → Bestellung auswählen → **Problem melden**\n• Die Rücksendekosten hängen vom Verkäufer ab\n\nGeht es um eine bestimmte Bestellung?",
+      "billing": "Bei Fragen zur Abrechnung:\n• Ihre Rechnungen finden Sie unter **Mein Konto** > **Abrechnung**\n• Die Zahlung ist über **Stripe** gesichert (3D Secure)\n• SUNTREX-Gebühr: **5% niedriger** als bei Wettbewerbern\n\nWas genau möchten Sie wissen?",
+      "other": "Ich bin der SUNTREX-KI-Assistent. Ich kann Ihnen helfen bei:\n• Bestellverfolgung\n• Produktinformationen (Module, Wechselrichter, Batterien)\n• Retouren- und Serviceprozessen\n• Abrechnung und Zahlungen\n\nStellen Sie mir Ihre Frage!",
+      "default": "Vielen Dank für Ihre Nachricht. Ich prüfe das für Sie...",
+      "unavailable": "Der KI-Service ist vorübergehend nicht verfügbar. Kontaktieren Sie uns per E-Mail unter contact@suntrex.eu oder per WhatsApp unter +33 7 00 00 00 00.",
+      "agent": "Ich verbinde Sie mit einem Mitarbeiter. Bitte warten Sie..."
+    }
+  }
+}

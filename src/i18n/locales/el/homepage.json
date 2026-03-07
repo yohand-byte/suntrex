@@ -16,7 +16,9 @@
     "from": "Από",
     "perPiece": "/τεμ.",
     "verificationPending": "Επαλήθευση σε εξέλιξη",
-    "seePrice": "Δείτε την τιμή"
+    "seePrice": "Δείτε την τιμή",
+    "available": "διαθέσιμα προϊόντα",
+    "recommended": "Προτεινόμενα για εσάς"
   },
   "categories": {
     "title": "Αποκτήστε τις καλύτερες τιμές συγκρίνοντας πολλαπλές προσφορές",
@@ -234,5 +236,74 @@
     "title": "Ενημερωτικό δελτίο",
     "placeholder": "Το email σας",
     "subscribe": "Εγγραφή"
+  },
+  "mockups": {
+    "catalog": {
+      "title": "Σύγκριση πωλητών",
+      "offersFromSellers": "προσφορές από {{sellerCount}} πωλητές",
+      "inStock": "Σε απόθεμα",
+      "viewAllOffers": "Δείτε όλες τις προσφορές"
+    },
+    "chat": {
+      "title": "Πολυγλωσσική διαπραγμάτευση",
+      "agreementFound": "Η συμφωνία έκλεισε, η παραγγελία είναι έτοιμη"
+    },
+    "payment": {
+      "title": "Ασφαλής πληρωμή",
+      "deliverySuntrex": "Παράδοση SUNTREX",
+      "commission": "Προμήθεια SUNTREX",
+      "total": "Σύνολο",
+      "escrowActivated": "Το escrow ενεργοποιήθηκε μέχρι την επιβεβαίωση παραλαβής",
+      "paymentConfirmed": "Η πληρωμή επιβεβαιώθηκε",
+      "badges": {
+        "secure3d": "3D Secure",
+        "scaEurope": "SCA ΕΕ",
+        "escrow": "Escrow"
+      }
+    },
+    "delivery": {
+      "title": "Παρακολούθηση παράδοσης",
+      "orderConfirmed": "Η παραγγελία επιβεβαιώθηκε",
+      "shippedBySeller": "Απεστάλη από τον πωλητή",
+      "pickedUpSuntrex": "Παραλήφθηκε από τη SUNTREX",
+      "qualityControl": "Ποιοτικός έλεγχος",
+      "inTransit": "Σε μεταφορά",
+      "deliveredPhotoConfirmed": "Παραδόθηκε, φωτογραφία επιβεβαιωμένη"
+    },
+    "europe": {
+      "title": "Ευρωπαϊκή κάλυψη"
+    },
+    "createOffer": {
+      "title": "Δημιουργία προσφοράς",
+      "product": "Προϊόν",
+      "unitPrice": "Τιμή μονάδας",
+      "stock": "Απόθεμα",
+      "businessDays": "εργάσιμες ημέρες",
+      "aiSuggestion": "Πρόταση AI: προσαρμόστε την τιμή για μέγιστη μετατροπή.",
+      "offerPublished": "Η προσφορά δημοσιεύτηκε",
+      "deliveryEtaPrefix": "SUNTREX Delivery"
+    },
+    "stockMgmt": {
+      "title": "Διαχείριση αποθέματος",
+      "product": "Προϊόν",
+      "stock": "Απόθεμα",
+      "price": "Τιμή",
+      "status": "Κατάσταση",
+      "inStock": "Σε απόθεμα",
+      "lowStock": "Χαμηλό απόθεμα",
+      "outOfStock": "Εξαντλημένο",
+      "aiAlert": "Ειδοποίηση AI: εξετάστε την αναπλήρωση κωδικών υψηλής ζήτησης."
+    },
+    "dashboard": {
+      "title": "Πίνακας πωλητή",
+      "offers": "Προσφορές",
+      "sales": "Πωλήσεις",
+      "orders": "Παραγγελίες",
+      "rating": "Αξιολόγηση",
+      "latestOrders": "Τελευταίες παραγγελίες",
+      "inTransit": "Σε μεταφορά",
+      "delivered": "Παραδόθηκε",
+      "paid": "Πληρώθηκε"
+    }
   }
 }

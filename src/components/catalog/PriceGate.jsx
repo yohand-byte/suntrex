@@ -4,7 +4,7 @@ import { useCurrency } from "../../CurrencyContext";
 const S_BLUR = { filter:"blur(6px)", userSelect:"none", pointerEvents:"none" };
 
 export default function PriceGate({ price, isLoggedIn, onLogin }) {
-  const { t, i18n } = useTranslation(["translation", "catalog", "common"]);
+  const { t, i18n } = useTranslation(["catalog", "common"]);
   const tcatalog = (key, opts) => t(`catalog:${key}`, opts);
   const tcommon = (key, opts) => t(`common:${key}`, opts);
   const { formatMoney } = useCurrency();

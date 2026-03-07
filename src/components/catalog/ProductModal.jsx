@@ -29,7 +29,7 @@ const BRAND_LOGOS = {
 };
 
 export default function ProductModal({ product, isLoggedIn, onLogin, onClose }) {
-  const { t } = useTranslation(["translation", "catalog", "common"]);
+  const { t } = useTranslation(["catalog", "common"]);
   const tcatalog = (key, opts) => t(`catalog:${key}`, opts);
   const tcommon = (key, opts) => t(`common:${key}`, opts);
   const navigate = useNavigate();

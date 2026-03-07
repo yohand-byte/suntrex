@@ -16,7 +16,9 @@
     "from": "Dès",
     "perPiece": "/pcs",
     "verificationPending": "Vérification en cours",
-    "seePrice": "Voir le prix"
+    "seePrice": "Voir le prix",
+    "available": "produits disponibles",
+    "recommended": "Recommandés pour vous"
   },
   "categories": {
     "title": "Obtenez les meilleurs prix en comparant plusieurs offres",
@@ -234,5 +236,74 @@
     "title": "Newsletter",
     "placeholder": "Votre email",
     "subscribe": "S'abonner"
+  },
+  "mockups": {
+    "catalog": {
+      "title": "Comparatif vendeurs",
+      "offersFromSellers": "offres de {{sellerCount}} vendeurs",
+      "inStock": "En stock",
+      "viewAllOffers": "Voir toutes les offres"
+    },
+    "chat": {
+      "title": "Négociation multilingue",
+      "agreementFound": "Accord trouvé, bon de commande prêt"
+    },
+    "payment": {
+      "title": "Paiement sécurisé",
+      "deliverySuntrex": "Livraison SUNTREX",
+      "commission": "Commission SUNTREX",
+      "total": "Total",
+      "escrowActivated": "Escrow activé jusqu'à confirmation",
+      "paymentConfirmed": "Paiement confirmé",
+      "badges": {
+        "secure3d": "3D Secure",
+        "scaEurope": "SCA Europe",
+        "escrow": "Escrow"
+      }
+    },
+    "delivery": {
+      "title": "Suivi livraison",
+      "orderConfirmed": "Commande confirmée",
+      "shippedBySeller": "Expédié par le vendeur",
+      "pickedUpSuntrex": "Pris en charge par SUNTREX",
+      "qualityControl": "Contrôle qualité",
+      "inTransit": "En transit",
+      "deliveredPhotoConfirmed": "Livré, photo confirmée"
+    },
+    "europe": {
+      "title": "Couverture européenne"
+    },
+    "createOffer": {
+      "title": "Création d'offre",
+      "product": "Produit",
+      "unitPrice": "Prix unitaire",
+      "stock": "Stock",
+      "businessDays": "jours ouvrés",
+      "aiSuggestion": "Suggestion IA : ajustez le prix pour maximiser le taux de conversion.",
+      "offerPublished": "Offre publiée",
+      "deliveryEtaPrefix": "SUNTREX Delivery"
+    },
+    "stockMgmt": {
+      "title": "Gestion de stock",
+      "product": "Produit",
+      "stock": "Stock",
+      "price": "Prix",
+      "status": "Statut",
+      "inStock": "En stock",
+      "lowStock": "Stock faible",
+      "outOfStock": "Rupture",
+      "aiAlert": "Alerte IA : pensez à réapprovisionner les références à forte demande."
+    },
+    "dashboard": {
+      "title": "Dashboard vendeur",
+      "offers": "Offres",
+      "sales": "Ventes",
+      "orders": "Commandes",
+      "rating": "Note",
+      "latestOrders": "Dernières commandes",
+      "inTransit": "En transit",
+      "delivered": "Livrée",
+      "paid": "Payée"
+    }
   }
 }

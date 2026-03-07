@@ -1,1 +1,47 @@
-{}
+{
+  "supportChat": {
+    "headerTitle": "SUNTREX Support",
+    "welcome": "👋 Hello! I am the SUNTREX assistant. How can I help you?",
+    "revertedToAI": "You are connected back to the AI assistant.",
+    "handoffMessage": "Connecting you with an agent... Please wait.",
+    "waitingAgent": "Waiting for an agent...",
+    "aiPowered": "AI Assistant • 24/7",
+    "agentConnected": "Agent connected",
+    "talkToAgent": "Talk to an agent",
+    "talkToAgentShort": "Agent",
+    "newConversation": "New conversation",
+    "closeConversation": "Close conversation",
+    "homeTitle": "How can we help you?",
+    "homeSubtitle": "Choose a topic or ask your question",
+    "startChat": "Write a message",
+    "email": "Email",
+    "phone": "Phone",
+    "agentLabel": "Support Agent",
+    "aiLabel": "AI Assistant",
+    "waitingAgentMsg": "An agent will reply shortly...",
+    "revertToAI": "Return to AI chat",
+    "inputPlaceholder": "Your message...",
+    "channelChat": "Chat",
+    "faq": {
+      "tracking": "Order tracking",
+      "returns": "Returns / Support",
+      "billing": "Billing",
+      "other": "Other question"
+    },
+    "faqDesc": {
+      "tracking": "Track your orders in real time",
+      "returns": "Returns, exchanges and support",
+      "billing": "Invoices, payments and quotes",
+      "other": "Products, technical, other"
+    },
+    "responses": {
+      "tracking": "To track your order, go to **My account** > **My orders**. Each order includes real-time tracking with SUNTREX DELIVERY.\n\nWould you like me to check a specific order?",
+      "returns": "The return process is simple:\n• Deadline: **14 days** after receipt\n• Go to **My purchases** → select the order → **Report an issue**\n• Return costs depend on the seller\n\nIs there a specific order you need help with?",
+      "billing": "For any billing question:\n• Your invoices are available in **My account** > **Billing**\n• Payment is secured via **Stripe** (3D Secure)\n• SUNTREX fee: **5% lower** than competitors\n\nWhat is your exact question?",
+      "other": "I am the SUNTREX AI assistant. I can help you with:\n• Order tracking\n• Product information (panels, inverters, batteries)\n• Returns and support procedures\n• Billing and payments\n\nAsk me your question!",
+      "default": "Thank you for your message. Let me check that for you...",
+      "unavailable": "AI service temporarily unavailable. Contact us by email at contact@suntrex.eu or via WhatsApp at +33 7 00 00 00 00.",
+      "agent": "I am connecting you with an agent. Please wait..."
+    }
+  }
+}

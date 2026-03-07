@@ -1,21 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import useResponsive from "../../hooks/useResponsive";
 
 const API_URL = import.meta.env.VITE_API_URL || "";
-
-const ESCROW_STEPS = [
-  { key: "paid", label: "Paye", labelEn: "Paid", icon: "💳" },
-  { key: "shipped", label: "Expedie", labelEn: "Shipped", icon: "📦" },
-  { key: "delivered", label: "Livre", labelEn: "Delivered", icon: "🚛" },
-  { key: "released", label: "Fonds liberes", labelEn: "Funds Released", icon: "✅" },
-];
-
-const STATUS_CONFIG = {
-  held: { color: "#E8700A", bg: "#fff7ed", label: "Fonds securises", labelEn: "Funds Secured" },
-  released: { color: "#10b981", bg: "#ecfdf5", label: "Fonds liberes", labelEn: "Funds Released" },
-  disputed: { color: "#ef4444", bg: "#fef2f2", label: "Litige en cours", labelEn: "Dispute In Progress" },
-  pending: { color: "#6b7280", bg: "#f9fafb", label: "En attente", labelEn: "Pending" },
-};
 
 function getStepIndex(order) {
   if (!order) return 0;
@@ -36,6 +23,8 @@ function getDaysRemaining(escrowHeldAt) {
 }
 
 export default function EscrowStatus({ order, currentUser, onUpdate }) {
+  const { t } = useTranslation(["delivery"]);
+  const tdelivery = (key, options) => t(`delivery:${key}`, options);
   const { isMobile } = useResponsive();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -44,7 +33,20 @@ export default function EscrowStatus({ order, currentUser, onUpdate }) {
 
   if (!order) return null;
 
-  const status = STATUS_CONFIG[order.escrowStatus] || STATUS_CONFIG.pending;
+  const escrowSteps = [
+    { key: "paid", label: tdelivery("escrowStatus.steps.paid"), icon: "💳" },
+    { key: "shipped", label: tdelivery("escrowStatus.steps.shipped"), icon: "📦" },
+    { key: "delivered", label: tdelivery("escrowStatus.steps.delivered"), icon: "🚛" },
+    { key: "released", label: tdelivery("escrowStatus.steps.released"), icon: "✅" },
+  ];
+  const statusConfig = {
+    held: { color: "#E8700A", bg: "#fff7ed", label: tdelivery("escrowStatus.statuses.held") },
+    released: { color: "#10b981", bg: "#ecfdf5", label: tdelivery("escrowStatus.statuses.released") },
+    disputed: { color: "#ef4444", bg: "#fef2f2", label: tdelivery("escrowStatus.statuses.disputed") },
+    pending: { color: "#6b7280", bg: "#f9fafb", label: tdelivery("escrowStatus.statuses.pending") },
+  };
+
+  const status = statusConfig[order.escrowStatus] || statusConfig.pending;
   const stepIndex = getStepIndex(order);
   const isBuyer = currentUser?.id === order.buyerId;
   const daysRemaining = getDaysRemaining(order.escrowHeldAt);
@@ -80,7 +82,7 @@ export default function EscrowStatus({ order, currentUser, onUpdate }) {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ fontSize: 18 }}>🔒</span>
-            <span style={{ fontSize: isMobile ? 15 : 17, fontWeight: 700, color: "#1e293b" }}>Escrow SUNTREX</span>
+            <span style={{ fontSize: isMobile ? 15 : 17, fontWeight: 700, color: "#1e293b" }}>{tdelivery("escrowStatus.title")}</span>
           </div>
           <span style={{
             fontSize: 11, fontWeight: 700, color: status.color, background: status.bg,
@@ -91,14 +93,14 @@ export default function EscrowStatus({ order, currentUser, onUpdate }) {
         </div>
         {daysRemaining !== null && order.escrowStatus === "held" && (
           <div style={{ marginTop: 8, fontSize: 12, color: "#64748b" }}>
-            Auto-release dans {daysRemaining} jour{daysRemaining !== 1 ? "s" : ""} si aucun litige
+            {tdelivery("escrowStatus.autoRelease", { count: daysRemaining })}
           </div>
         )}
       </div>
 
       {/* Progress Steps */}
       <div style={{ padding: `${pad}px`, display: "flex", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? 12 : 0, flexDirection: isMobile ? "column" : "row" }}>
-        {ESCROW_STEPS.map((step, i) => {
+        {escrowSteps.map((step, i) => {
           const active = i <= stepIndex;
           const current = i === stepIndex;
           return (
@@ -115,7 +117,7 @@ export default function EscrowStatus({ order, currentUser, onUpdate }) {
               <div style={{ minWidth: 0 }}>
                 <div style={{ fontSize: 12, fontWeight: 600, color: active ? "#1e293b" : "#94a3b8" }}>{step.label}</div>
               </div>
-              {!isMobile && i < ESCROW_STEPS.length - 1 && (
+              {!isMobile && i < escrowSteps.length - 1 && (
                 <div style={{ flex: 1, height: 2, background: i < stepIndex ? "#10b981" : "#e2e8f0", margin: "0 8px", borderRadius: 1 }} />
               )}
             </div>
@@ -136,7 +138,7 @@ export default function EscrowStatus({ order, currentUser, onUpdate }) {
                 opacity: loading ? 0.6 : 1,
               }}
             >
-              {loading ? "..." : "Confirmer reception — Liberer les fonds"}
+              {loading ? "..." : tdelivery("escrowStatus.confirmReceipt")}
             </button>
           )}
           {canDispute && !showDispute && (
@@ -147,7 +149,7 @@ export default function EscrowStatus({ order, currentUser, onUpdate }) {
                 background: "#fff", color: "#ef4444", fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
               }}
             >
-              Signaler un probleme
+              {tdelivery("escrowStatus.reportIssue")}
             </button>
           )}
         </div>
@@ -159,7 +161,7 @@ export default function EscrowStatus({ order, currentUser, onUpdate }) {
           <textarea
             value={disputeReason}
             onChange={(e) => setDisputeReason(e.target.value)}
-            placeholder="Decrivez le probleme..."
+            placeholder={tdelivery("escrowStatus.disputePlaceholder")}
             style={{
               width: "100%", minHeight: 80, padding: 12, borderRadius: 8, border: "1px solid #e2e8f0",
               fontSize: 13, fontFamily: "'DM Sans', sans-serif", resize: "vertical", marginBottom: 8,
@@ -174,7 +176,7 @@ export default function EscrowStatus({ order, currentUser, onUpdate }) {
                 fontWeight: 700, fontSize: 13, cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
               }}
             >
-              Confirmer le litige
+              {tdelivery("escrowStatus.confirmDispute")}
             </button>
             <button
               onClick={() => setShowDispute(false)}
@@ -183,7 +185,7 @@ export default function EscrowStatus({ order, currentUser, onUpdate }) {
                 fontWeight: 600, fontSize: 13, cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
               }}
             >
-              Annuler
+              {tdelivery("escrowStatus.cancel")}
             </button>
           </div>
         </div>
@@ -192,7 +194,7 @@ export default function EscrowStatus({ order, currentUser, onUpdate }) {
       {/* Error */}
       {error && (
         <div style={{ padding: `0 ${pad}px ${pad}px`, fontSize: 12, color: "#ef4444" }}>
-          Erreur : {error}
+          {tdelivery("escrowStatus.errorPrefix")} {error}
         </div>
       )}
     </div>
