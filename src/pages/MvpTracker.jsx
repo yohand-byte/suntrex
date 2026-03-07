@@ -7,7 +7,7 @@ const PHASES = [
   { id: "expand", label: "Phase 4 — Expansion", color: "#06b6d4", target: "Continu" },
 ];
 
-// LAST UPDATED: 2026-03-06
+// LAST UPDATED: 2026-03-07
 const MODULES = [
   // ═══ PHASE 1 — MVP ═══
   {
@@ -235,8 +235,7 @@ const MODULES = [
     tasks: [
       { name: "Chat IA support catalogue (Mistral) — déjà fait", done: true },
       { name: "Recommandation produits personnalisée", done: true },
-      { name: "Comparateur intelligent multi-vendeurs (UI: ✓ / IA: à venir)", done: false },
-      { name: "Dimensionnement installation solaire", done: false },
+      { name: "Comparateur intelligent multi-vendeurs + IA", done: true },
       { name: "Pricing intelligent pour vendeurs", done: true },
     ],
   },
@@ -245,18 +244,19 @@ const MODULES = [
     tasks: [
       { name: "Filtre IA messages chat (anti-spam, anti-fraude)", done: true },
       { name: "Détection paiement hors-plateforme", done: true },
-      { name: "Détection multi-comptes", done: false },
-      { name: "Détection prix anormaux", done: false },
-      { name: "Dashboard modérateurs", done: false },
+      { name: "Détection multi-comptes", done: true },
+      { name: "Détection prix anormaux", done: true },
+      { name: "Dashboard modérateurs", done: true },
     ],
   },
   {
     id: "seo-perf", phase: "ai", part: "Infrastructure", name: "SEO & Performance",
     tasks: [
-      { name: "SSR ou prerender pour le catalogue", done: false },
+      { name: "SSR ou prerender pour le catalogue", done: true },
       { name: "Sitemap.xml dynamique", done: true },
-      { name: "Lighthouse > 90 sur toutes les pages", done: false },
+      { name: "Lighthouse > 90 sur toutes les pages", done: true },
       { name: "Lazy loading images + code splitting", done: true },
+      { name: "Recherche sémantique (fuzzy + synonymes PV)", done: true },
     ],
   },
   // ═══ PHASE 4 — EXPANSION ═══
@@ -391,7 +391,7 @@ export default function SuntrexTracker() {
 
   const codeStats = useMemo(() => {
     // Approximate from file analysis
-    return { files: 60, lines: 15200, functions: 5, hooks: 4 };
+    return { files: 68, lines: 17500, functions: 5, hooks: 5 };
   }, []);
 
   return (
@@ -405,7 +405,7 @@ export default function SuntrexTracker() {
           <span style={{ fontSize: 22, fontWeight: 800, color: "#1e293b" }}>SUNTREX</span>
           <span style={{ fontSize: 10, fontWeight: 700, color: "#E8700A", background: "#fff7ed", padding: "2px 8px", borderRadius: 4, letterSpacing: "0.05em" }}>MVP TRACKER</span>
         </div>
-        <p style={{ fontSize: 12, color: "#94a3b8", margin: 0 }}>Dernière mise à jour : 6 mars 2026 — {globalStats.done}/{globalStats.total} tâches complétées</p>
+        <p style={{ fontSize: 12, color: "#94a3b8", margin: 0 }}>Dernière mise à jour : 7 mars 2026 — {globalStats.done}/{globalStats.total} tâches complétées</p>
       </div>
 
       {/* Global Progress */}
@@ -417,9 +417,9 @@ export default function SuntrexTracker() {
         <ProgressBar done={globalStats.done} total={globalStats.total} height={10} />
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, marginTop: 16 }}>
           {[
-            { label: "Fichiers", value: "~60", icon: "📄" },
-            { label: "Lignes code", value: "~15K", icon: "💻" },
-            { label: "Cloud Run", value: "12 routes", icon: "⚡" },
+            { label: "Fichiers", value: "~68", icon: "📄" },
+            { label: "Lignes code", value: "~17K", icon: "💻" },
+            { label: "Cloud Run", value: "13 routes", icon: "⚡" },
             { label: "Langues", value: "7", icon: "🌍" },
           ].map((s, i) => (
             <div key={i} style={{ textAlign: "center", padding: "10px 4px", background: "#f8fafc", borderRadius: 8 }}>
