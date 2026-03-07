@@ -16,7 +16,7 @@ const CAT_IMG = {
   batteries: "/categories/batteries.jpg", "micro-inverters": "/categories/inverters.jpg",
   optimizers: "/categories/inverters.jpg", "ev-chargers": "/categories/category-onduleurs.png",
   mounting: "/categories/category-accessoires.png", accessories: "/categories/category-accessoires.png",
-  cables: "/categories/electrical.jpg",
+  electrical: "/categories/electrical.jpg",
 };
 
 const BC = {

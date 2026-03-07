@@ -823,7 +823,7 @@ export const CATEGORIES = [
   { id: "panels", name: "Panneaux solaires", icon: "☀️" },
   { id: "inverters", name: "Onduleurs", icon: "⚡" },
   { id: "batteries", name: "Stockage", icon: "🔋" },
-  { id: "cables", name: "Câbles", icon: "🔌" },
+  { id: "electrical", name: "Électrotechnique", icon: "🔌" },
   { id: "mounting", name: "Systèmes de montage", icon: "🏗️" },
   { id: "optimizers", name: "Optimiseurs", icon: "📈" },
   { id: "ev-chargers", name: "Bornes de recharge", icon: "🚗" },

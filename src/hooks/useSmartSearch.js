@@ -19,7 +19,7 @@ var SYNONYMS = [
   ["micro-onduleur", "microinverter", "micro inverter", "mikrowechselrichter", "micro-inverseur"],
   ["optimiseur", "optimizer", "optimiser", "leistungsoptimierer", "power optimizer"],
   ["montage", "mounting", "structure", "fixation", "support", "befestigung", "racking"],
-  ["cable", "cables", "kabel", "cablage", "wiring", "fil"],
+  ["cable", "cables", "kabel", "cablage", "wiring", "fil", "electrical", "electrotechnique", "coffret", "connecteur", "disjoncteur", "parafoudre"],
   ["chargeur", "charger", "ev charger", "borne", "wallbox", "ladestation", "borne de recharge"],
   ["triphasé", "triphase", "three phase", "3 phase", "3p", "dreiphasig"],
   ["monophasé", "monophase", "single phase", "1 phase", "1p", "einphasig"],

@@ -16,7 +16,7 @@ const CATEGORY_FALLBACK_IMAGES = {
   "ev-chargers": "/categories/category-onduleurs.png",
   mounting: "/categories/category-accessoires.png",
   accessories: "/categories/category-accessoires.png",
-  cables: "/categories/electrical.jpg",
+  electrical: "/categories/electrical.jpg",
 };
 const DEFAULT_FALLBACK = "/products/huawei/sun2000-5k-map0.jpg";
 

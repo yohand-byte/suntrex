@@ -21,8 +21,8 @@ export default function Header({ isLoggedIn, currentUser, onShowLogin, onShowReg
     { label: tc("header.nav.inverters"), path: "/catalog/inverters" },
     { label: tc("header.nav.energyStorage"), path: "/catalog/batteries" },
     { label: tc("header.nav.optimizers"), path: "/catalog/optimizers" },
-    { label: tc("header.nav.electrical"), path: "/catalog?category=electrical" },
-    { label: tc("header.nav.eMobility"), path: "/catalog?category=emobility" },
+    { label: tc("header.nav.electrical"), path: "/catalog/electrical" },
+    { label: tc("header.nav.eMobility"), path: "/catalog/ev-chargers" },
   ];
 
   return (

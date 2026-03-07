@@ -165,9 +165,9 @@ export default function CatalogPage({ isLoggedIn, onLogin }) {
         count: catalogItems.filter((p) => p.category === "batteries").length,
       },
       {
-        id: "cables",
-        label: tcatalog("cables", "Câbles"),
-        count: catalogItems.filter((p) => p.category === "cables").length,
+        id: "electrical",
+        label: tcatalog("electrical", "Électrotechnique"),
+        count: catalogItems.filter((p) => p.category === "electrical").length,
       },
       {
         id: "mounting",

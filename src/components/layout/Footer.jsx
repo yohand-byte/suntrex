@@ -8,7 +8,7 @@ var CATEGORY_ROUTES = {
   inverters: "/catalog/inverters",
   storage: "/catalog/batteries",
   mounting: "/catalog/mounting",
-  electrical: "/catalog/cables",
+  electrical: "/catalog/electrical",
   emobility: "/catalog/ev-chargers",
 };
 

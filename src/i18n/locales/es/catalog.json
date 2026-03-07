@@ -102,5 +102,8 @@
       "coolingType": "Tipo de refrigeración",
       "naturalConvection": "Convección natural"
     }
-  }
+  },
+  "solarPanels": "Paneles solares",
+  "electrical": "Electrotecnia",
+  "mounting": "Sistemas de montaje"
 }
