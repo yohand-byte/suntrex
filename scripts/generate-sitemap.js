@@ -47,6 +47,25 @@ const STATIC_ROUTES = [
   { path: "/faq",             priority: "0.6", changefreq: "monthly" },
 ];
 
+// ── Blog article slugs (SEO articles in Supabase) ────────────
+
+const BLOG_SLUGS = [
+  "prix-panneaux-solaires-b2b-grossiste-2026",
+  "comparatif-batteries-stockage-solaire-b2b-2026",
+  "marketplace-equipement-photovoltaique-b2b-europe-guide",
+  "reglementation-photovoltaique-france-tva-aides-2026",
+  "top-onduleurs-solaires-professionnels-2026",
+  "comparatif-onduleurs-hybrides-2026",
+  "european-solar-market-2026",
+  "huawei-vs-deye-2026",
+  "guide-batteries-stockage-2026",
+  "n-type-topcon-revolution",
+  "reglementation-pv-france-2026",
+  "suntrex-marketplace-launch",
+  "intersolar-europe-2026",
+  "top-10-panneaux-2026",
+];
+
 // ── Build XML ─────────────────────────────────────────────────
 
 function buildSitemap() {
@@ -54,6 +73,11 @@ function buildSitemap() {
 
   const urls = [
     ...STATIC_ROUTES,
+    ...BLOG_SLUGS.map(slug => ({
+      path: `/blog/${slug}`,
+      priority: "0.8",
+      changefreq: "monthly",
+    })),
     ...productIds.map(id => ({
       path: `/product/${id}`,
       priority: "0.7",

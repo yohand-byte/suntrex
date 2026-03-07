@@ -188,9 +188,10 @@ const SEED_ARTICLES = [
   },
 ];
 
-// ─── DATABASE SIMULATION (replace with real Supabase in production) ──
+// ─── DATABASE: SUPABASE + SEED FALLBACK ──────────────────────────
 const createDB = () => {
   let articles = [...SEED_ARTICLES];
+  let _supabaseFetched = false;
   let comments = [
     { id: "c1", article_id: "a1", user_name: "Jean-Marc D.", content: "Excellente analyse. Les CFD changent tout pour nous installateurs.", date: "2026-02-28", approved: true },
     { id: "c2", article_id: "a2", user_name: "Pierre M.", content: "Testé les deux. Huawei résidentiel, Deye volume C&I. Exactement ça.", date: "2026-02-26", approved: true },
@@ -198,14 +199,31 @@ const createDB = () => {
     { id: "c4", article_id: "a6", user_name: "Marie T.", content: "Enfin une marketplace avec de vrais différenciateurs !", date: "2026-03-01", approved: true },
     { id: "c5", article_id: "a9", user_name: "Thomas B.", content: "Excellent comparatif ! Le TCO sur 10 ans est vraiment éclairant. Deye pour le volume, Huawei pour le premium.", date: "2026-03-06", approved: true },
   ];
+  const mergeSupabase = async () => {
+    if (_supabaseFetched || !supabase) return;
+    try {
+      const { data } = await supabase.from("blog_articles").select("*").eq("published", true);
+      if (data && data.length > 0) {
+        const seedSlugs = new Set(articles.map(a => a.slug));
+        const mapped = data.filter(a => !seedSlugs.has(a.slug)).map(a => ({
+          ...a, date: a.published_at ? a.published_at.split("T")[0] : a.created_at?.split("T")[0],
+          reactions: a.reactions || {}, comments_count: a.comments_count || 0,
+          overlay: a.hero_gradient || "linear-gradient(135deg, rgba(15,25,35,0.82) 0%, rgba(232,112,10,0.7) 100%)",
+        }));
+        articles = [...articles, ...mapped];
+      }
+      _supabaseFetched = true;
+    } catch (_) { /* fallback to seed */ }
+  };
   return {
     getArticles: async (f = {}) => {
+      await mergeSupabase();
       let r = articles.filter(a => a.published);
       if (f.category && f.category !== "all") r = r.filter(a => a.category === f.category);
       if (f.search) { const q = f.search.toLowerCase(); r = r.filter(a => a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q) || a.tags?.some(t => t.toLowerCase().includes(q))); }
       return r.sort((a, b) => new Date(b.date) - new Date(a.date));
     },
-    getAllArticles: async () => [...articles].sort((a, b) => new Date(b.date) - new Date(a.date)),
+    getAllArticles: async () => { await mergeSupabase(); return [...articles].sort((a, b) => new Date(b.date) - new Date(a.date)); },
     createArticle: async (d) => { const a = { ...d, id: "a" + Date.now(), date: new Date().toISOString().split("T")[0], reactions: {}, comments_count: 0 }; articles.unshift(a); return a; },
     deleteArticle: async (id) => { articles = articles.filter(a => a.id !== id); },
     getComments: async (aid) => comments.filter(c => c.article_id === aid && c.approved),
@@ -448,6 +466,43 @@ const Newsletter = () => {
   );
 };
 
+// ─── JSON-LD ARTICLE SCHEMA ──────────────────────────────────────
+const ArticleJsonLd = ({ article }) => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.seo_title || article.title,
+    "description": article.seo_description || article.excerpt,
+    "author": { "@type": "Organization", "name": article.author_name || "SUNTREX" },
+    "publisher": { "@type": "Organization", "name": "SUNTREX", "logo": { "@type": "ImageObject", "url": "https://suntrex.eu/suntrex_logo_v3.png" } },
+    "datePublished": article.published_at || article.date,
+    "dateModified": article.updated_at || article.date,
+    "image": article.image,
+    "url": `https://suntrex.eu/blog/${article.slug}`,
+    "keywords": (article.tags || []).join(", "),
+    "articleSection": article.category,
+    "inLanguage": "fr-FR",
+  };
+  useEffect(() => {
+    document.title = `${article.seo_title || article.title} | SUNTREX`;
+    const setMeta = (name, content, prop) => {
+      if (!content) return;
+      let el = document.querySelector(prop ? `meta[property="${name}"]` : `meta[name="${name}"]`);
+      if (!el) { el = document.createElement("meta"); prop ? el.setAttribute("property", name) : el.setAttribute("name", name); document.head.appendChild(el); }
+      el.setAttribute("content", content);
+    };
+    setMeta("description", article.seo_description || article.excerpt);
+    setMeta("og:title", article.seo_title || article.title, true);
+    setMeta("og:description", article.seo_description || article.excerpt, true);
+    setMeta("og:image", article.image, true);
+    setMeta("og:type", "article", true);
+    setMeta("og:url", `https://suntrex.eu/blog/${article.slug}`, true);
+    setMeta("twitter:card", "summary_large_image");
+    return () => { document.title = "SUNTREX Blog"; };
+  }, [article]);
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
+};
+
 // ─── ARTICLE DETAIL VIEW ──────────────────────────────────────────
 const ArticleDetail = ({ article, onBack }) => {
   const { isMobile } = useResponsive();
@@ -456,6 +511,7 @@ const ArticleDetail = ({ article, onBack }) => {
 
   return (
     <div style={{ animation: "fadeIn 0.4s ease" }}>
+      <ArticleJsonLd article={article} />
       <Btn variant="ghost" onClick={onBack} style={{ marginBottom: 16, padding: "8px 16px" }}>← Retour au blog</Btn>
 
       {/* HERO WITH REAL PHOTO */}
